@@ -72,10 +72,13 @@ export default function SignUp() {
           className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
             type="password"
             name="confirmPassword"
-            placeholder="Create your password"
+            placeholder="Confirm you password"
           />
         </div>
         <button className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-cente">Create an account</button>
+        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                  </p>
       </form>
     </section>
     </section>
