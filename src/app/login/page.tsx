@@ -8,6 +8,7 @@ import { z } from "zod";
 
 import { LoginFormSchema } from "@/lib/schema";
 
+
 type Inputs = z.infer<typeof LoginFormSchema>;
 
 export default function LogIn() {
@@ -24,6 +25,22 @@ export default function LogIn() {
   });
 
   const processForm: SubmitHandler<Inputs> = (data) => {
+    // const result = await addEntry(data)
+
+    // if (!result) {
+    //   console.log('Something went wrong')
+    //   return
+    // }
+
+    // if (result.error) {
+    //   // set local error state
+    //   console.log(result.error)
+    //   return
+    // }
+
+    // reset()
+    // setData(result.data)
+
     reset();
     setData(data);
   };
@@ -72,7 +89,7 @@ export default function LogIn() {
               <p className="text-sm text-red-400">{errors.password.message}</p>
             )}
           </div>
-          <button className="text-cente w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+          <button className="text-cente w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300" type="submit">
             Login
           </button>
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">

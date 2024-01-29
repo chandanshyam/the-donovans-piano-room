@@ -125,7 +125,7 @@ export default function SignUp() {
               </p>
             )}
           </div>
-          <button className="text-cente w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+          <button className="text-cente w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300" type="submit">
             Create an account
           </button>
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
