@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "migration:generate": "drizzle-kit generate:sqlite",
-    "migration:push": "drizzle-kit push:sqlite --config=drizzle.config.ts"
+    "migration:push": "drizzle-kit push:sqlite --config=drizzle.config.ts",
+    "migration:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.3.16",
