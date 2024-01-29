@@ -7,6 +7,8 @@ const hasSpecialChar = /[!@#$%^&*]/;
 
 export const SignupFormSchema = z
   .object({
+    firstName: z.string().min(1, { message: "First Name is required" }),
+    lastName: z.string().min(1, { message: "Last Name is required" }),
     email: z.string().email({ message: "Invalid email address" }),
     password: z
       .string()
@@ -26,5 +28,11 @@ export const SignupFormSchema = z
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: "Passwords must match!",
+    path: ["confirmPassword"]
   });
+
+export const LoginFormSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  password: z.string(),
+});
