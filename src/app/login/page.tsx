@@ -8,7 +8,6 @@ import { z } from "zod";
 
 import { LoginFormSchema } from "@/lib/schema";
 
-
 type Inputs = z.infer<typeof LoginFormSchema>;
 
 export default function LogIn() {
@@ -25,22 +24,6 @@ export default function LogIn() {
   });
 
   const processForm: SubmitHandler<Inputs> = (data) => {
-    // const result = await addEntry(data)
-
-    // if (!result) {
-    //   console.log('Something went wrong')
-    //   return
-    // }
-
-    // if (result.error) {
-    //   // set local error state
-    //   console.log(result.error)
-    //   return
-    // }
-
-    // reset()
-    // setData(result.data)
-
     reset();
     setData(data);
   };

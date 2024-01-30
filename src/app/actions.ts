@@ -1,18 +1,18 @@
 "use server"
 
 import { z } from 'zod'
-import { SignupFormSchema, LoginFormSchema } from '@/lib/schema'
+import { SignupFormSchema } from '@/lib/schema'
 
-// type Inputs = z.infer<typeof FormDataSchema>
+type Inputs = z.infer<typeof SignupFormSchema>
 
-// export async function addEntry(data: Inputs) {
-//   const result = FormDataSchema.safeParse(data)
+export async function addNewUser(data: Inputs) {
+  const result = SignupFormSchema.safeParse(data)
 
-//   if (result.success) {
-//     return { success: true, data: result.data }
-//   }
+  if (result.success) {
+    return { success: true, data: result.data }
+  }
 
-//   if (result.error) {
-//     return { success: false, error: result.error.format() }
-//   }
-// }
+  if (result.error) {
+    return { success: false, error: result.error.format() }
+  }
+}

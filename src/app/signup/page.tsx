@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { SignupFormSchema } from "@/lib/schema";
+import { addNewUser } from '@/app/actions';
 
 type Inputs = z.infer<typeof SignupFormSchema>;
 
@@ -23,9 +24,22 @@ export default function SignUp() {
     resolver: zodResolver(SignupFormSchema),
   });
 
-  const processForm: SubmitHandler<Inputs> = (data) => {
-    reset();
-    setData(data);
+  const processForm: SubmitHandler<Inputs> = async (data) => {
+    const result = await addNewUser(data)
+
+    if (!result) {
+      console.log('Something went wrong')
+      return
+    }
+
+    if (result.error) {
+      // set local error state
+      console.log(result.error)
+      return
+    }
+
+    reset()
+    setData(result.data)
   };
 
   return (
