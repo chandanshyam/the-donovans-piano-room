@@ -16,7 +16,6 @@ export default function LogIn() {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<Inputs>({
