@@ -3,7 +3,7 @@ import Metronome from "./metronome/Metronome";
 
 const VirtualMetronome = () => {
   return (
-    <div className="flex h-full items-start p-10">
+    <div className="flex h-full items-center bg-primary-skin p-10">
       <TempoSetting />
       <Metronome />
     </div>

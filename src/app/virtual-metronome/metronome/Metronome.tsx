@@ -16,22 +16,48 @@ const Metronome = () => {
           />
         </div>
 
-        <h1 className="text-black text-5xl font-semibold">Allegro</h1>
+        <h1
+          className="font-semibold text-black
+                      tablet:text-5xl
+                      desktop:text-7xl
+                      "
+        >
+          Allegro
+        </h1>
 
         <Image
           src={MetronomeTime_1}
           alt="Metronome 1"
-          className="mb-12 mt-6 w-72"
+          className="mb-12 mt-6 w-72 desktop:w-96"
         />
 
-        <div className="relative h-[50rem] w-[50rem] bg-[url('/MetronomeMelody.svg')] bg-contain bg-center bg-no-repeat">
+        <div
+          className="relative w-[45rem] bg-[url('/MetronomeMelody.svg')] bg-contain bg-center bg-no-repeat 
+                        tablet:h-[35rem]
+                        laptop:h-[45rem]
+                        desktop:h-[50rem]
+                      "
+        >
           <Image
             src={MetronomePendulum}
             alt="metronome pendulum"
-            className="z-1 absolute left-[-5rem] top-[-4rem] h-[50rem] w-[45rem]"
+            className="z-1 absolute left-[-7.5rem]
+                        w-[45rem]
+                        tablet:top-[-3.8rem] tablet:h-[35rem]
+                        laptop:top-[-5rem] laptop:h-[45rem]
+                        desktop:top-[-4rem] desktop:h-[50rem]
+                      "
           />
 
-          <div className="absolute left-1/2 top-[31.5rem] z-10 h-14 w-96 translate-x-[-50%] bg-primary-yellow"></div>
+          <div
+            className="absolute left-1/2 z-10 w-96
+                          translate-x-[-50%] 
+                          bg-primary-yellow tablet:top-[22rem]
+                          tablet:h-8 
+                          laptop:top-[28.5rem] laptop:h-14
+                          desktop:top-[32rem]
+                        "
+          ></div>
         </div>
       </div>
 
@@ -45,16 +71,16 @@ const Metronome = () => {
         />
 
         <ul className="flex w-full justify-between">
-          <li className="bg-primary-blue-accent rounded-lg px-5 py-3 text-4xl font-semibold tracking-wide">
+          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
             Bongo
           </li>
-          <li className="bg-primary-blue-accent rounded-lg px-5 py-3 text-4xl font-semibold tracking-wide">
+          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
             Click
           </li>
-          <li className="bg-primary-blue-accent rounded-lg px-5 py-3 text-4xl font-semibold tracking-wide">
+          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
             Electric
           </li>
-          <li className="bg-primary-blue-accent rounded-lg px-5 py-3 text-4xl font-semibold tracking-wide">
+          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
             Percussion
           </li>
         </ul>
