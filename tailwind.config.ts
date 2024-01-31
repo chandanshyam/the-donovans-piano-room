@@ -29,6 +29,16 @@ const config: Config = {
         "primary-blue-accent": "#E7F2E7",
       },
     },
+    screens: {
+      tablet: "1024px",
+      // => @media (min-width: 640px) { ... }
+
+      laptop: "1440px",
+      // => @media (min-width: 1366px) { ... }
+
+      desktop: "1920px",
+      // => @media (min-width: 1440px) { ... }
+    },
   },
   plugins: [],
 };
