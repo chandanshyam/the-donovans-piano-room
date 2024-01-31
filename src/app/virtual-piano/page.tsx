@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ShortPiano from "../../assets/svg/ShortPiano.svg";
+import ShortPiano from "@/assets/svg/ShortPiano.svg";
 
 export default function VirtualPiano() {
   return (
