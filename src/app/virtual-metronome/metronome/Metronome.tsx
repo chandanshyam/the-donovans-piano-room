@@ -1,7 +1,7 @@
 import Image from "next/image";
-import FullScreenIcon from "../../../assets/svg/FullScreen.svg";
-import MetronomePendulum from "../../../assets/svg/MetronomePendulum.svg";
-import MetronomeTime_1 from "../../../assets/svg/MetronomeTime_1.svg";
+import FullScreenIcon from "../../../../public/assets/virtual-metronome/FullScreen.svg";
+import MetronomePendulum from "../../../../public/assets/virtual-metronome/MetronomePendulum.svg";
+import MetronomeTime_1 from "../../../../public/assets/virtual-metronome/MetronomeTime_1.svg";
 import Slider from "@mui/material/Slider";
 
 const Metronome = () => {
