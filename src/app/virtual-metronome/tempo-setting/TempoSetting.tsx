@@ -1,12 +1,7 @@
 import Image from "next/image";
 import Slider from "@mui/material/Slider";
 import PlayButton from "../../../assets/svg/PauseButton.svg";
-import minusFive from "../../../assets/svg/-5 button.svg";
-import plusFive from "../../../assets/svg/+5 button.svg";
-import decreaseButton from "../../../assets/svg/DecreaseButton.svg";
-import increaseButton from "../../../assets/svg/IncreaseButton.svg";
 import tempoButton from "../../../assets/svg/Tap Tempo.svg";
-import metronomePreseets from "../../../assets/svg/Metronome Preseets 1-4.svg";
 
 const TempoSetting = () => {
   let tempoNum = 25;
@@ -23,12 +18,13 @@ const TempoSetting = () => {
         </div>
         <div className="flex space-x-14">
           <div className="flex space-x-2">
-            <Image src={minusFive} alt="minusFive" className="h-14 w-14" />
-            <Image
-              src={decreaseButton}
-              alt="decreaseButton"
-              className="relative top-1.5 h-10 w-10"
-            />
+            <button className="h-12 w-16 rounded-3xl border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              -5
+            </button>
+
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              -
+            </button>
           </div>
           <Slider
             sx={{
@@ -36,12 +32,12 @@ const TempoSetting = () => {
             }}
           />
           <div className="flex space-x-2">
-            <Image
-              src={increaseButton}
-              alt="increaseButton"
-              className="relative top-1.5 h-10 w-10"
-            />
-            <Image src={plusFive} alt="plusFive" className="h-14 w-14" />
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              +
+            </button>
+            <button className="h-12 w-16 rounded-3xl border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              +5
+            </button>
           </div>
         </div>
       </div>
@@ -52,12 +48,13 @@ const TempoSetting = () => {
         </div>
         <div className="flex space-x-14">
           <div className="flex space-x-2">
-            <Image src={minusFive} alt="minusFive" className="h-14 w-14" />
-            <Image
-              src={decreaseButton}
-              alt="decreaseButton"
-              className="relative top-1.5 h-10 w-10"
-            />
+            <button className="h-12 w-16 rounded-3xl border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              -5
+            </button>
+
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              -
+            </button>
           </div>
           <Slider
             sx={{
@@ -65,38 +62,39 @@ const TempoSetting = () => {
             }}
           />
           <div className="flex space-x-2">
-            <Image
-              src={increaseButton}
-              alt="increaseButton"
-              className="relative top-1.5 h-10 w-10"
-            />
-            <Image src={plusFive} alt="plusFive" className="h-14 w-14" />
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              +
+            </button>
+            <button className="h-12 w-16 rounded-3xl border-2 border-solid bg-orange-400 text-2xl font-semibold">
+              +5
+            </button>
           </div>
         </div>
       </div>
 
-      <div className=" space-y-5">
+      <div className="space-y-5">
         <div className="flex justify-center">
           <h2 className="text-3xl font-semibold">Beat Emphasis</h2>
         </div>
         <div className="flex justify-center">
           <div className="flex space-x-12">
             <div className="flex space-x-2">
-              <Image src={minusFive} alt="minusFive" className="h-14 w-14" />
-              <Image
-                src={decreaseButton}
-                alt="decreaseButton"
-                className="relative top-1.5 h-10 w-10"
-              />
+              <button className="h-12 w-16 rounded-3xl border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                -5
+              </button>
+
+              <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                -
+              </button>
             </div>
             <h2 className="text-5xl font-semibold">{beatEmp}</h2>
             <div className="flex space-x-2">
-              <Image
-                src={increaseButton}
-                alt="increaseButton"
-                className="relative top-1.5 h-10 w-10"
-              />
-              <Image src={plusFive} alt="plusFive" className="h-14 w-14" />
+              <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                +
+              </button>
+              <button className="h-12 w-16 rounded-3xl border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                +5
+              </button>
             </div>
           </div>
         </div>
@@ -109,19 +107,15 @@ const TempoSetting = () => {
         <div className="flex justify-center">
           <div className="flex space-x-12">
             <div className="flex space-x-2">
-              <Image
-                src={decreaseButton}
-                alt="decreaseButton"
-                className="relative top-1.5 h-10 w-10"
-              />
+              <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                -
+              </button>
             </div>
             <h2 className="text-5xl font-semibold">{timeSeg}</h2>
             <div className="flex space-x-2">
-              <Image
-                src={increaseButton}
-                alt="increaseButton"
-                className="relative top-1.5 h-10 w-10"
-              />
+              <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -129,19 +123,15 @@ const TempoSetting = () => {
         <div className="flex justify-center">
           <div className="flex space-x-12">
             <div className="flex space-x-2">
-              <Image
-                src={decreaseButton}
-                alt="decreaseButton"
-                className="relative top-1.5 h-10 w-10"
-              />
+              <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                -
+              </button>
             </div>
             <h2 className="text-5xl font-semibold">{timeSeg}</h2>
             <div className="flex space-x-2">
-              <Image
-                src={increaseButton}
-                alt="increaseButton"
-                className="relative top-1.5 h-10 w-10"
-              />
+              <button className="h-12 w-12 rounded-full border-2 border-solid bg-orange-400 text-2xl font-semibold">
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -154,11 +144,21 @@ const TempoSetting = () => {
         </div>
 
         <div className="flex space-x-24">
-          <Image
-            src={metronomePreseets}
-            alt="metronomePreseets"
-            className="h-15 w-15 relative right-10"
-          />
+          <div className="flex items-center space-x-5 text-3xl font-semibold">
+            <p>Metronome Presets</p>
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold">
+              1
+            </button>
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold">
+              2
+            </button>
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold">
+              3
+            </button>
+            <button className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold">
+              4
+            </button>
+          </div>
           <button className="rounded-lg border-2 border-solid border-orange-400 px-4 py-2 text-lg font-semibold">
             Clear
           </button>
