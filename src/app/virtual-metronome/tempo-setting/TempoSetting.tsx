@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Slider from "@mui/material/Slider";
-import PlayButton from "../../../assets/svg/PauseButton.svg";
-import tempoButton from "../../../assets/svg/Tap Tempo.svg";
+// import PlayButton from "../../../assets/svg/PauseButton.svg";
+// import tempoButton from "../../../assets/svg/Tap Tempo.svg";
 
 const TempoSetting = () => {
   let tempoNum = 25;
@@ -139,8 +139,8 @@ const TempoSetting = () => {
 
       <div className="space-y-40">
         <div className="relative left-60 flex space-x-8">
-          <Image src={PlayButton} alt="PlayButton" />
-          <Image src={tempoButton} alt="tempoButton" />
+          {/* <Image src={PlayButton} alt="PlayButton" />
+          <Image src={tempoButton} alt="tempoButton" /> */}
         </div>
 
         <div className="flex space-x-24">
