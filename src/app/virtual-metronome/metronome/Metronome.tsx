@@ -1,24 +1,25 @@
 import Image from "next/image";
-import FullScreenIcon from "../../../../public/assets/virtual-metronome/FullScreen.svg";
-import MetronomePendulum from "../../../../public/assets/virtual-metronome/MetronomePendulum.svg";
-import MetronomeTime_1 from "../../../../public/assets/virtual-metronome/MetronomeTime_1.svg";
+// import FullScreenIcon from "../../../../public/assets/virtual-metronome/FullScreen.svg";
+// import MetronomePendulum from "../../../../public/assets/virtual-metronome/MetronomePendulum.svg";
+// import MetronomeTime_1 from "../../../../public/assets/virtual-metronome/MetronomeTime_1.svg";
 import Slider from "@mui/material/Slider";
 
 const Metronome = () => {
   return (
-    <div className="flex basis-2/5 flex-col gap-5">
+    <div className="flex basis-2/5 flex-col justify-between">
       <div className="metronome__container flex flex-col items-center border-2 p-10">
         <div className="ml-auto">
           <Image
-            src={FullScreenIcon}
+            src="./virtual-metronome/FullScreen.svg"
+            width={200}
+            height={200}
             alt="full screen icon"
             className="h-8 w-8"
           />
         </div>
 
         <h1
-          className="font-semibold text-black
-                      tablet:text-5xl
+          className="text-5xl font-semibold text-black
                       desktop:text-7xl
                       "
         >
@@ -26,61 +27,67 @@ const Metronome = () => {
         </h1>
 
         <Image
-          src={MetronomeTime_1}
+          src="./virtual-metronome/MetronomeTime_1.svg"
           alt="Metronome 1"
+          width={200}
+          height={200}
           className="mb-12 mt-6 w-72 desktop:w-96"
         />
 
         <div
-          className="relative w-[45rem] bg-[url('/MetronomeMelody.svg')] bg-contain bg-center bg-no-repeat 
-                        tablet:h-[35rem]
+          className="relative h-[35rem] w-[30rem] bg-[url('/virtual-metronome/MetronomeMelody.svg')] bg-contain bg-center 
+                        bg-no-repeat
                         laptop:h-[45rem]
-                        desktop:h-[50rem]
+                        desktop:h-[55rem] desktop:w-[35rem]
                       "
         >
           <Image
-            src={MetronomePendulum}
+            src="./virtual-metronome/MetronomePendulum.svg"
             alt="metronome pendulum"
-            className="z-1 absolute left-[-7.5rem]
-                        w-[45rem]
-                        tablet:top-[-3.8rem] tablet:h-[35rem]
-                        laptop:top-[-5rem] laptop:h-[45rem]
-                        desktop:top-[-4rem] desktop:h-[50rem]
+            width={200}
+            height={200}
+            className="z-1 absolute left-[-6rem]
+                        top-[-2.5rem]
+                        h-[35rem] w-[40rem]
+                        laptop:top-[-2rem] laptop:h-[45rem]
+                        desktop:top-[1rem] desktop:h-[50rem] desktop:w-[50rem]
                       "
           />
 
           <div
-            className="absolute left-1/2 z-10 w-96
-                          translate-x-[-50%] 
-                          bg-primary-yellow tablet:top-[22rem]
-                          tablet:h-8 
-                          laptop:top-[28.5rem] laptop:h-14
-                          desktop:top-[32rem]
+            className="absolute left-1/2 top-[22rem] z-10
+                          h-8 
+                          w-60 translate-x-[-50%]
+                          bg-primary-yellow
+                          laptop:top-[27.5rem] laptop:h-12
+                          desktop:top-[33.5rem]
                         "
           ></div>
         </div>
       </div>
 
-      <div className="volume__container flex flex-col items-center gap-3">
-        <h2 className="text-4xl font-semibold">Volume</h2>
+      <div className="volume__container flex flex-col items-center gap-5">
+        <h2 className="text-4xl font-semibold desktop:text-5xl">Volume</h2>
 
         <Slider
           sx={{
             color: "#E98427",
           }}
         />
+      </div>
 
-        <ul className="flex w-full justify-between">
-          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
+      <div className="soundStyle__container">
+        <ul className="flex w-full items-center justify-between text-3xl laptop:text-4xl desktop:text-5xl">
+          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
             Bongo
           </li>
-          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
+          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
             Click
           </li>
-          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
+          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
             Electric
           </li>
-          <li className="rounded-lg bg-primary-blue-accent px-5 py-3 text-4xl font-semibold tracking-wide">
+          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
             Percussion
           </li>
         </ul>
