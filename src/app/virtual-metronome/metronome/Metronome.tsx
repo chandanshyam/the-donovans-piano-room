@@ -4,7 +4,12 @@ import Image from "next/image";
 // import MetronomeTime_1 from "../../../../public/assets/virtual-metronome/MetronomeTime_1.svg";
 import Slider from "@mui/material/Slider";
 
-const Metronome = () => {
+interface MetronomeProps {
+  beatsNum: number;
+  beatEmp: number;
+}
+
+const Metronome = ({ beatsNum, beatEmp }: MetronomeProps) => {
   return (
     <div className="flex basis-2/5 flex-col justify-between">
       <div className="metronome__container flex flex-col items-center border-2 p-10">
@@ -26,13 +31,26 @@ const Metronome = () => {
           Allegro
         </h1>
 
-        <Image
-          src="./virtual-metronome/MetronomeTime_1.svg"
-          alt="Metronome 1"
-          width={200}
-          height={200}
-          className="mb-12 mt-6 w-72 desktop:w-96"
-        />
+        <div className="mb-12 mt-6 flex w-72 gap-2 desktop:w-96">
+          {Array.from({ length: beatsNum }, (_, index) => {
+            if (index === beatEmp)
+              return (
+                <div
+                  key={index}
+                  className="h-12 w-12 rounded-full border-4 border-solid text-2xl font-semibold desktop:h-20 desktop:w-20 desktop:text-5xl"
+                  style={{
+                    borderColor: "#FFA500",
+                  }}
+                ></div>
+              );
+            return (
+              <div
+                key={index}
+                className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold desktop:h-20 desktop:w-20 desktop:text-5xl"
+              ></div>
+            );
+          })}
+        </div>
 
         <div
           className="relative h-[35rem] w-[30rem] bg-[url('/virtual-metronome/MetronomeMelody.svg')] bg-contain bg-center 
