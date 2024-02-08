@@ -1,12 +1,37 @@
+"use client";
+
 import Image from "next/image";
 import Slider from "@mui/material/Slider";
+import { useState } from "react";
 
-const TempoSetting = () => {
-  let tempoNum = 25;
-  let beatsNum = 1;
-  let beatEmp = 0;
+interface TempoSettingProps {
+  beatsNum: number;
+  setBeats: React.Dispatch<React.SetStateAction<number>>;
+  beatEmp: number;
+  setBeatEmp: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const TempoSetting = ({
+  beatsNum,
+  setBeats,
+  beatEmp,
+  setBeatEmp,
+}: TempoSettingProps) => {
   let timeSeg = 0;
 
+  const [tempoNum, setTempo] = useState<number>(25);
+
+  const handleTempo = (num: number): void => {
+    setTempo((prev) => prev + num);
+  };
+
+  const handleBeats = (num: number): void => {
+    setBeats((prev) => prev + num);
+  };
+
+  const handleBeatEmp = (num: number): void => {
+    setBeatEmp((prev) => prev + num);
+  };
   return (
     <div className="flex basis-3/5 flex-col justify-around px-10">
       <div className="tempo__container flex flex-col desktop:gap-5">
@@ -19,11 +44,17 @@ const TempoSetting = () => {
 
         <div className="flex gap-10">
           <div className="flex gap-5">
-            <button className="bg-light-orange flex h-12 w-16 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleTempo(-5)}
+              className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               -5
             </button>
 
-            <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleTempo(-1)}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               -
             </button>
           </div>
@@ -33,10 +64,16 @@ const TempoSetting = () => {
             }}
           />
           <div className="flex gap-5">
-            <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleTempo(1)}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               +
             </button>
-            <button className="bg-light-orange flex h-12 w-16 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleTempo(5)}
+              className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               +5
             </button>
           </div>
@@ -53,11 +90,17 @@ const TempoSetting = () => {
 
         <div className="flex gap-10">
           <div className="flex gap-5">
-            <button className="bg-light-orange flex h-12 w-16 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleBeats(-5)}
+              className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               -5
             </button>
 
-            <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleBeats(-1)}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               -
             </button>
           </div>
@@ -67,10 +110,16 @@ const TempoSetting = () => {
             }}
           />
           <div className="flex gap-5">
-            <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleBeats(1)}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               +
             </button>
-            <button className="bg-light-orange flex h-12 w-16 items-center justify-center rounded-full text-2xl font-semibold desktop:scale-125">
+            <button
+              onClick={() => handleBeats(5)}
+              className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold desktop:scale-125"
+            >
               +5
             </button>
           </div>
@@ -86,22 +135,36 @@ const TempoSetting = () => {
 
         <div className="flex items-center justify-center gap-10 desktop:scale-125">
           <div className="flex gap-5">
-            <button className="bg-light-orange flex h-12 w-16 items-center justify-center rounded-full text-2xl font-semibold">
+            <button
+              onClick={() => handleBeatEmp(-5)}
+              className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+            >
               -5
             </button>
 
-            <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold">
+            <button
+              onClick={() => handleBeatEmp(-1)}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+            >
               -
             </button>
           </div>
 
-          <h2 className="text-5xl font-semibold">{beatEmp}</h2>
+          <h2 className="text-5xl font-semibold">
+            {beatEmp < 0 ? 0 : beatEmp + 1}{" "}
+          </h2>
 
           <div className="flex gap-5">
-            <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold">
+            <button
+              onClick={() => handleBeatEmp(1)}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+            >
               +
             </button>
-            <button className="bg-light-orange flex h-12 w-16 items-center justify-center rounded-full text-2xl font-semibold">
+            <button
+              onClick={() => handleBeatEmp(5)}
+              className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+            >
               +5
             </button>
           </div>
@@ -117,13 +180,13 @@ const TempoSetting = () => {
         <div className="flex justify-center">
           <div className="flex gap-5">
             <div className="flex">
-              <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold">
+              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
                 -
               </button>
             </div>
             <h2 className="text-5xl font-semibold">{timeSeg}</h2>
             <div className="flex">
-              <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold">
+              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
                 +
               </button>
             </div>
@@ -133,13 +196,13 @@ const TempoSetting = () => {
         <div className="flex justify-center">
           <div className="flex gap-5">
             <div className="flex">
-              <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold">
+              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
                 -
               </button>
             </div>
             <h2 className="text-5xl font-semibold">{timeSeg}</h2>
             <div className="flex">
-              <button className="bg-light-orange flex h-12 w-12 items-center justify-center rounded-full text-2xl font-semibold">
+              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
                 +
               </button>
             </div>
