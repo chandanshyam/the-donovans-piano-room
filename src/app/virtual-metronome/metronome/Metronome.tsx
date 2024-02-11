@@ -1,8 +1,6 @@
 import Image from "next/image";
-// import FullScreenIcon from "../../../../public/assets/virtual-metronome/FullScreen.svg";
-// import MetronomePendulum from "../../../../public/assets/virtual-metronome/MetronomePendulum.svg";
-// import MetronomeTime_1 from "../../../../public/assets/virtual-metronome/MetronomeTime_1.svg";
 import Slider from "@mui/material/Slider";
+import { motion } from "framer-motion";
 
 interface MetronomeProps {
   beatsNum: number;
@@ -59,19 +57,33 @@ const Metronome = ({ beatsNum, beatEmp }: MetronomeProps) => {
                         desktop:h-[55rem] desktop:w-[35rem]
                       "
         >
-          <Image
-            src="./virtual-metronome/MetronomePendulum.svg"
-            alt="metronome pendulum"
-            width={200}
-            height={200}
-            className="z-1 absolute left-[-6rem]
+          <motion.div
+            animate={{
+              rotate: Array.from({ length: 360 }, (_, index) => {
+                if (index < 90) {
+                  return -1 * index;
+                } else if (index >= 90 && index < 180) {
+                  return -1 * (180 - index);
+                } else if (index >= 180 && index < 270) return index - 180;
+                else return 360 - index;
+              }),
+            }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            style={{ originX: 0.5, originY: 0.7 }}
+          >
+            <Image
+              src="./virtual-metronome/MetronomePendulum.svg"
+              alt="metronome pendulum"
+              width={200}
+              height={200}
+              className="z-1 
                         top-[-2.5rem]
                         h-[35rem] w-[40rem]
                         laptop:top-[-2rem] laptop:h-[45rem]
                         desktop:top-[1rem] desktop:h-[50rem] desktop:w-[50rem]
                       "
-          />
-
+            />
+          </motion.div>
           <div
             className="absolute left-1/2 top-[22rem] z-10
                           h-8 
