@@ -6,14 +6,13 @@
   border-radius: 20px;
   border: none;
   padding: 10px 20px;
-  /* background-color: transparent; */
   color:rgba(252, 240, 216, 1);
   cursor: pointer;
   font-family: "Noto Sans", sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 136.364% */
+  line-height: 30px;
   letter-spacing: -0.22px;
 
   color: rgba(28, 26, 26, 1);
@@ -35,3 +34,4 @@
 }
 
 /* Rest of your CSS for the container and other elements */
+
