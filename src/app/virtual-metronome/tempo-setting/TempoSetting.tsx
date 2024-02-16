@@ -9,6 +9,7 @@ interface TempoSettingProps {
   setBeats: React.Dispatch<React.SetStateAction<number>>;
   beatEmp: number;
   setBeatEmp: React.Dispatch<React.SetStateAction<number>>;
+  setAnimation: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TempoSetting = ({
@@ -16,6 +17,7 @@ const TempoSetting = ({
   setBeats,
   beatEmp,
   setBeatEmp,
+  setAnimation,
 }: TempoSettingProps) => {
   let timeSeg = 0;
 
@@ -218,6 +220,7 @@ const TempoSetting = ({
             height={80}
             alt="PlayButton"
             className="ml-2 h-24 w-24"
+            onClick={() => setAnimation(true)}
           />
         </div>
 

@@ -7,6 +7,7 @@ import { useState } from "react";
 const VirtualMetronome = () => {
   const [beatsNum, setBeats] = useState<number>(1);
   const [beatEmp, setBeatEmp] = useState<number>(-1);
+  const [animation, setAnimation] = useState<boolean>(false);
 
   return (
     <div className="flex h-full justify-center bg-primary-skin p-12">
@@ -16,8 +17,13 @@ const VirtualMetronome = () => {
           setBeats={setBeats}
           beatEmp={beatEmp}
           setBeatEmp={setBeatEmp}
+          setAnimation={setAnimation}
         />
-        <Metronome beatsNum={beatsNum} beatEmp={beatEmp} />
+        <Metronome
+          beatsNum={beatsNum}
+          beatEmp={beatEmp}
+          animation={animation}
+        />
       </div>
     </div>
   );
