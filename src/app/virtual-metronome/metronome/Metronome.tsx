@@ -59,24 +59,21 @@ const Metronome = ({ beatsNum, beatEmp }: MetronomeProps) => {
         >
           <motion.div
             animate={{
-              rotate: Array.from({ length: 360 }, (_, index) => {
-                if (index < 90) {
-                  return -1 * index;
-                } else if (index >= 90 && index < 180) {
-                  return -1 * (180 - index);
-                } else if (index >= 180 && index < 270) return index - 180;
-                else return 360 - index;
+              rotate: Array.from({ length: 150 }, (_, index) => {
+                if (index < 76) {
+                  return index;
+                } else return 150 - index;
               }),
             }}
             transition={{ repeat: Infinity, duration: 2 }}
-            style={{ originX: 0.5, originY: 0.7 }}
+            style={{ originX: 0.5, originY: 0.6 }}
           >
             <Image
               src="./virtual-metronome/MetronomePendulum.svg"
               alt="metronome pendulum"
               width={200}
               height={200}
-              className="z-1 
+              className="z-1 relative left-[-4.5rem]
                         top-[-2.5rem]
                         h-[35rem] w-[40rem]
                         laptop:top-[-2rem] laptop:h-[45rem]
