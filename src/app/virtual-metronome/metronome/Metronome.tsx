@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Slider from "@mui/material/Slider";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface MetronomeProps {
   beatsNum: number;
@@ -16,6 +17,21 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
   } else {
     innerBeatsNum = beatsNum;
   }
+  const [soundState, setSoundState] = useState<string>("/sounds/Bongo.mp3");
+
+  useEffect(() => {
+    if (animation) {
+      const sound = new Audio(soundState);
+      sound.play();
+
+      const interval = setInterval(() => {
+        sound.play();
+      }, 2000);
+
+      // Clear the interval on component unmount to avoid memory leaks
+      return () => clearInterval(interval);
+    }
+  }, [animation]);
 
   return (
     <div className="flex basis-2/5 flex-col justify-between">
@@ -29,6 +45,7 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
             className="h-8 w-8"
           />
         </div>
+
         <h1
           className="text-5xl font-semibold text-black
                       desktop:text-7xl
@@ -59,7 +76,7 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
                       ),
                     }}
                     transition={{
-                      duration: 1,
+                      duration: 2,
                       repeat: Infinity,
                     }}
                   >
@@ -96,7 +113,7 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
                     ),
                   }}
                   transition={{
-                    duration: 1,
+                    duration: 2,
                     repeat: Infinity,
                   }}
                 >
@@ -112,7 +129,6 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
               );
           })}
         </div>
-
         <div
           className="relative h-[35rem] w-[30rem] bg-[url('/virtual-metronome/MetronomeMelody.svg')] bg-contain bg-center 
                         bg-no-repeat
@@ -129,7 +145,7 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
                   } else return 150 - index;
                 }),
               }}
-              transition={{ repeat: Infinity, duration: 2 }}
+              transition={{ repeat: Infinity, duration: 4 }}
               style={{ originX: 0.5, originY: 0.6 }}
             >
               <Image
@@ -185,16 +201,28 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
 
       <div className="soundStyle__container">
         <ul className="flex w-full items-center justify-between text-3xl laptop:text-4xl desktop:text-5xl">
-          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
+          <li
+            className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
+            onClick={() => setSoundState("/sounds/Bongo.mp3")}
+          >
             Bongo
           </li>
-          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
+          <li
+            className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
+            onClick={() => setSoundState("/sounds/Click.mp3")}
+          >
             Click
           </li>
-          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
+          <li
+            className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
+            onClick={() => setSoundState("/sounds/Electric.mp3")}
+          >
             Electric
           </li>
-          <li className="rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide">
+          <li
+            className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
+            onClick={() => setSoundState("/sounds/Percussion.mp3")}
+          >
             Percussion
           </li>
         </ul>

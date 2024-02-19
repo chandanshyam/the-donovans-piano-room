@@ -213,7 +213,7 @@ const TempoSetting = ({
       </div>
 
       <div className="tapTempo__container flex justify-center gap-10 desktop:scale-125">
-        <div className="flex items-center justify-center rounded-full bg-primary-yellow p-5">
+        <div className="flex cursor-pointer items-center justify-center rounded-full bg-primary-yellow p-5">
           <Image
             src="/virtual-metronome/PlayButton.svg"
             width={80}
