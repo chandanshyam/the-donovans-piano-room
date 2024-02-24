@@ -18,7 +18,7 @@ const Metronome = ({
 }: MetronomeProps) => {
   const [soundState, setSoundState] = useState<string[]>([
     "/sounds/Bongo.mp3",
-    "/sounds/ClickEmp.mp3",
+    "/sounds/BongoEmp.mp3",
   ]);
   const [animatedIndex, setAnimatedIndex] = useState<number>(0);
 
@@ -210,7 +210,7 @@ const Metronome = ({
               const newArray = [...soundState];
               // Modify the copied array
               newArray[0] = "/sounds/Bongo.mp3";
-              newArray[1] = "/sounds/ClickEmp.mp3";
+              newArray[1] = "/sounds/BongoEmp.mp3";
               // Update the state with the modified array
               setSoundState(newArray);
             }}
@@ -236,7 +236,7 @@ const Metronome = ({
               const newArray = [...soundState];
               // Modify the copied array
               newArray[0] = "/sounds/Electric.mp3";
-              newArray[1] = "/sounds/ClickEmp.mp3";
+              newArray[1] = "/sounds/ElectricEmp.mp3";
               // Update the state with the modified array
               setSoundState(newArray);
             }}
@@ -249,7 +249,7 @@ const Metronome = ({
               const newArray = [...soundState];
               // Modify the copied array
               newArray[0] = "/sounds/Percussion.mp3";
-              newArray[1] = "/sounds/ClickEmp.mp3";
+              newArray[1] = "/sounds/PercussionEmp.mp3";
               // Update the state with the modified array
               setSoundState(newArray);
             }}
