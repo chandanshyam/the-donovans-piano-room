@@ -5,28 +5,51 @@ import { useEffect, useState } from "react";
 
 interface MetronomeProps {
   beatsNum: number;
+  tempoNum: number;
   beatEmp: number;
   animation: boolean;
 }
 
-const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
-  let innerBeatsNum: number = 1;
-
-  if (beatsNum === 1) {
-    innerBeatsNum = 2;
-  } else {
-    innerBeatsNum = beatsNum;
-  }
-  const [soundState, setSoundState] = useState<string>("/sounds/Bongo.mp3");
+const Metronome = ({
+  beatsNum,
+  tempoNum,
+  beatEmp,
+  animation,
+}: MetronomeProps) => {
+  const [soundState, setSoundState] = useState<string[]>([
+    "/sounds/Bongo.mp3",
+    "/sounds/ClickEmp.mp3",
+  ]);
+  const [animatedIndex, setAnimatedIndex] = useState<number>(0);
 
   useEffect(() => {
     if (animation) {
-      const sound = new Audio(soundState);
-      sound.play();
+      const sound = new Audio(soundState[0]);
+      const soundEmp = new Audio(soundState[1]);
+      let index = 0;
 
-      const interval = setInterval(() => {
+      if (beatEmp === index) {
+        soundEmp.play();
+        index = (index + 1) % beatsNum;
+      } else {
         sound.play();
-      }, 2000);
+        index = (index + 1) % beatsNum;
+      }
+
+      const interval = setInterval(
+        () => {
+          if (beatEmp === index) {
+            soundEmp.play();
+            index = (index + 1) % beatsNum;
+            setAnimatedIndex((prevIndex) => (prevIndex + 1) % beatsNum);
+          } else {
+            sound.play();
+            index = (index + 1) % beatsNum;
+            setAnimatedIndex((prevIndex) => (prevIndex + 1) % beatsNum);
+          }
+        },
+        (60 / tempoNum) * 1000,
+      );
 
       // Clear the interval on component unmount to avoid memory leaks
       return () => clearInterval(interval);
@@ -66,18 +89,8 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
                       border: `5px solid #FFA500`,
                     }}
                     animate={{
-                      backgroundColor: Array.from(
-                        { length: innerBeatsNum },
-                        (_, innerIndex) => {
-                          if (index === innerIndex) {
-                            return "rgb(186,85,211)";
-                          } else return "#D4D8D4";
-                        },
-                      ),
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
+                      backgroundColor:
+                        index === animatedIndex ? "rgb(186,85,211)" : "#D4D8D4",
                     }}
                   >
                     <div key={index}></div>
@@ -103,18 +116,8 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
                     borderRadius: 30,
                   }}
                   animate={{
-                    backgroundColor: Array.from(
-                      { length: innerBeatsNum },
-                      (_, innerIndex) => {
-                        if (index === innerIndex) {
-                          return "rgb(186,85,211)";
-                        } else return "#D4D8D4";
-                      },
-                    ),
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
+                    backgroundColor:
+                      index === animatedIndex ? "rgb(186,85,211)" : "#D4D8D4",
                   }}
                 >
                   <div key={index}></div>
@@ -145,7 +148,7 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
                   } else return 150 - index;
                 }),
               }}
-              transition={{ repeat: Infinity, duration: 4 }}
+              transition={{ repeat: Infinity, duration: 120 / tempoNum }}
               style={{ originX: 0.5, originY: 0.6 }}
             >
               <Image
@@ -203,25 +206,53 @@ const Metronome = ({ beatsNum, beatEmp, animation }: MetronomeProps) => {
         <ul className="flex w-full items-center justify-between text-3xl laptop:text-4xl desktop:text-5xl">
           <li
             className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
-            onClick={() => setSoundState("/sounds/Bongo.mp3")}
+            onClick={() => {
+              const newArray = [...soundState];
+              // Modify the copied array
+              newArray[0] = "/sounds/Bongo.mp3";
+              newArray[1] = "/sounds/ClickEmp.mp3";
+              // Update the state with the modified array
+              setSoundState(newArray);
+            }}
           >
             Bongo
           </li>
           <li
             className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
-            onClick={() => setSoundState("/sounds/Click.mp3")}
+            onClick={() => {
+              const newArray = [...soundState];
+              // Modify the copied array
+              newArray[0] = "/sounds/Click.mp3";
+              newArray[1] = "/sounds/ClickEmp.mp3";
+              // Update the state with the modified array
+              setSoundState(newArray);
+            }}
           >
             Click
           </li>
           <li
             className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
-            onClick={() => setSoundState("/sounds/Electric.mp3")}
+            onClick={() => {
+              const newArray = [...soundState];
+              // Modify the copied array
+              newArray[0] = "/sounds/Electric.mp3";
+              newArray[1] = "/sounds/ClickEmp.mp3";
+              // Update the state with the modified array
+              setSoundState(newArray);
+            }}
           >
             Electric
           </li>
           <li
             className="cursor-pointer rounded-lg bg-primary-blue-accent p-5 font-semibold tracking-wide"
-            onClick={() => setSoundState("/sounds/Percussion.mp3")}
+            onClick={() => {
+              const newArray = [...soundState];
+              // Modify the copied array
+              newArray[0] = "/sounds/Percussion.mp3";
+              newArray[1] = "/sounds/ClickEmp.mp3";
+              // Update the state with the modified array
+              setSoundState(newArray);
+            }}
           >
             Percussion
           </li>
