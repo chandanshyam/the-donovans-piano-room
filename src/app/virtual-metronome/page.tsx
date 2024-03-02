@@ -1,12 +1,14 @@
 "use client";
 
-import TempoSetting from "./tempo-setting/TempoSetting";
-import Metronome from "./metronome/Metronome";
+import TempoSetting from "@metronome/TempoSetting";
+import Metronome from "@metronome/Metronome";
 import { useState } from "react";
 
 const VirtualMetronome = () => {
-  const [beatsNum, setBeats] = useState<number>(1);
+  const [tempoNum, setTempo] = useState<number>(25);
+  const [beatsNum, setBeats] = useState<number>(2);
   const [beatEmp, setBeatEmp] = useState<number>(-1);
+  const [animation, setAnimation] = useState<boolean>(false);
 
   return (
     <div className="flex h-full justify-center bg-primary-skin p-12">
@@ -14,10 +16,18 @@ const VirtualMetronome = () => {
         <TempoSetting
           beatsNum={beatsNum}
           setBeats={setBeats}
+          tempoNum={tempoNum}
+          setTempo={setTempo}
           beatEmp={beatEmp}
           setBeatEmp={setBeatEmp}
+          setAnimation={setAnimation}
         />
-        <Metronome beatsNum={beatsNum} beatEmp={beatEmp} />
+        <Metronome
+          beatsNum={beatsNum}
+          tempoNum={tempoNum}
+          beatEmp={beatEmp}
+          animation={animation}
+        />
       </div>
     </div>
   );

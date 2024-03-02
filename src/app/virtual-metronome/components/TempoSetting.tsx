@@ -2,35 +2,50 @@
 
 import Image from "next/image";
 import Slider from "@mui/material/Slider";
-import { useState } from "react";
 
 interface TempoSettingProps {
   beatsNum: number;
   setBeats: React.Dispatch<React.SetStateAction<number>>;
+  tempoNum: number;
+  setTempo: React.Dispatch<React.SetStateAction<number>>;
   beatEmp: number;
   setBeatEmp: React.Dispatch<React.SetStateAction<number>>;
+  setAnimation: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TempoSetting = ({
   beatsNum,
   setBeats,
+  tempoNum,
+  setTempo,
   beatEmp,
   setBeatEmp,
+  setAnimation,
 }: TempoSettingProps) => {
   let timeSeg = 0;
 
-  const [tempoNum, setTempo] = useState<number>(25);
-
   const handleTempo = (num: number): void => {
-    setTempo((prev) => prev + num);
+    if ((tempoNum < 30 && num === -5) || (tempoNum < 26 && num === -1)) {
+      setTempo(25);
+    } else {
+      setTempo((prev) => prev + num);
+    }
   };
 
   const handleBeats = (num: number): void => {
-    setBeats((prev) => prev + num);
+    if ((beatsNum < 7 && num === -5) || (beatsNum < 3 && num === -1)) {
+      setBeats(2);
+    } else {
+      setBeats((prev) => prev + num);
+    }
   };
 
   const handleBeatEmp = (num: number): void => {
-    setBeatEmp((prev) => prev + num);
+    if ((beatEmp < 4 && num === -5) || (beatEmp < 0 && num === -1)) {
+      setBeatEmp(-1);
+    } else {
+      setBeatEmp((prev) => prev + num);
+    }
   };
   return (
     <div className="flex basis-3/5 flex-col justify-around px-10">
@@ -151,7 +166,7 @@ const TempoSetting = ({
           </div>
 
           <h2 className="text-5xl font-semibold">
-            {beatEmp < 0 ? 0 : beatEmp + 1}{" "}
+            {beatEmp < 0 ? 0 : beatEmp + 1}
           </h2>
 
           <div className="flex gap-5">
@@ -211,13 +226,14 @@ const TempoSetting = ({
       </div>
 
       <div className="tapTempo__container flex justify-center gap-10 desktop:scale-125">
-        <div className="flex items-center justify-center rounded-full bg-primary-yellow p-5">
+        <div className="flex cursor-pointer items-center justify-center rounded-full bg-primary-yellow p-5">
           <Image
             src="/virtual-metronome/PlayButton.svg"
             width={80}
             height={80}
             alt="PlayButton"
             className="ml-2 h-24 w-24"
+            onClick={() => setAnimation(true)}
           />
         </div>
 
