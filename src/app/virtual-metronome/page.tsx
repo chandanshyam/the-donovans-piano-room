@@ -1,7 +1,7 @@
 "use client";
 
-import TempoSetting from "./tempo-setting/TempoSetting";
-import Metronome from "./metronome/Metronome";
+import TempoSetting from "@metronome/TempoSetting";
+import Metronome from "@metronome/Metronome";
 import { useState } from "react";
 
 const VirtualMetronome = () => {
