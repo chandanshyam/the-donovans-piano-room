@@ -27,16 +27,32 @@ const TempoSetting = ({
   const handleTempo = (num: number): void => {
     if ((tempoNum < 30 && num === -5) || (tempoNum < 26 && num === -1)) {
       setTempo(25);
+    } else if ((tempoNum > 163 && num === 5) || (tempoNum > 167 && num === 1)) {
+      setTempo(168);
     } else {
       setTempo((prev) => prev + num);
+    }
+  };
+
+  const handleChangeTempo = (event: Event, value: number | number[]): void => {
+    if (typeof value === "number") {
+      setTempo(value);
     }
   };
 
   const handleBeats = (num: number): void => {
     if ((beatsNum < 7 && num === -5) || (beatsNum < 3 && num === -1)) {
       setBeats(2);
+    } else if ((beatsNum > 5 && num === 5) || (beatsNum > 9 && num === 1)) {
+      setBeats(10);
     } else {
       setBeats((prev) => prev + num);
+    }
+  };
+
+  const handleChangeBeats = (event: Event, value: number | number[]): void => {
+    if (typeof value === "number") {
+      setBeats(value);
     }
   };
 
@@ -47,6 +63,15 @@ const TempoSetting = ({
       setBeatEmp((prev) => prev + num);
     }
   };
+
+  function setRandomTempo(): void {
+    const randomNumber: number =
+      Math.floor(Math.random() * (168 - 25 + 1)) + 25;
+
+    // set the result
+    setTempo(randomNumber);
+  }
+
   return (
     <div className="flex basis-3/5 flex-col justify-around px-10">
       <div className="tempo__container flex flex-col desktop:gap-5">
@@ -74,6 +99,11 @@ const TempoSetting = ({
             </button>
           </div>
           <Slider
+            min={25}
+            max={168}
+            step={1}
+            value={tempoNum}
+            onChange={handleChangeTempo}
             sx={{
               color: "#E98427",
             }}
@@ -120,6 +150,11 @@ const TempoSetting = ({
             </button>
           </div>
           <Slider
+            min={2}
+            max={10}
+            step={1}
+            value={beatsNum}
+            onChange={handleChangeBeats}
             sx={{
               color: "#E98427",
             }}
@@ -237,7 +272,10 @@ const TempoSetting = ({
           />
         </div>
 
-        <button className="rounded-full bg-primary-yellow px-16 text-6xl font-semibold">
+        <button
+          onClick={() => setRandomTempo()}
+          className="rounded-full bg-primary-yellow px-16 text-6xl font-semibold"
+        >
           Tap Tempo
         </button>
       </div>

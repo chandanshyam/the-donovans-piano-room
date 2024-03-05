@@ -56,6 +56,18 @@ const Metronome = ({
     }
   }, [animation]);
 
+  function MarkingCalc(tempo: number): string {
+    if (tempo >= 25 && tempo < 40) return "Grave";
+    else if (tempo >= 40 && tempo < 60) return "Lento-Largo";
+    else if (tempo >= 60 && tempo < 66) return "Larghetto";
+    else if (tempo >= 66 && tempo < 76) return "Adagio";
+    else if (tempo >= 76 && tempo < 108) return "Andante";
+    else if (tempo >= 108 && tempo < 120) {
+      if (tempo >= 112) return "Moderato-Allegretto";
+      return "Moderato";
+    } else return "Allegro";
+  }
+
   return (
     <div className="flex basis-2/5 flex-col justify-between">
       <div className="metronome__container flex flex-col items-center border-2 p-10">
@@ -74,7 +86,7 @@ const Metronome = ({
                       desktop:text-7xl
                       "
         >
-          Allegro
+          {MarkingCalc(tempoNum)}
         </h1>
         <div className="mb-12 mt-6 flex w-72 gap-2 desktop:w-96">
           {Array.from({ length: beatsNum }, (_, index) => {
