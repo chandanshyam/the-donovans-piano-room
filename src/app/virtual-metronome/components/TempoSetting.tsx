@@ -268,7 +268,7 @@ const TempoSetting = ({
             height={80}
             alt="PlayButton"
             className="ml-2 h-24 w-24"
-            onClick={() => setAnimation(true)}
+            onClick={() => setAnimation((prev) => !prev)}
           />
         </div>
 

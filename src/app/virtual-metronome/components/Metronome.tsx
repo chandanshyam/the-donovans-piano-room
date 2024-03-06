@@ -21,9 +21,12 @@ const Metronome = ({
     "/sounds/BongoEmp.mp3",
   ]);
   const [animatedIndex, setAnimatedIndex] = useState<number>(0);
+  const [animatedImage, setAnimatedImage] = useState<number>(0);
 
   useEffect(() => {
     if (animation) {
+      setAnimatedIndex(0);
+      setAnimatedImage((prev) => prev + 1);
       const sound = new Audio(soundState[0]);
       const soundEmp = new Audio(soundState[1]);
       let index = 0;
@@ -54,7 +57,7 @@ const Metronome = ({
       // Clear the interval on component unmount to avoid memory leaks
       return () => clearInterval(interval);
     }
-  }, [animation]);
+  }, [animation, beatsNum, tempoNum, beatEmp]);
 
   function MarkingCalc(tempo: number): string {
     if (tempo >= 25 && tempo < 40) return "Grave";
@@ -153,6 +156,7 @@ const Metronome = ({
         >
           {animation ? (
             <motion.div
+              key={animatedImage}
               animate={{
                 rotate: Array.from({ length: 150 }, (_, index) => {
                   if (index < 76) {
