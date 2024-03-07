@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import React from "react";
-import white from "../../../public/assets/virtual-piano/short-piano/shortPianoC3.svg";
-import black from "../../../public/assets/virtual-piano/short-piano/shortPianoDb3.svg";
+import white from "../../../public/assets/virtual-piano/WhiteKeys.svg";
+import black from "../../../public/assets/virtual-piano/BlackKeys.svg";
 
 //import audio files
 import C3Audio from "../../../public/assets/virtual-piano/notes/C3.mp3";
@@ -216,7 +216,7 @@ const ShortPiano: React.FC = () => {
         {/* this is for the 3rd octave */}
         <Image
           onClick={playC3}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 h-2/4 cursor-pointer "
           src={white}
           alt="short piano c3"
         />

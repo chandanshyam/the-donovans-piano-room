@@ -34,13 +34,7 @@ export default function VirtualPiano() {
           </div>
         </div>
         {isPiano ? (
-          <div><ShortPiano /></div>
-        //  <Image 
-        //     priority  
-        //     className="h-5/6 w-11/12 pt-8"
-        //     src={shortPiano}  
-        //     alt="short piano" 
-        //   />
+          <div className=""><ShortPiano /></div>
         ) : (
           <Image 
             priority  
