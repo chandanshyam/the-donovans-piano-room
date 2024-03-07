@@ -1,7 +1,10 @@
 "use client";
+import Image from "next/image";
+import ShortPiano from '../virtual-piano/short-piano';
+import LongPiano from "../../../public/assets/virtual-piano/LongPiano.svg";
 import React, { useState } from "react";
+// import styles from "../../../src/components/virtual-piano.module.css";
 
-import Piano from "./piano-long-short/piano";
 
 export default function VirtualPiano() {
   const [isPiano, setIsPiano] = useState(false);
@@ -30,7 +33,22 @@ export default function VirtualPiano() {
             </button>
           </div>
         </div>
-        <Piano isShort={isPiano} />
+        {isPiano ? (
+          <div><ShortPiano /></div>
+        //  <Image 
+        //     priority  
+        //     className="h-5/6 w-11/12 pt-8"
+        //     src={shortPiano}  
+        //     alt="short piano" 
+        //   />
+        ) : (
+          <Image 
+            priority  
+            className="h-5/6 w-11/12 pt-8"
+            src={LongPiano}  
+            alt="long piano" 
+          />
+        )}
       </div>
     </div>
   );
