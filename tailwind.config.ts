@@ -14,9 +14,6 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         
       },
-      margin: {
-        '-96': '-96%',
-      },
       colors: {
         "primary-yellow": "#E9BB18",
         "secondary-yellow": "#F8D867",
@@ -36,7 +33,9 @@ const config: Config = {
         "sm": "640px",
         "md": "768px",
         "lg": "1024px",
+        "lg2": "1100px",
         "xl": "1280px",
+        "xl2": "1440px", // "2xl" is the default breakpoint in Tailwind
         "2xl": "1536px",
       },
     },
