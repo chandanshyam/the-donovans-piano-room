@@ -212,246 +212,238 @@ const ShortPiano: React.FC = () => {
 
   return (
     <div>
-      <div className="relative m-20 flex pt-10">
-        {/* this is for the 3rd octave */}
+      <div className="relative m-20 flex pt-10 h-5/6 ">
+        {/* this is for the white keys */}
+        <div className="flex w-8 sm:w-10 md:w-12 lg:w-18 xl:w-20 2xl:w-22 2xl:h-3/5  ml-[-496%]">
         <Image
           onClick={playC3}
-          className="z-10 h-2/4 cursor-pointer "
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano c3"
         />
         <Image
           onClick={playD3}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10  cursor-pointer" 
           src={white}
           alt="short piano D3"
         />
 
         <Image
           onClick={playE3}
-          className="z-10 h-2/4"
+          className="z-10  cursor-pointer" 
           src={white}
           alt="short piano E3"
         />
         <Image
           onClick={playF3}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10  cursor-pointer" 
           src={white}
           alt="short piano F3"
         />
         <Image
           onClick={playG3}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10  cursor-pointer" 
           src={white}
           alt="short piano G3"
         />
         <Image
           onClick={playA3}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer"
           src={white}
           alt="short piano A3"
         />
         <Image
           onClick={playB3}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10  cursor-pointer"
           src={white}
           alt="short piano B3"
-        />
-        <Image
-          onClick={playDb3}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "3%" }}
-          alt="short piano Db3"
-        />
-        <Image
-          onClick={playEb3}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "8%" }}
-          alt="short piano Eb3"
-        />
-        <Image
-          onClick={playGb3}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "17.3%" }}
-          alt="short piano Gb3"
-        />
-        <Image
-          onClick={playAb3}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "21.9%" }}
-          alt="short piano Ab3"
-        />
-        <Image
-          onClick={playBb3}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "26.7%" }}
-          alt="short piano Bb3"
         />
 
         {/* this is for the 4th octave */}
         <Image
           onClick={playC4}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano c4"
         />
         <Image
           onClick={playD4}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano D4"
         />
 
         <Image
           onClick={playE4}
-          className="z-10 h-2/4"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano E4"
         />
         <Image
           onClick={playF4}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano F4"
         />
         <Image
           onClick={playG4}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano G4"
         />
         <Image
           onClick={playA4}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano A4"
         />
         <Image
           onClick={playB4}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano B4"
         />
-        <Image
-          onClick={playDb4}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "36%" }}
-          alt="short piano Db4"
-        />
-        <Image
-          onClick={playEb4}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "41.2%" }}
-          alt="short piano Eb4"
-        />
-        <Image
-          onClick={playGb4}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "50.5%" }}
-          alt="short piano Gb4"
-        />
-        <Image
-          onClick={playAb4}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "55.5%" }}
-          alt="short piano Ab4"
-        />
-        <Image
-          onClick={playBb4}
-          className="absolute top-10 z-20 cursor-pointer"
-          src={black}
-          style={{ marginLeft: "60.3%" }}
-          alt="short piano Bb4"
-        />
-
+       
         {/* this is for the 5th octave */}
         <Image
           onClick={playC5}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano c5"
         />
         <Image
           onClick={playD5}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano D5"
         />
 
         <Image
           onClick={playE5}
-          className="z-10 h-2/4"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano E4"
         />
         <Image
           onClick={playF5}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano F4"
         />
         <Image
           onClick={playG5}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano G5"
         />
         <Image
           onClick={playA5}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano A5"
         />
         <Image
           onClick={playB5}
-          className="z-10 h-2/4 cursor-pointer"
+          className="z-10 cursor-pointer" 
           src={white}
           alt="short piano B5"
         />
+</div>
+
+        {/* Black keys */}
+        <div className="flex w-8 -ml-[18%] sm:w-10 sm:-ml-[15%] md:w-12 md:-ml-[11%] lg:w-18 lg:-ml-[12%] xl:w-20 xl:ml-[2.5%] 2xl:w-22 2xl:h-3/5 2xl:ml-[3%] ">
+<Image
+          onClick={playDb3}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer -ml-[31%]"
+          src={black}
+          alt="short piano Db3"
+        />
+        <Image
+          onClick={playEb3}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[21%] "
+          src={black}
+          alt="short piano Eb3"
+        />
+        <Image
+          onClick={playGb3}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[121%]"
+          src={black}
+          alt="short piano Gb3"
+        />
+        <Image
+          onClick={playAb3}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[171%]"
+          src={black}
+          alt="short piano Ab3"
+        />
+        <Image
+          onClick={playBb3}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[221%]"
+          src={black}
+          alt="short piano Bb3"
+        />
+         <Image
+          onClick={playDb4}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[321%]"
+          src={black}
+          alt="short piano Db4"
+        />
+        <Image
+          onClick={playEb4}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[373%]"
+          src={black}
+          alt="short piano Eb4"
+        />
+        <Image
+          onClick={playGb4}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[470%]"
+          src={black}
+          alt="short piano Gb4"
+        />
+        <Image
+          onClick={playAb4}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[521%]"
+          src={black}
+          alt="short piano Ab4"
+        />
+        <Image
+          onClick={playBb4}
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[572%]"
+          src={black}
+          alt="short piano Bb4"
+        />
+
         <Image
           onClick={playDb5}
-          className="absolute top-10 z-20 cursor-pointer"
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[671%]"
           src={black}
-          style={{ marginLeft: "69.5%" }}
           alt="short piano Db5"
         />
         <Image
           onClick={playEb5}
-          className="absolute top-10 z-20 cursor-pointer"
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[723%]"
           src={black}
-          style={{ marginLeft: "74.5%" }}
           alt="short piano Eb5"
         />
         <Image
           onClick={playGb5}
-          className="absolute top-10 z-20 cursor-pointer"
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[820%]"
           src={black}
-          style={{ marginLeft: "84%" }}
           alt="short piano Gb5"
         />
         <Image
           onClick={playAb5}
-          className="absolute top-10 z-20 cursor-pointer"
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[872%]"
           src={black}
-          style={{ marginLeft: "88.6%" }}
           alt="short piano Ab5"
         />
         <Image
           onClick={playBb5}
-          className="absolute top-10 z-20 cursor-pointer"
+          className="absolute top-10 z-20 h-3/5 cursor-pointer ml-[925%]"
           src={black}
-          style={{ marginLeft: "93.5%" }}
           alt="short piano Bb5"
         />
+        </div>
       </div>
     </div>
   );
