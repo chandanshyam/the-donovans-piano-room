@@ -2,7 +2,7 @@
 import Image from "next/image";
 import ShortPiano from '../virtual-piano/short-piano';
 // import LongPiano from "../../../public/assets/virtual-piano/LongPiano.svg";
-import LongPiano from '../virtual-piano/long-piano';
+// import LongPiano from '../virtual-piano/long-piano';
 import React, { useState } from "react";
 // import styles from "../../../src/components/virtual-piano.module.css";
 
@@ -34,11 +34,12 @@ export default function VirtualPiano() {
             </button>
           </div>
         </div>
-        {isPiano ? (
+        {/* {isPiano ? (
          <ShortPiano />
         ) : (
           <LongPiano />
-        )}
+        )} */}
+        <ShortPiano />
       </div>
     </div>
   );
