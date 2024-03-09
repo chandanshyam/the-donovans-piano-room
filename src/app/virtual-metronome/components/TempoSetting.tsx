@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Slider from "@mui/material/Slider";
+import { useState } from "react";
 
 interface TempoSettingProps {
   beatsNum: number;
@@ -24,19 +25,37 @@ const TempoSetting = ({
 }: TempoSettingProps) => {
   let timeSeg = 0;
 
+  const [note, setNote] = useState<number>(2);
+
   const handleTempo = (num: number): void => {
     if ((tempoNum < 30 && num === -5) || (tempoNum < 26 && num === -1)) {
       setTempo(25);
+    } else if ((tempoNum > 163 && num === 5) || (tempoNum > 167 && num === 1)) {
+      setTempo(168);
     } else {
       setTempo((prev) => prev + num);
+    }
+  };
+
+  const handleChangeTempo = (event: Event, value: number | number[]): void => {
+    if (typeof value === "number") {
+      setTempo(value);
     }
   };
 
   const handleBeats = (num: number): void => {
     if ((beatsNum < 7 && num === -5) || (beatsNum < 3 && num === -1)) {
       setBeats(2);
+    } else if ((beatsNum > 5 && num === 5) || (beatsNum > 9 && num === 1)) {
+      setBeats(10);
     } else {
       setBeats((prev) => prev + num);
+    }
+  };
+
+  const handleChangeBeats = (event: Event, value: number | number[]): void => {
+    if (typeof value === "number") {
+      setBeats(value);
     }
   };
 
@@ -47,6 +66,27 @@ const TempoSetting = ({
       setBeatEmp((prev) => prev + num);
     }
   };
+
+  const setRandomTempo = (): void => {
+    const randomNumber: number =
+      Math.floor(Math.random() * (168 - 25 + 1)) + 25;
+
+    // set the result
+    setTempo(randomNumber);
+  };
+
+  const handleNote = (num: number): void => {
+    if (note === 2 && num === -1) {
+      setNote(2);
+    } else if (note === 16 && num === 1) {
+      setNote(16);
+    } else if (num === -1) {
+      setNote((prev) => prev / 2);
+    } else {
+      setNote((prev) => prev * 2);
+    }
+  };
+
   return (
     <div className="flex basis-3/5 flex-col justify-around px-10">
       <div className="tempo__container flex flex-col desktop:gap-5">
@@ -74,6 +114,11 @@ const TempoSetting = ({
             </button>
           </div>
           <Slider
+            min={25}
+            max={168}
+            step={1}
+            value={tempoNum}
+            onChange={handleChangeTempo}
             sx={{
               color: "#E98427",
             }}
@@ -120,6 +165,11 @@ const TempoSetting = ({
             </button>
           </div>
           <Slider
+            min={2}
+            max={10}
+            step={1}
+            value={beatsNum}
+            onChange={handleChangeBeats}
             sx={{
               color: "#E98427",
             }}
@@ -195,13 +245,19 @@ const TempoSetting = ({
         <div className="flex justify-center">
           <div className="flex gap-5">
             <div className="flex">
-              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
+              <button
+                onClick={() => handleBeats(-1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+              >
                 -
               </button>
             </div>
-            <h2 className="text-5xl font-semibold">{timeSeg}</h2>
+            <h2 className="text-5xl font-semibold">{beatsNum}</h2>
             <div className="flex">
-              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
+              <button
+                onClick={() => handleBeats(1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+              >
                 +
               </button>
             </div>
@@ -211,13 +267,19 @@ const TempoSetting = ({
         <div className="flex justify-center">
           <div className="flex gap-5">
             <div className="flex">
-              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
+              <button
+                onClick={() => handleNote(-1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+              >
                 -
               </button>
             </div>
-            <h2 className="text-5xl font-semibold">{timeSeg}</h2>
+            <h2 className="text-5xl font-semibold">{note}</h2>
             <div className="flex">
-              <button className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold">
+              <button
+                onClick={() => handleNote(1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
+              >
                 +
               </button>
             </div>
@@ -233,11 +295,14 @@ const TempoSetting = ({
             height={80}
             alt="PlayButton"
             className="ml-2 h-24 w-24"
-            onClick={() => setAnimation(true)}
+            onClick={() => setAnimation((prev) => !prev)}
           />
         </div>
 
-        <button className="rounded-full bg-primary-yellow px-16 text-6xl font-semibold">
+        <button
+          onClick={() => setRandomTempo()}
+          className="rounded-full bg-primary-yellow px-16 text-6xl font-semibold"
+        >
           Tap Tempo
         </button>
       </div>
