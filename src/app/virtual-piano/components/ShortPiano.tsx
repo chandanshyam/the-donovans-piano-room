@@ -53,7 +53,7 @@ const ShortPiano: React.FC = () => {
   return (
     <div>
       <div className="relative m-20 flex h-5/6 pt-10 ">
-        {/* this is for the white keys */}
+        {/* White keys */}
         <div className="lg:w-18 2xl:w-22 ml-[-496%] flex w-8 sm:w-10 md:w-12 xl:w-20  2xl:h-3/5">
           {whiteKeys.map((note, index) => (
             <Image
@@ -85,6 +85,7 @@ const ShortPiano: React.FC = () => {
             />
           ))}
         </div>
+        
       </div>
     </div>
   );
