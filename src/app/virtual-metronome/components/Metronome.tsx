@@ -107,8 +107,9 @@ const Metronome = ({
                       backgroundColor:
                         index === animatedIndex ? "rgb(186,85,211)" : "#D4D8D4",
                     }}
+                    key={index}
                   >
-                    <div key={index}></div>
+                    <div></div>
                   </motion.div>
                 );
               } else
@@ -134,8 +135,9 @@ const Metronome = ({
                     backgroundColor:
                       index === animatedIndex ? "rgb(186,85,211)" : "#D4D8D4",
                   }}
+                  key={index}
                 >
-                  <div key={index}></div>
+                  <div></div>
                 </motion.div>
               );
             } else
