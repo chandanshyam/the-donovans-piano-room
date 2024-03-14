@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import ShortPiano from './components/ShortPiano';
-// import LongPiano from "../../../public/assets/virtual-piano/LongPiano.svg";
-// import LongPiano from '../virtual-piano/long-piano';
+import LongPiano from './components/LongPiano';
 import React, { useState } from "react";
 
 
@@ -33,12 +32,11 @@ export default function VirtualPiano() {
             </button>
           </div>
         </div>
-        {/* {isPiano ? (
+        {isPiano ? (
          <ShortPiano />
         ) : (
           <LongPiano />
-        )} */}
-        <ShortPiano />
+        )}
       </div>
     </div>
   );

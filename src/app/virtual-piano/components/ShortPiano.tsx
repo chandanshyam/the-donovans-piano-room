@@ -27,7 +27,7 @@ const whiteKeys: string[] = [
 ];
 
 const blackKeys = [
-  { note: "Db3", className: "ml-[31%]" },
+  { note: "Db3", className: "-ml-[31%]" },
   { note: "Eb3", className: "ml-[21%]" },
   { note: "Gb3", className: "ml-[121%]" },
   { note: "Ab3", className: "ml-[171%]" },
@@ -69,7 +69,7 @@ const ShortPiano: React.FC = () => {
         </div>
 
         {/* Black keys */}
-        <div className="lg:w-18 2xl:w-22 -ml-[18%] flex w-8 sm:-ml-[15%] sm:w-10 md:-ml-[11%] md:w-12 lg:-ml-[12%] xl:ml-[2.5%] xl:w-20 2xl:ml-[3%] 2xl:h-3/5 ">
+        <div className="flex w-8 ml-[5%] sm:w-10 sm:ml-[6%] md:w-12 md:ml-[7%] lg:w-18 lg:ml-[9%] xl:w-20 xl:ml-[10%] 2xl:w-22 2xl:h-3/5 2xl:ml-[10%] ">
           {blackKeys.map((item, index) => (
             <Image
               onClick={() => playNote(item.note)}
@@ -85,7 +85,6 @@ const ShortPiano: React.FC = () => {
             />
           ))}
         </div>
-        
       </div>
     </div>
   );
