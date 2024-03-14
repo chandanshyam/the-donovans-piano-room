@@ -19,6 +19,7 @@ const config: Config = {
         "secondary-yellow": "#F8D867",
         "primary-orange": "#E98427",
         "secondary-orange": "#F6AD69",
+        "light-orange": "#FF912C",
         "primary-green": "#438342",
         "secondary-green": "#75C973",
         "primary-purple": "#6F219E",
@@ -40,6 +41,16 @@ const config: Config = {
       },
     },
     plugins: [],
+    screens: {
+      tablet: "1024px",
+      // => @media (min-width: 640px) { ... }
+
+      laptop: "1440px",
+      // => @media (min-width: 1366px) { ... }
+
+      desktop: "1920px",
+      // => @media (min-width: 1440px) { ... }
+    },
   },
 };
 export default config;
