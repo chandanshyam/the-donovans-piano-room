@@ -62,7 +62,7 @@ const Metronome = ({
       // Clear the interval on component unmount to avoid memory leaks
       return () => clearInterval(interval);
     }
-  }, [animation, beatsNum, tempoNum, beatEmp, vol]);
+  }, [animation, beatsNum, tempoNum, beatEmp, vol, soundState]);
 
   const handleVol = (event: Event, value: number | number[]): void => {
     if (typeof value === "number") {
@@ -108,6 +108,7 @@ const Metronome = ({
               if (animation) {
                 return (
                   <motion.div
+                    key={index}
                     style={{
                       width: 30,
                       height: 30,
@@ -119,7 +120,7 @@ const Metronome = ({
                         index === animatedIndex ? "rgb(186,85,211)" : "#D4D8D4",
                     }}
                   >
-                    <div key={index}></div>
+                    <div></div>
                   </motion.div>
                 );
               } else
@@ -136,6 +137,7 @@ const Metronome = ({
             if (animation) {
               return (
                 <motion.div
+                  key={index}
                   style={{
                     width: 30,
                     height: 30,
@@ -146,7 +148,7 @@ const Metronome = ({
                       index === animatedIndex ? "rgb(186,85,211)" : "#D4D8D4",
                   }}
                 >
-                  <div key={index}></div>
+                  <div></div>
                 </motion.div>
               );
             } else
