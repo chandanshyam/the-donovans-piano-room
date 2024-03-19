@@ -102,7 +102,7 @@ const Metronome = ({
         >
           {MarkingCalc(tempoNum)}
         </h1>
-        <div className="mb-12 mt-6 flex w-72 gap-2 desktop:w-96">
+        <div className="mb-12 mt-6 flex gap-2">
           {Array.from({ length: beatsNum }, (_, index) => {
             if (index === beatEmp)
               if (animation) {
@@ -110,8 +110,8 @@ const Metronome = ({
                   <motion.div
                     key={index}
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 26,
+                      height: 26,
                       borderRadius: 30,
                       border: `5px solid #FFA500`,
                     }}
@@ -127,7 +127,7 @@ const Metronome = ({
                 return (
                   <div
                     key={index}
-                    className="h-12 w-12 rounded-full border-4 border-solid text-2xl font-semibold desktop:h-20 desktop:w-20 desktop:text-5xl"
+                    className="h-10 w-10 rounded-full border-4 border-solid text-2xl font-semibold desktop:h-16 desktop:w-16 desktop:text-5xl"
                     style={{
                       borderColor: "#FFA500",
                     }}
@@ -139,8 +139,8 @@ const Metronome = ({
                 <motion.div
                   key={index}
                   style={{
-                    width: 30,
-                    height: 30,
+                    width: 26,
+                    height: 26,
                     borderRadius: 30,
                   }}
                   animate={{
@@ -155,7 +155,7 @@ const Metronome = ({
               return (
                 <div
                   key={index}
-                  className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold desktop:h-20 desktop:w-20 desktop:text-5xl"
+                  className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold desktop:h-16 desktop:w-16 desktop:text-5xl"
                 ></div>
               );
           })}
