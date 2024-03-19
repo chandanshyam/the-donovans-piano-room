@@ -45,8 +45,8 @@ const TempoSetting = ({
   const handleBeats = (num: number): void => {
     if ((beatsNum < 7 && num === -5) || (beatsNum < 3 && num === -1)) {
       setBeats(2);
-    } else if ((beatsNum > 5 && num === 5) || (beatsNum > 9 && num === 1)) {
-      setBeats(10);
+    } else if ((beatsNum > 7 && num === 5) || (beatsNum > 11 && num === 1)) {
+      setBeats(12);
     } else {
       setBeats((prev) => prev + num);
     }
@@ -58,11 +58,27 @@ const TempoSetting = ({
     }
   };
 
+  // const handleBeatEmp = (num: number): void => {
+  //   if ((beatEmp < 4 && num === -5) || (beatEmp < 0 && num === -1)) {
+  //     setBeatEmp(-1);
+  //   } else {
+  //     setBeatEmp((prev) => prev + num);
+  //   }
+  // };
+
   const handleBeatEmp = (num: number): void => {
-    if ((beatEmp < 4 && num === -5) || (beatEmp < 0 && num === -1)) {
-      setBeatEmp(-1);
+    if ((beatEmp < 0 && num === -1) || (beatEmp > 11 && num === 1)) {
+      // If beatEmp is already at the lower bound and user clicks minus button,
+      // or if beatEmp is already at the upper bound and user clicks plus button,
+      // do nothing
+      return;
     } else {
-      setBeatEmp((prev) => prev + num);
+      // Otherwise, update beatEmp
+      setBeatEmp((prev) => {
+        const newValue = prev + num;
+        // Ensure newValue stays within the range [0, 12]
+        return Math.max(0, Math.min(12, newValue));
+      });
     }
   };
 
@@ -103,7 +119,7 @@ const TempoSetting = ({
     <div className="flex basis-3/5 flex-col justify-around px-10">
       <div className="tempo__container flex flex-col desktop:gap-5">
         <div className="flex flex-col items-center gap-5">
-          <h2 className="text-4xl font-semibold desktop:text-6xl">Tempo</h2>
+          <h2 className="text-4xl font-semibold desktop:text-6xl">BPM</h2>
           <h2 className="text-5xl font-semibold desktop:text-8xl">
             {tempoNum}
           </h2>
@@ -178,7 +194,7 @@ const TempoSetting = ({
           </div>
           <Slider
             min={2}
-            max={10}
+            max={12}
             step={1}
             value={beatsNum}
             onChange={handleChangeBeats}
@@ -212,12 +228,12 @@ const TempoSetting = ({
 
         <div className="flex items-center justify-center gap-10 desktop:scale-125">
           <div className="flex gap-5">
-            <button
+            {/* <button
               onClick={() => handleBeatEmp(-5)}
               className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
             >
               -5
-            </button>
+            </button> */}
 
             <button
               onClick={() => handleBeatEmp(-1)}
@@ -238,12 +254,12 @@ const TempoSetting = ({
             >
               +
             </button>
-            <button
+            {/* <button
               onClick={() => handleBeatEmp(5)}
               className="flex h-12 w-16 items-center justify-center rounded-full bg-light-orange text-2xl font-semibold"
             >
               +5
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
