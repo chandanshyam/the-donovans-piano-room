@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const VirtualMetronome = () => {
   const [tempoNum, setTempo] = useState<number>(25);
-  const [beatsNum, setBeats] = useState<number>(2);
+  const [beatsNum, setBeats] = useState<number>(4);
   const [beatEmp, setBeatEmp] = useState<number>(-1);
   const [animation, setAnimation] = useState<boolean>(false);
 

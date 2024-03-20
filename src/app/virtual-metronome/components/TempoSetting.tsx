@@ -23,7 +23,7 @@ const TempoSetting = ({
   setBeatEmp,
   setAnimation,
 }: TempoSettingProps) => {
-  const [note, setNote] = useState<number>(2);
+  const [note, setNote] = useState<number>(4);
   const [time, setTime] = useState<number>(0);
 
   const handleTempo = (num: number): void => {
@@ -114,6 +114,13 @@ const TempoSetting = ({
       setNote((prev) => prev * 2);
     }
   };
+
+  const handleClear = (): void => {
+      setTempo(25);
+      setBeats(4);
+      setBeatEmp(-1);
+      setNote(4);
+  }
 
   return (
     <div className="flex basis-3/5 flex-col justify-around px-10">
@@ -351,7 +358,7 @@ const TempoSetting = ({
             4
           </button>
         </div>
-        <button className="rounded-lg border-2 border-solid border-orange-400 px-4 py-2 text-lg font-semibold desktop:text-5xl">
+        <button onClick={()=>handleClear()} className="rounded-lg border-2 border-solid border-orange-400 px-4 py-2 text-lg font-semibold desktop:text-5xl">
           Clear
         </button>
       </div>
