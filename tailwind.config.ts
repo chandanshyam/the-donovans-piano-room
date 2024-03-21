@@ -12,6 +12,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        
       },
       colors: {
         "primary-yellow": "#E9BB18",
@@ -29,7 +30,17 @@ const config: Config = {
         "primary-skin": "#FFF2E5",
         "primary-blue-accent": "#E7F2E7",
       },
+      screens: {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "lg2": "1100px",
+        "xl": "1280px",
+        "xl2": "1440px", // "2xl" is the default breakpoint in Tailwind
+        "2xl": "1536px",
+      },
     },
+    plugins: [],
     screens: {
       tablet: "1024px",
       // => @media (min-width: 640px) { ... }
@@ -41,6 +52,5 @@ const config: Config = {
       // => @media (min-width: 1440px) { ... }
     },
   },
-  plugins: [],
 };
 export default config;
