@@ -187,7 +187,7 @@ const Metronome = ({
                 height={200}
                 className="z-1 laptop: relative
                 left-[-4.2rem]
-                left-[-4.5rem] top-[-2.5rem]
+                top-[-2.5rem]
                 h-[37rem] w-[40rem]
                 desktop:left-[-6rem] desktop:top-[-5rem] desktop:mt-40 desktop:h-[40rem] desktop:w-[50rem]
                       "
@@ -201,7 +201,6 @@ const Metronome = ({
                 width={150}
                 height={150}
                 className="z-1 laptop: relative
-                    left-[-4.5rem]
                     left-[-4rem] top-[-2.5rem]
                     h-[38rem] w-[40rem]
                     desktop:left-[-6rem] desktop:top-[-5rem] desktop:mt-40 desktop:h-[40rem] desktop:w-[50rem]
