@@ -1,6 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import logo from "../../../../public/journal-book/logo.svg";
+import Image from "next/image";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 interface FlipbookData {
   url: string;
@@ -8,12 +12,12 @@ interface FlipbookData {
 }
 
 const fetchFlipbook = async (pdfLink: string, apiKey: string): Promise<FlipbookData> => {
-  const url = `https://heyzine.com/api1/rest?pdf=${encodeURIComponent(
+  const url = `https://heyzine.com/api1/async?pdf=${encodeURIComponent(
     pdfLink,
-  )}&k=${apiKey}`;
+  )}&k=${apiKey}&pn=1&sh=1&st=${'1'}&t&s&fs=${'1'}`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url,);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -46,17 +50,29 @@ const FlipbookViewer = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 overflow-hidden bg-flipbook bg-cover">
+        <div className="absolute top-0 left-0 p-4 w-20  md2:w-60 lg:w-60 xl:w-90 ">
+        <Image
+        src={logo}
+        alt="logo"
+        className="z-10"
+        />
+        </div>
       {flipbookData ? (
         <iframe
           src={flipbookData.url}
-          className="h-full w-full border-none"
+          className="h-full w-full border-none z-20"
           title="Flipbook"
         ></iframe>
       ) : (
-        <p className="text-center">Loading flipbook...</p>
+       <div className="flex justify-center items-center h-full">
+       <Box sx={{ display: 'flex' }}>
+         <CircularProgress />
+       </Box>
+     </div>
       )}
     </div>
+
   );
 };
 
