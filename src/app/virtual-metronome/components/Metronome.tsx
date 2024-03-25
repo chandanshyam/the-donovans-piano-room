@@ -161,9 +161,9 @@ const Metronome = ({
           })}
         </div>
         <div
-          className="relative h-[36rem] w-[30rem] bg-[url('/MetronomeMelody.svg')] bg-contain bg-center 
+          className="relative h-[36rem] w-[30rem] overflow-hidden bg-[url('/MetronomeMelody.svg')] bg-contain 
+                        bg-center
                         bg-no-repeat
-                        overflow-hidden
                         desktop:h-[55rem] desktop:w-[35rem]
                       "
         >
@@ -185,11 +185,11 @@ const Metronome = ({
                 alt="metronome pendulum"
                 width={200}
                 height={200}
-                className="z-1 relative left-[-4.5rem]
+                className="z-1 laptop: relative
+                left-[-4.2rem]
                 top-[-2.5rem]
                 h-[37rem] w-[40rem]
-                laptop: left-[-4.2rem]
-                desktop:top-[-5rem] desktop:h-[40rem] desktop:w-[50rem] desktop:left-[-6rem] desktop:mt-40
+                desktop:left-[-6rem] desktop:top-[-5rem] desktop:mt-40 desktop:h-[40rem] desktop:w-[50rem]
                       "
               />
             </motion.div>
@@ -200,26 +200,25 @@ const Metronome = ({
                 alt="metronome pendulum"
                 width={150}
                 height={150}
-                className="z-1 relative left-[-4.5rem]
-                    top-[-2.5rem]
+                className="z-1 laptop: relative
+                    left-[-4rem] top-[-2.5rem]
                     h-[38rem] w-[40rem]
-                    laptop: left-[-4rem]
-                    desktop:top-[-5rem] desktop:h-[40rem] desktop:w-[50rem] desktop:left-[-6rem] desktop:mt-40
+                    desktop:left-[-6rem] desktop:top-[-5rem] desktop:mt-40 desktop:h-[40rem] desktop:w-[50rem]
                   "
               />
             </div>
           )}
           <div
             className="absolute left-1/2 top-[22rem] z-10
-                          h-11
                           mt-3
+                          h-11
                           w-60 translate-x-[-50%]
                           bg-primary-yellow
                           desktop:top-[32.5rem]
                         "
           ></div>
-       </div>
-     </div>
+        </div>
+      </div>
 
       <div className="volume__container flex flex-col items-center gap-5">
         <h2 className="text-4xl font-semibold desktop:text-5xl">Volume</h2>
@@ -282,13 +281,13 @@ const Metronome = ({
             onClick={() => {
               const newArray = [...soundState];
               // Modify the copied array
-              newArray[0] = "Percussion.mp3";
-              newArray[1] = "PercussionEmp.mp3";
+              newArray[0] = "Tambourine.mp3";
+              newArray[1] = "TambourineEmp.mp3";
               // Update the state with the modified array
               setSoundState(newArray);
             }}
           >
-            Percussion
+            Tambourine
           </li>
         </ul>
       </div>
