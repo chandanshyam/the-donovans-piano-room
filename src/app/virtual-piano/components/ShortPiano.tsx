@@ -26,41 +26,22 @@ const whiteKeys: string[] = [
   "B5",
 ];
 
-//music notes♯ ♭
 const blackKeys = [
-  { note: "Db3", className: "-ml-[60%]" },
-  { note: "Eb3", className: "ml-[40%]" },
-  { note: "Gb3", className: "ml-[240%]" },
-  { note: "Ab3", className: "ml-[340%]" },
-  { note: "Bb3", className: "ml-[440%]" },
-  { note: "Db4", className: "ml-[640%]" },
-  { note: "Eb4", className: "ml-[740%]" },
-  { note: "Gb4", className: "ml-[940%]" },
-  { note: "Ab4", className: "ml-[1040%]" },
-  { note: "Bb4", className: "ml-[1140%]" },
-  { note: "Db5", className: "ml-[1340%]" },
-  { note: "Eb5", className: "ml-[1440%]" },
-  { note: "Gb5", className: "ml-[1640%]" },
-  { note: "Ab5", className: "ml-[1740%]" },
-  { note: "Bb5", className: "ml-[1840%]" },
-];
-
-const blackKeysNotes = [
-  { note: "Db3", notetext1: "D♭3", notetext2: "C♯3", className: "-ml-[43%]" },
-  { note: "Eb3", notetext1: "E♭3", notetext2: "D♯3", className: "ml-[7%]" },
-  { note: "Gb3", notetext1: "G♭3", notetext2: "F♯3", className: "ml-[107%]" },
-  { note: "Ab3", notetext1: "A♭3", notetext2: "G♯3", className: "ml-[157%]" },
-  { note: "Bb3", notetext1: "B♭3", notetext2: "A♯3", className: "ml-[207%]" },
-  { note: "Db4", notetext1: "D♭4", notetext2: "C♯4", className: "ml-[307%]" },
-  { note: "Eb4", notetext1: "E♭4", notetext2: "D♯4", className: "ml-[357%]" },
-  { note: "Gb4", notetext1: "G♭4", notetext2: "F♯4", className: "ml-[457%]" },
-  { note: "Ab4", notetext1: "A♭4", notetext2: "G♯4", className: "ml-[507%]" },
-  { note: "Bb4", notetext1: "B♭4", notetext2: "A♯4", className: "ml-[557%]" },
-  { note: "Db5", notetext1: "D♭5", notetext2: "C♯5", className: "ml-[657%]" },
-  { note: "Eb5", notetext1: "E♭5", notetext2: "D♯5", className: "ml-[707%]" },
-  { note: "Gb5", notetext1: "G♭5", notetext2: "F♯5", className: "ml-[807%]" },
-  { note: "Ab5", notetext1: "A♭5", notetext2: "G♯5", className: "ml-[857%]" },
-  { note: "Bb5", notetext1: "B♭5", notetext2: "A♯5", className: "ml-[907%]" },
+  { note: "Db3", notetext1: "D♭3", notetext2: "C♯3", className: "-ml-[43%]" , className1: "-ml-[60%]" },
+  { note: "Eb3", notetext1: "E♭3", notetext2: "D♯3", className: "ml-[7%]" , className1: "ml-[40%]" },
+  { note: "Gb3", notetext1: "G♭3", notetext2: "F♯3", className: "ml-[107%]" , className1: "ml-[240%]" },
+  { note: "Ab3", notetext1: "A♭3", notetext2: "G♯3", className: "ml-[157%]" , className1: "ml-[340%]" },
+  { note: "Bb3", notetext1: "B♭3", notetext2: "A♯3", className: "ml-[207%]" , className1: "ml-[440%]" },
+  { note: "Db4", notetext1: "D♭4", notetext2: "C♯4", className: "ml-[307%]" , className1: "ml-[640%]" },
+  { note: "Eb4", notetext1: "E♭4", notetext2: "D♯4", className: "ml-[357%]" , className1: "ml-[740%]" },
+  { note: "Gb4", notetext1: "G♭4", notetext2: "F♯4", className: "ml-[457%]" , className1: "ml-[940%]"},
+  { note: "Ab4", notetext1: "A♭4", notetext2: "G♯4", className: "ml-[507%]" , className1: "ml-[1040%]"},
+  { note: "Bb4", notetext1: "B♭4", notetext2: "A♯4", className: "ml-[557%]" , className1: "ml-[1140%]" },
+  { note: "Db5", notetext1: "D♭5", notetext2: "C♯5", className: "ml-[657%]" , className1: "ml-[1340%]" },
+  { note: "Eb5", notetext1: "E♭5", notetext2: "D♯5", className: "ml-[707%]" , className1: "ml-[1440%]"},
+  { note: "Gb5", notetext1: "G♭5", notetext2: "F♯5", className: "ml-[807%]" , className1: "ml-[1640%]" },
+  { note: "Ab5", notetext1: "A♭5", notetext2: "G♯5", className: "ml-[857%]" , className1: "ml-[1740%]"},
+  { note: "Bb5", notetext1: "B♭5", notetext2: "A♯5", className: "ml-[907%]" , className1: "ml-[1840%]"},
 ];
 
 const playNote = (note: string) => {
@@ -105,7 +86,7 @@ const ShortPiano: React.FC = () => {
               onClick={() => playNote(item.note)}
               className={twMerge(
                 "absolute top-10 z-20 h-[65%] w-fit cursor-pointer",
-                item.className,
+                item.className1,
               )}
               src="/virtual-piano/BlackKeys.svg"
               alt={`short piano ${item.note}`}
@@ -115,14 +96,13 @@ const ShortPiano: React.FC = () => {
             />
           ))}
         </div>
-
-        <div className="-ml-[32%] text-xs sm:text-sm md:text-lg  lg:text-lg xl:text-2xl ">
-          {blackKeysNotes.map((item, index) => (
+        <div className="-ml-[32%] text-xs sm:text-sm md:text-lg lg:text-lg xl:text-2xl ">
+          {blackKeys.map((item, index) => (
             <span
               key={index}
               onClick={() => playNote(item.note)}
               className={twMerge(
-                "absolute top-[50%] z-30 cursor-pointer text-white",
+                "absolute top-[47%] z-30 cursor-pointer text-white",
                 item.className,
               )}
             >
