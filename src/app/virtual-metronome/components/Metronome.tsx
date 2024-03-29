@@ -155,7 +155,12 @@ const Metronome = ({
               return (
                 <div
                   key={index}
-                  className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold desktop:h-16 desktop:w-16 desktop:text-5xl"
+                  style={{
+                    width: 26,
+                    height: 26,
+                    borderRadius: 30,
+                  }}
+                  className="h-16 w-16 rounded-fulls border-solid bg-zinc-300 text-2xl font-semibold mt--5 desktop:h-16 desktop:w-16 desktop:text-5xl"
                 ></div>
               );
           })}
