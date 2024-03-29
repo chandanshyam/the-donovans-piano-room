@@ -91,8 +91,8 @@ const ShortPiano: React.FC = () => {
               src="/virtual-piano/BlackKeys.svg"
               alt={`short piano ${item.note}`}
               key={index}
-              width={0}
-              height={0}
+              width={48}
+              height={316}
             />
           ))}
         </div>

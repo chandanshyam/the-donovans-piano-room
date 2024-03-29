@@ -3,6 +3,7 @@ import Image from "next/image";
 import ShortPiano from './components/ShortPiano';
 import LongPiano from './components/LongPiano';
 import React, { useState } from "react";
+import Switch from '@mui/material/Switch';
 
 
 export default function VirtualPiano() {
