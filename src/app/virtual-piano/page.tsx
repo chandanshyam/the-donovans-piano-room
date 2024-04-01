@@ -15,11 +15,13 @@ export default function VirtualPiano() {
 
   return (
     <div className="flex h-full items-center justify-center relative">
-      <div className="absolute justify-center top-20">
-        <div className="absolute z-40 mr-20 ml-20 px-20 pl-20">
+ 
+      <div className="box-border flex w-11/12 flex-col items-center rounded-3xl border-2 border-gray-300 bg-zinc-50 py-6">
+      <div className="flex justify-center top-20 mb-20">
+        <div className=" mr-20 ml-20 px-20 pl-20">
       <VolumeSlider volume={volume} setVolume={setVolume} />
       </div>
-      <div className=" absolute z-40 mr-20 pr-20">
+      <div className="mr-20 pr-20">
         <SwitchComponent
           label="show notes"
           checked={showNotes}
@@ -27,7 +29,6 @@ export default function VirtualPiano() {
         />
       </div>
       </div>
-      <div className="box-border flex w-11/12 flex-col items-center rounded-3xl border-2 border-gray-300 bg-zinc-50 py-6">
         <div className="box-border flex h-1/6 w-2/6 items-center justify-center rounded-2xl border-2 border-orange-200 bg-orange-50">
           <div className="box-border flex h-3/4 w-11/12 p-4 items-center justify-center">
             <button
