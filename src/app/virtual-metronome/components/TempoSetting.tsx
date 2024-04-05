@@ -271,7 +271,7 @@ const TempoSetting = ({
         </div>
       </div>
 
-      <div className="timeSignature__container flex flex-col items-center space-y-5 desktop:scale-125 desktop:gap-4">
+      <div className="timeSignature__container flex flex-col items-center space-y-5 desktop:scale-125 desktop:gap-4 mb-16">
         <div className="flex justify-center">
           <h2 className="text-3xl font-semibold desktop:text-4xl">
             Time Signature
