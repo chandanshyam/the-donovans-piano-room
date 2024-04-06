@@ -21,6 +21,8 @@ const VirtualMetronome = () => {
           beatEmp={beatEmp}
           setBeatEmp={setBeatEmp}
           setAnimation={setAnimation}
+          animation={animation}
+
         />
         <Metronome
           beatsNum={beatsNum}

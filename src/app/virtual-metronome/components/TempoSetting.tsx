@@ -11,6 +11,7 @@ interface TempoSettingProps {
   setTempo: React.Dispatch<React.SetStateAction<number>>;
   beatEmp: number;
   setBeatEmp: React.Dispatch<React.SetStateAction<number>>;
+  animation: boolean;
   setAnimation: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -21,6 +22,7 @@ const TempoSetting = ({
   setTempo,
   beatEmp,
   setBeatEmp,
+  animation,
   setAnimation,
 }: TempoSettingProps) => {
   const [note, setNote] = useState<number>(4);
@@ -324,14 +326,29 @@ const TempoSetting = ({
 
       <div className="tapTempo__container flex justify-center gap-10 desktop:scale-125">
         <div className="flex cursor-pointer items-center justify-center rounded-full bg-primary-yellow p-5">
-          <Image
-            src="PlayButton.svg"
-            width={80}
-            height={80}
-            alt="PlayButton"
-            className="ml-2 h-24 w-24"
-            onClick={() => setAnimation((prev) => !prev)}
-          />
+          {!animation ?
+          
+          (<Image
+          src="PlayButton.svg"
+          width={80}
+          height={80}
+          alt="PlayButton"
+          className="ml-2 h-24 w-24"
+          onClick={() => setAnimation((prev) => !prev)}
+        />)
+        :
+        (<Image
+        src="PauseButton.svg"
+        width={80}
+        height={80}
+        alt="PauseButton"
+        className="ml-2 h-24 w-24"
+        onClick={() => setAnimation((prev) => !prev)}
+      />)
+
+
+          
+          }
         </div>
 
         <button
@@ -342,7 +359,7 @@ const TempoSetting = ({
         </button>
       </div>
 
-      <div className="metronomePresets__container flex justify-between">
+      {/* <div className="metronomePresets__container flex justify-between">
         <div className="flex items-center gap-4 text-3xl font-semibold desktop:text-5xl">
           <p>Metronome Presets</p>
           <button className="h-12 w-12 rounded-full border-2 border-solid bg-zinc-300 text-2xl font-semibold desktop:h-20 desktop:w-20 desktop:text-5xl">
@@ -358,10 +375,15 @@ const TempoSetting = ({
             4
           </button>
         </div>
-        <button onClick={()=>handleClear()} className="rounded-lg border-2 border-solid border-orange-400 px-4 py-2 text-lg font-semibold desktop:text-5xl">
+
+      </div> */}
+      <button onClick={()=>handleClear()} className="rounded-lg border-2 border-solid border-orange-400 px-8 py-4 text-3xl font-semibold desktop:text-5xl mx-auto">
           Clear
-        </button>
-      </div>
+      </button>
+
+
+
+
     </div>
   );
 };
