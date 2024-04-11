@@ -125,7 +125,7 @@ const TempoSetting = ({
   }
 
   return (
-    <div className="flex basis-3/5 flex-col justify-around px-10">
+    <div className="flex basis-3/5 flex-col justify-evenly px-10">
       <div className="tempo__container flex flex-col desktop:gap-5">
         <div className="flex flex-col items-center gap-5">
           <h2 className="text-4xl font-semibold desktop:text-6xl">BPM</h2>
@@ -273,7 +273,7 @@ const TempoSetting = ({
         </div>
       </div>
 
-      <div className="timeSignature__container flex flex-col items-center space-y-5 desktop:scale-125 desktop:gap-4">
+      <div className="timeSignature__container flex flex-col items-center space-y-5 gap-2 mb-1 desktop:scale-125 desktop:gap-4 desktop:mb-12">
         <div className="flex justify-center">
           <h2 className="text-3xl font-semibold desktop:text-4xl">
             Time Signature
