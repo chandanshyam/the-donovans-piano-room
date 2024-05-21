@@ -17,6 +17,7 @@ const config: Config = {
       colors: {
         "primary-yellow": "#E9BB18",
         "secondary-yellow": "#F8D867",
+        "tertiary-yellow": "#FFEBD5",
         "primary-orange": "#E98427",
         "secondary-orange": "#F6AD69",
         "light-orange": "#FF912C",
