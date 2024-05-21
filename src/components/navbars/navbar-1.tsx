@@ -10,7 +10,7 @@ export const pages = {
     contact: "contact",
 }
 export default function Navbar1({page}: {page: string}) {
-    const highlightLink = {color: "#DA6A1C", borderBottomColor: "#DA6A1C", borderBottomWidth: "3px", borderBottomRightRadius: "5px", borderBottomLeftRadius: "5px"}
+    const highlightLink = {color: "#DA6A1C"} // border bottom needs work
   return (
     <nav className='fixed top-0 w-full z-40 bg-white b'>
         <div className='fixed bg-secondary-purple pl-40 pr-4 rounded-r-full'>
