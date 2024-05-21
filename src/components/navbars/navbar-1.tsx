@@ -22,8 +22,8 @@ export default function Navbar1({page}: {page: string}) {
             <Link className='text-primary-purple text-xl font-bold flex items-center' href="#">BOOKSTORE</Link>
             <Link className='text-primary-purple text-xl font-bold flex items-center' href="#">CONTACT</Link>
             <Link className='text-primary-purple text-xl font-bold flex items-center' href="#">GAMES</Link>
-            <Link className='text-primary-purple text-xl font-bold flex items-center mt-3' href="#"><Image src="/navbar/Cart.svg" width={20} height={20} alt='Cart'/></Link>
-            <Link className='text-white bg-primary-purple rounded-l-full rounded-r-full px-20 h-16 mt-5 flex items-center text-xl font-bold' href="/register">Log in or register</Link>
+            <Link className='text-primary-purple text-xl font-bold flex items-center' href="#"><Image src="/navbar/Cart.svg" width={20} height={20} alt='Cart'/></Link>
+            <Link className='text-white bg-primary-purple rounded-l-full rounded-r-full px-20 h-16 mt-4 flex items-center text-xl font-bold' href="/register">Log in or register</Link>
         </div>
 
     </nav>
