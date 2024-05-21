@@ -28,6 +28,7 @@ const config: Config = {
         "primary-brown": "#59371D",
         "secondary-brown": "#714B2D",
         "primary-black": "#1C1A1A",
+        "primary-gray": "#3F3B3C",
         "primary-skin": "#FFF2E5",
         "primary-blue-accent": "#E7F2E7",
       },
