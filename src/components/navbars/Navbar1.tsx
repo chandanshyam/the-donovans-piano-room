@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function Navbar1({page}: {page: string}) {
-    const highlightLink = {color: "#DA6A1C"} // border bottom needs work
+    const highlightLink = {color: "#DA6A1C"}
     const displayBorder = () => <div className='w-full bg-tertiary-orange absolute bottom-0 rounded-tl-xl rounded-tr-xl' style={{height: "3px"}}></div>
   return (
     <nav className='fixed top-0 w-full z-40 bg-white b'>
