@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -14,7 +15,20 @@ export default function WhyChooseUsContent() {
         </div>
       </div>
     </div>
-    <div className='flex-1'></div>
+    <div className='flex-1 grid grid-cols-3 justify-center items-center'>
+      <div className='w-52 h-60 bg-white border-2 border-[#FCF0D8] rounded-3xl flex flex-col items-center justify-center gap-3 shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
+        <Image src="/about/why-choose-us/Icon1.svg" alt="" width={68} height={56} />
+        <p className='text-[#696061] text-3xl text-center font-medium'>Note Recognition</p>
+      </div>
+      <div className='w-52 h-60 bg-white border-2 border-[#FCF0D8] rounded-3xl flex flex-col items-center justify-center gap-3 shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
+        <Image src="/about/why-choose-us/Icon2.svg" alt="" width={68} height={56} />
+        <p className='text-[#696061] text-3xl text-center font-medium'>Chord Recognition</p>
+      </div>
+      <div className='w-52 h-60 bg-white border-2 border-[#FCF0D8] rounded-3xl flex flex-col items-center justify-center gap-3 shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
+        <Image src="/about/why-choose-us/Icon3.svg" alt="" width={68} height={56} />
+        <p className='text-[#696061] text-3xl text-center font-medium w-28'>Ear Training</p>
+      </div>
+    </div>
   </div>
   )
 }
