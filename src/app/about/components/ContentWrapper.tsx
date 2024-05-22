@@ -1,7 +1,7 @@
 import React from 'react'
 import AboutFooter from '../components/AboutFooter'
 import BackgroundLayout from '../components/BackgroundLayout'
-import ContentNav, { pages } from '../components/ContentNav'
+import ContentNav from '../components/ContentNav'
 
 export default function ContentWrapper({children, page}: {children: React.ReactNode, page: string}) {
   return (
