@@ -8,7 +8,7 @@ export default function ContentWrapper({children, page}: {children: React.ReactN
     <>
       <div className='flex flex-col relative items-center justify-center w-full h-full z-40'>
         <ContentNav page={page} />
-        <div className='border bg-[#FEF8EE] rounded-xl border-primary-purple mt-4' style={{width: '84.7%', height: "452px"}}>
+        <div className='border bg-[#FEF8EE] rounded-xl border-primary-purple mt-4 h-[60%] w-[84.7%]'>
           {children}
         </div>
       </div>
