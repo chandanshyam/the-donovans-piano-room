@@ -1,3 +1,4 @@
+import { yellow } from "@mui/material/colors";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -17,9 +18,11 @@ const config: Config = {
       colors: {
         "primary-yellow": "#E9BB18",
         "secondary-yellow": "#F8D867",
+        "tertiary-yellow": "#FFEBD5",
         "primary-orange": "#E98427",
         "secondary-orange": "#F6AD69",
         "light-orange": "#FF912C",
+        "tertiary-orange": "#DA6A1C",
         "primary-green": "#438342",
         "secondary-green": "#75C973",
         "primary-purple": "#6F219E",
@@ -27,6 +30,7 @@ const config: Config = {
         "primary-brown": "#59371D",
         "secondary-brown": "#714B2D",
         "primary-black": "#1C1A1A",
+        "primary-gray": "#3F3B3C",
         "primary-skin": "#FFF2E5",
         "primary-blue-accent": "#E7F2E7",
       },
