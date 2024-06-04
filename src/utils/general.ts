@@ -13,3 +13,8 @@ export const navigationPages = {
     bookstore: "bookstore",
     contact: "contact",
 }
+
+export const aboutScholarshipNavigation = {
+    whatsIncluded: "what's included",
+    whosEligible: "who's eligible"
+}
