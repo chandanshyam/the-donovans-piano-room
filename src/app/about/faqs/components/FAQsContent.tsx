@@ -2,15 +2,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import QuestionAndAnswer from './QuestionAndAnswer'
+import './FAQsContent.css'
 
 export default function FAQsContent() {
   return (
-    <div className='flex flex-col items-center justify-center h-full'>
+    <div className='flex flex-col items-center justify-center h-full overflow-auto'>
         <div className='h-[82%] w-[90%]'>
             <h4 className='text-secondary-brown text-6xl font-medium text-center'>Your questions, answered.</h4>
             <div className='flex justify-between w-full mt-6'>
                 <div className='w-full select-none'>
                     <QuestionAndAnswer question='Does The Donovan&apos;s Piano Room only teach piano?' answer='No! The Donovan&apos;s Piano room teaches piano, guitar, vocals, sight reading, music theory lessons and more!' />
+                    <QuestionAndAnswer question='Does The Donovan&apos;s Piano Room only teach piano?' answer='No! The Donovan&apos;s Piano room teaches piano, guitar, vocals, sight reading, music theory lessons and more!' />
+                    
                     <QuestionAndAnswer question='How can I get access to The Donovan&apos;s Piano Room?' answer='' />
                     <QuestionAndAnswer question='Are these lessons only for beginners?' answer='' />
                     <QuestionAndAnswer question='What is included in the membership?' answer='' />
