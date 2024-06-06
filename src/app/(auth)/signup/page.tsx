@@ -47,7 +47,7 @@ export default function SignUp() {
   return (
     <SignupContentWrapper>
 
-      <section className="mx-auto flex w-96 flex-col items-center justify-center px-4 py-8 md:h-screen ">
+      <section className="relative z-40 mx-auto flex w-96 flex-col items-center justify-center px-4 py-8 md:h-screen">
         <section className="space-y-4 p-6 sm:p-8 md:space-y-6">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900">
             Sign Up
