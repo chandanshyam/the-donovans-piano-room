@@ -8,7 +8,10 @@ export default function SignupContentWrapper({children}: {children: React.ReactN
     <div className='bg-primary-purple'>
         <Navbar2 />
         <BackgroundSignup/>
-        {children}
+        <section className='relative z-40 mx-auto flex flex-col items-center justify-center px-4 py-8 md:h-screen'>
+          {children}
+
+        </section>
         <Footer2 />
     </div>
   )
