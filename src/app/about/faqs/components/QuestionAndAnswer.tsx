@@ -11,7 +11,7 @@ export default function QuestionAndAnswer({question, answer}: {question: string,
                     {question}
                 </span>
             </span>
-            <Image className="w-5 h-5 text-gray-500 transition group-open:rotate-0 rotate-180" src="/about/FAQs/DropdownIcon.svg" width={18} height={18} alt=''/>
+            <Image className="w-5 h-5 text-gray-500 transition group-open:rotate-180" src="/about/FAQs/DropdownIcon.svg" width={18} height={18} alt=''/>
         </summary>
 
         <article className="px-2 pb-4">
