@@ -4,7 +4,7 @@ import React from 'react'
 import QuestionAndAnswer from './QuestionAndAnswer'
 import './FAQsContent.css'
 
-const FAQsList: {question: string, answer: React.JSX.Element}[] = [
+const faqsList: {question: string, answer: React.ReactNode}[] = [
     {   
         question: "Are you a 501(c)(3) organization?",
         answer:(
@@ -211,7 +211,11 @@ export default function FAQsContent() {
             <h4 className='text-secondary-brown text-6xl font-medium text-center'>Your questions, answered.</h4>
             <div className='flex justify-between w-full mt-6'>
                 <div className='w-full select-none'>
-                    {FAQsList.map((item, i) => <QuestionAndAnswer question={item.question} answer={item.answer}/>)}
+                    {faqsList.map((item, i) => (
+                        <QuestionAndAnswer question={item.question} key={i}>
+                            {item.answer}
+                        </QuestionAndAnswer>
+                    ))}
                 </div>
                 <div>
                     <div className='bg-[#FCF0D8] p-7 rounded-2xl w-[230px]'>
