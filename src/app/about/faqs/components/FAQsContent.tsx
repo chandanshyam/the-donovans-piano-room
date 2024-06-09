@@ -12,7 +12,7 @@ var answersList: (React.JSX.Element)[] = [
     </div>,
     <div><br/>
         <p>The Donovan is our founder.</p><br/>
-        <p>The name “Venom” is often associated with negativity and harm, but we have chosen to repurpose the name to represent something positive. In our organization, “Venom” represents the power and strength that can be harnessed for good. The best thing about venom is that it's INFECTIOUS! We believe that everyone has the potential to make a positive impact on the world, and we are committed to empowering individuals to use their own “venom” to create change.</p><br/>
+        <p>The name “Venom” is often associated with negativity and harm, but we have chosen to repurpose the name to represent something positive. In our organization, “Venom” represents the power and strength that can be harnessed for good. The best thing about venom is that it&apos;s INFECTIOUS! We believe that everyone has the potential to make a positive impact on the world, and we are committed to empowering individuals to use their own “venom” to create change.</p><br/>
         <p>By using “venom” in a positive context, we can help to change these negative perceptions and promote a message of community and empowerment.</p>
     </div>,
     <div><br/>
@@ -54,7 +54,7 @@ var answersList: (React.JSX.Element)[] = [
         </table>
     </div>,
     <div><br/>
-        <p>The Donovan's Venom, INC. 501(c)(3) services our community with vigor. Our primary focus is to service underserved and underprivileged youth aged 21 and below. We also would like to focus on the often-forgotten seniors aged 60 and older who are within the parameters of the Federal Poverty Line (FPL). </p>
+        <p>The Donovan&apos;s Venom, INC. 501(c)(3) services our community with vigor. Our primary focus is to service underserved and underprivileged youth aged 21 and below. We also would like to focus on the often-forgotten seniors aged 60 and older who are within the parameters of the Federal Poverty Line (FPL). </p>
     </div>,
     <div><br/>
         <p>We want to service our entire community. Thank goodness you are fortunate enough to have access beyond the Federal Poverty Line. We are still able to service you, and you still may be eligible for a scholarship provided by our organization for services and music education. Please contact us for more information.</p>
@@ -77,7 +77,7 @@ var answersList: (React.JSX.Element)[] = [
         <p>We give both in-person and virtual classes based on the location of each student.</p>
     </div>,
     <div><br/>
-        <p>The Donovan's Venom  does an annual toy giveaway every year during the holiday season. Those who wish to receive toys for their families should complete an RSVP form before the deadline. Benefits from our events are always given on a first come, first served basis and while supplies last. Our giveaways are open to the public. Take a look at our toy giveaway in 2022 <Link href='#' className='text-primary-blue underline'>here</Link>.</p>
+        <p>The Donovan&apos;s Venom  does an annual toy giveaway every year during the holiday season. Those who wish to receive toys for their families should complete an RSVP form before the deadline. Benefits from our events are always given on a first come, first served basis and while supplies last. Our giveaways are open to the public. Take a look at our toy giveaway in 2022 <Link href='#' className='text-primary-blue underline'>here</Link>.</p>
     </div>,
     <div><br/>
         <p>Thank you for your generosity! We currently accept donations via our <Link href='#' className='text-primary-blue underline'>Paypal page</Link>. Paypal will ensure that your sensitive information is protected. On the payment page, you can choose the area to which you would like your money to go.</p><br/>
@@ -88,7 +88,7 @@ var answersList: (React.JSX.Element)[] = [
         </p><br/>
         <ul className='list-disc ml-10'>
             <li>The funds raised from our <strong>annual toy giveaway</strong> go towards purchasing toys and gifts for underprivileged families.</li>
-            <li>The funds raised from our <strong>benefit concerts</strong> and performances go towards organizing more events and programs that can be enjoyed by all, especially those who normally can't afford to attend them.
+            <li>The funds raised from our <strong>benefit concerts</strong> and performances go towards organizing more events and programs that can be enjoyed by all, especially those who normally can&apos;t afford to attend them.
             </li>
             <li>All book sales from the Piano Room go towards scholarships for young students. The scholarships provide financial assistance to deserving students who may not have the means to pursue their educational goals.
             </li>
@@ -99,20 +99,20 @@ var answersList: (React.JSX.Element)[] = [
         <p>Yes! We welcome sponsors at many of our events. Please contact us to discuss more about working with our organization.</p>
     </div>,
     <div><br/>
-        <p>AmazonSmile is a simple way for you to support The Donovan's Venom every time you shop, at no cost to you. AmazonSmile is available at <Link href='https://smile.amazon.com/' className='text-primary-blue underline'>smile.amazon.com</Link> on your web browser and can be activated in the Amazon Shopping app for iOS and Android phones. Please register and use us as your charity today!</p>
+        <p>AmazonSmile is a simple way for you to support The Donovan&apos;s Venom every time you shop, at no cost to you. AmazonSmile is available at <Link href='https://smile.amazon.com/' className='text-primary-blue underline'>smile.amazon.com</Link> on your web browser and can be activated in the Amazon Shopping app for iOS and Android phones. Please register and use us as your charity today!</p>
     </div>,
     <div><br/>
-        <p>Yes! Instead of donating, we also welcome your help with purchasing items from our <Link href='#' className='text-primary-blue underline'>Amazon Wishlist</Link>. The wishlist contains items to help fund the promotion of The Donovan's Venom so we can continue serving. We also have items to give to the underprivileged in community. Thank you for your help!</p>
+        <p>Yes! Instead of donating, we also welcome your help with purchasing items from our <Link href='#' className='text-primary-blue underline'>Amazon Wishlist</Link>. The wishlist contains items to help fund the promotion of The Donovan&apos;s Venom so we can continue serving. We also have items to give to the underprivileged in community. Thank you for your help!</p>
     </div>,
     <div><br/>
-        <p>Thank you so much for your interest in volunteering! As a nonprofit organization, we wouldn't be able to serve the community without your help.</p><br/>
+        <p>Thank you so much for your interest in volunteering! As a nonprofit organization, we wouldn&apos;t be able to serve the community without your help.</p><br/>
         <p>You can find open volunteer positions on our <Link href='#' className='text-primary-blue underline'>VolunteerMatch page</Link>. If there is a position that fits your area of interest, please let us know. We would love to talk with you!</p>
     </div>,
     <div><br/>
-        <p>Yes! The Donovan's Venom will happily accommodate, moderate, and satisfy community service hours if you need them.</p>
+        <p>Yes! The Donovan&apos;s Venom will happily accommodate, moderate, and satisfy community service hours if you need them.</p>
     </div>,
     <div><br/>
-        <p>The President's Volunteer Service Award is a civil award bestowed by the President of the United States. We will happily supply, moderate, and satisfy volunteer hours that are calculated towards achieving The President's Volunteer Service Award. Please contact us if you need help with this.</p>
+        <p>The President&apos;s Volunteer Service Award is a civil award bestowed by the President of the United States. We will happily supply, moderate, and satisfy volunteer hours that are calculated towards achieving The President&apos;s Volunteer Service Award. Please contact us if you need help with this.</p>
     </div>
 ];
 
