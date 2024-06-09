@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function QuestionAndAnswer({question, answer}: {question: string, answer: React.JSX.Element}) {
+export default function QuestionAndAnswer({question, answer}: {question: string, answer: React.ReactNode}) {
   return (
     <details className="group mb-7 w-[75%]">
         <summary
