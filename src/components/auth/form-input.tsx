@@ -28,6 +28,7 @@ export default function InputForm({
           name={field.name}
           onChange={onChange}
           error={!!error}
+          disableUnderline
         />
       </FormControl>
       {error && (<p className='mt-3'>{error}</p>)}

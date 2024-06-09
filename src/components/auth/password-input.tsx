@@ -20,6 +20,7 @@ export default function PasswordInput({ onChange, showPassword, name, toggleShow
             type={showPassword ? 'text' : 'password'}
             name={name}
             onChange={onChange}
+            disableUnderline
             endAdornment={
             <InputAdornment position="end">
             <IconButton
