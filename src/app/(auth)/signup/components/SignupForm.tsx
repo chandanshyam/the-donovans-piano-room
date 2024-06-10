@@ -47,10 +47,12 @@ export default function SignupForm() {
         <PasswordInput 
             onChange={(e: any) => setPassword(e.target.value)}
             name='password'
+            label='Password'
         />
         <PasswordInput 
             onChange={(e: any) => setConfirmPassword(e.target.value)}
             name='confirm password'
+            label='Confirm password'
         />
         <div> 
             <button className='w-full text-center bg-primary-yellow py-3 rounded-3xl text-[12px] text-primary-purple font-semibold 2xl:py-5 2xl:rounded-full' type='submit'>Continue to verify account</button>
