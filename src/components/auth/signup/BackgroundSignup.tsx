@@ -10,9 +10,9 @@ export default function BackgroundSignup() {
         <Image className='absolute bottom-0 left-0' src="/background-icons/LeftBottom.svg" alt='' width={270} height={270}/>
         <Image className='absolute bottom-[15%] left-0' src="/background-icons/GreenLeftBottom.svg" alt='' width={130} height={100}/>
         <Image className='absolute top-[15%] left-[35%]' src="/background-icons/Elipse216DarkPurple.svg" alt='' width={90} height={90}/>
-        <Image className='absolute top-[25%] left-[33%]' src="/background-icons/DarkPurpleDot.svg" alt='' width={20} height={20}/>
+        <Image className='absolute top-[25%] left-[29%]' src="/background-icons/DarkPurpleDot.svg" alt='' width={20} height={20}/>
         <Image className='absolute bottom-[7%] left-[30%]' src="/background-icons/DoodleDarkPurple.svg" alt='' width={450} height={400}/>
-        <Image className='absolute top-[25%] left-[48%]' src="/background-icons/LightPurpleDot.svg" alt='' width={20} height={20}/>
+        <Image className='absolute top-[25%] left-[53%]' src="/background-icons/DarkPurpleDot.svg" alt='' width={20} height={20}/>
     </>
   )
 }
