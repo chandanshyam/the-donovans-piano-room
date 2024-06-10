@@ -40,7 +40,7 @@ export default function SignupForm() {
             }}
             onChange={(e: any) => setEmail(e.target.value)}
             text={email}
-            error={"sdf"}
+            error={""}
         />
         <PasswordInput 
             toggleShowPassword={()=>setShowPassword(prev => !prev)}

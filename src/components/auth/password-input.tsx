@@ -11,8 +11,8 @@ interface passwordInputInterface {
 }
 export default function PasswordInput({ onChange, showPassword, name, toggleShowPassword}: passwordInputInterface) {
   return (
-    <FormControl variant="filled" sx={{border: 0}} className='focus:bg-white block rounded-3xl bg-[#E3E3E4]'>
-        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+    <FormControl variant="filled" sx={{border: 0}} className='focus:bg-white block rounded-3xl bg-[#E3E3E4] w-full'>
+        <InputLabel sx={[{color: "#391f0f"},()=>({'&.Mui-focused': {color: "#391f0f"}})]} htmlFor="standard-adornment-password">Password</InputLabel>
         <Input
             required
             sx={{border: 0}}
@@ -26,7 +26,7 @@ export default function PasswordInput({ onChange, showPassword, name, toggleShow
             <IconButton
                 aria-label="toggle password visibility"
                 onClick={toggleShowPassword}>
-                {showPassword ? <VisibilityOff className='mb-5'/> : <Visibility className='mb-5'/>}
+                {showPassword ? <VisibilityOff className='mb-6 mr-2'/> : <Visibility className='mb-6 mr-2'/>}
             </IconButton>
             </InputAdornment>
         }
