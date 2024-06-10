@@ -1,6 +1,6 @@
 import React from 'react'
 import AboutMembershipNav from '../../components/AboutMembershipNav'
-import { aboutNavigationPages, aboutScholarshipNavigation } from '@/utils/general'
+import { aboutScholarshipNavigation } from '@/utils/general'
 import Image from 'next/image'
 
 export default function WhatsIncludedContent() {
