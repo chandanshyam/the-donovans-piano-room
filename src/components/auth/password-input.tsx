@@ -28,7 +28,7 @@ export default function PasswordInput({ onChange, name}: passwordInputInterface)
               <IconButton
                   aria-label="toggle password visibility"
                   onClick={toggleShowPassword}>
-                  {showPassword ? <Visibility className='mb-6 mr-2'/> : <VisibilityOff className='mb-6 mr-2'/>}
+                  {showPassword ? <Visibility sx={{fontSize: "20px", color: "#6F219E"}} className='mb-6 mr-2'/> : <VisibilityOff sx={{fontSize: "20px", color: "#6F219E"}} className='mb-6 mr-2'/>}
               </IconButton>
               </InputAdornment>
           }
