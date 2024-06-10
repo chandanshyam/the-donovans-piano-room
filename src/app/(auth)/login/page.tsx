@@ -7,8 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { LoginFormSchema } from "@/lib/schema";
-import { Input, InputData } from "../../../components/auth/form-input";
-import { FormResult } from "../../../components/auth/form-result";
 
 type Inputs = z.infer<typeof LoginFormSchema>;
 
@@ -39,15 +37,6 @@ export default function LogIn() {
           className="w-80 space-y-4 md:space-y-6"
           onSubmit={handleSubmit(processForm)}
         >
-          {inputData.map((field) => (
-            <Input
-              key={field.id}
-              field={field}
-              register={register}
-              errors={errors}
-            />
-          ))}
-          <FormResult message="Something went wrong!" />
           <button
             className="text-cente w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
             type="submit"
@@ -71,20 +60,3 @@ export default function LogIn() {
     </section>
   );
 }
-
-const inputData: InputData[] = [
-  {
-    id: "email",
-    name: "email",
-    label: "E-mail address:",
-    type: "email",
-    placeholder: "Type your e-mail",
-  },
-  {
-    id: "password",
-    name: "password",
-    label: "Password",
-    type: "password",
-    placeholder: "Type your password",
-  },
-];
