@@ -1,7 +1,8 @@
+import { testPassword } from "@/utils/general";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function PasswordCases({password, testCasesCB}: {password: string, testCasesCB?: any}) {
+export default function PasswordCases({password, testCasesCB, allCasesIsCorrect}: {password: string, testCasesCB?: any, allCasesIsCorrect?: boolean}) {
     const renderCorrect = () => (<Image src="/auth/CorrectPasswordCase.svg" width={13} height={13} alt=""/>)
     const renderWrong = () => (<Image src="/auth/WrongPasswordCase.svg" width={13} height={13} alt=""/>)
     const [hasLowerCase, setHasLowerCase] = useState(false)
@@ -10,21 +11,20 @@ export default function PasswordCases({password, testCasesCB}: {password: string
     const [hasSymbol, setHasSymbol] = useState(false)
     
     useEffect(()=>{
-        const lowerCase = /[a-z]/.test(password)
-        setHasLowerCase(lowerCase)
-        
-        const upperCase = /[A-Z]/.test(password)
-        setHasUpperCase(upperCase)
-        
-        const numberCase = /[0-9]/.test(password)
-        setHasNumber(numberCase)
-
-        const symbolCase = /[!@#$%^&*()\[_\]+={}.-]/.test(password)
-        setHasSymbol(symbolCase)
-        if(testCasesCB) { testCasesCB(hasLowerCase && hasUpperCase && hasNumber && hasSymbol && password.length >= 12) }
+        const passwordCases = testPassword(password)
+        setHasLowerCase(passwordCases.lowerCase)
+        setHasUpperCase(passwordCases.upperCase)
+        setHasNumber(passwordCases.numberCase)
+        setHasSymbol(passwordCases.symbolCase)
+        if(testCasesCB) { 
+            testCasesCB(!!(
+                passwordCases.correctLength && passwordCases.lowerCase &&
+                passwordCases.upperCase && passwordCases.numberCase &&
+                passwordCases.symbolCase
+            ))
+            
+        }
     }, [password])
-    
-    const allCasesIsCorrect = (hasLowerCase && hasUpperCase && hasNumber && hasSymbol && password.length >= 12)
 
     return (
         <div style={(allCasesIsCorrect || !password) ? {display: "none"} : {}}>
