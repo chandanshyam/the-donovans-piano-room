@@ -1,3 +1,4 @@
+import PasswordCases from '@/components/auth/PasswordCases'
 import InputForm from '@/components/auth/form-input'
 import PasswordInput from '@/components/auth/password-input'
 import Image from 'next/image'
@@ -10,6 +11,7 @@ export default function SignupForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [allPasswordCasesCorrect, setAllPasswordCasesCorrect] = useState(false)
 
   return (
     <section>
@@ -48,12 +50,18 @@ export default function SignupForm() {
             onChange={(e: any) => setPassword(e.target.value)}
             name='password'
             label='Password'
+            error={(allPasswordCasesCorrect && confirmPassword.length && password !== confirmPassword) ? "The password you entered does not match" : ""}
+            inputValue={password}
         />
+        <PasswordCases password={password} testCasesCB={setAllPasswordCasesCorrect}/>
+        {(allPasswordCasesCorrect || !password) && 
         <PasswordInput 
             onChange={(e: any) => setConfirmPassword(e.target.value)}
             name='confirm password'
             label='Confirm password'
-        />
+            error={(allPasswordCasesCorrect && confirmPassword.length && password !== confirmPassword) ? "The password you entered does not match" : ""}
+            inputValue={confirmPassword}
+        />}
         <div> 
             <button className='w-full text-center bg-primary-yellow py-3 rounded-3xl text-[12px] text-primary-purple font-semibold 2xl:py-5 2xl:rounded-full' type='submit'>Continue to verify account</button>
         </div>
