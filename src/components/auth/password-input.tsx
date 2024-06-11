@@ -18,7 +18,7 @@ export default function PasswordInput({ onChange, name, label, error, inputValue
     <div>
 
       <FormControl variant="filled" sx={{border: 0}} error={!!error} className='focus:bg-white block rounded-3xl bg-[#E3E3E4] w-full 2xl:mb-[25px] 2xl:py-2'>
-          <InputLabel sx={[{color: "#391f0f"},()=>({'&.Mui-focused': {color: "#391f0f"}})]} htmlFor="standard-adornment-password">{label}</InputLabel>
+          <InputLabel sx={[{color: "#391f0f"},!error && {'&.Mui-focused': {color: "#391f0f"}}]} htmlFor="standard-adornment-password">{label}</InputLabel>
           <Input
               required
               value={inputValue}

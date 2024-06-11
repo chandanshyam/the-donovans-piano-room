@@ -53,9 +53,9 @@ export default function SignupForm() {
             error={(allPasswordCasesCorrect && confirmPassword.length && password !== confirmPassword) ? "The password you entered does not match" : ""}
             inputValue={password}
         />
-        <PasswordCases password={password} testCasesCB={setAllPasswordCasesCorrect}/>
+        <PasswordCases password={password} testCasesCB={setAllPasswordCasesCorrect} allCasesIsCorrect={allPasswordCasesCorrect}/>
         {(allPasswordCasesCorrect || !password) && 
-        <PasswordInput 
+        <PasswordInput
             onChange={(e: any) => setConfirmPassword(e.target.value)}
             name='confirm password'
             label='Confirm password'
