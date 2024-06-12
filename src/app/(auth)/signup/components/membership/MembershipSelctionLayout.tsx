@@ -1,7 +1,10 @@
+import { membershipChoiceAtom, membershipTypes } from "@/utils/stores";
+import { useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function MembershipSelctionLayout() {
+    const setMembershipChoice = useSetAtom(membershipChoiceAtom)
   return (
     <section>
         <Link href="/" className="text-primary-yellow text-xl font-bold flex relative w-[15%]"><Image src="/YellowBackIcon.svg" width={30} height={30} alt=""/><p className="mt-2">Account</p></Link>
@@ -14,28 +17,28 @@ export default function MembershipSelctionLayout() {
         </div>
         <form>
             <fieldset className="flex flex-col">
-                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6">
+                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["24-hours"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="1" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold">
                         <p className="text-primary-brown">24 hour membership</p>
                         <p className="text-">$1.99 now</p>
                     </div>
                 </label>
-                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6">
+                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["monthly-access"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="2" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold">
                         <p className="text-primary-brown">Monthly membership</p>
                         <p className="text-">$29.99/month</p>
                     </div>
                 </label>
-                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6">
+                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["yearly-access"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="2" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold">
                         <p className="text-primary-brown">Yearly membership</p>
                         <p className="text-">$239.88/year</p>
                     </div>
                 </label>
-                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6">
+                <label className="flex gap-3 w-[25vw] py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["scholarship"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="2" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold">
                         <p className="text-primary-brown">Scholarship</p>
