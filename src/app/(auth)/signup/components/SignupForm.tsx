@@ -1,5 +1,5 @@
 import PasswordCases from '@/components/auth/PasswordCases'
-import InputForm from '@/components/auth/form-input'
+import InputForm from '@/components/atoms/form-input'
 import PasswordInput from '@/components/auth/password-input'
 import Image from 'next/image'
 import Link from 'next/link'
