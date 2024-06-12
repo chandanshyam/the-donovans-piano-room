@@ -9,7 +9,7 @@ export default function MembershipIncludes() {
     const [discountCode, setDiscountCode] = useState("")
     const membershipChoice = useAtomValue(membershipChoiceAtom)
     const membershipChoiceContent = membershipIncludes[membershipChoice]
-    return membershipChoice ? (
+    return membershipChoice && (
         <div className="fixed right-[24vw] w-[25vw] bg-tertiary-purple h-auto rounded-3xl p-6">
 
             <h3 className="text-primary-yellow border-b-2 border-b-primary-yellow flex gap-2 text-[16px] 2xl:text-3xl font-semibold pb-3"><Image src="/auth/membershipTitleWaring.svg" width={20} height={20} alt=""/> {membershipChoiceContent.title}</h3>
@@ -23,7 +23,7 @@ export default function MembershipIncludes() {
                 ))}
             </ul>
             <div>
-                <p className="text-white text-[12px] 2xl:text-xl mb-2">Enter your discount code <span className="text-primary-yellow underline" onClick={()=>setShowDiscountInput(prev => !prev)}>here</span></p>
+                <p className="text-white text-[12px] 2xl:text-xl mb-2">Enter your discount code <span className="text-primary-yellow underline cursor-pointer" onClick={()=>setShowDiscountInput(prev => !prev)}>here</span></p>
                 {showDiscountInput && 
                 <InputForm 
                     onChange={(e: any) => setDiscountCode(e.target.value)}
@@ -32,7 +32,7 @@ export default function MembershipIncludes() {
                 />}
             </div>
         </div>
-    ) : <></>
+    )
 }
 
 const membershipIncludes = {
