@@ -1,7 +1,5 @@
 import { atom } from "jotai";
 
-
-
 ///////////////
 ////SIGN UP////
 ///////////////
