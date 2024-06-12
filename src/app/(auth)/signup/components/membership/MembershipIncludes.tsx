@@ -24,7 +24,7 @@ export default function MembershipIncludes() {
                 <InputForm 
                     onChange={(e: any) => setDiscountCode(e.target.value)}
                     field={{type: "text", name: "discount-code", label: "Discount code"}}
-                    text="" error=""
+                    text={discountCode} error=""
                 />}
             </div>
         </div>
