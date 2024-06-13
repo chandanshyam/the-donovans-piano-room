@@ -17,7 +17,7 @@ export default function PasswordInput({ onChange, name, label, error, inputValue
   return (
     <div>
 
-      <FormControl variant="filled" sx={{border: 0}} error={!!error} className='bg-[#fef8ee] block rounded-3xl bg-[#E3E3E4] w-full 2xl:mb-[25px] 2xl:py-2'>
+      <FormControl variant="filled" sx={{paddingBottom: "4px"}} error={!!error} className='bg-[#fef8ee] block rounded-3xl bg-[#E3E3E4] w-full 2xl:mb-[25px] 2xl:py-2'>
           <InputLabel sx={[{color: "#391f0f"},!error && {'&.Mui-focused': {color: "#391f0f"}}]} htmlFor="standard-adornment-password">{label}</InputLabel>
           <Input
               required
@@ -33,7 +33,7 @@ export default function PasswordInput({ onChange, name, label, error, inputValue
               <IconButton
                   aria-label="toggle password visibility"
                   onClick={toggleShowPassword}>
-                  {error ? <ErrorIcon sx={{fontSize: "20px", color: "#b3261e"}} className='mb-6 mr-2'/> : showPassword ? <Visibility sx={{fontSize: "20px", color: "#6F219E"}} className='mb-6 mr-2'/> : <VisibilityOff sx={{fontSize: "20px", color: "#6F219E"}} className='mb-6 mr-2'/>}
+                  {error ? <ErrorIcon sx={{fontSize: "20px", color: "#b3261e"}} className='mb-[12px] mr-2'/> : showPassword ? <Visibility sx={{fontSize: "20px", color: "#6F219E"}} className='mb-[12px] mr-2'/> : <VisibilityOff sx={{fontSize: "20px", color: "#6F219E"}} className='mb-[12px] mr-2'/>}
               </IconButton>
               </InputAdornment>
           }
