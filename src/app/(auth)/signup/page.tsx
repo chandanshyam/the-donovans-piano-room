@@ -1,17 +1,14 @@
 "use client";
 import SignupContentWrapper from "@/components/auth/signup/SignupContentWrapper";
-// import SignupForm from "./components/SignupForm";
-import SignupMembershipContent from "./components/membership/SignupMembershipContent";
 import { Providers } from "@/app/providers";
+import AllSignupSteps from "./components/AllSignupSteps";
 export default function SignUp() {
-
   return (
     <>
       <Providers>
 
         <SignupContentWrapper>
-          {/* <SignupForm/> */}
-          <SignupMembershipContent />
+          <AllSignupSteps/>
         </SignupContentWrapper>
       </Providers>
     </>
