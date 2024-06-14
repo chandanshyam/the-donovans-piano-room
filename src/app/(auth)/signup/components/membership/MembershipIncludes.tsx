@@ -10,7 +10,7 @@ export default function MembershipIncludes() {
     const membershipChoice = useAtomValue(membershipChoiceAtom)
     const membershipChoiceContent = membershipIncludes[membershipChoice]
     return membershipChoice && (
-        <div className="fixed right-[24vw] w-[25vw] bg-tertiary-purple h-auto rounded-3xl p-6">
+        <div className="fixed right-[25vw] w-[24vw] bg-tertiary-purple h-auto rounded-3xl p-6">
 
             <h3 className="text-primary-yellow border-b-2 border-b-primary-yellow flex gap-2 text-[16px] 2xl:text-3xl font-semibold pb-3"><Image src="/auth/membershipTitleWaring.svg" width={20} height={20} alt=""/> {membershipChoiceContent.title}</h3>
             <ul className="my-4 border-b-2 border-primary-purple pb-3">

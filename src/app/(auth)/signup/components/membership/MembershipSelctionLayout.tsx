@@ -7,10 +7,10 @@ import SignupHeader from "../SignupHeader";
 export default function MembershipSelctionLayout() {
     const [membershipChoice, setMembershipChoice] = useAtom(membershipChoiceAtom)
   return (
-    <section style={membershipChoice ? {position: "absolute", left: "24vw"} : {}}>
-        <SignupHeader stepName="Select your membership" stepNum={2} navLink="/" navName="Account" />
+    <section style={membershipChoice ? {position: "absolute", left: "25vw"} : {}}>
+        <SignupHeader stepName="Select your membership" stepNum={3} navLink="/" navName="Account" />
         <form>
-            <fieldset className="flex flex-col w-[22vw]">
+            <fieldset className="flex flex-col w-[24vw]">
                 <label className="flex gap-3 w-full py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["24-hours"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="1" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold 2xl:text-2xl">
