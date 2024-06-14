@@ -1,5 +1,5 @@
 import React from 'react'
-import AboutFooter from '../components/AboutFooter'
+import Footer1 from '../../../components/footers/Footer1'
 import BackgroundLayout from '../components/BackgroundLayout'
 import ContentNav from '../components/ContentNav'
 
@@ -13,7 +13,7 @@ export default function ContentWrapper({children, page}: {children: React.ReactN
         </div>
       </div>
       <BackgroundLayout />
-      <AboutFooter />
+      <Footer1 />
     </>
   )
 }
