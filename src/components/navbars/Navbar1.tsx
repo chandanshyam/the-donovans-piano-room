@@ -10,8 +10,8 @@ export default function Navbar1({page}: {page: string}) {
     
     <div className='fixed h-[8.8vh] w-[100vw] backdrop-blur-sm z-40 bg-[#fbf7ff]'></div>
     <nav className='fixed top-0 w-full bg-white z-50 h-[9vh] border-b-2 border-b-[#ecd6fe]'>
-        <div className='absolute bg-secondary-purple h-[8.8vh] w-[24vw] pr-4 py-2 rounded-r-full top-0'>
-            <Image src="/navbar/Logo.svg" fill alt='The Donovan&apos;s Piano Room' />
+        <div className='absolute bg-secondary-purple h-[8.8vh] w-[24vw] pr-4 py-2 rounded-r-full top-0 flex justify-end'>
+            <Image src="/navbar/Logo.svg" width={220} height={35} alt='The Donovan&apos;s Piano Room' />
         </div>
 
         <div className='absolute flex float-right h-[8.8vh] p-y-50 top-[0px] right-36 gap-16 justify-center h-full'>
