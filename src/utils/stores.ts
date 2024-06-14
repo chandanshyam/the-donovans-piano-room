@@ -3,7 +3,7 @@ import { atom } from "jotai";
 ///////////////
 ////SIGN UP////
 ///////////////
-
+export const singupStepAtom = atom(1)
 //Membership//
 export const membershipChoiceAtom = atom("")
 
