@@ -4,6 +4,7 @@ import PasswordInput from '@/components/auth/password-input'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import SignupHeader from './SignupHeader'
 
 export default function SignupForm() {
 
@@ -15,14 +16,7 @@ export default function SignupForm() {
 
   return (
     <section>
-        <Link href="/" className="text-primary-yellow text-xl font-bold flex relative w-[15%]"><Image src="/YellowBackIcon.svg" width={30} height={30} alt=""/><p className="mt-2">Home</p></Link>
-        <h1 className="text-7xl font-bold leading-tight tracking-tight text-white">
-        Sign Up
-        </h1>
-        <div className='mb-[10px] 2xl:mt-[20px] 2xl:mb-[20px]'>
-            <p className='text-white text-lg font-semibold'>Step of 4</p>
-            <p className='text-primary-yellow text-2xl font-semibold'>Create your account</p>
-        </div>
+        <SignupHeader navName='Home' navLink='/' stepNum={1} stepName='Create your account' />
         <form
         className="w-[22vw] space-y-4 md:space-y-6"
         >
