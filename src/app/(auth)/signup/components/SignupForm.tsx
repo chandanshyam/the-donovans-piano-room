@@ -1,10 +1,11 @@
 import PasswordCases from '@/components/auth/PasswordCases'
 import InputForm from '@/components/atoms/form-input'
 import PasswordInput from '@/components/auth/password-input'
-import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import SignupHeader from './SignupHeader'
+import { useSetAtom } from 'jotai'
+import { singupStepAtom } from '@/utils/stores'
 
 export default function SignupForm() {
 
@@ -13,12 +14,17 @@ export default function SignupForm() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [allPasswordCasesCorrect, setAllPasswordCasesCorrect] = useState(false)
-
+  const setSingupStep = useSetAtom(singupStepAtom)
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    setSingupStep(prev => prev+1)
+  }
   return (
-    <section>
+    <section className='w-[24vw]'>
         <SignupHeader navName='Home' navLink='/' stepNum={1} stepName='Create your account' />
         <form
-        className="w-[22vw] space-y-4 md:space-y-6"
+        onSubmit={handleSubmit}
+        className="space-y-4 md:space-y-6"
         >
         <InputForm
         field={{
