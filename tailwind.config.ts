@@ -27,6 +27,7 @@ const config: Config = {
         "secondary-green": "#75C973",
         "primary-purple": "#6F219E",
         "secondary-purple": "#D8BCFD",
+        "tertiary-purple": "#420863",
         "primary-brown": "#59371D",
         "secondary-brown": "#714B2D",
         "primary-black": "#1C1A1A",
