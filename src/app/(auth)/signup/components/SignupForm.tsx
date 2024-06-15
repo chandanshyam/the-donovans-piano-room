@@ -66,8 +66,22 @@ export default function SignupForm() {
             <button className='w-full text-center bg-primary-yellow py-3 rounded-3xl text-[12px] text-primary-purple font-semibold 2xl:py-5 2xl:rounded-full' type='submit'>Continue to verify account</button>
         </div>
         <div className="flex items-center">
-            <input required type="checkbox" value="" className="w-6 h-6 ring-yellow-600 bg-gray-100 border-yellow-600 rounded focus:ring-yellow-500 dark:focus:ring-yellow-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-yellow-600 dark:border-yellow-600"/>
-            <label className="ms-2 text-l font-medium text-white mt-4 2xl:mt-6 2xl:text-xl">I agree to The Donovan&apos;s piano room <Link href="#" className='text-primary-yellow underline'>terms of use</Link> and <Link href="#" className='text-primary-yellow underline'>privacy policy</Link>.</label>
+        <label className="relative flex items-center p-3 rounded-full cursor-pointer" htmlFor="check">
+            <input type="checkbox" required
+                className="before:content[''] peer relative h-6 w-6 cursor-pointer appearance-none rounded-md border before:border-[#391f0f] checked:border-primary-yellow transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:opacity-0 before:transition-opacity checked:bg-primary-yellow bg-[#fef8ee] hover:before:opacity-10"
+                id="check" />
+            <span
+                className="absolute text-primary-purple transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                    stroke="currentColor" stroke-width="1">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd">
+                    </path>
+                </svg>
+            </span>
+        </label>
+        <label className="ms-2 text-l font-medium text-white mt-4 2xl:mt-6 2xl:text-xl">I agree to The Donovan&apos;s piano room <Link href="#" className='text-primary-yellow underline'>terms of use</Link> and <Link href="#" className='text-primary-yellow underline'>privacy policy</Link>.</label>
         </div>
         </form>
         <p className='w-full text-center mt-[10px] text-lg text-white bg-primary-purple py-3 rounded-3xl text-[12px] mt-9 2xl:py-5 2xl:rounded-full'>Already have an account? <Link href="/login" className='text-primary-yellow underline'>Log in</Link></p>
