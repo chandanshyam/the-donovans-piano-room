@@ -1,5 +1,5 @@
 "use client";
-import SignupContentWrapper from "@/components/auth/signup/SignupContentWrapper";
+import AuthContentWrapper from "@/components/auth/AuthContentWrapper";
 import { Providers } from "@/app/providers";
 import AllSignupSteps from "./components/AllSignupSteps";
 export default function SignUp() {
@@ -7,9 +7,9 @@ export default function SignUp() {
     <>
       <Providers>
 
-        <SignupContentWrapper>
+        <AuthContentWrapper>
           <AllSignupSteps/>
-        </SignupContentWrapper>
+        </AuthContentWrapper>
       </Providers>
     </>
     
