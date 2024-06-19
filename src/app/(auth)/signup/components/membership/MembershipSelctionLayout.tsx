@@ -40,9 +40,9 @@ export default function MembershipSelctionLayout() {
                     </div>
                 </label>
             </fieldset>
-            <button className="w-full border border-primary-yellow py-2 2xl:py-4 rounded-full text-[12px] 2xl:text-2xl 4xl:text-3xl font-semibold text-primary-yellow">Continue to payment method</button>
+            <button className="w-full border border-primary-yellow py-3 2xl:py-4 rounded-full text-[12px] 2xl:text-2xl 4xl:text-3xl font-semibold text-primary-yellow">Continue to payment method</button>
         </form>
-        <p className='w-full text-center mt-[20px] text-lg 2xl:text-2xl 4xl:text-[16px] text-white bg-primary-purple py-3 rounded-3xl text-[12px] mt-9 2xl:py-5 2xl:rounded-full'>Already have an account? <Link href="/login" className='text-primary-yellow underline'>Log in</Link></p>
+        <p className='w-full text-center text-lg 3xl:text-2xl text-white bg-primary-purple py-3 rounded-[15px] text-[12px] mt-9 2xl:py-5 2xl:rounded-full'>Already have an account? <Link href="/login" className='text-primary-yellow underline'>Log in</Link></p>
     </section>
   )
 }
