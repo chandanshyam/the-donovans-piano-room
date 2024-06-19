@@ -45,6 +45,8 @@ const config: Config = {
         xl: "1280px",
         xl2: "1440px", // "2xl" is the default breakpoint in Tailwind
         "2xl": "1536px",
+        "3xl": "1715px",
+        "4xl": "2016px"
       },
     },
     plugins: [],
