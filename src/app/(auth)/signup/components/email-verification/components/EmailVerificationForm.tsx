@@ -20,7 +20,7 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
                 <p className='text-[13px] 2xl:text-[16px]'>This code expires in 10:00 minutes</p>
             </div>
             <form className="mt-8 w-full" onSubmit={handleVerify}>
-                <p className='text-primary-yellow text-lg 3xl:text-xl mb-3'>Enter the 6 digit code</p>
+                <p className='text-primary-yellow text-lg 3xl:text-2xl mb-3'>Enter the 6 digit code</p>
                 <div className='flex align-center gap-2 w-full justify-between'>
                     {verificationCode.map((code, index) => (
                         <input
@@ -29,7 +29,7 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
                             type='text'
                             value={code}
                             onChange={(event) => handleChange(index, event)}
-                            className='focus:bg-white text-center text-2xl 3xl:text-4xl rounded-lg bg-[#FEF8EE] outline-none focus:border-primary-brown border border-primary-brown border 2xl:w-20 w-16 p-5'
+                            className='focus:bg-white text-center text-2xl 3xl:text-4xl rounded-lg bg-[#FEF8EE] outline-none focus:border-primary-brown border border-primary-brown border 2xl:w-20 4xl:w-24 4xl:h-28 w-16 p-5'
                             required
                         />
                     ))}
