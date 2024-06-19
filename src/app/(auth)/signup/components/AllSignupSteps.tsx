@@ -9,10 +9,10 @@ export default function AllSignupSteps() {
   const signupStep = useAtomValue(singupStepAtom)
   return (
     <>
-
-        { signupStep === 1 && (<SignupForm/>) }
+      <SignupMembershipContent/>
+        {/* { signupStep === 1 && (<SignupForm/>) }
         { signupStep === 2 && (<EmailVerificationContent />)}
-        { signupStep === 3 && (<SignupMembershipContent />)}
+        { signupStep === 3 && (<SignupMembershipContent />)} */}
     </>
   )
 }
