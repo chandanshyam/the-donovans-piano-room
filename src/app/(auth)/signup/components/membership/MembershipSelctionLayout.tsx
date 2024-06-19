@@ -11,28 +11,28 @@ export default function MembershipSelctionLayout() {
         <SignupHeader stepName="Select your membership" stepNum={3} navLink="/" navName="Account" />
         <form>
             <fieldset className="flex flex-col w-[24vw]">
-                <label className="flex gap-3 w-full py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["24-hours"])}>
+                <label className="flex gap-3 w-full py-5 px-5 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["24-hours"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="1" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold 2xl:text-2xl">
                         <p className="text-primary-brown">24 hour membership</p>
                         <p className="text-">$1.99 now</p>
                     </div>
                 </label>
-                <label className="flex gap-3 w-full py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["monthly-access"])}>
+                <label className="flex gap-3 w-full py-5 px-5 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["monthly-access"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="2" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold 2xl:text-2xl">
                         <p className="text-primary-brown">Monthly membership</p>
                         <p className="text-">$29.99/month</p>
                     </div>
                 </label>
-                <label className="flex gap-3 w-full py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["yearly-access"])}>
+                <label className="flex gap-3 w-full py-5 px-5 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["yearly-access"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="2" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold 2xl:text-2xl">
                         <p className="text-primary-brown">Yearly membership</p>
                         <p className="text-">$239.88/year</p>
                     </div>
                 </label>
-                <label className="flex gap-3 w-full py-5 px-2 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["scholarship"])}>
+                <label className="flex gap-3 w-full py-5 px-5 bg-[#FEF8EE] rounded-2xl mb-6" onClick={() => setMembershipChoice(membershipTypes["scholarship"])}>
                     <input type="radio" className="w-6 h-6 accent-primary-purple bg-[#FEF8EE]" name="membership_option" value="2" required/>
                     <div className="w-full flex justify-between text-[12px] font-semibold 2xl:text-2xl">
                         <p className="text-primary-brown">Scholarship</p>
