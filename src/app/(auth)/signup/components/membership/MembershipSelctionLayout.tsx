@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 import SignupHeader from "../SignupHeader";
+import Button2 from "@/components/atoms/Button2";
 
 export default function MembershipSelctionLayout() {
     const [membershipChoice, setMembershipChoice] = useAtom(membershipChoiceAtom)
@@ -40,7 +41,7 @@ export default function MembershipSelctionLayout() {
                     </div>
                 </label>
             </fieldset>
-            <button className="w-full border border-primary-yellow py-3 2xl:py-4 rounded-full text-[12px] 2xl:text-2xl 4xl:text-3xl font-semibold text-primary-yellow">Continue to payment method</button>
+            <Button2 text="Continue to payment method" onClick={()=>{}}/>
         </form>
         <p className='w-full text-center text-lg 3xl:text-2xl text-white bg-primary-purple py-3 rounded-[15px] text-[12px] mt-9 2xl:py-5 2xl:rounded-full'>Already have an account? <Link href="/login" className='text-primary-yellow underline'>Log in</Link></p>
     </section>
