@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined'
+import Button1 from '@/components/atoms/Button1'
+import Button2 from '@/components/atoms/Button2'
 
 export default function EmailVerificationForm({setToIsVerified}: {setToIsVerified: any}) {
     const [verificationCode, setVerificationCode] = useState(Array(6).fill(''))
@@ -19,9 +21,9 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
                 <TimerOutlinedIcon className=' text-3xl' />
                 <p className='text-[13px] 2xl:text-[16px]'>This code expires in 10:00 minutes</p>
             </div>
-            <form className="mt-8 w-full" onSubmit={handleVerify}>
+            <form className="mt-8 mb-7 w-full">
                 <p className='text-primary-yellow text-lg 3xl:text-2xl mb-3'>Enter the 6 digit code</p>
-                <div className='flex align-center gap-2 w-full justify-between'>
+                <div className='flex align-center gap-2 w-full justify-between mb-7'>
                     {verificationCode.map((code, index) => (
                         <input
                             key={index}
@@ -34,10 +36,9 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
                         />
                     ))}
                 </div>
-                <button className='w-full mt-6 text-center bg-primary-yellow py-3 rounded-3xl text-[13px] 2xl:text-[16px] text-primary-purple font-semibold 2xl:py-5 2xl:rounded-full' type='submit'>Verify</button>
-                
+                <Button1 text="Verify" onClick={handleVerify}/>
             </form>
-            <button className='w-full mt-6 text-center text-primary-yellow py-3 rounded-3xl text-[13px] 2xl:text-[16px] border border-primary-yellow font-semibold 2xl:py-5 2xl:rounded-full'>Send a new code</button>
-            </section>
+            <Button2 text='Send a new code' onClick={()=>{}} />
+        </section>
     )
 }
