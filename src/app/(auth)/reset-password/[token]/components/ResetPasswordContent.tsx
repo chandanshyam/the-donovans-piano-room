@@ -11,15 +11,17 @@ export default function ResetPasswordContent() {
     const handleSubmit = (e: any) =>{
         e.preventDefault()
     }
+    const passwordsError = (allPasswordCasesCorrect && confirmPassword.length && password !== confirmPassword)
+    
   return (
     <section className="w-[24vw] 2xl:w-[26vw]">
         <h1 className="text-7xl 3xl:text-8xl font-bold leading-tight tracking-tight text-white mb-7">Reset your password</h1>
         <p className='text-white text-2xl 3xl:text-4xl font-semibold'>Choose a new and secure password to protect your account</p>
         <form className="flex flex-col gap-8 mt-7 mb-7">
 
-            <PasswordInput inputValue={password} error="" onChange={(e:any) => setPassword(e.target.value)} name="new-password" label="New password" />
+            <PasswordInput inputValue={password} error={passwordsError ? 'The password you entered does not match' : ""} onChange={(e:any) => setPassword(e.target.value)} name="new-password" label="New password" />
             <PasswordCases  testCasesCB={setAllPasswordCasesCorrect} password={password} allCasesIsCorrect={allPasswordCasesCorrect} />
-            <PasswordInput inputValue={confirmPassword} error="" onChange={(e:any) => setPassword(e.target.value)} name="confirm-password" label="Confirm password" />
+            <PasswordInput inputValue={confirmPassword} error={passwordsError ? 'The password you entered does not match' : ""} onChange={(e:any) => setConfirmPassword(e.target.value)} name="confirm-password" label="Confirm password" />
             <Button1 text="Update your password" onClick={handleSubmit} />
         </form>
         <AuthOptionalNavigation text="Don't have an account? " href="/signup" navName="Sign up"/>
