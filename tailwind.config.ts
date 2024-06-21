@@ -17,6 +17,7 @@ const config: Config = {
       },
       colors: {
         "primary-yellow": "#E9BB18",
+        "primary-yellow-accent": "#F0D454",
         "secondary-yellow": "#F8D867",
         "tertiary-yellow": "#FFEBD5",
         "primary-orange": "#E98427",
@@ -27,6 +28,7 @@ const config: Config = {
         "secondary-green": "#75C973",
         "primary-purple": "#6F219E",
         "secondary-purple": "#D8BCFD",
+        "tertiary-purple": "#420863",
         "primary-brown": "#59371D",
         "secondary-brown": "#714B2D",
         "primary-black": "#1C1A1A",
@@ -44,6 +46,12 @@ const config: Config = {
         xl: "1280px",
         xl2: "1440px", // "2xl" is the default breakpoint in Tailwind
         "2xl": "1536px",
+        "3xl": "1715px",
+        "4xl": "2016px"
+      },
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
     },
     plugins: [],

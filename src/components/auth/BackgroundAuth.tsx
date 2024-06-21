@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function BackgroundSignup() {
+export default function BackgroundAuth() {
   return (
     <>
         <Image className='absolute top-0 right-0' src="/background-icons/RightTop1.svg" alt='' width={135} height={135}/>
