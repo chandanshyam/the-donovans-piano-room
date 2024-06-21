@@ -17,6 +17,7 @@ const config: Config = {
       },
       colors: {
         "primary-yellow": "#E9BB18",
+        "primary-yellow-accent": "#F0D454",
         "secondary-yellow": "#F8D867",
         "tertiary-yellow": "#FFEBD5",
         "primary-orange": "#E98427",
@@ -47,6 +48,10 @@ const config: Config = {
         "2xl": "1536px",
         "3xl": "1715px",
         "4xl": "2016px"
+      },
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
     },
     plugins: [],

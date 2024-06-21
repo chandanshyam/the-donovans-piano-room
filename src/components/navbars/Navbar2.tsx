@@ -13,25 +13,26 @@ export default function Navbar2(){
 
         </div>
         <div className='absolute flex float-right h-[9vh] p-y-50 top-[0px] right-36 gap-16 justify-center h-full'>
-            <Link className='text-primary-yellow text-xl 2xl:text-3xl font-bold flex items-center relative' href="/">
+            <Link className='text-primary-yellow-accent text-xl 2xl:text-3xl font-bold flex items-center relative' href="/">
              <p>HOME</p>
             </Link>
-            <Link className='text-primary-yellow text-xl 2xl:text-3xl font-bold flex items-center relative' href="/about/why-choose-us">
+            <Link className='text-primary-yellow-accent text-xl 2xl:text-3xl font-bold flex items-center relative' href="/about/why-choose-us">
               <p>ABOUT</p>
             </Link>
-            <Link className='text-primary-yellow text-xl 2xl:text-3xl font-bold flex items-center relative' href="#">
+            <Link className='text-primary-yellow-accent text-xl 2xl:text-3xl font-bold flex items-center relative' href="#">
               <p>GAMES</p>
             </Link>
-            <Link className='text-primary-yellow text-xl 2xl:text-3xl font-bold flex items-center relative' href="#">
+            <Link className='text-primary-yellow-accent text-xl 2xl:text-3xl font-bold flex items-center relative' href="#">
              <p>BOOKSTORE</p>
             </Link>
-            <Link className='text-primary-yellow text-xl 2xl:text-3xl font-bold flex items-center relative' href="#">
+            <Link className='text-primary-yellow-accent text-xl 2xl:text-3xl font-bold flex items-center relative' href="#">
              <p>CONTACT</p>
             </Link>
             <div className='relative w-[40px] 2xl:w-[60px]'>
-              <Link className='text-primary-yellow text-xl 2xl:text-3xl font-bold flex items-center' href="#"><Image src="/navbar/CartYellow.svg" fill alt='Cart'/></Link>
+              <Link className='text-primary-yellow-accent text-xl 2xl:text-3xl font-bold flex items-center' href="#"><Image src="/navbar/CartYellow.svg" fill alt='Cart'/></Link>
             </div>
-            <Link className='text-primary-purple bg-primary-yellow rounded-l-full rounded-r-full px-20 h-16 flex items-center text-xl 2xl:text-3xl font-bold self-center' href="/signup">Log in or register</Link>
+            <Link className='text-primary-purple bg-primary-yellow-accent rounded-l-full rounded-r-full px-20 h-16 flex items-center text-xl 2xl:text-3xl font-bold self-center' href="/signup">Log in or register</Link>
+
         </div>
 
     </nav>
