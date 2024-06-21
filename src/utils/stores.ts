@@ -13,3 +13,6 @@ export const membershipTypes = {
     "monthly-access": "monthly-access",
     "scholarship": "scholarship"
 }
+
+//forgot-password//
+export const forgotPasswordStepAtom = atom(1);

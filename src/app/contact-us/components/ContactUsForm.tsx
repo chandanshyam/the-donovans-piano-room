@@ -102,7 +102,7 @@ export default function ContactUsForm() {
                         <hr className="border-primary-brown mb-5 h-1" />
                         <p className="text-lg">FOLLOW US ON OUR SOCIAL MEDIA</p>
                         <div className="flex space-x-3 mt-4">
-                            <a
+                            <Link
                                 href="#"
                                 className="w-15 h-15 rounded-full flex items-center justify-center text-white hover:bg-purple-800 transition duration-300"
                             >
@@ -112,8 +112,8 @@ export default function ContactUsForm() {
                                     height={40}
                                     alt="Twitter"
                                 />
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 href="#"
                                 className="w-15 h-15 rounded-full flex items-center justify-center text-white hover:bg-purple-800 transition duration-300"
                             >
@@ -123,7 +123,7 @@ export default function ContactUsForm() {
                                     height={40}
                                     alt="Twitter"
                                 />
-                            </a>
+                            </Link>
                             <a
                                 href="#"
                                 className="w-15 h-15 rounded-full flex items-center justify-center text-white hover:bg-purple-800 transition duration-300"

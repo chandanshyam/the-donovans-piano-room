@@ -6,6 +6,7 @@ import { useState } from 'react'
 import SignupHeader from './SignupHeader'
 import { useSetAtom } from 'jotai'
 import { singupStepAtom } from '@/utils/stores'
+import Button1 from '@/components/atoms/Button1'
 
 export default function SignupForm() {
 
@@ -23,7 +24,6 @@ export default function SignupForm() {
     <section className='w-[24vw] 3xl:w-[26vw]'>
         <SignupHeader navName='Home' navLink='/' stepNum={1} stepName='Create your account' />
         <form
-        onSubmit={handleSubmit}
         className="space-y-4 md:space-y-6"
         >
         <InputForm
@@ -63,7 +63,7 @@ export default function SignupForm() {
             inputValue={confirmPassword}
         />}
         <div> 
-            <button className='w-full text-center bg-primary-yellow py-3 rounded-3xl text-[12px] 3xl:text-2xl text-primary-purple font-semibold 2xl:py-5 3xl:py-7 2xl:rounded-full' type='submit'>Continue to verify account</button>
+            <Button1 onClick={handleSubmit} text='Continue to verify account' />    
         </div>
         <div className="flex items-center">
         <label className="relative flex items-center p-3 rounded-full cursor-pointer" htmlFor="check">
