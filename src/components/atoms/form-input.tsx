@@ -10,11 +10,13 @@ export default function InputForm({
   error,
   text,
   onChange,
+  numRows=1,
 }: {
   field: InputData;
   error: string;
   text: string;
   onChange: any;
+  numRows?: number;
 }) {
   return (
     <div>
@@ -29,6 +31,8 @@ export default function InputForm({
           onChange={onChange}
           error={!!error}
           disableUnderline
+          multiline={field.type === 'textarea'}
+          rows={numRows}
         />
       </FormControl>
       {error && (<p className='mt-3'>{error}</p>)}

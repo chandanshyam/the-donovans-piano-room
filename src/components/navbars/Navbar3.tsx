@@ -9,7 +9,7 @@ export default function Navbar3({page}: {page: string}){
   return (
     <nav className='fixed top-0 w-full z-40 border-b-2 border-[#A135E8] py-1 z-50 backdrop-blur-sm'>
         <div className='fixed bg-[#601D86] pl-40 pr-4 py-1 rounded-r-full top-0'>
-            <Image src="/navbar/Logo.svg" width={220} height={35} alt='The Donovan&apos;s Piano Room' />
+            <Image src="/navbar/Logo2.svg" width={220} height={35} alt='The Donovan&apos;s Piano Room' />
         </div>
         <div className='flex float-right h-24 p-y-50 mr-36 gap-16'>
             <Link className='text-primary-purple text-xl font-bold flex items-center relative'style={navigationPages.home === page ? highlightLink: {}} href="/">
@@ -32,7 +32,7 @@ export default function Navbar3({page}: {page: string}){
              <p>CONTACT</p>
              {navigationPages.contact === page && displayBorder()}
             </Link>
-            <Link className='text-primary-purple text-xl font-bold flex items-center' href="#"><Image src="/navbar/Cart.svg" width={40} height={40} alt='Cart'/></Link>
+            <Link className='text-primary-purple text-xl font-bold flex items-center' href="#"><Image src="/navbar/Cart.svg" width={20} height={40} alt='Cart'/></Link>
             <Link className='text-white bg-primary-purple rounded-l-full rounded-r-full px-20 h-16 mt-4 flex items-center text-xl font-bold' href="/signup">Log in or register</Link>
         </div>
 

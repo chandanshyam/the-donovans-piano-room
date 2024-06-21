@@ -1,4 +1,4 @@
-import InputForm from '@/components/contact-us/form-input'
+import InputForm from '@/components/atoms/form-input'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
