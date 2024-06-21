@@ -1,9 +1,8 @@
 "use client";
-
-import { forgotPasswordStepAtom } from './forgotPasswordStepAtom';
 import { useAtomValue } from 'jotai';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import EmailSentConfirmation from './EmailSentConfirmation';
+import { forgotPasswordStepAtom } from '@/utils/stores';
 
 export default function AllForgotPasswordSteps() {
     const forgotPasswordStep = useAtomValue(forgotPasswordStepAtom);

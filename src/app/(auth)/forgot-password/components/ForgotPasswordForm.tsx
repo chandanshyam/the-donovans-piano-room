@@ -60,8 +60,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useSetAtom } from 'jotai';
-import { forgotPasswordStepAtom } from './forgotPasswordStepAtom';
 import Button1 from "@/components/atoms/Button1";
+import { forgotPasswordStepAtom } from "@/utils/stores";
 
 export default function ForgotPasswordForm() {
     const [email, setEmail] = useState("");
