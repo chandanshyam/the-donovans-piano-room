@@ -18,9 +18,7 @@ export const membershipTypes = {
 export const forgotPasswordStepAtom = atom(1);
 
 //reset-password//
-export const resetPasswordStepAtom = atom(1);
-
-
+export const resetPasswordStepAtom = atom(1)
 
 
 //****************//
