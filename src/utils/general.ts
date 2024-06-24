@@ -27,3 +27,9 @@ export const testPassword = (password: string) =>{
     const symbolCase = /[!@#$%^&*()\[_\]+={}.'"~²`%¨)°:,?§/-]/.test(password)
     return {correctLength: password.length >= 12, lowerCase, upperCase, numberCase, symbolCase}
 }
+
+export const profile = { // to be removed after BE Integration
+    fullName: "Jack Stuart",
+    imageSrc: "/ToBeRemoved/avatar/1.svg",
+    pronouns: "Hi/Him/His"
+}
