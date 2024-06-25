@@ -14,7 +14,7 @@ export default function AccountWrapper({children}: {children: React.ReactNode}) 
           <div className="relative z-40 h-[9.7vh] border-b border-[#FED2AA] flex justify-center items-center">
             <div className="w-[84.7%] flex justify-between items-center">
               <h1 className="text-5xl 3xl:text-6xl 4xl:text-7xl font-montserrat font-medium">Account & Settings</h1>
-              <div className="bg-[#FED2AA] p-5 rounded-full flex items-center gap-[.5vw]">
+              <div className="bg-[#FED2AA] p-3 rounded-full flex items-center gap-[.5vw]">
                 <div className="relative h-[3vh] w-[3vh]">
                   <Image src={profile.imageSrc} fill alt=""/>
                 </div>
