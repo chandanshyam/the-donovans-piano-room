@@ -1,3 +1,4 @@
+"use client"
 import Navbar4Left from "@/components/navbars/Navbar4Left";
 
 export default function page() {
