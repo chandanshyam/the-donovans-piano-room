@@ -19,6 +19,14 @@ export const aboutScholarshipNavigation = {
     whosEligible: "who's eligible"
 }
 
+export const settingsNavigation = {
+    profile: "Profile",
+    membership: "Membership",
+    paymentMethods: "PaymentMethods",
+    notification: "Notification",
+    timeSpent: "TimeSpent"
+}
+
 
 export const testPassword = (password: string) =>{
     const lowerCase = /[a-z]/.test(password)

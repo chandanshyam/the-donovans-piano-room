@@ -1,10 +1,10 @@
 "use client"
-import AccountWrapper from "@/components/ContentWrappers/AccountWrapper";
-import Navbar4Left from "@/components/navbars/Navbar4Left";
+import AccountWrapper from "@/components/ContentWrappers/account/AccountWrapper";
+import { settingsNavigation } from "@/utils/general";
 
 export default function page() {
   return (
-    <AccountWrapper>
+    <AccountWrapper currentPage={settingsNavigation.profile}>
     <div>
     </div>
 
