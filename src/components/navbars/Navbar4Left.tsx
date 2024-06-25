@@ -8,7 +8,7 @@ export default function Navbar4Left() {
   const [isNavOpen, setIsNavOpen] = useAtom(IsNavOpenAtom)
   const toggleOpenNav = () => setIsNavOpen(state => !state) 
   return (
-    <div className="h-[100vh]" style={{width: isNavOpen ? "18vw" : "8vw"}}>
+    <div className="h-[100vh] relative z-50" style={{width: isNavOpen ? "18vw" : "8vw"}}>
         <div className="flex items-center justify-center bg-[#601d86] w-full h-[12vh] rounded-tr-[20px]">
             {isNavOpen ? (
               <div className="relative w-[80%] h-[60%]">
