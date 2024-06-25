@@ -8,7 +8,7 @@ export default function Navbar4Left() {
   const [isNavOpen, setIsNavOpen] = useAtom(IsNavOpenAtom)
   const toggleOpenNav = () => setIsNavOpen(state => !state) 
   return (
-    <div className="h-[100vh] relative z-50" style={{width: isNavOpen ? "18vw" : "8vw"}}>
+    <div className="h-[100vh] relative z-50" style={{width: isNavOpen ? "20vw" : "8vw"}}>
         <div className="flex items-center justify-center bg-[#601d86] w-full h-[12vh] rounded-tr-[20px]">
             {isNavOpen ? (
               <div className="relative w-[80%] h-[60%]">
@@ -19,13 +19,13 @@ export default function Navbar4Left() {
                 <Image src="/navbar/MiniLogo.svg" fill alt=""/>
             </div>}
             { isNavOpen ?
-              (<div className="absolute left-[16.5vw] top-[6vh] cursor-pointer" onClick={toggleOpenNav}>
+              (<div className="absolute left-[15.5vw] top-[6vh] cursor-pointer" onClick={toggleOpenNav}>
                 <div className="relative h-[8vh] w-[3vw]">
                     <Image src="/navbar/NavBar4Left/CloseButtons.svg" fill alt="close" />
                 </div>
               </div>
               ) : (
-              <div className="absolute left-[6.5vw] top-[6vh] cursor-pointer" onClick={toggleOpenNav}>
+              <div className="absolute left-[6vw] top-[6vh] cursor-pointer" onClick={toggleOpenNav}>
                 <div className="relative h-[8vh] w-[3vw]">
                     <Image src="/navbar/NavBar4Left/OpenButton.svg" fill alt="open" />
                 </div>
@@ -45,9 +45,9 @@ export default function Navbar4Left() {
                   <div className="relative h-[4vh] w-[4vh]" style={isNavOpen ? {marginLeft: "1vw"}: {}}>
                     <Image src="/navbar/NavBar4Left/Dashboard.svg" fill alt="D" />
                   </div>
-                  {isNavOpen ? (<p className="text-primary-purple ml-[.5vw] w-[56%] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">DASHBOARD</p>) : <></>}
+                  {isNavOpen ? (<p className="text-primary-purple ml-[.5vw] w-[80%] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">DASHBOARD</p>) : <></>}
                   {isNavOpen && (
-                    <div className="float-right bg-primary-yellow-accent w-[20%] h-full rounded-r-2xl flex items-center justify-center">
+                    <div className="float-right bg-primary-yellow-accent w-[25%] h-full rounded-r-2xl flex items-center justify-center">
                       <div className="relative h-[2vh] w-[2vh]"><Image className="rotate-[-90deg]" src="/about/FAQs/DropdownIcon.svg" fill alt=""/></div>
                     </div>
                   )}
@@ -58,9 +58,9 @@ export default function Navbar4Left() {
                   <div className="relative h-[4vh] w-[4vh]" style={isNavOpen ? {marginLeft: "1vw"}: {}}>
                     <Image src="/navbar/NavBar4Left/Lessons.svg" fill alt="L" />
                   </div>
-                  {isNavOpen ? (<p className="text-primary-purple ml-[.5vw] w-[56%] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">LESSONS</p>) : <></>}
+                  {isNavOpen ? (<p className="text-primary-purple ml-[.5vw] w-[80%] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">LESSONS</p>) : <></>}
                   {isNavOpen && (
-                    <div className="float-right bg-primary-yellow-accent w-[20%] h-full rounded-r-2xl flex items-center justify-center">
+                    <div className="float-right bg-primary-yellow-accent w-[25%] h-full rounded-r-2xl flex items-center justify-center">
                       <div className="relative h-[2vh] w-[2vh]"><Image className="rotate-[-90deg]" src="/about/FAQs/DropdownIcon.svg" fill alt=""/></div>
                     </div>
                   )}
@@ -71,9 +71,9 @@ export default function Navbar4Left() {
                   <div className="relative h-[4vh] w-[4vh]" style={isNavOpen ? {marginLeft: "1vw"}: {}}>
                     <Image src="/navbar/NavBar4Left/Games.svg" fill alt="G" />
                   </div>
-                  {isNavOpen ? (<p className="text-primary-purple w-[56%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">GAMES</p>) : <></>}
+                  {isNavOpen ? (<p className="text-primary-purple w-[80%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">GAMES</p>) : <></>}
                   {isNavOpen && (
-                    <div className="float-right bg-primary-yellow-accent w-[20%] h-full rounded-r-2xl flex items-center justify-center">
+                    <div className="float-right bg-primary-yellow-accent w-[25%] h-full rounded-r-2xl flex items-center justify-center">
                       <div className="relative h-[2vh] w-[2vh]"><Image className="rotate-[-90deg]" src="/about/FAQs/DropdownIcon.svg" fill alt=""/></div>
                     </div>
                   )}
@@ -84,9 +84,9 @@ export default function Navbar4Left() {
                   <div className="relative h-[4vh] w-[4vh]" style={isNavOpen ? {marginLeft: "1vw"}: {}}>
                     <Image src="/navbar/NavBar4Left/MusicTools.svg" fill alt="MT" />
                   </div>
-                  {isNavOpen ? (<p className="text-primary-purple w-[56%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">MUSIC TOOLS</p>) : <></>}
+                  {isNavOpen ? (<p className="text-primary-purple w-[80%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">MUSIC TOOLS</p>) : <></>}
                   {isNavOpen && (
-                    <div className="float-right bg-primary-yellow-accent w-[20%] h-full rounded-r-2xl flex items-center justify-center">
+                    <div className="float-right bg-primary-yellow-accent w-[25%] h-full rounded-r-2xl flex items-center justify-center">
                       <div className="relative h-[2vh] w-[2vh]"><Image className="rotate-[-90deg]" src="/about/FAQs/DropdownIcon.svg" fill alt=""/></div>
                     </div>
                   )}
@@ -97,9 +97,9 @@ export default function Navbar4Left() {
                   <div className="relative h-[4vh] w-[4vh]" style={isNavOpen ? {marginLeft: "1vw"}: {}}>
                     <Image src="/navbar/NavBar4Left/Planner.svg" fill alt="P" />
                   </div>
-                  {isNavOpen ? (<p className="text-primary-purple w-[56%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">PLANNER</p>) : <></>}
+                  {isNavOpen ? (<p className="text-primary-purple w-[80%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">PLANNER</p>) : <></>}
                   {isNavOpen && (
-                    <div className="float-right bg-primary-yellow-accent w-[20%] h-full rounded-r-2xl flex items-center justify-center">
+                    <div className="float-right bg-primary-yellow-accent w-[25%] h-full rounded-r-2xl flex items-center justify-center">
                       <div className="relative h-[2vh] w-[2vh]"><Image className="rotate-[-90deg]" src="/about/FAQs/DropdownIcon.svg" fill alt=""/></div>
                     </div>
                   )}
@@ -110,9 +110,9 @@ export default function Navbar4Left() {
                   <div className="relative h-[4vh] w-[4vh]" style={isNavOpen ? {marginLeft: "1vw"}: {}}>
                     <Image src="/navbar/NavBar4Left/Contact.svg" fill alt="C" />
                   </div>
-                  {isNavOpen ? (<p className="text-primary-purple w-[56%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">CONTACT</p>) : <></>}
+                  {isNavOpen ? (<p className="text-primary-purple w-[80%] ml-[.5vw] text-2xl 3xl:text-3xl 4xl:text-4xl font-semibold">CONTACT</p>) : <></>}
                   {isNavOpen && (
-                    <div className="float-right bg-primary-yellow-accent w-[20%] h-full rounded-r-2xl flex items-center justify-center">
+                    <div className="float-right bg-primary-yellow-accent w-[25%] h-full rounded-r-2xl flex items-center justify-center">
                       <div className="relative h-[2vh] w-[2vh]"><Image className="rotate-[-90deg]" src="/about/FAQs/DropdownIcon.svg" fill alt=""/></div>
                     </div>
                   )}
