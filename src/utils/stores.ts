@@ -19,3 +19,10 @@ export const forgotPasswordStepAtom = atom(1);
 
 //reset-password//
 export const resetPasswordStepAtom = atom(1);
+
+
+//////////////
+/////NAV//////
+//////////////
+
+export const IsNavOpenAtom = atom(false) 
