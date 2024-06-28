@@ -34,7 +34,7 @@ export default function AccountForm() {
                     <InputForm error='' text={phoneNumber} onChange={(e: any) => setPhoneNumber(e.target.value)} field={{label: "Phone number", type: "text", name: "phone-number"}}/>
                 </div>
             </div>
-            <Button3 text='Save changes' style='w-[20%] self-end mt-[3%]'/>
+            <Button3 text='Save changes' style='w-[11vw] self-end mt-[3%]'/>
         </form>
     </div>
   )
