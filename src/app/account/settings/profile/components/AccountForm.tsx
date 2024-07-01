@@ -6,6 +6,7 @@ import SelectInput from '@/components/atoms/select-input'
 import { profile, pronouns as allPronouns } from '@/utils/general'
 import React, { useEffect, useState } from 'react'
 import SuccessPopup from './SuccessPopup'
+import AvatarSelectPopup from './AvatarSelectPopup'
 
 export default function AccountForm() {
     const [fullName, setFullName] = useState(profile.fullName)
@@ -15,6 +16,11 @@ export default function AccountForm() {
     const [phoneNumber, setPhoneNumber] = useState(profile.phoneNumber)
     const [birthDate, setBirthDate] = useState(profile.birthDate)
     const [isDataSaved, setIsDataSaved] = useState(false)
+    const [avatar, setAvatar] = useState(profile.imageSrc)
+    const [selectingAvatar, setSelectingAvatar] = useState(true)
+    const closeSelectingAvatar = () => {
+        setSelectingAvatar(false)
+    }
     const submitChanges = (e: any) => {
         e.preventDefault()
         setIsDataSaved(true)
@@ -45,6 +51,7 @@ export default function AccountForm() {
             <Button3 text='Save changes' style={{width: "11vw", marginTop: "3%", alignSelf: "flex-end"}}/>
         </form>
         {isDataSaved && <SuccessPopup closeSuccessPopup={closeSuccessPopup}/>}
+        {selectingAvatar && <AvatarSelectPopup avatar={avatar} setAvatar={setAvatar} closeSelectingAvatar={closeSelectingAvatar} />}
     </div>
   )
 }
