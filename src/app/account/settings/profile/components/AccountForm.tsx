@@ -7,6 +7,8 @@ import { profile, pronouns as allPronouns } from '@/utils/general'
 import React, { useEffect, useState } from 'react'
 import SuccessPopup from './SuccessPopup'
 import AvatarSelectPopup from './AvatarSelectPopup'
+import { useSetAtom } from 'jotai'
+import { profileAtom } from '@/utils/stores'
 
 export default function AccountForm() {
     const [fullName, setFullName] = useState(profile.fullName)
@@ -18,6 +20,7 @@ export default function AccountForm() {
     const [isDataSaved, setIsDataSaved] = useState(false)
     const [avatar, setAvatar] = useState(profile.imageSrc)
     const [selectingAvatar, setSelectingAvatar] = useState(true)
+    const setProfile = useSetAtom(profileAtom)
     const closeSelectingAvatar = () => {
         setSelectingAvatar(false)
     }
@@ -28,6 +31,9 @@ export default function AccountForm() {
     const closeSuccessPopup = () =>{
         setIsDataSaved(false)
     }
+    useEffect(()=>{
+        setProfile(profile)
+    }, [])
   return (
     <div className='w-[60%]'>
         <h1 className='text-5xl 3xl:text-6xl 4xl:text-7xl text-primary-brown font-montserrat font-medium mt-[3vh]'>Your profile</h1>

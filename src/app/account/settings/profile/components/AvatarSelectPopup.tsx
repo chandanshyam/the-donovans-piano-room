@@ -1,9 +1,12 @@
 import Button3 from '@/components/atoms/Button3';
+import { profileAtom } from '@/utils/stores';
 import CloseIcon from '@mui/icons-material/Close';
+import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvatar}: {avatar: string, setAvatar: any, closeSelectingAvatar: any}) {
   const [selectedAvatar, setSelectedAvatar] = useState(avatar)
+  const setProfile = useSetAtom(profileAtom)
   const popupRef = useRef(null)
   const handleClickOutside = (e: any) => {
     if (!popupRef.current.contains(e.target)) {
@@ -16,6 +19,13 @@ export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvat
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+  const submitNewAvatar = () => {
+    setProfile((prev: any) => {
+      const newProfile = {...prev, imageSrc: selectedAvatar} 
+      return newProfile
+    })
+    closeSelectingAvatar()
+  }
   return (
     <div className='absolute w-[100vw] h-[100vh] z-[220] bg-[black] bg-opacity-50 top-[-9.7vh] left-[-14.5vw]'>
       <div ref={popupRef} className="absolute w-[30vw] h-[40vh] bg-primary-skin rounded-2xl bottom-[15vh] right-[5vw] px-[2vw] py-[3vh]" style={avatar !== selectedAvatar ? {height: "47vh"} : {}}>
@@ -48,7 +58,7 @@ export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvat
           </div>
         </div>
         {selectedAvatar !== avatar && <div className='flex w-full justify-end'>
-          <Button3 text='Save changes' style={{marginTop: "18px", width: "10vw"}}/>
+          <Button3 text='Save changes' style={{marginTop: "18px", width: "10vw"}} onClick={submitNewAvatar}/>
 
         </div>}
       </div>
