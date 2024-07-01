@@ -7,9 +7,9 @@ import { useEffect, useRef, useState } from 'react';
 export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvatar}: {avatar: string, setAvatar: any, closeSelectingAvatar: any}) {
   const [selectedAvatar, setSelectedAvatar] = useState(avatar)
   const setProfile = useSetAtom(profileAtom)
-  const popupRef = useRef(null)
+  const popupRef = useRef<HTMLDivElement>(null)
   const handleClickOutside = (e: any) => {
-    if (!popupRef.current.contains(e.target)) {
+    if ( popupRef.current && !popupRef.current.contains(e.target)) {
       closeSelectingAvatar()
     }
   };
