@@ -1,13 +1,24 @@
 import Button3 from '@/components/atoms/Button3';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvatar}: {avatar: string, setAvatar: any, closeSelectingAvatar: any}) {
   const [selectedAvatar, setSelectedAvatar] = useState(avatar)
-  
+  const popupRef = useRef(null)
+  const handleClickOutside = (e: any) => {
+    if (!popupRef.current.contains(e.target)) {
+      closeSelectingAvatar()
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   return (
     <div className='absolute w-[100vw] h-[100vh] z-[220] bg-[black] bg-opacity-50 top-[-9.7vh] left-[-14.5vw]'>
-      <div className="absolute w-[30vw] h-[47vh] bg-primary-skin rounded-2xl bottom-[15vh] right-[5vw] px-[2vw] py-[3vh]">
+      <div ref={popupRef} className="absolute w-[30vw] h-[47vh] bg-primary-skin rounded-2xl bottom-[15vh] right-[5vw] px-[2vw] py-[3vh]">
         <div className="flex justify-between">
           <p className='text-3xl 3xl:text-4xl 4xl:text-5xl'>Select your avatar</p>
           <CloseIcon className='text-4xl 3xl:text-5xl 4xl:text-6xl' onClick={closeSelectingAvatar}/>
