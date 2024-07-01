@@ -9,7 +9,7 @@ export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvat
   const setProfile = useSetAtom(profileAtom)
   const popupRef = useRef<HTMLDivElement>(null)
   const handleClickOutside = (e: any) => {
-    if ( popupRef.current && !popupRef.current.contains(e.target)) {
+    if (!!popupRef.current && !popupRef.current.contains(e.target)) {
       closeSelectingAvatar()
     }
   };
