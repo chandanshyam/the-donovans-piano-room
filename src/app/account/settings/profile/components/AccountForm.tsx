@@ -5,6 +5,7 @@ import InputForm from '@/components/atoms/form-input'
 import SelectInput from '@/components/atoms/select-input'
 import { profile, pronouns as allPronouns } from '@/utils/general'
 import React, { useEffect, useState } from 'react'
+import SuccessPopup from './SuccessPopup'
 
 export default function AccountForm() {
     const [fullName, setFullName] = useState(profile.fullName)
@@ -13,13 +14,20 @@ export default function AccountForm() {
     const [pronouns, setPronouns] = useState(profile.pronouns)
     const [phoneNumber, setPhoneNumber] = useState(profile.phoneNumber)
     const [birthDate, setBirthDate] = useState(profile.birthDate)
-    
+    const [isDataSaved, setIsDataSaved] = useState(false)
+    const submitChanges = (e: any) => {
+        e.preventDefault()
+        setIsDataSaved(true)
+    }
+    const closeSuccessPopup = () =>{
+        setIsDataSaved(false)
+    }
   return (
     <div className='w-[60%]'>
         <h1 className='text-5xl 3xl:text-6xl 4xl:text-7xl text-primary-brown font-montserrat font-medium mt-[3vh]'>Your profile</h1>
         <p className='text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl w-[90%]'>Update your profile information to ensure your account reflects the latest details about you.</p>
         <div className='mt-[5vh] mb-[5vh] bg-[#FED2AA] h-1'></div>
-        <form className='flex flex-col flex gap-[4%]'>
+        <form className='flex flex-col flex gap-[4%]' onSubmit={submitChanges}>
             <div className='flex gap-[2vh]'>
 
                 <div className='w-[49%] flex flex-col gap-[1vw]'>
@@ -36,6 +44,7 @@ export default function AccountForm() {
             </div>
             <Button3 text='Save changes' style={{width: "11vw", marginTop: "3%", alignSelf: "flex-end"}}/>
         </form>
+        {isDataSaved && <SuccessPopup closeSuccessPopup={closeSuccessPopup}/>}
     </div>
   )
 }
