@@ -18,7 +18,7 @@ export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvat
   }, []);
   return (
     <div className='absolute w-[100vw] h-[100vh] z-[220] bg-[black] bg-opacity-50 top-[-9.7vh] left-[-14.5vw]'>
-      <div ref={popupRef} className="absolute w-[30vw] h-[47vh] bg-primary-skin rounded-2xl bottom-[15vh] right-[5vw] px-[2vw] py-[3vh]">
+      <div ref={popupRef} className="absolute w-[30vw] h-[40vh] bg-primary-skin rounded-2xl bottom-[15vh] right-[5vw] px-[2vw] py-[3vh]" style={avatar !== selectedAvatar ? {height: "47vh"} : {}}>
         <div className="flex justify-between">
           <p className='text-3xl 3xl:text-4xl 4xl:text-5xl'>Select your avatar</p>
           <CloseIcon className='text-4xl 3xl:text-5xl 4xl:text-6xl' onClick={closeSelectingAvatar}/>
@@ -47,10 +47,10 @@ export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvat
             <Image src="/ToBeRemoved/avatar/6.svg" fill alt='' />
           </div>
         </div>
-        <div className='flex w-full justify-end'>
+        {selectedAvatar !== avatar && <div className='flex w-full justify-end'>
           <Button3 text='Save changes' style={{marginTop: "18px", width: "10vw"}}/>
 
-        </div>
+        </div>}
       </div>
     </div>
   )
