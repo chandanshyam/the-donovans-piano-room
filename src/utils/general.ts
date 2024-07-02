@@ -1,3 +1,5 @@
+import AccountAndSettingsNav from "@/components/atoms/AccountAndSettingsNav"
+
 export const aboutNavigationPages = {
     whyChooseUs: "why-choose-us",
     whoWeServe: "who-we-serve",
@@ -54,3 +56,8 @@ export const pronouns = [
     "He/Him/His",
     "They/Them/Theirs"
 ]
+
+export const authorizedWrapperTitles = {
+    AccountAndSettings: "Account & Settings",
+    Dashboard: "Dashboard"
+}
