@@ -43,7 +43,7 @@ export const testPassword = (password: string) =>{
 export const profile = { // to be removed after BE Integration
     fullName: "Jack Stuart",
     imageSrc: "/ToBeRemoved/avatar/1.svg",
-    pronouns: "Hi/Him/His",
+    pronouns: "He/Him/His",
     email: "jacks@email.com",
     birthDate: "2000-12-24",
     phoneNumber: "1-234-567-8910"
@@ -51,6 +51,6 @@ export const profile = { // to be removed after BE Integration
 
 export const pronouns = [
     "She/Her/Hers",
-    "Hi/Him/His",
+    "He/Him/His",
     "They/Them/Theirs"
 ]
