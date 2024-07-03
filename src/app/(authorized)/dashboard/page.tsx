@@ -8,7 +8,7 @@ import FirstLesson from "./components/FirstLesson";
 import GamesInProgress from "./components/GamesInProgress";
 import "./page.css"
 
-export default function page() {
+export default function Page() {
     const setProfile = useSetAtom(profileAtom)
     const [displayName, setDisplayName] = useState('')
     useEffect(()=>{

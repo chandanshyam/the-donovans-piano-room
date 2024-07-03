@@ -5,7 +5,7 @@ import AccountAndSettingsNav from "@/components/atoms/AccountAndSettingsNav";
 import AuthorizedWrapper1 from "@/components/ContentWrappers/authorized-1/AuthorizedWrapper1";
 import { useState } from "react";
 import AvatarSelectPopup from "./components/AvatarSelectPopup";
-export default function page() {
+export default function Page() {
 
   const [avatar, setAvatar] = useState(profile.imageSrc)
   const [selectingAvatar, setSelectingAvatar] = useState(true)
