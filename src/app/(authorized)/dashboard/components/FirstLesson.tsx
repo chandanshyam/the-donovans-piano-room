@@ -6,7 +6,7 @@ export default function FirstLesson() {
   return (
         <div className="relative w-[80vh] h-[80vh]">
             <div className="absolute w-[80%] h-[85%] z-30 left-[10%] top-[10%]">
-                <div className="flex justify-between select-none mt-[2%] mb-[3%]">
+                <div className="flex justify-between select-none mt-[4%] mb-[3%]">
                     <div className="flex gap-[10%] items-center">
                         <span className="relative h-[3vh] w-[3vh]"><Image src="/dashboard/book-icon.svg" fill alt=""/></span>
                         <p className="text-primary-brown text-xl 3xl:text-2xl 4xl:text-3xl font-semibold">Lessons</p>
