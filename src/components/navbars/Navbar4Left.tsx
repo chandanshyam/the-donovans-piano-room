@@ -41,7 +41,7 @@ export default function Navbar4Left({openedLink=""}: {openedLink: string}) {
             <p className="text-center text-4xl 3xl:text-5xl 4xl:text-6xl font-montserrat text-white font-bold mt-[1vh]" style={{textAlign: isNavOpen ? "start" : "center"}}>{isNavOpen ? profile.fullName : profile.fullName[0]}</p>
             <p className="text-white text-xl 3xl:text-2xl 4xl:text-3xl font-bold mt-[0.5vh]" style={{textAlign: isNavOpen ? "start" : "center"}}>{isNavOpen ? profile.pronouns :""}<Link href="/account/settings/profile" className="text-primary-yellow-accent underline" style={{marginLeft: isNavOpen ? ".5vw" : ""}}>Edit</Link></p>
             <div className="flex flex-col gap-[1vh] mt-[1vh]">
-              <Link href="">
+              <Link href="/dashboard">
                 <div className="bg-white w-full h-[8vh] rounded-2xl border border-[#F5E8FF] flex items-center" style={openedLink === nav4leftLinks.dashboard ? {borderColor: "white", backgroundColor: "#F6E892", ...linkDynamicSyle} : linkDynamicSyle}>
                   <div className="relative h-[4vh] w-[4vh]" style={isNavOpen ? {marginLeft: "1vw"}: {}}>
                     <Image src="/navbar/NavBar4Left/Dashboard.svg" fill alt="D" />
