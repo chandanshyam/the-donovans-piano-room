@@ -41,3 +41,12 @@ export const profileAtom = atom({
 //////////////
 
 export const IsNavOpenAtom = atom(false)
+
+export const nav4leftLinks = {
+    dashboard: "dashboard",
+    lessons: "lessons",
+    games: "games",
+    musicTools: "music-tools",
+    planner: "planner",
+    contactUs: "contact-us"
+}

@@ -15,7 +15,7 @@ export default function DateInput({defaultValue, label, onChange}: {defaultValue
                 <CalendarMonthOutlinedIcon className='text-[#6F219E]'/>
               </InputAdornment>
             ),
-            className: "bg-[#fef8ee] rounded-3xl",
+            className: "bg-[#fef8ee] hover:bg-[#fef8ee] rounded-3xl",
             sx: {border: 1,}
           }}
           inputProps={{
