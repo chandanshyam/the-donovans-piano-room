@@ -52,3 +52,5 @@ export const nav4leftLinks = {
 }
 
 export const hasUnreadAtom = atom(false)
+
+export const showNotificationAtom = atom(false)
