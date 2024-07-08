@@ -50,3 +50,5 @@ export const nav4leftLinks = {
     planner: "planner",
     contactUs: "contact-us"
 }
+
+export const hasUnreadAtom = atom(false)
