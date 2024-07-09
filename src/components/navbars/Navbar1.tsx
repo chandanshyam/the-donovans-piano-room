@@ -27,7 +27,7 @@ export default function Navbar1({page}: {page: string}) {
               <p>GAMES</p>
               {navigationPages.games === page && displayBorder()}
             </Link>
-            <Link className='text-primary-purple text-xl 2xl:text-3xl font-bold flex items-center relative' style={navigationPages.bookstore === page ? highlightLink: {}} href="#">
+            <Link className='text-primary-purple text-xl 2xl:text-3xl font-bold flex items-center relative' style={navigationPages.bookstore === page ? highlightLink: {}} href="/bookstore">
              <p>BOOKSTORE</p>
              {navigationPages.bookstore === page && displayBorder()}
             </Link>
