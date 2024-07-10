@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Footer1() {
   return (
-    <div className='flex justify-center items-center w-full border-t-2 border-t-primary-purple h-[9.3vh] z-40 backdrop-blur-sm'>
+    <div className='relative flex justify-center items-center w-full border-t-2 border-t-primary-purple h-[9.3vh] z-40 backdrop-blur-sm'>
         <div className='flex justify-between h-[28px] w-[84.7%] z-50'>
             <h2 className='2xl:text-[14px] w-[290px] 2xl:w-[400px]'
             >Copyright © 2024 The Donovan&apos;s Piano Room. Powered by <Link className='text-primary-purple underline' target='_blank' href='https://www.thedonovan.org/'>The Donovan&apos;s Venom</Link>, a 501(c)(3) nonprofit organization.</h2>

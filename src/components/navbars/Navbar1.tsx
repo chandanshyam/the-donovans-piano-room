@@ -19,8 +19,8 @@ export default function Navbar1({page}: {page: string}) {
   return (
     <>
     
-    <div className='fixed h-[8.8vh] w-[100vw] backdrop-blur-sm z-40 bg-[#fbf7ff]'></div>
-    <nav className='fixed top-0 w-full bg-white z-50 h-[9vh] border-b-2 border-b-[#ecd6fe]'>
+    <div className='fixed h-[8.8vh] w-[100vw] backdrop-blur-sm z-40 bg-[#fbf7ff] top-0 z-[60]'></div>
+    <nav className='fixed top-0 w-full bg-white z-50 h-[9vh] border-b-2 border-b-[#ecd6fe] z-[60]'>
         <div className='absolute bg-secondary-purple h-[8.8vh] w-[24vw] pr-4 py-2 rounded-r-full top-0 flex justify-end'>
             <Image src="/navbar/Logo.svg" width={220} height={35} alt='The Donovan&apos;s Piano Room' />
         </div>
@@ -38,7 +38,7 @@ export default function Navbar1({page}: {page: string}) {
               <p>GAMES</p>
               {navigationPages.games === page && displayBorder()}
             </Link>
-            <Link className='text-primary-purple hover:text-[#E98427] active:text-[#Da6a1c] text-xl 2xl:text-3xl font-bold flex items-center relative' style={navigationPages.bookstore === page ? highlightLink: {}} href="#">
+            <Link className='text-primary-purple hover:text-[#E98427] active:text-[#Da6a1c] text-xl 2xl:text-3xl font-bold flex items-center relative' style={navigationPages.bookstore === page ? highlightLink: {}} href="/bookstore">
              <p>BOOKSTORE</p>
              {navigationPages.bookstore === page && displayBorder()}
             </Link>
