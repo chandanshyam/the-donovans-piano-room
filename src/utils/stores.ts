@@ -16,3 +16,39 @@ export const membershipTypes = {
 
 //forgot-password//
 export const forgotPasswordStepAtom = atom(1);
+
+//reset-password//
+export const resetPasswordStepAtom = atom(1)
+
+
+//****************//
+//*****Auth*******//
+//****************//
+
+export const profileAtom = atom({
+    fullName: "",
+    imageSrc: "",
+    pronouns: "",
+    email: "",
+    birthDate: "",
+    phoneNumber: ""
+})
+
+//////////////
+/////NAV//////
+//////////////
+
+export const IsNavOpenAtom = atom(false)
+
+export const nav4leftLinks = {
+    dashboard: "dashboard",
+    lessons: "lessons",
+    games: "games",
+    musicTools: "music-tools",
+    planner: "planner",
+    contactUs: "contact-us"
+}
+
+export const hasUnreadAtom = atom(false)
+
+export const showNotificationAtom = atom(false)
