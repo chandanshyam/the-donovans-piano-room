@@ -5,6 +5,7 @@ import AccountAndSettingsNav from "@/components/atoms/AccountAndSettingsNav";
 import AuthorizedWrapper1 from "@/components/ContentWrappers/authorized-1/AuthorizedWrapper1";
 import { useState } from "react";
 import AvatarSelectPopup from "./components/AvatarSelectPopup";
+import Calender from "./components/Calender";
 export default function Page() {
 
   const [avatar, setAvatar] = useState(profile.imageSrc)
@@ -19,7 +20,7 @@ export default function Page() {
           <div className="flex w-full">
             <AccountForm />
             {selectingAvatar && <AvatarSelectPopup avatar={avatar} setAvatar={setAvatar} closeSelectingAvatar={closeSelectingAvatar} />}
-    
+            <Calender />
           </div>
         </div>
     </AuthorizedWrapper1>
