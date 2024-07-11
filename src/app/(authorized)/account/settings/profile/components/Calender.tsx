@@ -1,8 +1,12 @@
-import React from 'react';
+"use client"
+
+import { useState, useEffect } from "react";
 import Image from 'next/image'
-import Link from 'next/link'
 import dayjs from 'dayjs'
+import { profileAtom } from "@/utils/stores";
+import { useAtomValue } from "jotai";
 import SelectInput from '@/components/atoms/select-input-2';
+import AvatarSelectPopup from "./AvatarSelectPopup";
 
 const getStartOfMonth = (month: string, year: number) => {
     return dayjs(`${year}-${month}-01`).format('d')
@@ -53,12 +57,7 @@ const getDayClass = (date: string, streaks: string[][]) => {
     return `px-4 py-3 3xl:px-5 3xl:py-4 4xl:px-6 4xl:py-5 text-center ${bgColor} ${roundedClass}`;
 };
 
-const editProfilePic = () => {
-    return;
-};
-
-export default function Calender() {
-    const highlightedDays = ['2024-07-30', '2024-07-03', '2024-07-04', '2024-07-15', '2024-07-16', '2024-07-17', '2024-07-18'];
+export default function Calender({ highlightedDays }: { highlightedDays: string[] }) {
     const streaks = convertHighlightDaysToStreaks(highlightedDays);
     const today = dayjs();
 
@@ -66,18 +65,24 @@ export default function Calender() {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const years = Array.from({ length: new Date().getFullYear() - 1999 }, (_, i) => (2000 + i).toString());
 
-    const [selectedMonth, setSelectedMonth] = React.useState(months[today.month()]);
-    const [selectedYear, setSelectedYear] = React.useState(today.year());
+    const [selectedMonth, setSelectedMonth] = useState(months[today.month()]);
+    const [selectedYear, setSelectedYear] = useState(today.year());
 
-    const editProfileSize = [20, 25, 30]
+    const profile = useAtomValue(profileAtom)
+    const [avatar, setAvatar] = useState(profile.imageSrc)
+    const [selectingAvatar, setSelectingAvatar] = useState(false)
+    const closeSelectingAvatar = () => {
+        setSelectingAvatar(false)
+    }
 
     return (
         <div className="ml-20 mt-[4vh] w-[30%] bg-[#FFF2E5] p-6 rounded-3xl font-montserrat">
+            {selectingAvatar && <AvatarSelectPopup avatar={avatar} setAvatar={setAvatar} closeSelectingAvatar={closeSelectingAvatar} />}
             <div className='flex justify-center'>
                 <div className="relative flex justify-center mb-4 h-[10vh] w-[10vh]">
-                    <Image src="/ToBeRemoved/avatar/1.svg" fill alt="Default Profile Picture" />
-                    <div className="absolute bottom-0 right-0">
-                        <Image className="cursor-pointer" src="/profile/Pencil.svg" width={20} height={20} alt="Edit Profile" onClick={editProfilePic} />
+                    <Image src={profile.imageSrc} fill alt="Default Profile Picture" />
+                    <div className="absolute bottom-0 right-0 h-[3vh] w-[3vh]">
+                        <Image className="cursor-pointer" src="/profile/Pencil.svg" fill alt="Edit Profile" onClick={() => setSelectingAvatar(true)} />
                     </div>
                 </div>
             </div>
@@ -139,4 +144,3 @@ export default function Calender() {
         </div>
     );
 }
-    

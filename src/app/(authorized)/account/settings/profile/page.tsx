@@ -20,7 +20,7 @@ export default function Page() {
           <div className="flex w-full">
             <AccountForm />
             {selectingAvatar && <AvatarSelectPopup avatar={avatar} setAvatar={setAvatar} closeSelectingAvatar={closeSelectingAvatar} />}
-            <Calender />
+            <Calender highlightedDays={['2024-07-30', '2024-07-03', '2024-07-04', '2024-07-15', '2024-07-16', '2024-07-17', '2024-07-18']}/>
           </div>
         </div>
     </AuthorizedWrapper1>
