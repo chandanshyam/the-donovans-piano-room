@@ -117,3 +117,96 @@ export const dummyNoticationsData = [
         imageSrc: "/ToBeRemoved/notification-icons/profile.svg"
     }
 ]
+
+export const books = [
+    {
+        title: "Book I",
+        color: "#F6AD69",
+        imageSrc: "/bookstore/book-list/soft-cover-1.svg",
+        titleColor: "#B55119",
+        type: "Soft cover",
+        price: "15.00",
+        description: "This exciting new learning method will teach you the fundamentals of music theory...",
+
+    },
+    {
+        title: "Book II",
+        color: "#F8D867",
+        imageSrc: "/bookstore/book-list/soft-cover-2.svg",
+        titleColor: "#BC8212",
+        type: "Soft cover",
+        price: "15.00",
+        description: "This book covers chords, inversions, and complex rhythms. Students will also learn...",
+
+    },
+    {
+        title: "Book III",
+        color: "#75C973",
+        imageSrc: "/bookstore/book-list/soft-cover-3.svg",
+        titleColor: "#438342",
+        type: "Soft cover",
+        price: "25.00",
+        description: "Compound and simple time signatures, The Circle of Fifths, 7 chords, melodic and...",
+
+    },
+    {
+        title: "Book I",
+        color: "#F6AD69",
+        imageSrc: "/bookstore/book-list/e-book-1.svg",
+        titleColor: "#B55119",
+        type: "E-book",
+        price: "15.00",
+        description: "A fun interactive e-book that teaches basic music theory using games, quizzes and ...",
+
+    },
+    {
+        title: "Book II",
+        color: "#F8D867",
+        imageSrc: "/bookstore/book-list/e-book-2.svg",
+        titleColor: "#BC8212",
+        type: "E-book",
+        price: "15.00",
+        description: "This interactive e-book focuses on teaching students chords, inversions, complex rhythm...",
+
+    },
+    {
+        title: "Book III",
+        color: "#75C973",
+        imageSrc: "/bookstore/book-list/e-book-3.svg",
+        titleColor: "#438342",
+        type: "E-book",
+        price: "25.00",
+        description: "This digital e-book helps students advance in their musical learning as they study...",
+
+    },
+    {
+        title: "Book I",
+        color: "#F6AD69",
+        imageSrc: "/bookstore/book-list/audio-1.svg",
+        titleColor: "#B55119",
+        type: "Audio book",
+        price: "15.00",
+        description: "This ONE-HOUR audio book will teach you the fundamentals of piano in a fun, easily...",
+
+    },
+    {
+        title: "Book II",
+        color: "#F8D867",
+        imageSrc: "/bookstore/book-list/audio-2.svg",
+        titleColor: "#BC8212",
+        type: "Audio book",
+        price: "15.00",
+        description: "This ONE-HOUR audio book will teach you the fundamentals of piano in a fun, easily...",
+
+    },
+    {
+        title: "Book III",
+        color: "#75C973",
+        imageSrc: "/bookstore/book-list/audio-3.svg",
+        titleColor: "#438342",
+        type: "Audio book",
+        price: "25.00",
+        description: "This ONE-HOUR audio book will teach you the fundamentals of piano in a fun, easily...",
+
+    },
+]
