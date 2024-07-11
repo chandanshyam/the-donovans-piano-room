@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react";
 import Image from 'next/image'
 import dayjs from 'dayjs'
@@ -76,10 +74,10 @@ export default function Calender({ highlightedDays }: { highlightedDays: string[
     }
 
     return (
-        <div className="ml-20 mt-[4vh] w-[30%] bg-[#FFF2E5] p-6 rounded-3xl font-montserrat">
+        <div className="ml-20 mt-[4vh] w-[27%] bg-[#FFF2E5] p-6 rounded-3xl font-montserrat">
             {selectingAvatar && <AvatarSelectPopup avatar={avatar} setAvatar={setAvatar} closeSelectingAvatar={closeSelectingAvatar} />}
             <div className='flex justify-center'>
-                <div className="relative flex justify-center mb-4 h-[10vh] w-[10vh]">
+                <div className="relative flex justify-center mb-4 h-[8vh] w-[8vh]">
                     <Image src={profile.imageSrc} fill alt="Default Profile Picture" />
                     <div className="absolute bottom-0 right-0 h-[3vh] w-[3vh]">
                         <Image className="cursor-pointer" src="/profile/Pencil.svg" fill alt="Edit Profile" onClick={() => setSelectingAvatar(true)} />
@@ -87,22 +85,22 @@ export default function Calender({ highlightedDays }: { highlightedDays: string[
                 </div>
             </div>
             <div className="text-center">
-                <h2 className="text-5xl 3xl:text-6xl 4xl:text-7xl text-primary-brown">Jack Stuart</h2>
-                <a href="#" className="underline text-2xl 3xl:text-3xl 4xl:text-4xl text-primary-purple">Monthly Membership</a>
-                <div className="mt-4 px-14 text-2xl 3xl:text-3xl 4xl:text-4xl">
+                <h2 className="text-4xl 3xl:text-5xl 4xl:text-6xl text-primary-brown">Jack Stuart</h2>
+                <a href="#" className="underline text-lg 3xl:text-xl 4xl:text-2xl text-primary-purple">Monthly Membership</a>
+                <div className="mt-4 px-14 text-xl 3xl:text-2xl 4xl:text-3xl">
                     <div className="flex flow-root">
                         <div className='flex items-center float-left'>
-                            <Image src="/profile/Book.svg" width={40} height={100} alt="Info" />
+                            <Image src="/profile/Book.svg" width={30} height={100} alt="Info" />
                             <p className="float-left pl-2">Activity</p>
                         </div>
-                        <p className="flex items-center float-right h-16">10h/week</p>
+                        <p className="flex items-center float-right h-12">10h/week</p>
                     </div>
                     <div className="flow-root">
                         <div className='flex items-center float-left'>
-                            <Image src="/profile/Lightning.svg" width={40} height={100} alt="Info" />
+                            <Image src="/profile/Lightning.svg" width={30} height={100} alt="Info" />
                             <p className="float-left pl-2">Longest Streak</p>
                         </div>
-                        <p className="flex items-center float-right h-14">7 day</p>
+                        <p className="flex items-center float-right h-12">7 day</p>
                     </div>
                 </div>
             </div>
@@ -112,12 +110,12 @@ export default function Calender({ highlightedDays }: { highlightedDays: string[
                     <SelectInput label='year' name='year' onChange={(e: any) => setSelectedYear(e.target.value)} options={years} value={selectedYear.toString()} />
                 </div>
             </div>
-            <div className="flex mt-4 inline-block overflow-hidden justify-center">
-                <table className="table-fixed bg-[#FEF8EE] shadow-md py-4 px-2 3xl:py-5 3xl:px-3 4xl:py-6 4xl:px-4 border-separate border-spacing-y-1 border border-primary-brown rounded-[25px] 3xl:rounded-[30px] 4xl:rounded-[35px] w-50% text-2xl 3xl:text-3xl 4xl:text-4xl">
+            <div className="flex mt-4 inline-block justify-center">
+                <table className="table-fixed bg-[#FEF8EE] py-4 px-2 3xl:py-5 3xl:px-3 4xl:py-6 4xl:px-4 border-separate border-spacing-y-1 border border-primary-brown rounded-[25px] 3xl:rounded-[30px] 4xl:rounded-[35px] w-40% text-xl 3xl:text-2xl 4xl:text-3xl">
                     <thead>
                         <tr>
                             {days.map((day, i) => (
-                                <th key={i} className="px-5 py-2 3xl:px-7 3xl:py-3 4xl:px-9 4xl:py-4 text-center">{day.slice(0, 1)}</th>
+                                <th key={i} className="px-5 py-1 3xl:px-7 3xl:py-2 4xl:px-9 4xl:py-3 text-center">{day.slice(0, 1)}</th>
                             ))}
                         </tr>
                     </thead>

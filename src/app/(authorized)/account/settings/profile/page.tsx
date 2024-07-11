@@ -9,7 +9,7 @@ import Calender from "./components/Calender";
 export default function Page() {
 
   const [avatar, setAvatar] = useState(profile.imageSrc)
-  const [selectingAvatar, setSelectingAvatar] = useState(true)
+  const [selectingAvatar, setSelectingAvatar] = useState(false)
   const closeSelectingAvatar = () => {
     setSelectingAvatar(false)
   }

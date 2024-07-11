@@ -25,7 +25,7 @@ export default function AuthorizedWrapper1({children, pageTitle, openedLink=""}:
             </div>
           </div>
         </div>
-          <div className="h-[80.8vh] flex justify-center">
+          <div className="min-h-[80.8vh] flex justify-center">
             <div className="w-[84.7%] relative">
               {children}
             </div>

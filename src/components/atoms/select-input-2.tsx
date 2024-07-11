@@ -17,11 +17,10 @@ export default function selectInput(
                 PaperProps: {
                     bgcolor: '#FEF8EE',
                 },
-                
             }}
             inputProps={{
-            name,
-            id: 'uncontrolled-native',
+                name,
+                id: 'uncontrolled-native',
             }}
             sx={[{ border: 1, '.MuiOutlinedInput-notchedOutline': { border: 0 } ,  borderColor: '#391f0f'}, {'&.Mui-focused': { border: 1, borderColor: '#391f0f', '.MuiOutlinedInput-notchedOutline': { border: 0 }}},]}
             className='bg-[#fef8ee] block rounded-full w-full'
