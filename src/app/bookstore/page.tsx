@@ -4,11 +4,12 @@ import { navigationPages } from "@/utils/general";
 import Catalog from "./components/Catalog";
 import AllBooks from "./components/AllBooks";
 import Image from "next/image";
-
+import AddedToCartPopup from "./components/AddedToCartPopup"
 export default function Page() {
-  return (
+    return (
     <div className="bg-[#F5E8FF] min-h-[100vh] w-full">
         <Navbar1 page={navigationPages.bookstore}/>
+        <AddedToCartPopup/>
         <Catalog/>
         <AllBooks/>
         <div className="relative">

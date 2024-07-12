@@ -1,3 +1,4 @@
+import bookInterface from "@/app/bookstore/components/bookInterface";
 import { atom } from "jotai";
 
 ///////////////
@@ -52,3 +53,9 @@ export const nav4leftLinks = {
 export const hasUnreadAtom = atom(false)
 
 export const showNotificationAtom = atom(false)
+
+//*************//
+//**bookstore**//
+//*************//
+
+export const addedCartItemAtom = atom<null | bookInterface>(null) 
