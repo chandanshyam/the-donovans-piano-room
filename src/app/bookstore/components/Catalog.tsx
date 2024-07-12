@@ -7,7 +7,7 @@ export default function Catalog() {
   return (
         <div className="w-full mt-[8.8vh] flex justify-center bg-white">
             
-            <div className="h-[45vh] w-[84.7%] flex items-center justify-around">
+            <div className="h-[50vh] w-[84.7%] flex items-center justify-around">
                 <div className="w-[45%] flex items-center">
                     <div className="w-[50%]">
                         <p className="text-primary-brown text-xl 3xl:text-2xl 4xl:text-3xl font-medium">Soft cover | Book I</p>

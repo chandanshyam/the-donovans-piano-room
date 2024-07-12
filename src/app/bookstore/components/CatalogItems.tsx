@@ -18,7 +18,7 @@ export default function CatalogItems() {
     const highlightedBook = {backgroundColor:"#6F219E", width: "3vw"}
   return (
     
-    <div className="relative w-[40%] flex z-50">
+    <div className="relative w-[50%] flex z-50">
     <div className="w-[5%]">
         <div className="h-[2.5vw] w-[2.5vw] bg-secondary-purple rounded-full flex items-center justify-center">
             <div className="relative w-[70%] h-[70%] select-none cursor-pointer" onClick={pressLeft}>
@@ -27,20 +27,20 @@ export default function CatalogItems() {
         </div>
     </div>
     <div className="relative w-full h-full flex items-end justify-center">
-        <div className="absolute w-[40%] h-[37vh] left-[5vw]" style={highlightBook !== 1 ?
-        {top: "-15.5vh", height: "29vh"}: 
-        {top: "-19vh", zIndex: 30}}>
+        <div className="absolute w-[43%] h-[40vh] left-[5vw]" style={highlightBook !== 1 ?
+        {top: "-19vh", height: "35vh"}: 
+        {top: "-21vh", zIndex: 30}}>
             <Image src="/bookstore/books/book-2.svg" fill alt="" />
         </div>
-        <div className="absolute w-[40%] h-[37vh] right-[5vw]" style={highlightBook !== 3 ?
-            {top: "-15.5vh", width: "35%", height: "29vh"}:
-            {top: "-19vh", zIndex: "30", }}>
+        <div className="absolute w-[43%] h-[40vh] right-[5vw]" style={highlightBook !== 3 ?
+            {top: "-19vh", height: "35vh"}:
+            {top: "-21vh", zIndex: "30", }}>
             <Image src="/bookstore/books/book-3.svg" fill alt="" />
         </div>
-        <div className="absolute w-[40%] h-[37vh] right-[10vw]" style={highlightBook === 2 ? {top: "-19vh"}:{height: "29vh", top: "-15.5vh"}}>
+        <div className="absolute w-[43%] h-[40vh] right-[11.5vw]" style={highlightBook === 2 ? {top: "-21vh"}:{height: "35vh", top: "-19vh"}}>
             <Image src="/bookstore/books/book-1.svg" fill alt="" />
         </div>
-        <div className="absolute w-[20%] h-[2vh] right-[41.5%] top-[19vh] flex items-center justify-between">
+        <div className="absolute w-[20%] h-[2vh] right-[40%] top-[21vh] flex items-center justify-between">
             <div className="h-[0.8vh] w-[0.8vh] bg-[#B457F5] rounded-full" style={highlightBook === 1 ? highlightedBook : {}}/>
             <div className="h-[0.8vh] w-[0.8vh] bg-[#B457F5] rounded-full" style={highlightBook === 2 ? highlightedBook : {}}/>
             <div className="h-[0.8vh] w-[0.8vh] bg-[#B457F5] rounded-full" style={highlightBook === 3 ? highlightedBook : {}}/>
