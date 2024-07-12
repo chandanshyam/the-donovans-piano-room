@@ -1,10 +1,22 @@
 import Button3 from '@/components/atoms/Button3'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import bookInterface from './bookInterface'
-
+import CircularProgress from '@mui/material/CircularProgress';
+const statusTypes = {
+  loading: "loading",
+  added: "added"
+}
 export default function BookItem({book}: {book: bookInterface}) {
+  const [status, setStatus] = useState("")
+
+  const addToCart = () => {
+    setStatus(statusTypes.loading)
+    setTimeout(()=>{
+      setStatus(statusTypes.added)
+    }, 2500)
+  }
   return (
     <div className='w-[27.5%] min-h-[40vh] p-[1vw] bg-[#FEF8EE] rounded-2xl shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
         <div className='flex justify-between w-full'>
@@ -29,7 +41,20 @@ export default function BookItem({book}: {book: bookInterface}) {
             <Image src='/about/FAQs/DropdownIcon.svg' fill alt=''/>
         </div>
         </Link>
-        <Button3 text='Add to cart' style={{ fontSize: "1vw"}}/>
+        { status === statusTypes.loading ?
+        (<div className='w-full bg-[#DDDADA] font-semibold py-3 2xl:py-4 3xl:py-5 text-[#564E4E] text-[1vw] rounded-full flex items-center justify-center gap-[2%]'>
+          <CircularProgress size={15} sx={{color: "#564E4E",}}/>
+          <p>Adding to cart</p>
+        </div>) :
+        status === statusTypes.added ?
+        (<div className='w-full border border-primary-purple font-semibold py-3 2xl:py-4 3xl:py-5 text-primary-purple text-[1vw] rounded-full flex items-center justify-center gap-[2%]'>
+          <div className='relative w-[1.1vw] h-[1.1vw]'>
+            <Image src="/account/notifications/mark-as-read.svg" fill alt=''/>
+          </div>
+          <p>Added to the cart</p>
+        </div>):
+         <Button3 text='Add to cart' style={{ fontSize: "1vw"}} onClick={addToCart}/> 
+        }
     </div>
   )
 }
