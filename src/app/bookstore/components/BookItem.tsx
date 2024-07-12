@@ -37,7 +37,7 @@ export default function BookItem({book}: {book: bookInterface}) {
         <Image src={book.imageSrc} fill alt=''/>
         </div>
         <p className='text-primary-brown text-2xl 3xl:text-3xl 4xl:text-4xl font-medium'>{book.title}</p>
-        <p className='text-lg 3xl:text-xl 4xl:text-2xl font-medium mb-[5%]' style={{color: book.titleColor}}>The Donovan's piano room</p>
+        <p className='text-lg 3xl:text-xl 4xl:text-2xl font-medium mb-[5%]' style={{color: book.titleColor}}>The Donovan&apos;s piano room</p>
         <p className='text-xl 2xl:text-2xl 3xl:text-3xl'>{book.description}</p>
         <Link href="" className='flex gap-[1%] flex items-center mb-[10%]'>
         <p className='underline text-xl 2xl:text-2xl 3xl:text-3xl text-primary-purple font-semibold'>Learn more</p>
