@@ -21,15 +21,25 @@ export default function Home() {
           </div>
           <div className="relative w-[80%] h-[90%]">
             <Image src="/home/map.svg" fill alt=""/>
-          </div>
-        </div>
-        <div className="absolute bottom-[9vh] right-[18vw]">
-          <div className="relative w-[30vh] h-[30vh]">
-            <Image src="/home/listen-music.svg" alt="" fill />
+            <div className="absolute bottom-[-10vh] right-[10vw]">
+              <div className="relative w-[30vh] h-[30vh]">
+                <Image src="/home/listen-music.svg" alt="" fill />
+              </div>
+            </div>
           </div>
         </div>
       
       {/* background images*/}
+      <div className="absolute top-[15vh] left-[34vw]">
+        <div className="relative w-[5vw] h-[3vw]">
+          <Image src="/background-icons/Elipse216DarkPurple.svg" fill alt=""/>
+        </div>
+      </div>
+      <div className="absolute top-[25vh] left-[29vw]">
+        <div className="relative w-[1.5vw] h-[1.5vw]">
+          <Image src="/background-icons/DarkPurpleDot.svg" alt="" fill/>
+        </div>
+      </div>
       <div className="absolute top-0 right-0">
         <div className="relative w-[15vw] h-[22vh]">
           <Image fill src="/background-icons/RightTop1.svg" alt=''/>
