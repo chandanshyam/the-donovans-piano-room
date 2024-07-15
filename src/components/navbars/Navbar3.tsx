@@ -36,7 +36,7 @@ export default function Navbar3({page}: {page: string}){
               <p>GAMES</p>
               {navigationPages.games === page && displayBorder()}
             </Link>
-            <Link className='text-primary-purple hover:text-[#E98427] active:text-[#Da6a1c] text-xl 3xl:text-2xl 4xl:text-3xl font-bold flex items-center relative'style={navigationPages.bookstore === page ? highlightLink: {}} href="#">
+            <Link className='text-primary-purple hover:text-[#E98427] active:text-[#Da6a1c] text-xl 3xl:text-2xl 4xl:text-3xl font-bold flex items-center relative'style={navigationPages.bookstore === page ? highlightLink: {}} href="/bookstore">
              <p>BOOKSTORE</p>
              {navigationPages.bookstore === page && displayBorder()}
             </Link>
