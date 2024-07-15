@@ -6,14 +6,10 @@ export default function CatalogItems() {
 
     const [highlightBook, setHighlightBook] = useState(2)
     const pressRight = () => {
-        if(highlightBook < 3){
-            setHighlightBook(highlightBook+1)
-        }
+        setHighlightBook((highlightBook + 1) % 3 || 3)
     }
     const pressLeft = () => {
-        if(highlightBook > 1){
-            setHighlightBook(highlightBook-1)
-        }
+        setHighlightBook((highlightBook - 1) % 3 || 3)
     }
     const highlightedBook = {backgroundColor:"#6F219E", width: "3vw"}
   return (
