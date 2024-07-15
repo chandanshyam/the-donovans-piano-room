@@ -14,10 +14,18 @@ export default function Home() {
           <div className="w-[30%]">
             <h1 className="text-white text-8xl 3xl:text-9xl 4xl:text-[100px] font-semibold">Ready for your music lesson?</h1>
             <p className="text-white text-2xl mt-[5%]">Embark on a fun-filled musical adventure with The Donovan&apos;s Piano Room. Unlock the joy of music with our tailored and enriching music lessons!</p>
-            <div className="flex flex-col gap-[3vh] mt-[15%] ">
+            <div className="flex flex-col gap-[3vh] mt-[10%] ">
               <Link href="/login"><Button1 text="Login"></Button1></Link>
               <Link href={"/signup"}><Button2 text="Signup"></Button2></Link>
             </div>
+          </div>
+          <div className="relative w-[80%] h-[90%]">
+            <Image src="/home/map.svg" fill alt=""/>
+          </div>
+        </div>
+        <div className="absolute bottom-[9vh] right-[18vw]">
+          <div className="relative w-[30vh] h-[30vh]">
+            <Image src="/home/listen-music.svg" alt="" fill />
           </div>
         </div>
       
