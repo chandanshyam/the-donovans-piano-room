@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import FirstLesson from "./components/FirstLesson";
 import GamesInProgress from "./components/GamesInProgress";
 import "./page.css"
+import AuthorizedWrapper2 from "@/components/ContentWrappers/authorized-1/AuthorizedWrapper2";
 
 export default function Page() {
     const setProfile = useSetAtom(profileAtom)
@@ -17,7 +18,7 @@ export default function Page() {
         setDisplayName(name)
     })
   return (
-    <AuthorizedWrapper1 pageTitle={authorizedWrapperTitles.Dashboard} openedLink={nav4leftLinks.dashboard}>
+    <AuthorizedWrapper2 pageTitle={authorizedWrapperTitles.Dashboard} openedLink={nav4leftLinks.dashboard}>
         <div className="relative flex h-[75vh] mt-[1.5%] overflow-y-auto z-[30]">
             <div className="w-[60%]">
                 <h1 className="text-primary-brown text-6xl 3xl:text-7xl 4xl:text-8xl font-semibold">Hello {displayName}!</h1>
@@ -26,6 +27,6 @@ export default function Page() {
                 <GamesInProgress/>
             </div>
         </div>
-    </AuthorizedWrapper1>
+    </AuthorizedWrapper2>
   )
 }
