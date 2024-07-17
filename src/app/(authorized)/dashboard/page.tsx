@@ -19,17 +19,18 @@ export default function Page() {
     })
   return (
     <AuthorizedWrapper2 pageTitle={authorizedWrapperTitles.Dashboard} openedLink={nav4leftLinks.dashboard}>
-        <div className="relative flex h-[75vh] mt-[1.5%] overflow-y-auto z-[30]">
+        <div className="relative flex h-[75vh] mt-[1.5%] overflow-y-auto z-[30] gap-[8%]">
             <div className="w-[60%]">
-                <h1 className="text-primary-brown text-6xl 3xl:text-7xl 4xl:text-8xl font-semibold">Morning {displayName}!</h1>
+                <h1 className="text-primary-brown text-6xl 3xl:text-7xl 4xl:text-8xl font-semibold montserrat">Morning {displayName}!</h1>
                 <p className="text-3xl 3xl:text-4xl 4xl:text-5xl mt-[2%]">Check out the latest stuff we have ready for you.</p>
                 <FirstLesson/>
                 <GamesHighlights/>
                 
             </div>
             <div>
-                    <MusicNotes/>
-                </div>
+                <MusicNotes/>
+            </div>
+            
         </div>
     </AuthorizedWrapper2>
   )
