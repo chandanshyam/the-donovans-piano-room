@@ -1,11 +1,10 @@
 "use client"
-import AuthorizedWrapper1 from "@/components/ContentWrappers/authorized-1/AuthorizedWrapper1";
 import { authorizedWrapperTitles, profile } from "@/utils/general";
 import { nav4leftLinks, profileAtom } from "@/utils/stores";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import FirstLesson from "./components/FirstLesson";
-import GamesInProgress from "./components/GamesInProgress";
+import GamesHighlights from "./components/GamesHighlights";
 import "./page.css"
 import AuthorizedWrapper2 from "@/components/ContentWrappers/authorized-1/AuthorizedWrapper2";
 
@@ -24,7 +23,7 @@ export default function Page() {
                 <h1 className="text-primary-brown text-6xl 3xl:text-7xl 4xl:text-8xl font-semibold">Hello {displayName}!</h1>
                 <p className="text-3xl 3xl:text-4xl 4xl:text-5xl mt-[2%]">Check out the latest stuff we have ready for you.</p>
                 <FirstLesson/>
-                <GamesInProgress/>
+                <GamesHighlights/>
             </div>
         </div>
     </AuthorizedWrapper2>

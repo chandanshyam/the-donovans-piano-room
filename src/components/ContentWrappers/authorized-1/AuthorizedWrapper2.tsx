@@ -33,7 +33,7 @@ export default function AuthorizedWrapper2({children, pageTitle, openedLink=""}:
           <Footer4 />
         </div>
         {/* background images */}
-        <div className="absolute h-[20vh] w-[15vw] top-0 right-0">
+        <div className="absolute h-[20vh] w-[12vw] top-0 right-0">
           <Image src="/background-icons/authorized-wrapper-2/top-right.svg" fill alt=""/>
         </div>
       </div>
