@@ -1,0 +1,48 @@
+.music-notes-container {
+    width: 383px; 
+    height: 884px; 
+    padding: 36px 24px 36px 24px;
+    gap: 24px;
+    border-radius: 12px;
+    border: 2px solid var(--TDPM-White, #FFFFFF); 
+    opacity: 1;
+    background-color: var(--TDPM-Purple-100, #F5E8FF);
+    box-shadow: inset 0px 0px 15px 0px #C5A5F3;
+    top: 123px;
+    left: 944px;
+
+}
+
+
+.card{ background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    width: 335px;
+    height: 296px;
+    margin-top: 30px;
+   }
+
+   .card2{ background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    width: 335px;
+    height: 416px;
+    margin-top: 30px;
+   }
+
+
+.rectangular-background {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: auto; /* Hug content */
+    height: 28px; /* Fixed height */
+    padding: 4px 8px;
+    gap: 6px;
+    border-radius: 4px 0px 0px 0px;
+    background-color: #F8D867;
+    opacity: 1; /* Adjust opacity as needed */
+}
+
+

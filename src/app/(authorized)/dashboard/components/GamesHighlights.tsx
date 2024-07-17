@@ -3,9 +3,8 @@ import "./GamesHighlights.css"
 import { useAtomValue } from "jotai";
 import { IsNavOpenAtom } from "@/utils/stores";
 
-export default function GamesInProgress() {
+export default function GamesHighlights() {
     const isNavOpen = useAtomValue(IsNavOpenAtom)
-    const onNavOpen = {width: ""}
   return (
     <div className="h-[21vh] bg-[#F5E8FF] border border-white overflow-y-hidden rounded-2xl py-[1vw]" style={{boxShadow: "inset -1px 0px 10px 4px  #DFC9F9", width: isNavOpen ? "38vw" :"45vw"}}>
         <div className="flex items-center gap-[2%] ml-[1vw] text-primary-brown text-xl 3xl:text-2xl 4xl:text-3xl font-semibold">
