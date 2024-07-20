@@ -9,7 +9,7 @@ import AllOrUnread from "./components/AllOrUnread";
 import AllCatchUp from "./components/AllCatchUp";
 import { notification } from "./components/notificationInterface";
 import NotificationItem from "./components/NotificationItem";
-import "./page.css"
+import "../../../../styles/primary-purple-scrollbar.css"
 
 export default function Page() {
     const [allNotifications, setAllNotifications] = useState<[notification[], notification[]]>([[],[]])
