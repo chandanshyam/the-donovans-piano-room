@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Navbar2/>
       <div className="w-full h-[100vh] bg-primary-purple flex items-center justify-center">
-        <div className="w-[84.7%] h-[70vh] flex items-center justify-between">
+        <div className="relative z-50 w-[84.7%] h-[70vh] flex items-center justify-between">
           <div className="w-[30%]">
             <h1 className="text-white text-8xl 3xl:text-9xl 4xl:text-[100px] font-semibold font-montserrat">Ready for your music lesson?</h1>
             <p className="text-white text-2xl mt-[5%]">Embark on a fun-filled musical adventure with The Donovan&apos;s Piano Room. Unlock the joy of music with our tailored and enriching music lessons!</p>
