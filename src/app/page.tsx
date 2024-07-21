@@ -12,11 +12,11 @@ export default function Home() {
       <div className="w-full h-[100vh] bg-primary-purple flex items-center justify-center">
         <div className="w-[84.7%] h-[70vh] flex items-center justify-between">
           <div className="w-[30%]">
-            <h1 className="text-white text-8xl 3xl:text-9xl 4xl:text-[100px] font-semibold">Ready for your music lesson?</h1>
+            <h1 className="text-white text-8xl 3xl:text-9xl 4xl:text-[100px] font-semibold font-montserrat">Ready for your music lesson?</h1>
             <p className="text-white text-2xl mt-[5%]">Embark on a fun-filled musical adventure with The Donovan&apos;s Piano Room. Unlock the joy of music with our tailored and enriching music lessons!</p>
             <div className="flex flex-col gap-[3vh] mt-[10%] ">
               <Link href="/login"><Button1 text="Login"></Button1></Link>
-              <Link href={"/signup"}><Button2 text="Signup"></Button2></Link>
+              <Link href={"/signup"}><Button2 text="Sign Up"></Button2></Link>
             </div>
           </div>
           <div className="relative w-[80%] h-[90%]">
