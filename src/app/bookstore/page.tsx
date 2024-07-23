@@ -23,18 +23,18 @@ export default function Page() {
                 </div>
             </div>
         </div>
-        <div className="absolute right-0 top-[12vh]">
-            <div className="relative h-[12vw] w-[12vw]" >
-                <Image src="/bookstore/background/top-right.svg" fill alt=""/>
+        <div className="absolute right-0 top-[5vh]">
+            <div className="relative h-[19vw] w-[17vw]" >
+                <Image src="/bookstore/background/right_top.svg" fill alt=""/>
             </div>
         </div>
 
-        <div className="absolute left-[35vw] top-[45vh]">
+        <div className="absolute left-[35vw] top-[52.5vh]">
             <div className="relative h-[10vw] w-[10vw]" >
                 <Image src="/bookstore/background/middle.svg" fill alt=""/>
             </div>
         </div>
-        <div className="absolute right-0 top-[45vh]">
+        <div className="absolute right-0 top-[60vh]">
             <div className="relative h-[8vw] w-[8vw]" >
                 <Image src="/bookstore/background/left-star.svg" fill alt=""/>
             </div>
