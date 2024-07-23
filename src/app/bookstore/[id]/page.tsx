@@ -1,6 +1,6 @@
 import Footer1 from "@/components/footers/Footer1";
 import Navbar5 from "@/components/navbars/Navbar5";
-import { navigationPages } from "@/utils/general";
+import { books, navigationPages } from "@/utils/general";
 import Image from "next/image";
 import bookInterface from '../components/bookInterface'
 import BooksPreview from "./components/BooksPreview";
@@ -8,16 +8,7 @@ import FrequentlyPurchasedTogether from "./components/FrequentlyPurchasedTogethe
 import Reviews from "./components/Reviews";
 
 export default function Page() {
-    const currBook: bookInterface = {
-        title: "Book I",
-        color: "#F6AD69",
-        imageSrc: "/bookstore/books/book-list/soft-cover-1.svg",
-        coverImageSrc: "/bookstore/books/book-1.svg",
-        titleColor: "#B55119",
-        type: "Soft cover",
-        price: "15.00",
-        description: "This exciting new learning method will teach you the fundamentals of music theory...",
-    }
+    const currBook: bookInterface = books[0]
 
     return (
     <div className="absolute bg-[#F5E8FF] min-h-[100vh] w-full">
@@ -26,7 +17,7 @@ export default function Page() {
             <div className="relative z-10">
                 <BooksPreview book={currBook}/>
                 <div className="absolute right-[-4vw] top-[25vh] mix-blend-color-dodge">
-                    <div className="relative h-[65vw] w-[75vw]">
+                    <div className="relative h-[55vw] w-[65vw]">
                         <Image src="/bookstore/background/middle-s.svg" fill alt=""/>
                     </div>
                 </div>
@@ -35,7 +26,6 @@ export default function Page() {
         <div className="grid z-50">
             <FrequentlyPurchasedTogether currBook={currBook}/>
         </div>
-        <Reviews/>
 
         <div className="relative">
             <Footer1/>

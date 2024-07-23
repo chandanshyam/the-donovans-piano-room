@@ -15,24 +15,8 @@ export default function BooksPreview({ book }: { book: bookInterface }) {
                             width={500}
                             height={400}
                             alt=""
-                            className="shadow-lg rounded-2xl"
+                            className="rounded-xl"
                         />
-                    </div>
-                    <div className="flex justify-between gap-5 mt-5">
-                        <div className="relative object-contain rounded-2xl bg-secondary-purple p-4">
-                            <Image src="/bookstore/blank.svg" width={200} height={200} alt="" />
-                        </div>
-                        <div className="relative object-contain rounded-2xl bg-secondary-purple p-4">
-                            <Image src="/bookstore/blank.svg" width={200} height={200} alt="" />
-                        </div>
-                        <div className="relative object-contain rounded-2xl bg-secondary-purple p-4">
-                            <Image src="/bookstore/blank.svg" width={200} height={200} alt="" />
-                        </div>
-                    </div>
-                    <div className="flex justify-evenly gap-5 px-32 mt-5">
-                        <div className="bg-[#B457F5] text-white rounded-full w-2 h-2"></div>
-                        <div className="bg-primary-purple text-white rounded-full w-12 h-2"></div>
-                        <div className="bg-[#B457F5] text-white rounded-full w-2 h-2"></div>
                     </div>
                 </div>
             </div>
