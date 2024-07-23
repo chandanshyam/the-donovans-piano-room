@@ -21,7 +21,7 @@ export default function FrequentlyPurchasedTogether({currBook}: {currBook: bookI
     }, [currBook])
 
     return (
-        <div className='ml-[10vw] mt-[10vh] z-50'>
+        <div className='ml-[10vw] my-[10vh] z-50'>
             <div className='text-primary-brown text-4xl font-semibold'>
                 Frequently purchased together
             </div>
