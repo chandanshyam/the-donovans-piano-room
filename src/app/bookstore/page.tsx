@@ -24,8 +24,8 @@ export default function Page() {
             </div>
         </div>
         <div className="absolute right-0 top-[5vh]">
-            <div className="relative h-[19vw] w-[17vw]" >
-                <Image src="/bookstore/background/right_top.svg" fill alt=""/>
+            <div className="relative h-[16vw] w-[14vw]">
+                <Image src="/bookstore/background/top-right.svg" fill alt=""/>
             </div>
         </div>
 
