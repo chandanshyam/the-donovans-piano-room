@@ -1,4 +1,5 @@
 export default interface bookInterface {
+    id: number,
     title: string,
     color: string,
     imageSrc: string,

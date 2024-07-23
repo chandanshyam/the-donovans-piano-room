@@ -1,24 +1,8 @@
-"use client"
-import Image from "next/image"
-import Link from 'next/link';
 import { books } from '@/utils/general'
-import { useEffect, useState } from 'react'
-import bookInterface from '../../components/bookInterface'
 import BookItem from '../../components/BookItem'
 
-export default function FrequentlyPurchasedTogether({currBook}: {currBook: bookInterface}) {
-    const [booksList, setBooksList] = useState<bookInterface[]>([])
-
-    useEffect(() => {
-        let booksList: bookInterface[] = []
-        for (let i in books) {
-            const book = books[i]
-            if ((book.type === currBook.type) && (book.title !== currBook.title)) {
-                booksList.push(book)
-            }
-        }
-        setBooksList(booksList)
-    }, [currBook])
+export default function FrequentlyPurchasedTogether() {
+    const booksList = [books[1], books[2]]
 
     return (
         <div className='ml-[10vw] my-[10vh] z-50'>

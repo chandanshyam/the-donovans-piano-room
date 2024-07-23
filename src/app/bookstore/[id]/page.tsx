@@ -2,20 +2,15 @@ import Footer1 from "@/components/footers/Footer1";
 import Navbar5 from "@/components/navbars/Navbar5";
 import { books, navigationPages } from "@/utils/general";
 import Image from "next/image";
-import bookInterface from '../components/bookInterface'
 import BooksPreview from "./components/BooksPreview";
 import FrequentlyPurchasedTogether from "./components/FrequentlyPurchasedTogether";
-import Reviews from "./components/Reviews";
-
 export default function Page() {
-    const currBook: bookInterface = books[0]
-
     return (
     <div className="absolute bg-[#F5E8FF] min-h-[100vh] w-full">
         <Navbar5 page={navigationPages.bookstore}/>
         <div className="mt-[15vh] flex justify-center relative">
             <div className="relative z-10">
-                <BooksPreview book={currBook}/>
+                <BooksPreview/>
                 <div className="absolute right-[-4vw] top-[25vh] mix-blend-color-dodge">
                     <div className="relative h-[55vw] w-[65vw]">
                         <Image src="/bookstore/background/middle-s.svg" fill alt=""/>
@@ -24,7 +19,7 @@ export default function Page() {
             </div>
         </div>
         <div className="grid z-50">
-            <FrequentlyPurchasedTogether currBook={currBook}/>
+            <FrequentlyPurchasedTogether/>
         </div>
 
         <div className="relative">
