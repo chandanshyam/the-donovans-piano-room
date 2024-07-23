@@ -1,5 +1,4 @@
 import { PayPalScriptProvider, PayPalButtons, PayPalNumberField, PayPalExpiryField, PayPalCardFieldsProvider, PayPalCVVField, usePayPalCardFields, PayPalCardFieldsForm } from "@paypal/react-paypal-js";
-import "../../../../styles/hide-input-number-arrows.css"
 import Button1 from "@/components/atoms/Button1";
 export default function SignupPayment() {
   return (
