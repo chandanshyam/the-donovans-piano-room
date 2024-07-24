@@ -40,7 +40,7 @@ export default function Navbar2(){
             </Link>
             <div className='relative w-[40px] 2xl:w-[60px] flex items-center justify-center'>
               <Link className='text-primary-yellow-accent hover:text-[#E98427] text-xl 2xl:text-3xl font-bold flex items-center justify-center relative'
-               href="#">
+                href="/cart">
                 <ShoppingCartOutlinedIcon sx={iconStyles} />
               </Link>
             </div>

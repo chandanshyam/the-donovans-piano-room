@@ -46,7 +46,10 @@ export default function Navbar1({page}: {page: string}) {
              <p>CONTACT</p>
              {navigationPages.contact === page && displayBorder()}
             </Link>
-            <Link className='text-primary-purple hover:text-[#E98427] flex items-center' href="#"><ShoppingCartOutlinedIcon sx={iconStyles} /></Link>
+            <Link className='text-primary-purple hover:text-[#E98427] flex items-center relative' style={navigationPages.cart === page ? highlightLink: {}} href="/cart">
+            <ShoppingCartOutlinedIcon sx={iconStyles} />
+            {navigationPages.cart === page && displayBorder()}
+            </Link>
             <Link className='text-white bg-primary-purple rounded-l-full rounded-r-full px-20 h-16 hover:bg-[#E98427] flex items-center text-xl 2xl:text-3xl font-bold self-center' href="/signup">Log in or register</Link>
         </div>
 
