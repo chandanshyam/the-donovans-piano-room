@@ -3,7 +3,7 @@ import Navbar5 from "@/components/navbars/Navbar5";
 import { books, navigationPages } from "@/utils/general";
 import Image from "next/image";
 import BooksPreview from "./components/BooksPreview";
-import FrequentlyPurchasedTogether from "./components/FrequentlyPurchasedTogether";
+import FrequentlyPurchasedTogether from "../../../components/atoms/FrequentlyPurchasedTogether";
 export default function Page() {
     return (
     <div className="absolute bg-[#F5E8FF] min-h-[100vh] w-full">

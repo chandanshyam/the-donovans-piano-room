@@ -14,6 +14,7 @@ const statusTypes = {
 export default function BookItem({book}: {book: bookInterface}) {
   const setAddedCartItem = useSetAtom(addedCartItemAtom)
   const [status, setStatus] = useState("")
+
   const addToCart = () => {
     setStatus(statusTypes.loading)
     setTimeout(()=>{
@@ -22,7 +23,9 @@ export default function BookItem({book}: {book: bookInterface}) {
     }, 2000)
   }
   return (
-    <div className='w-[27.5%] min-h-[40vh] p-[1vw] bg-[#FEF8EE] rounded-2xl shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
+    <>
+<div className=" min-h-[40vh] p-[1vw] bg-[#FEF8EE] rounded-2xl shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]">
+
         <div className='flex justify-between w-full'>
         <div className='flex items-center gap-[2%]'>
             <div className='relative h-[2.5vh] w-[2.5vh]'>
@@ -60,5 +63,6 @@ export default function BookItem({book}: {book: bookInterface}) {
          <Button3 text='Add to cart' style={{ fontSize: "1vw"}} onClick={addToCart}/> 
         }
     </div>
+    </>
   )
 }

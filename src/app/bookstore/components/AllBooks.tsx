@@ -2,7 +2,7 @@
 import { books } from '@/utils/general'
 import { useEffect, useState } from 'react'
 import bookInterface from "@/components/atoms/bookInterface";
-import BookItem from './BookItem'
+import BookItem from "@/components/atoms/BookItem";
 
 export default function AllBooks() {
   const [booksList, setBooksList] = useState<[bookInterface[], bookInterface[], bookInterface[]]>([[], [], []])
@@ -31,19 +31,26 @@ export default function AllBooks() {
             <h5 className='text-3xl text-primary-brown font-semibold mb-[2%]'>Soft cover books</h5>
             <div className='flex justify-between'>
               {booksList[0].map((book, i) => (
+                <div className='w-[27.5%]'>
                 <BookItem key={i} book={book}/>
+                </div>
               ))}
-            </div>
+              </div>
+            
             <h5 className='text-3xl text-primary-brown font-semibold my-[2%]'>E-Books</h5>
             <div className='flex justify-between'>
               {booksList[1].map((book, i) => (
+                <div className='w-[27.5%]'>
                 <BookItem key={i} book={book}/>
+                </div>
               ))}
             </div>
             <h5 className='text-3xl text-primary-brown font-semibold my-[2%]'>Audio books</h5>
             <div className='flex justify-between'>
               {booksList[2].map((book, i) => (
+                <div className='w-[27.5%]'>
                 <BookItem key={i} book={book}/>
+                </div>
               ))}
             </div>
         </div>
