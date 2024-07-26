@@ -3,7 +3,7 @@ import Button3 from '@/components/atoms/Button3'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import bookInterface from "@/components/atoms/bookInterface";
+import bookInterface from "@/utils/interfaces/bookInterface";
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSetAtom } from 'jotai'
 import { addedCartItemAtom } from '@/utils/stores'
