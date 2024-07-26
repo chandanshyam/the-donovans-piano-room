@@ -23,9 +23,7 @@ export default function BookItem({book}: {book: bookInterface}) {
     }, 2000)
   }
   return (
-    <>
-<div className=" min-h-[40vh] p-[1vw] bg-[#FEF8EE] rounded-2xl shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]">
-
+    <div className='w-[27.5%] min-h-[40vh] p-[1vw] bg-[#FEF8EE] rounded-2xl shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
         <div className='flex justify-between w-full'>
         <div className='flex items-center gap-[2%]'>
             <div className='relative h-[2.5vh] w-[2.5vh]'>
@@ -36,7 +34,7 @@ export default function BookItem({book}: {book: bookInterface}) {
         <p className='text-lg 3xl:text-[14px] 4xl:text-[16px] font-medium px-2 py-1 rounded-md' style={{backgroundColor: book.color}}>{book.type}</p>
         </div>
         <div className='my-[5%] h-[0.2vw] bg-[#F8DCB0]'></div>
-        <div className='relative h-[16vw] w-[21vw] mb-[5%]'>
+        <div className='relative h-[16vw] w-full mb-[5%]'>
         <Image src={book.imageSrc} fill alt=''/>
         </div>
         <p className='text-primary-brown text-2xl 3xl:text-3xl 4xl:text-4xl font-medium'>{book.title}</p>
@@ -63,6 +61,5 @@ export default function BookItem({book}: {book: bookInterface}) {
          <Button3 text='Add to cart' style={{ fontSize: "1vw"}} onClick={addToCart}/> 
         }
     </div>
-    </>
   )
 }

@@ -31,26 +31,20 @@ export default function AllBooks() {
             <h5 className='text-3xl text-primary-brown font-semibold mb-[2%]'>Soft cover books</h5>
             <div className='flex justify-between'>
               {booksList[0].map((book, i) => (
-                <div className='w-[27.5%]'>
-                <BookItem key={i} book={book}/>
-                </div>
+                <BookItem key={i} book={book}/> 
               ))}
               </div>
             
             <h5 className='text-3xl text-primary-brown font-semibold my-[2%]'>E-Books</h5>
             <div className='flex justify-between'>
               {booksList[1].map((book, i) => (
-                <div className='w-[27.5%]'>
                 <BookItem key={i} book={book}/>
-                </div>
               ))}
             </div>
             <h5 className='text-3xl text-primary-brown font-semibold my-[2%]'>Audio books</h5>
             <div className='flex justify-between'>
               {booksList[2].map((book, i) => (
-                <div className='w-[27.5%]'>
                 <BookItem key={i} book={book}/>
-                </div>
               ))}
             </div>
         </div>
