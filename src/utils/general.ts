@@ -14,6 +14,7 @@ export const navigationPages = {
     games: "games",
     bookstore: "bookstore",
     contact: "contact",
+    cart:"cart"
 }
 
 export const aboutScholarshipNavigation = {
@@ -140,6 +141,7 @@ export const books = [
         titleColor: "#BC8212",
         type: "Soft cover",
         price: "15.00",
+        page:"cart",
         description: "This book covers chords, inversions, and complex rhythms. Students will also learn...",
 
     },
@@ -152,6 +154,7 @@ export const books = [
         titleColor: "#438342",
         type: "Soft cover",
         price: "25.00",
+        page:"cart",
         description: "Compound and simple time signatures, The Circle of Fifths, 7 chords, melodic and...",
 
     },

@@ -3,7 +3,7 @@ import Button3 from '@/components/atoms/Button3'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import bookInterface from './bookInterface'
+import bookInterface from "@/utils/interfaces/bookInterface";
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSetAtom } from 'jotai'
 import { addedCartItemAtom } from '@/utils/stores'
@@ -34,7 +34,7 @@ export default function BookItem({book}: {book: bookInterface}) {
         <p className='text-lg 3xl:text-[14px] 4xl:text-[16px] font-medium px-2 py-1 rounded-md' style={{backgroundColor: book.color}}>{book.type}</p>
         </div>
         <div className='my-[5%] h-[0.2vw] bg-[#F8DCB0]'></div>
-        <div className='relative h-[16vw] w-[21vw] mb-[5%]'>
+        <div className='relative h-[16vw] w-full mb-[5%]'>
         <Image src={book.imageSrc} fill alt=''/>
         </div>
         <p className='text-primary-brown text-2xl 3xl:text-3xl 4xl:text-4xl font-medium'>{book.title}</p>

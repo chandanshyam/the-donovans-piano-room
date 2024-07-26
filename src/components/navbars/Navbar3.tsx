@@ -44,7 +44,7 @@ export default function Navbar3({page}: {page: string}){
              <p>CONTACT</p>
              {navigationPages.contact === page && displayBorder()}
             </Link>
-            <Link className='text-primary-purple hover:text-[#E98427] text-xl 3xl:text-2xl 4xl:text-3xl font-bold flex items-center' href="#">
+            <Link className='text-primary-purple hover:text-[#E98427] text-xl 3xl:text-2xl 4xl:text-3xl font-bold flex items-center'  href="/cart">
             <ShoppingCartOutlinedIcon sx={iconStyles} />
             </Link>
             <Link className='text-white bg-primary-purple rounded-l-full rounded-r-full px-20 h-16 mt-4 flex items-center text-xl font-bold hover:bg-[#E98427]' href="/signup">Log in or register</Link>
