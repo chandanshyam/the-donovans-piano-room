@@ -1,48 +1,18 @@
 import React, { useState } from "react";
-import { books } from "@/utils/general";
-import { useEffect } from "react";
-import bookInterface from "@/components/atoms/bookInterface";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { SxProps } from "@mui/system";
-import FrequentlyPurchasedTogether from "../../../components/atoms/FrequentlyPurchasedTogether";
+import EmptyCart from "./EmptyCart";
 
 export default function YourCart() {
-  const [booksList, setBooksList] = useState<[bookInterface[]]>([[]]);
-  const iconStyles: SxProps = {
-    fontSize: 50,
-    color: "#E98427",
-  };
-  useEffect(() => {
-    let booksList: [bookInterface[]] = [[]];
-    for (let i in books) {
-      const book = books[i];
-      switch (book.page) {
-        case "cart":
-          booksList[0].push(book);
-          break;
-      }
-    }
-    setBooksList(booksList);
-  }, []);
 
   return (
-    <>
-    <div className="w-full  justify-center" style={{ padding: "8% 8% 0 8%" }}>
-      <div className="relative  items-center justify-center bg-[#edd6fe]" style={{ width: "100%", height: "40vh", padding: "0 6% 2% 6%" }}>
-        <h2 className="font-montserrat text-6xl font-semibold leading-[46px] text-primary-brown 3xl:text-7xl 4xl:text-8xl" style={{ padding: "2% 0% 1% 0%" }}>Your cart</h2>
-        <div className="flex h-[27vh] w-full flex-col items-center justify-center rounded-lg bg-[#ffffff]">
-          <div><ShoppingCartOutlinedIcon sx={iconStyles} /></div>
-          <h3 className="text-center font-montserrat text-4xl font-bold leading-[34px] text-primary-brown 3xl:text-6xl 4xl:text-7xl">Your shopping cart is currently empty</h3>
-          <p>Go back to the bookstore and start shopping </p>
+    <div className="w-full flex items-center justify-center">
+      <div className="w-[84.7%] mt-[14vh]">
+        <div className="flex flex-col items-center min-h-[50vh] justify-center bg-[#edd6fe]">
+          <div className="w-[90%]">
+            <h2 className="font-montserrat text-5xl 3xl:text-6xl 4xl:text-7xl font-semibold self-start text-primary-brown mb-[1%]">Your cart</h2>
+            <EmptyCart/>
+          </div>
         </div>
       </div>
-      </div>
-      <div className="grid z-50">
-            <FrequentlyPurchasedTogether/>
-        </div>
-      </>
+    </div>
   );
 }
-
-
-
