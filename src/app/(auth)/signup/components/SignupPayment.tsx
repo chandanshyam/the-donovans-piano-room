@@ -1,14 +1,11 @@
-import { PayPalScriptProvider, PayPalButtons, PayPalNumberField, PayPalExpiryField, PayPalCardFieldsProvider, PayPalCVVField, usePayPalCardFields, PayPalCardFieldsForm } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons, PayPalNumberField, PayPalExpiryField, PayPalCardFieldsProvider, PayPalCVVField, usePayPalCardFields, PayPalCardFieldsForm, PayPalCardFieldsComponentOptions, CardFieldStyle } from "@paypal/react-paypal-js";
 import Button1 from "@/components/atoms/Button1";
 import { useState } from "react";
 import Button2 from "@/components/atoms/Button2";
 export default function SignupPayment() {
     const [displayCardFields, setDisplayCardFields] = useState(false)
-    const fieldStyle = {
-        "input": {
-            "border-radius": "16px",
-            "border-color": "#391F0F",
-            border: "6px",
+    const fieldStyle: Record<string, CardFieldStyle> = {
+        'input': {
             
         }, ".invalid": {
             "color": "black"
@@ -25,17 +22,17 @@ export default function SignupPayment() {
             {displayCardFields && 
                 <PayPalCardFieldsProvider createOrder={async()=>{console.log("11");return ""}} onApprove={async()=>''} onError={async()=>''}>
                 {/* <PayPalCardFieldsForm> */}
-                    <label className="relative">
-                        <span className="absolute top-[16px] left-[15px] peer-focus:text-3xl z-50 text-[#391F0F] font-medium">Card number</span>
+                    <label className="relative w-full">
+                        <span className="absolute top-[16px] left-[15px] peer-focus:text-3xl z-50 text-[#391F0F] font-medium w-[24vw]">Card number</span>
                         <PayPalNumberField style={fieldStyle} className="peer" placeholder="" />
 
                     </label>
-                    <label className="relative">
-                        <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium">Expiration date</span>
+                    <label className="relative w-full">
+                        <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium w-[24vw]">Expiration date</span>
                         <PayPalExpiryField style={fieldStyle} placeholder="" />
                     </label>
-                    <label className="relative">
-                        <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium">CVV</span>
+                    <label className="relative w-full">
+                        <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium w-[24vw]">CVV</span>
                         <PayPalCVVField style={fieldStyle} placeholder="" />
                     </label>
                     <SubmitPayment/>
