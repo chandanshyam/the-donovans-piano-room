@@ -2,8 +2,12 @@ import { PayPalScriptProvider, PayPalButtons, PayPalNumberField, PayPalExpiryFie
 import Button1 from "@/components/atoms/Button1";
 import { useState } from "react";
 import Button2 from "@/components/atoms/Button2";
+import SignupHeader from "./SignupHeader";
+import { useSetAtom } from "jotai";
+import { singupStepAtom } from "@/utils/stores";
 export default function SignupPayment() {
     const [displayCardFields, setDisplayCardFields] = useState(false)
+    const setSingupStep = useSetAtom(singupStepAtom)
     const fieldStyle: Record<string, CardFieldStyle> = {
         'input': {
             
@@ -13,6 +17,7 @@ export default function SignupPayment() {
     }
   return (
     <div className='w-[24vw] 3xl:w-[26vw]'>
+        <SignupHeader navName='Membership' navLink='' stepNum={4} stepName='Add your payment method' onClickNav={()=>setSingupStep(3)} />
         <PayPalScriptProvider options={{clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ? process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID : "", components: ["buttons", "card-fields"], enableFunding: "venmo"}}>
             {!displayCardFields && (<>
                 <Button1 style={{padding: "15px", marginBottom: "5%"}} text="Check out with credit card" onClick={()=>{setDisplayCardFields(true)}}></Button1>
