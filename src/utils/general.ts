@@ -14,6 +14,7 @@ export const navigationPages = {
     games: "games",
     bookstore: "bookstore",
     contact: "contact",
+    cart:"cart"
 }
 
 export const aboutScholarshipNavigation = {
@@ -120,9 +121,11 @@ export const dummyNoticationsData = [
 
 export const books = [
     {
+        id: 0,
         title: "Book I",
         color: "#F6AD69",
         imageSrc: "/bookstore/book-list/soft-cover-1.svg",
+        coverImageSrc: "/bookstore/books/book-1.svg",
         titleColor: "#B55119",
         type: "Soft cover",
         price: "15.00",
@@ -130,29 +133,37 @@ export const books = [
 
     },
     {
+        id: 1,
         title: "Book II",
         color: "#F8D867",
         imageSrc: "/bookstore/book-list/soft-cover-2.svg",
+        coverImageSrc: "/bookstore/books/book-2.svg",
         titleColor: "#BC8212",
         type: "Soft cover",
         price: "15.00",
+        page:"cart",
         description: "This book covers chords, inversions, and complex rhythms. Students will also learn...",
 
     },
     {
+        id: 2,
         title: "Book III",
         color: "#75C973",
         imageSrc: "/bookstore/book-list/soft-cover-3.svg",
+        coverImageSrc: "/bookstore/books/book-3.svg",
         titleColor: "#438342",
         type: "Soft cover",
         price: "25.00",
+        page:"cart",
         description: "Compound and simple time signatures, The Circle of Fifths, 7 chords, melodic and...",
 
     },
     {
+        id: 3,
         title: "Book I",
         color: "#F6AD69",
         imageSrc: "/bookstore/book-list/e-book-1.svg",
+        coverImageSrc: "/bookstore/books/book-1.svg",
         titleColor: "#B55119",
         type: "E-book",
         price: "15.00",
@@ -160,9 +171,11 @@ export const books = [
 
     },
     {
+        id: 4,
         title: "Book II",
         color: "#F8D867",
         imageSrc: "/bookstore/book-list/e-book-2.svg",
+        coverImageSrc: "/bookstore/books/book-2.svg",
         titleColor: "#BC8212",
         type: "E-book",
         price: "15.00",
@@ -170,9 +183,11 @@ export const books = [
 
     },
     {
+        id: 5,
         title: "Book III",
         color: "#75C973",
         imageSrc: "/bookstore/book-list/e-book-3.svg",
+        coverImageSrc: "/bookstore/books/book-3.svg",
         titleColor: "#438342",
         type: "E-book",
         price: "25.00",
@@ -180,9 +195,11 @@ export const books = [
 
     },
     {
+        id: 6,
         title: "Book I",
         color: "#F6AD69",
         imageSrc: "/bookstore/book-list/audio-1.svg",
+        coverImageSrc: "/bookstore/books/book-1.svg",
         titleColor: "#B55119",
         type: "Audio book",
         price: "15.00",
@@ -190,9 +207,11 @@ export const books = [
 
     },
     {
+        id: 7,
         title: "Book II",
         color: "#F8D867",
         imageSrc: "/bookstore/book-list/audio-2.svg",
+        coverImageSrc: "/bookstore/books/book-2.svg",
         titleColor: "#BC8212",
         type: "Audio book",
         price: "15.00",
@@ -200,9 +219,11 @@ export const books = [
 
     },
     {
+        id: 8,
         title: "Book III",
         color: "#75C973",
         imageSrc: "/bookstore/book-list/audio-3.svg",
+        coverImageSrc: "/bookstore/books/book-3.svg",
         titleColor: "#438342",
         type: "Audio book",
         price: "25.00",

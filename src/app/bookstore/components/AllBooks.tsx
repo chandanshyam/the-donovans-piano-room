@@ -1,8 +1,8 @@
 "use client"
 import { books } from '@/utils/general'
 import { useEffect, useState } from 'react'
-import bookInterface from './bookInterface'
-import BookItem from './BookItem'
+import bookInterface from "@/utils/interfaces/bookInterface";
+import BookItem from "@/components/atoms/BookItem";
 
 export default function AllBooks() {
   const [booksList, setBooksList] = useState<[bookInterface[], bookInterface[], bookInterface[]]>([[], [], []])
@@ -31,9 +31,10 @@ export default function AllBooks() {
             <h5 className='text-3xl text-primary-brown font-semibold mb-[2%]'>Soft cover books</h5>
             <div className='flex justify-between'>
               {booksList[0].map((book, i) => (
-                <BookItem key={i} book={book}/>
+                <BookItem key={i} book={book}/> 
               ))}
-            </div>
+              </div>
+            
             <h5 className='text-3xl text-primary-brown font-semibold my-[2%]'>E-Books</h5>
             <div className='flex justify-between'>
               {booksList[1].map((book, i) => (
