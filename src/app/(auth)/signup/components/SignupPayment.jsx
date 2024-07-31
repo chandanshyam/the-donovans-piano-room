@@ -36,6 +36,8 @@ export default function SignupPayment() {
                         <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium w-[24vw]">Card number</span>
                         <PayPalNumberField style={fieldStyle} placeholder="" />
                     </label>
+                    <div className="flex gap-[2%]">
+
                     <label className="relative w-full">
                         <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium w-[24vw]">Expiration date</span>
                         <PayPalExpiryField style={fieldStyle} placeholder="" />
@@ -44,6 +46,7 @@ export default function SignupPayment() {
                         <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium w-[24vw]">CVV</span>
                         <PayPalCVVField style={fieldStyle} placeholder="" />
                     </label>
+                    </div>
                     <SubmitPayment/>
                     <Button2 style={{marginTop: "4%"}} text="Cancel" onClick={()=>setDisplayCardFields(false)}></Button2>
                     
