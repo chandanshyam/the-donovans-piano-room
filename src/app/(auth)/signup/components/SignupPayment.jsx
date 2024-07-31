@@ -17,7 +17,7 @@ export default function SignupPayment() {
             "border": "none"
         },
         ":focus": {
-            "outline": "1px solid #391F0F",
+            "border": "none"
         }
     }
   return (
@@ -33,9 +33,8 @@ export default function SignupPayment() {
                 <PayPalCardFieldsProvider createOrder={async()=>{console.log("11");return ""}} onApprove={async()=>''} onError={async()=>''}>
                 {/* <PayPalCardFieldsForm> */}
                     <label className="relative w-full">
-                        <span className="absolute top-[16px] left-[15px] peer-focus:text-3xl z-50 text-[#391F0F] font-medium w-[24vw]">Card number</span>
-                        <PayPalNumberField style={fieldStyle} className="peer" placeholder="" />
-
+                        <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium w-[24vw]">Card number</span>
+                        <PayPalNumberField style={fieldStyle} placeholder="" />
                     </label>
                     <label className="relative w-full">
                         <span className="absolute top-[16px] left-[15px] z-50 text-[#391F0F] font-medium w-[24vw]">Expiration date</span>
@@ -51,7 +50,6 @@ export default function SignupPayment() {
                 {/* </PayPalCardFieldsForm> */}
                 </PayPalCardFieldsProvider>
             }
-            {/* <PayPalButtons style={{shape: "pill"}}></PayPalButtons> */}
         </PayPalScriptProvider>
     </div>
   )
@@ -69,5 +67,5 @@ const SubmitPayment = () => {
             // submission error
         });
     }
-    return <Button1 text="Check out" onClick={submitHandler} />;
+    return <Button1 text="Check out" onClick={submitHandler} style={{marginTop: ".5%"}} />;
 };
