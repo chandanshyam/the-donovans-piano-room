@@ -2,7 +2,7 @@ import { singupStepAtom } from '@/utils/stores'
 import { useAtomValue, useSetAtom } from 'jotai'
 import SignupForm from './SignupForm'
 import SignupMembershipContent from './membership/SignupMembershipContent'
-import EmailVerificationContent from './email-verification/components/EmailVerificationContent.tsx'
+import EmailVerificationContent from './email-verification/components/EmailVerificationContent'
 import SignupPayment from './SignupPayment'
 
 export default function AllSignupSteps() {
