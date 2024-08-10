@@ -6,6 +6,7 @@ import Button2 from "@/components/atoms/Button2";
 import SignupHeader from "./SignupHeader";
 import { useSetAtom } from "jotai";
 import { singupStepAtom } from "@/utils/stores";
+import Checkbox from "@/components/atoms/Checkbox";
 export default function SignupPayment() {
     const [displayCardFields, setDisplayCardFields] = useState(false)
     const setSingupStep = useSetAtom(singupStepAtom)
@@ -73,10 +74,9 @@ export default function SignupPayment() {
                             <PayPalCVVField style={fieldStyle} placeholder="" />
                         </label>
                     </div>
-                    <label className="flex items-center mb-[4%]">
-                        <input type="checkbox" className="mr-[1rem] accent-primary-yellow" />
-                        <span className="text-[#391F0F] text-white text-lg">Set as default payment method</span>
-                    </label>
+                    <Checkbox>
+                        <span className="text-[#391F0F] text-white text-lg 3xl:text-xl 4xl:text-2xl">Set as default payment method</span>
+                    </Checkbox>
                     <SubmitPayment/>
                     <Button2 style={{marginTop: "4%"}} text="Cancel" onClick={()=>setDisplayCardFields(false)}></Button2>
                 </PayPalCardFieldsProvider>
