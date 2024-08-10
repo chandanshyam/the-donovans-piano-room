@@ -74,9 +74,9 @@ export default function SignupPayment() {
                             <PayPalCVVField style={fieldStyle} placeholder="" />
                         </label>
                     </div>
-                    <Checkbox>
+                    {/* <Checkbox>
                         <span className="text-[#391F0F] text-white text-lg 3xl:text-xl 4xl:text-2xl">Set as default payment method</span>
-                    </Checkbox>
+                    </Checkbox> */}
                     <SubmitPayment/>
                     <Button2 style={{marginTop: "4%"}} text="Cancel" onClick={()=>setDisplayCardFields(false)}></Button2>
                 </PayPalCardFieldsProvider>
