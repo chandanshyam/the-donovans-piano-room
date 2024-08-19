@@ -10,7 +10,7 @@ export default function AuthorizedWrapper1({children, pageTitle, openedLink=""}:
   const profile = useAtomValue(profileAtom)
   const showNotification = useAtomValue(showNotificationAtom)
   return (
-    <div className="flex w-[100vw] h-[100vh] bg-[#FFEBD5]">
+    <div className="flex bg-[#FFEBD5]">
       {showNotification && <NotificationPopup/>}
       <Navbar4Left openedLink={openedLink}/>
       <div className="w-full">
@@ -25,7 +25,7 @@ export default function AuthorizedWrapper1({children, pageTitle, openedLink=""}:
             </div>
           </div>
         </div>
-          <div className="min-h-[80.8vh] flex justify-center">
+          <div className="h-[80.8vh] flex justify-center">
             <div className="w-[84.7%] relative">
               {children}
             </div>
