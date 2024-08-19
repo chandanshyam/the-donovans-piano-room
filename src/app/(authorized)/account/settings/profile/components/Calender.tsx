@@ -74,7 +74,7 @@ export default function Calender({ highlightedDays }: { highlightedDays: string[
     }
 
     return (
-        <div className="ml-20 mt-[4vh] w-[27%] bg-[#FFF2E5] p-6 rounded-3xl font-montserrat">
+        <div className="w-[27%] bg-[#FFF2E5] p-6 rounded-3xl font-montserrat">
             {selectingAvatar && <AvatarSelectPopup avatar={avatar} setAvatar={setAvatar} closeSelectingAvatar={closeSelectingAvatar} />}
             <div className='flex justify-center'>
                 <div className="relative flex justify-center mb-4 h-[8vh] w-[8vh]">
@@ -88,24 +88,28 @@ export default function Calender({ highlightedDays }: { highlightedDays: string[
                 <h2 className="text-4xl 3xl:text-5xl 4xl:text-6xl text-primary-brown">Jack Stuart</h2>
                 <a href="#" className="underline text-lg 3xl:text-xl 4xl:text-2xl text-primary-purple">Monthly Membership</a>
                 <div className="mt-4 px-14 text-xl 3xl:text-2xl 4xl:text-3xl">
-                    <div className="flex flow-root">
-                        <div className='flex items-center float-left'>
-                            <Image src="/profile/Book.svg" width={30} height={100} alt="Info" />
-                            <p className="float-left pl-2">Activity</p>
+                    <div className="flex items-center justify-between">
+                        <div className='flex items-center'>
+                            <div className="relative w-[4.5vh] h-[4.5vh]">
+                                <Image src="/profile/Book.svg" fill alt="Info" />
+                            </div>
+                            <p className="text-xl 3xl:text-2xl 4xl:text-3xl">Activity</p>
                         </div>
-                        <p className="flex items-center float-right h-12">10h/week</p>
+                        <p className="flex items-center h-12 text-xl 3xl:text-2xl 4xl:text-3xl">10h/week</p>
                     </div>
-                    <div className="flow-root">
-                        <div className='flex items-center float-left'>
-                            <Image src="/profile/Lightning.svg" width={30} height={100} alt="Info" />
-                            <p className="float-left pl-2">Longest Streak</p>
+                    <div className="flex justify-between">
+                        <div className='flex items-center'>
+                            <div className="relative w-[4.5vh] h-[4.5vh]">
+                                <Image src="/profile/Lightning.svg" fill alt="Info" />
+                            </div>
+                            <p className="text-xl 3xl:text-2xl 4xl:text-3xl">Longest Streak</p>
                         </div>
-                        <p className="flex items-center float-right h-12">7 day</p>
+                        <p className="flex items-center h-12 text-xl 3xl:text-2xl 4xl:text-3xl">7 day</p>
                     </div>
                 </div>
             </div>
             <div className="mt-4 flex justify-center">
-                <div className="text-sm grid grid-cols-2 gap-2 text-2xl 3xl:text-3xl 4xl:text-4xl">
+                <div className="text-sm grid grid-cols-2 gap-2 text-2xl 3xl:text-3xl 4xl:text-4xl w-[75%]">
                     <SelectInput label='month' name='month' onChange={(e: any) => setSelectedMonth(e.target.value)} options={months} value={selectedMonth.toString()} />
                     <SelectInput label='year' name='year' onChange={(e: any) => setSelectedYear(e.target.value)} options={years} value={selectedYear.toString()} />
                 </div>
