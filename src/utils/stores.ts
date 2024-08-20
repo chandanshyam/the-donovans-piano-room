@@ -1,6 +1,9 @@
 import bookInterface from "./interfaces/bookInterface";
 import { atom } from "jotai";
 
+
+
+
 ///////////////
 ////SIGN UP////
 ///////////////
@@ -59,3 +62,8 @@ export const showNotificationAtom = atom(false)
 //*************//
 
 export const addedCartItemAtom = atom<null | bookInterface>(null) 
+
+
+export const addedCartItemsAtom = atom<bookInterface[]>([]);
+
+

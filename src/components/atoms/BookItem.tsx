@@ -5,23 +5,23 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import bookInterface from "@/utils/interfaces/bookInterface";
 import CircularProgress from '@mui/material/CircularProgress';
-import { useSetAtom } from 'jotai'
-import { addedCartItemAtom } from '@/utils/stores'
+import { useAtom } from 'jotai'
+import { addedCartItemsAtom } from '@/utils/stores'
 const statusTypes = {
   loading: "loading",
   added: "added"
 }
-export default function BookItem({book}: {book: bookInterface}) {
-  const setAddedCartItem = useSetAtom(addedCartItemAtom)
-  const [status, setStatus] = useState("")
+export default function BookItem({ book }: { book: bookInterface }) {
+  const [status, setStatus] = useState("");
+  const [addedCartItems, setAddedCartItems] = useAtom(addedCartItemsAtom); 
 
   const addToCart = () => {
-    setStatus(statusTypes.loading)
-    setTimeout(()=>{
-      setAddedCartItem(book)
-      setStatus(statusTypes.added)
-    }, 2000)
-  }
+      setStatus(statusTypes.loading);
+      setTimeout(() => {
+          setAddedCartItems([...addedCartItems, book]);
+          setStatus(statusTypes.added);
+      }, 2000);
+  };
   return (
     <div className='w-[27.5%] min-h-[40vh] p-[1vw] bg-[#FEF8EE] rounded-2xl shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
         <div className='flex justify-between w-full'>
