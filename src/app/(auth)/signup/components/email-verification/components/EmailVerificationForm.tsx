@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined'
 import Button1 from '@/components/atoms/Button1'
 import Button2 from '@/components/atoms/Button2'
@@ -16,15 +16,22 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
     }
     
     const [timeLeft, setTimeLeft] = useState(600)
+    const timeCounterRef = useRef<NodeJS.Timeout | null>(null)
     useEffect(() => {
         const timer = setInterval(() => {
-            setTimeLeft((prevTime) => prevTime - 1);
+            setTimeLeft((prevTime) => {
+                if(prevTime-1 <= 0 && timeCounterRef.current ){
+                    clearInterval(timeCounterRef.current)
+                }
+                return prevTime - 1
+            });
         }, 1000);
 
+        timeCounterRef.current = timer
         return () => {
             clearInterval(timer);
         };
-    }, []);
+    }, [timeLeft]);
 
     const sendNewCode = () => {
         setTimeLeft(600)
