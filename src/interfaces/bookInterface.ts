@@ -1,4 +1,4 @@
-export default interface bookInterface {
+export interface bookInterface {
     id: number,
     title: string,
     color: string,
@@ -8,5 +8,17 @@ export default interface bookInterface {
     type: string,
     price: string,
     description: string,  
-    quantity?: number
+}
+
+export interface bookCartItemInterface {
+    id: number,
+    title: string,
+    color: string,
+    imageSrc: string,
+    coverImageSrc: string,
+    titleColor: string,
+    type: string,
+    price: string,
+    description: string,  
+    quantity: number
 }
