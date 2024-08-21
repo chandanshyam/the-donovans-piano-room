@@ -1,4 +1,4 @@
-import bookInterface from "./interfaces/bookInterface";
+import bookInterface from "../interfaces/bookInterface";
 import { atom } from "jotai";
 
 
