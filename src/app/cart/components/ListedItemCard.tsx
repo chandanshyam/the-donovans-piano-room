@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Button4 from "@/components/atoms/Button4";
 import InputForm from '@/components/atoms/form-input';
-import bookInterface from '@/interfaces/bookInterface';
+import {bookCartItemInterface} from '@/interfaces/bookInterface';
 import { useSetAtom } from 'jotai';
 import { addedCartItemsAtom } from '@/utils/stores';
 
-const ListedItemCard = ({ book, index }: {book: bookInterface, index: number}) => {
+const ListedItemCard = ({ book, index }: {book: bookCartItemInterface, index: number}) => {
   const setAddedCartItems = useSetAtom(addedCartItemsAtom)
   const [bookCoupon, setBookCoupon] = useState("")
   const increaseQuantity = () => setAddedCartItems(prev => {
