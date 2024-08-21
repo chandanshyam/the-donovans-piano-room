@@ -2,11 +2,12 @@
 import Button3 from '@/components/atoms/Button3'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
-import bookInterface from "@/utils/interfaces/bookInterface";
+import React, { useEffect, useState } from 'react'
+import bookInterface from "@/interfaces/bookInterface";
 import CircularProgress from '@mui/material/CircularProgress';
 import { useAtom } from 'jotai'
 import { addedCartItemsAtom } from '@/utils/stores'
+import { willMountEffect } from '@/utils/customHooks'
 const statusTypes = {
   loading: "loading",
   added: "added"
@@ -18,10 +19,15 @@ export default function BookItem({ book }: { book: bookInterface }) {
   const addToCart = () => {
       setStatus(statusTypes.loading);
       setTimeout(() => {
-          setAddedCartItems([...addedCartItems, book]);
+          setAddedCartItems([...addedCartItems, {...book, quantity: 1}]);
           setStatus(statusTypes.added);
       }, 2000);
   };
+  const isBookAdded = ()=>{
+    const isAdded = addedCartItems.find(item => item.id === book.id)
+    if(isAdded) setStatus(statusTypes.added)
+  }
+  willMountEffect(isBookAdded)
   return (
     <div className='w-[27.5%] min-h-[40vh] p-[1vw] bg-[#FEF8EE] rounded-2xl shadow-[#AC7A2280] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px]'>
         <div className='flex justify-between w-full'>
