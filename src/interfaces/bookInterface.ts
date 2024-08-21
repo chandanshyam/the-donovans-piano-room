@@ -8,4 +8,5 @@ export default interface bookInterface {
     type: string,
     price: string,
     description: string,  
+    quantity?: number
 }
