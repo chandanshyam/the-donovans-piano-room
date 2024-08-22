@@ -94,15 +94,14 @@ export default function SignupForm() {
             </span>
         </label>
         <label htmlFor="check" className="ms-2 text-l font-medium text-white mt-4 2xl:mt-6 4xl:mt-2 2xl:text-2xl">
-  I agree to The Donovan&apos;s piano room{' '}
-  <span onClick={() => handleOpenModal('terms')} className='text-primary-yellow underline cursor-pointer'>
-    terms of use
-  </span> 
-  and 
-  <span onClick={() => handleOpenModal('privacy')} className='text-primary-yellow underline cursor-pointer'>
-    privacy policy
-  </span>.
-</label>
+          I agree to The Donovan&apos;s piano room{' '}
+          <span onClick={() => handleOpenModal('terms')} className='text-primary-yellow underline cursor-pointer'>
+            terms of use
+          </span>{" "}and{" "} 
+          <span onClick={() => handleOpenModal('privacy')} className='text-primary-yellow underline cursor-pointer'>
+            privacy policy
+          </span>.
+        </label>
 
             </div>
         </form>

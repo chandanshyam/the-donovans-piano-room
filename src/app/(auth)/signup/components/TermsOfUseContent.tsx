@@ -4,12 +4,12 @@ export const TermsOfUseContent = () => (
     <p>Effective Date: June 20, 2024</p>
     <h3>1. Introduction</h3>
     <p>
-      Welcome to The Donovan's Piano Room ("the Platform"). By accessing or
+      Welcome to The Donovan&apos;s Piano Room (&quot;the Platform&quot;). By accessing or
       using our Platform, you agree to comply with and be bound by these Terms
-      and Conditions ("Terms"). Please read these Terms carefully before using
+      and Conditions (&quot;Terms&quot;). Please read these Terms carefully before using
       our services. These Terms govern your use of our e-learning software
       platform that teaches music and music theory, including all associated
-      services, games, and tools provided by The Donovan's Piano Room.{" "}
+      services, games, and tools provided by The Donovan&apos;s Piano Room.{" "}
     </p>
     <h3>2. Acceptance of Terms</h3>
     <p>
@@ -62,7 +62,7 @@ export const TermsOfUseContent = () => (
     <h3>7. Intellectual Property</h3>
     <p>
       All content on the Platform, including text, graphics, logos, and
-      software, is the property of The Donovan's Piano Room or its content
+      software, is the property of The Donovan&apos;s Piano Room or its content
       suppliers and is protected by intellectual property laws. You may not use
       any content from the Platform without our express written permission.
     </p>
@@ -74,13 +74,13 @@ export const TermsOfUseContent = () => (
     </p>
     <h3>9. Disclaimers</h3>
     <p>
-      The Platform is provided on an "as is" and "as available" basis. We make
-      no warranties, express or implied, regarding the Platform's operation or
+      The Platform is provided on an &quot;as is&quot; and &quot;as available&quot; basis. We make
+      no warranties, express or implied, regarding the Platform&apos;s operation or
       the information, content, or materials included on the Platform.
     </p>
     <h3>10. Limitation of Liability</h3>
     <p>
-      To the fullest extent permitted by law, The Donovan's Piano Room shall not
+      To the fullest extent permitted by law, The Donovan&apos;s Piano Room shall not
       be liable for any damages of any kind arising from the use of the
       Platform, including, but not limited to, direct, indirect, incidental,
       punitive, and consequential damages.

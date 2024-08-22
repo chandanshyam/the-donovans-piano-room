@@ -4,9 +4,9 @@ export const PrivacyPolicyContent = () => (
     <p>Effective Date: June 20, 2024</p>
     <h3>1. Introduction</h3>
     <p>
-      This Privacy Policy explains how The Donovan's Piano Room ("we," "our," or
-      "us") collects, uses, discloses, and protects your personal information
-      when you use our e-learning software platform ("the Platform").
+      This Privacy Policy explains how The Donovan&apos;s Piano Room (&quot;we,&quot; &quot;our,&quot; or
+      &quot;us&quot;) collects, uses, discloses, and protects your personal information
+      when you use our e-learning software platform (&quot;the Platform&quot;).
     </p>
     <h3>2. Information We Collect</h3>
     <p>
@@ -59,7 +59,7 @@ export const PrivacyPolicyContent = () => (
       Deletion: You may request the deletion of your account and personal
       information by contacting us at [insert contact information].
     </p>
-    <h3>7. Children's Privacy</h3>
+    <h3>7. Children&apos;s Privacy</h3>
     <p>
       The Platform is not intended for children under the age of 13. We do not
       knowingly collect personal information from children under 13. If we learn
