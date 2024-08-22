@@ -93,7 +93,6 @@ export default function SignupForm() {
         </form>
         <p className='w-full text-center mt-[10px] text-lg 3xl:text-2xl  text-white bg-primary-purple py-3 rounded-3xl 2xl:rounded-4xl text-[12px] mt-9 2xl:py-5 3xl:py-8'>Already have an account? <Link href="/login" className='text-primary-yellow underline'>Log in</Link></p>
         <TermsandCondition isOpen={isModalOpen} onClose={handleCloseModal} content={modalContent} />
-
     </section>
   )
-
+}
