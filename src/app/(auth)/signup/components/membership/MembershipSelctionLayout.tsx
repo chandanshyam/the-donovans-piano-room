@@ -1,5 +1,5 @@
-import { membershipChoiceAtom, membershipTypes } from "@/utils/stores";
-import { useAtom } from "jotai";
+import { membershipChoiceAtom, membershipTypes, singupStepAtom } from "@/utils/stores";
+import { useAtom, useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 import SignupHeader from "../SignupHeader";
@@ -7,6 +7,11 @@ import Button2 from "@/components/atoms/Button2";
 
 export default function MembershipSelctionLayout() {
     const [membershipChoice, setMembershipChoice] = useAtom(membershipChoiceAtom)
+    const setSingupStep = useSetAtom(singupStepAtom)
+    const goToPayment = (e: any) =>{
+        e.preventDefault()
+        setSingupStep(stepN => stepN+1)
+    }
   return (
     <section className={membershipChoice ? 'absolute left-[25vw] 3xl:left-[23vw]' : ''}>
         <SignupHeader stepName="Select your membership" stepNum={3} navLink="/" navName="Account" />
@@ -41,7 +46,7 @@ export default function MembershipSelctionLayout() {
                     </div>
                 </label>
             </fieldset>
-            <Button2 text="Continue to payment method" onClick={()=>{}}/>
+            <Button2 text="Continue to payment method" onClick={goToPayment}/>
         </form>
         <p className='w-full text-center text-lg 3xl:text-2xl text-white bg-primary-purple py-3 rounded-[15px] text-[12px] mt-9 2xl:py-5 2xl:rounded-full'>Already have an account? <Link href="/login" className='text-primary-yellow underline'>Log in</Link></p>
     </section>
