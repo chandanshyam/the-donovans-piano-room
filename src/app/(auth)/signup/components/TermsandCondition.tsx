@@ -19,10 +19,11 @@ const TermsandCondition = ({ isOpen, onClose, content }: { isOpen: boolean; onCl
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg max-w-[30vw] w-full relative overflow-y-auto max-h-[70vh]">
-        <button onClick={onClose} className="absolute top-2 right-2 text-red-500">
-          <CloseIcon className='text-3xl font-bold 3xl:text-3xl 4xl:text-4xl text-primary-purple'/>
-        </button>
+    <div className="bg-white p-6 rounded-lg max-w-[30vw] w-full relative">
+      <button onClick={onClose} className="absolute top-2 right-2 text-red-500">
+        <CloseIcon className="text-3xl font-bold 3xl:text-3xl 4xl:text-4xl text-primary-purple" />
+      </button>
+      <div className=" mt-[2%] overflow-y-auto max-h-[70vh]">
         <div className="text-black">
           <div className="text-base md:text-lg">
             {getContent()}
@@ -30,6 +31,7 @@ const TermsandCondition = ({ isOpen, onClose, content }: { isOpen: boolean; onCl
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
