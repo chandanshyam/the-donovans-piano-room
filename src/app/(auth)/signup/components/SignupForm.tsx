@@ -2,10 +2,10 @@ import PasswordCases from '@/components/auth/PasswordCases'
 import InputForm from '@/components/atoms/form-input'
 import PasswordInput from '@/components/auth/password-input'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SignupHeader from './SignupHeader'
 import { useSetAtom } from 'jotai'
-import { singupStepAtom } from '@/utils/stores'
+import { singupStepAtom, profileAtom } from '@/utils/stores'
 import Button1 from '@/components/atoms/Button1'
 import TermsandCondition from './TermsandCondition'
 import Checkbox from '@/components/atoms/Checkbox'
@@ -17,7 +17,9 @@ export default function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [allPasswordCasesCorrect, setAllPasswordCasesCorrect] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [disabled, setDiabled] = useState(true)
   const [modalContent, setModalContent] = useState<'terms' | 'privacy'>('terms');
+  const [isChecked, setIsChecked] = useState(false)
 
   const handleOpenModal = (type: 'terms' | 'privacy') => {
   setModalContent(type);
@@ -28,10 +30,56 @@ export default function SignupForm() {
   setIsModalOpen(false);
 };
   const setSingupStep = useSetAtom(singupStepAtom)
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-    setSingupStep(prev => prev+1)
-  }
+  const setProfileAtom = useSetAtom(profileAtom)
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log("BLAH");
+    setDiabled(!disabled)
+    try {
+      const response = await fetch('http://localhost:3333/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          password,
+        }),
+      }).catch(
+        e => console.log(e)
+      );
+
+      if (response.ok) {
+        console.log("Signup successful");
+        setProfileAtom(obj => ({
+          ...obj,
+          fullName: fullName,
+          email: email,
+        }))
+        console.log("Profile updated, moving to next step...");
+        setSingupStep(prev => prev + 1);
+
+      } else {
+        // Handle non-OK responses
+        const errorData = await response.json();
+        alert("Error:", errorData.message);
+        console.error("Error:", errorData.message);
+        setDiabled(!disabled)
+      }
+    } catch (error) {
+      // Handle network or fetch error
+      setDiabled(!disabled)
+      console.error('Network error:', error);
+    }
+};
+
+useEffect(() =>{
+  const isFormValid = isChecked && fullName && email && password && confirmPassword && allPasswordCasesCorrect && password === confirmPassword
+
+  setDiabled(!isFormValid)
+}, [fullName, email, password, confirmPassword, allPasswordCasesCorrect, isChecked])
+
   return (
     <section className='w-[24vw] 3xl:w-[26vw]'>
         <SignupHeader navName='Home' navLink='/' stepNum={1} stepName='Create your account' />
@@ -76,9 +124,9 @@ export default function SignupForm() {
             inputValue={confirmPassword}
         />}
         <div> 
-            <Button1 onClick={handleSubmit} text='Continue to verify account' />    
+            <Button1 onClick={handleSubmit} disabled={disabled} text='Continue to verify account' />  
         </div>
-        <Checkbox>
+        <Checkbox checked={isChecked} onChange={setIsChecked}>
         <label htmlFor="check" className="ms-2 text-l font-medium text-white mt-4 2xl:mt-6 4xl:mt-2 2xl:text-2xl">
           I agree to The Donovan&apos;s piano room{' '}
           <span onClick={() => handleOpenModal('terms')} className='text-primary-yellow underline cursor-pointer'>
