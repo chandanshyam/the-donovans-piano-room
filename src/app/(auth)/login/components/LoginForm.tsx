@@ -16,11 +16,10 @@
         const handleLogin = async (e: any) =>{
             // alert(password)
             const response = await fetch('http://localhost:3333/api/auth/login', {
+                mode: 'cors',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // "Access-Control-Allow-Origin": "*",
-                    // "Cache-Control": "no-cache"
                 },
                 // credentials: 'include',
                 body: JSON.stringify({
@@ -34,7 +33,10 @@
                 console.log("Success")
                 alert("Success");
                 console.log(document.cookie)
-                window.location.href = '/dashboard'; 
+                setTimeout(() =>{
+                    window.location.href = '/dashboard';
+                }, 200)
+                 
             }
             else{
                 alert("Invalid Credentials");
