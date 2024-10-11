@@ -4,6 +4,7 @@ import Button1 from '@/components/atoms/Button1'
 import Button2 from '@/components/atoms/Button2'
 import { profileAtom, singupStepAtom } from '@/utils/stores'
 import { useAtomValue, useSetAtom } from 'jotai'
+import {verify, refreshOTP} from '@/lib/api/authService'
 
 export default function EmailVerificationForm({setToIsVerified}: {setToIsVerified: any}) {
     const [verificationCode, setVerificationCode] = useState(Array(6).fill(''))
@@ -19,25 +20,15 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
         e.preventDefault()
         let otp = ""
         verificationCode.forEach((i) => otp += i.toString())
-        const response = await fetch('http://localhost:3333/api/auth/verify', {
-            method:  'POST', 
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                otp
-            })
-        })
+        const {data, ok} = await verify(email, otp)
 
-        if (response.ok){
+        if (ok){
             setSingupStep(prev => prev + 1)  
             setToIsVerified()
         }
-        else{
-            const errorData = await response.json();
-            console.log(errorData.message)
-            alert("Error: ", errorData.message)
+        else{;
+            console.log(data)
+            alert("Error: ", data)
         }
     }
     
@@ -60,23 +51,12 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
     }, [timeLeft]);
 
     const sendNewCode = async () => {
-        const response = await fetch('http://localhost:3333/api/auth/refresh-otp',{
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email
-            })
-
-        })
-        if (response.ok){
+        const {data, ok} = await refreshOTP(email)
+        if (ok){
             setTimeLeft(600)
         }
         else{
-            const errorData = (await response.json()).message
-            console.log(errorData.message)
-            alert("Error: ", errorData.message)
+            alert("Error: ", data)
         }
     }
 

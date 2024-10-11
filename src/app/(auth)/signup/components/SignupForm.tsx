@@ -9,6 +9,7 @@ import { singupStepAtom, profileAtom } from '@/utils/stores'
 import Button1 from '@/components/atoms/Button1'
 import TermsandCondition from './TermsandCondition'
 import Checkbox from '@/components/atoms/Checkbox'
+import { signup } from '@/lib/api/authService'
 
 export default function SignupForm() {
   const [fullName, setFullName] = useState("")
@@ -31,47 +32,24 @@ export default function SignupForm() {
 };
   const setSingupStep = useSetAtom(singupStepAtom)
   const setProfileAtom = useSetAtom(profileAtom)
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("BLAH");
     setDiabled(!disabled)
-    try {
-      const response = await fetch('http://localhost:3333/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          fullName,
-          email,
-          password,
-        }),
-      }).catch(
-        e => console.log(e)
-      );
-
-      if (response.ok) {
-        console.log("Signup successful");
-        setProfileAtom(obj => ({
-          ...obj,
-          fullName: fullName,
-          email: email,
-        }))
-        console.log("Profile updated, moving to next step...");
-        setSingupStep(prev => prev + 1);
-
-      } else {
-        // Handle non-OK responses
-        const errorData = await response.json();
-        alert("Error:", errorData.message);
-        console.error("Error:", errorData.message);
-        setDiabled(!disabled)
-      }
-    } catch (error) {
-      // Handle network or fetch error
-      setDiabled(!disabled)
-      console.error('Network error:', error);
+    const {data, ok} = await signup(fullName, email, password)
+    if(ok){
+      setProfileAtom(obj => ({
+        ...obj,
+        fullName: fullName,
+        email: email,
+      }))
+      setSingupStep(prev => prev + 1);
+    } 
+    else{
+      console.log("Failed")
+      alert("Error:", data)
     }
+    setDiabled(!disabled)
 };
 
 useEffect(() =>{

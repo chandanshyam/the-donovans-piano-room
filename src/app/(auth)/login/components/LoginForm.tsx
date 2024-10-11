@@ -5,6 +5,7 @@
     import Link from "next/link";
     import { useState, useEffect } from "react";
     import Button1 from '@/components/atoms/Button1'
+    import { login } from "@/lib/api/authService" 
     // import { useRouter } from 'next/router';
 
     export default function LoginForm() {
@@ -14,34 +15,14 @@
         // const router = useRouter(); 
 
         const handleLogin = async (e: any) =>{
-            // alert(password)
-            const response = await fetch('http://localhost:3333/api/auth/login', {
-                mode: 'cors',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // credentials: 'include',
-                body: JSON.stringify({
-                    email,
-                    password
-                }),
-            })
-            const data = await response.json()
-            console.log(data)
-            if (response.ok){
-                console.log("Success")
+            const {data, ok} = await login(email, password)
+            if (ok){
                 alert("Success");
-                console.log(document.cookie)
-                setTimeout(() =>{
-                    window.location.href = '/dashboard';
-                }, 200)
-                 
+                window.location.href = '/dashboard';
             }
             else{
                 alert("Invalid Credentials");
             }
-
         }
         useEffect(() =>{
             setDiabled( !(email && password))
