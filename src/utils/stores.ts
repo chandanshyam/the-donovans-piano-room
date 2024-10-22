@@ -35,8 +35,7 @@ export const profileAtom = atom({
     pronouns: "",
     email: "",
     birthDate: "",
-    phoneNumber: "",
-    displayName: ""
+    phoneNumber: ""
 })
 
 //////////////

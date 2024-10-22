@@ -15,15 +15,6 @@ const nextConfig = {
   
       return config;
     },
-    async rewrites() {
-      return [
-        {
-          source: '/api/:path*',
-          destination: process.env.BE_BASE_URL + '/api/:path*'
-          // 'http://localhost:3333/api/:path*',
-        }
-      ]
-    }
   };
 
 module.exports = nextConfig;
