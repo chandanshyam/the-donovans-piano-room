@@ -62,21 +62,14 @@ import { useState } from "react";
 import { useSetAtom } from 'jotai';
 import Button1 from "@/components/atoms/Button1";
 import { forgotPasswordStepAtom } from "@/utils/stores";
-import { forgotPassword } from "@/lib/api/authService";
 
 export default function ForgotPasswordForm() {
     const [email, setEmail] = useState("");
     const setForgotPasswordStep = useSetAtom(forgotPasswordStepAtom);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const {data, ok} = await forgotPassword(email)
-        if(ok){
-            setForgotPasswordStep(2);
-        }
-        else{
-            alert("Error: ", data)
-        }
+        setForgotPasswordStep(2);
     };
 
     return (
