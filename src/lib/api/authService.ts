@@ -95,3 +95,12 @@ export const resetPassword = async (passwordResetToken: string, newPassword: str
     const data = await response.json()
     return {data, ok: response.ok}
 }
+
+export const refreshToken = async () => {
+    const response = await fetch('/api/auth/refresh', {
+        method: 'POST', 
+        credentials: 'include'
+    })
+    const data = await response.json()
+    return {data, ok: response.ok}
+}
