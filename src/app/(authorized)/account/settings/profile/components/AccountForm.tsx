@@ -6,19 +6,12 @@ import SelectInput from '@/components/atoms/select-input'
 import { pronouns as allPronouns } from '@/utils/general'
 import React, { useEffect, useState } from 'react'
 import SuccessPopup from './SuccessPopup'
-import AvatarSelectPopup from './AvatarSelectPopup'
 import { updateUser, getUser } from '@/lib/api/userService'
-import { set } from 'zod'
+import { useAtom } from 'jotai';
+import { profileAtom } from '@/utils/stores'
 
 export default function AccountForm() {
-    const [profile, setProfile] = useState({
-        fullName: '',
-        displayName: '',
-        email: '',
-        pronouns: '',
-        phoneNumber: '',
-        DOB: ''
-    });
+    const [profile, setProfile] = useAtom(profileAtom)
     const [isDataSaved, setIsDataSaved] = useState(false)
 
     useEffect(()=>{
