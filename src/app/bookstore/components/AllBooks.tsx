@@ -26,7 +26,7 @@ export default function AllBooks() {
               imageSrc: book.picture || "",
               coverImageSrc: book.picture2 || "",
               titleColor: book.tdprColor || "#000000",
-              type: book.comments || "Unknown type",
+              type: category.name || "Unknown type",
               price: book.price || 0,
               description: book.intro || "No description",
               level: book.level || "Unknown level",

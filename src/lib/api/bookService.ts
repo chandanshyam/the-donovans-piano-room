@@ -12,7 +12,7 @@ export const getAllBooks = async () => {
 
 export const getBookById = async (bookId: string) => {
   try {
-    const response = await fetch('api/book/${bookId}');
+    const response = await fetch(`api/book/${bookId}`);
     if (!response.ok) throw new Error("Failed to fetch book details");
     return await response.json();
   } catch (error) {
