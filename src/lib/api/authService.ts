@@ -1,5 +1,4 @@
 export const signup  = async (fullName: string, email: string, password: string) =>{
-    console.log("SIGNUP called .......")
     const response = await fetch('/api/auth/signup', {
         method: 'POST', 
         headers: {
@@ -76,7 +75,7 @@ export const forgotPassword = async (email: string) =>{
             email
         })
     })
-    const data = response.json()
+    const data = await response.json()
     return {data, ok: response.ok}
 }
 
