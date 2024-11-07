@@ -1,5 +1,4 @@
 export const signup  = async (fullName: string, email: string, password: string) =>{
-    console.log("SIGNUP called .......")
     const response = await fetch('/api/auth/signup', {
         method: 'POST', 
         headers: {
@@ -76,7 +75,7 @@ export const forgotPassword = async (email: string) =>{
             email
         })
     })
-    const data = response.json()
+    const data = await response.json()
     return {data, ok: response.ok}
 }
 
@@ -91,6 +90,15 @@ export const resetPassword = async (passwordResetToken: string, newPassword: str
             passwordResetToken,
             newPassword
         })
+    })
+    const data = await response.json()
+    return {data, ok: response.ok}
+}
+
+export const refreshToken = async () => {
+    const response = await fetch('/api/auth/refresh', {
+        method: 'POST', 
+        credentials: 'include'
     })
     const data = await response.json()
     return {data, ok: response.ok}

@@ -18,6 +18,9 @@ export default function Page() {
             if(ok){
                 setProfile(data)
             }
+            else{
+                window.location.href = "/login"
+            }
         }catch(e){
             console.log(e)
         }

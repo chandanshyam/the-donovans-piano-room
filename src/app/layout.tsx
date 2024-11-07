@@ -14,6 +14,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Import Google Fonts */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
