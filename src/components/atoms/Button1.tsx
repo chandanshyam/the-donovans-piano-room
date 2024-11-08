@@ -6,7 +6,7 @@ export default function Button1({
   disabled = false,
 }: {
   text: string;
-  type?: string;
+  type?: "submit" | "reset" | "button";
   onClick?: any;
   style?: any;
   disabled?: any;

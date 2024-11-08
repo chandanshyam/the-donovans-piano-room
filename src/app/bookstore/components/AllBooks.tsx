@@ -17,8 +17,8 @@ export default function AllBooks() {
 
         let booksList: [bookInterface[], bookInterface[], bookInterface[]] = [[], [], []];
 
-        response.forEach((category) => {
-          category.books.forEach((book) => {
+        response.forEach((category: any) => {
+          category.books.forEach((book: any) => {
             const mappedBook = {
               id: book.id || "N/A",
               title: book.title || "No title",
