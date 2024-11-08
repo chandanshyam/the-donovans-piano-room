@@ -75,7 +75,7 @@ export default function ForgotPasswordForm() {
             setForgotPasswordStep(2);
         }
         else{
-            alert(data)
+            alert(`Error ${data}`)
         }
     };
 
