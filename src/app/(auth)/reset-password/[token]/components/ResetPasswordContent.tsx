@@ -17,7 +17,7 @@ export default function ResetPasswordContent() {
     const pathname = usePathname()
     const token = pathname.slice("/reset-password/".length)
     
-    const handleSubmit = async (e: any, token: string) =>{
+    const handleSubmit = async (e: React.FormEvent, token: string) =>{
         e.preventDefault()
         
         setDisabled(!disabled)
@@ -28,7 +28,7 @@ export default function ResetPasswordContent() {
           setResetPasswordStep(2)
         }else{
           setDisabled(!disabled)
-          alert("Error:", data)
+          alert(`Error: ${data}`)
         }
         
     }
@@ -48,7 +48,7 @@ export default function ResetPasswordContent() {
             <PasswordInput inputValue={password} error={passwordsError ? 'The password you entered does not match' : ""} onChange={(e:any) => setPassword(e.target.value)} name="new-password" label="New password" />
             <PasswordCases  testCasesCB={setAllPasswordCasesCorrect} password={password} allCasesIsCorrect={allPasswordCasesCorrect} />
             <PasswordInput inputValue={confirmPassword} error={passwordsError ? 'The password you entered does not match' : ""} onChange={(e:any) => setConfirmPassword(e.target.value)} name="confirm-password" label="Confirm password" />
-            <Button1 text="Update your password" disabled={disabled}  onClick={(e) => {handleSubmit(e, token)}} />
+            <Button1 text="Update your password" disabled={disabled}  onClick={(e: React.FormEvent) => {handleSubmit(e, token)}} />
         </form>
         <AuthOptionalNavigation text="Don't have an account? " href="/signup" navName="Sign up"/>
     </section>

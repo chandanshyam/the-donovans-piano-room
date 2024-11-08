@@ -1,7 +1,7 @@
 "use client"
 import AccountAndSettingsNav from "@/components/atoms/AccountAndSettingsNav";
 import AuthorizedWrapper1 from "@/components/ContentWrappers/authorized-1/AuthorizedWrapper1";
-import { authorizedWrapperTitles, beenTimeAgo, dummyNoticationsData, profile, settingsNavigation } from "@/utils/general";
+import { authorizedWrapperTitles, beenTimeAgo, dummyNoticationsData, settingsNavigation } from "@/utils/general";
 import { hasUnreadAtom, IsNavOpenAtom, profileAtom } from "@/utils/stores";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ export default function Page() {
     const [unreadsNumber, setUnreadsNumber] = useState(0)
     const isNavOpen = useAtomValue(IsNavOpenAtom)
     const setHasUnread = useSetAtom(hasUnreadAtom)
-    const setProfile = useSetAtom(profileAtom)
+    const Profile = useAtomValue(profileAtom)
     const initNotifications = (notifications: notification[]) => {
     
       const todays = []
@@ -60,7 +60,7 @@ export default function Page() {
       setDisplayedNotifications([todays, past])
     }
     useEffect(()=>{
-        setProfile(profile)
+        // setProfile(profile)
         initNotifications(dummyNoticationsData)
     }, [])
     const deleteItem = (index: number, section: number) => {

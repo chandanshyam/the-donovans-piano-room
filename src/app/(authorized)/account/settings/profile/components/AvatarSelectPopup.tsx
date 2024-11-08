@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+
 export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvatar}: {avatar: string, setAvatar: any, closeSelectingAvatar: any}) {
   const [selectedAvatar, setSelectedAvatar] = useState(avatar)
   const setProfile = useSetAtom(profileAtom)

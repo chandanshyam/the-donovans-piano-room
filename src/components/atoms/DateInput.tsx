@@ -1,6 +1,6 @@
 import { InputAdornment, TextField } from '@mui/material';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-export default function DateInput({defaultValue, label, onChange}: {defaultValue: string, label: string, onChange: any}) {
+export default function DateInput({defaultValue, label, onChange, name}: {defaultValue: string, label: string, onChange: any, name: string}) {
   return (
     <TextField
         InputLabelProps={{
@@ -26,7 +26,8 @@ export default function DateInput({defaultValue, label, onChange}: {defaultValue
             },
             height: "14.5px"
           },
-          className:'text-2xl block w-full'
+          className:'text-2xl block w-full',
+          name
         }}
         variant="filled"
         fullWidth
