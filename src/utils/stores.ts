@@ -34,8 +34,9 @@ export const profileAtom = atom({
     imageSrc: "",
     pronouns: "",
     email: "",
-    birthDate: "",
-    phoneNumber: ""
+    DOB: "",
+    phoneNumber: "",
+    displayName: ""
 })
 
 //////////////

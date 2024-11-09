@@ -37,6 +37,7 @@ const config: Config = {
         "primary-skin": "#FFF2E5",
         "primary-blue": "#0000EE",
         "primary-blue-accent": "#E7F2E7",
+        "green-accent": "#285527",
       },
       screens: {
         sm: "640px",
@@ -53,6 +54,7 @@ const config: Config = {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
+        mountains: ['"Mountains of Christmas"', 'cursive'],
       },
       boxShadow: {
         'custom': '2px 2px 4px 0px #AC7A2280', // Custom box shadow
