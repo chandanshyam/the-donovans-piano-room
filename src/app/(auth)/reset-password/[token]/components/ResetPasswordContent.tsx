@@ -2,15 +2,20 @@ import AuthOptionalNavigation from "@/components/atoms/AuthOptionalNavigation";
 import Button1 from "@/components/atoms/Button1";
 import PasswordCases from "@/components/auth/PasswordCases";
 import PasswordInput from "@/components/auth/password-input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSetAtom } from "jotai";
 import { resetPasswordStepAtom } from "@/utils/stores";
+import { usePathname } from 'next/navigation';
+import { resetPassword } from "@/lib/api/authService";
 
 export default function ResetPasswordContent() {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [allPasswordCasesCorrect, setAllPasswordCasesCorrect] = useState(false)
     const setResetPasswordStep = useSetAtom(resetPasswordStepAtom);
+    const [disabled, setDisabled] = useState(true)
+    const pathname = usePathname()
+    const token = pathname.slice("/reset-password/".length)
     
     const handleSubmit = async (e: React.FormEvent, token: string) =>{
         e.preventDefault()
@@ -28,6 +33,11 @@ export default function ResetPasswordContent() {
         
     }
     const passwordsError = (allPasswordCasesCorrect && confirmPassword.length && password !== confirmPassword)
+    useEffect(() =>{
+      const isFormValid =  password && confirmPassword && allPasswordCasesCorrect && password === confirmPassword
+    
+      setDisabled(!isFormValid)
+    }, [password, confirmPassword, allPasswordCasesCorrect])  
     
   return (
     <section className="w-[24vw] 2xl:w-[26vw]">
