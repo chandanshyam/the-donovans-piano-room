@@ -41,4 +41,24 @@ export async function getUserMembership() {
       throw new Error(error.message || 'An error occurred while retrieving user membership details');
     }
 }
-  
+ 
+export async function validateCouponCode(memberId: number, discountCode: string) {
+    try {
+        // Send GET request to the backend
+        const response = await fetch(`http://localhost:3333/api/membership/${memberId}/apply-coupon`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify({ couponCode: discountCode }),
+        });
+        // Parse response
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Invalid discount code, please try again');
+        }
+        return data; // Return the membership details for the authenticated user
+    } catch (error: any) {
+      throw new Error(error.message || 'An error occurred while applying coupon code');
+    }
+}
