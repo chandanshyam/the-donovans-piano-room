@@ -1,6 +1,6 @@
 "use client";
 import { navigationPages } from "@/utils/general";
-import Navbar1 from "@/components/navbars/Navbar1";
+import Navbar7 from "@/components/navbars/Navbar7";
 import YourCart from "./components/YourCart";
 import Image from "next/image";
 import Footer1 from "@/components/footers/Footer1";
@@ -9,7 +9,7 @@ export default function SignUp() {
 
   return (
   <div className="bg-[#F5E8FF] min-h-[100vh] w-full">
-    <Navbar1 page={navigationPages.cart}/>
+    <Navbar7 page={navigationPages.cart}/>
     <YourCart/>
     <FrequentlyPurchasedTogether/>
     <div className="relative">
