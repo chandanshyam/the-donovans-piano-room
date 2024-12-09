@@ -28,7 +28,7 @@ export default function Navbar6({ page }: { page: string }) {
           />
         </div>
 
-        <div className="p-y-50 absolute right-36 top-[0px] float-right flex h-[8.8vh] justify-center gap-16">
+        <div className="p-y-50 absolute right-28 top-[0px] float-right flex h-[8.8vh] justify-center gap-16">
           <Link
             className="relative flex items-center text-xl font-bold text-primary-purple hover:text-[#E98427] active:text-[#Da6a1c] 2xl:text-3xl"
             style={navigationPages.home === page ? highlightLink : {}}
