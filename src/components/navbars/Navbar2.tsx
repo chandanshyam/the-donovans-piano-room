@@ -23,7 +23,7 @@ export default function Navbar2() {
             alt="The Donovan's Piano Room"
           />
         </div>
-        <div className="p-y-50 absolute right-36 top-[0px] float-right flex h-[9.3vh] justify-center gap-16">
+        <div className=" absolute right-28 top-[0px] float-right flex h-[9.3vh] justify-center gap-16">
           <Link
             className="group relative flex h-full flex-col items-center justify-between text-xl font-bold text-primary-yellow-accent hover:text-[#E98427] active:text-[#Da6a1c] 2xl:text-3xl"
             href="/"

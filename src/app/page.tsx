@@ -10,13 +10,13 @@ export default function Home() {
     <>
       <Navbar2 />
       <div className="flex h-[100vh] w-full items-center justify-center bg-primary-purple">
-        <div className="relative z-10 flex h-[70vh] w-[84.7%] items-center justify-between">
-          <div className="w-[40%]">
-            <div className="w-[70%]">
-              <h1 className="font-montserrat text-2xl font-semibold text-white sm:text-4xl md:text-3xl lg:text-5xl xl:text-7xl 2xl:text-9xl 4xl:text-9xl">
+        <div className="relative z-10 flex max-sm:flex-col h-[70vh] w-[84.7%] items-center justify-between">
+          <div className=" w-full sm:w-[60%] md:w-[40%]">
+            <div className=" sm:w-[90%] md:w-[80%] md2:w-[70%] xl:w-[60%]">
+              <h1 className="font-montserrat text-2xl font-semibold text-white sm:text-5xl md2:text-6xl lg:text-7xl 2xl:text-9xl 4xl:text-9xl max-sm:text-center">
                 Ready for your music lesson?
               </h1>
-              <p className="mt-[5%] text-xs text-white sm:text-xs lg:text-base xl:text-xl">
+              <p className="mt-[5%] text-xs text-white sm:text-base md2:text-lg lg:text-xl max-sm:text-center">
                 Embark on a fun-filled musical adventure with The Donovan&apos;s
                 Piano Room. Unlock the joy of music with our tailored and
                 enriching music lessons!
@@ -31,23 +31,24 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="relative h-[100%] w-[60%]">
-            <Image className="h-full w-full" src="/home/map.svg" fill alt="" />
-            <Link href={"/bookstore"}>
-              <button className="absolute left-[11.5vw] top-[10.5vh] font-mountains font-bold text-green-accent hover:text-gray-200 sm:max-md:text-[16px] md:max-lg:text-[18px] lg:max-xl:text-[20px] xl:left-[11vw] xl:top-[10.5vh] xl:text-[28px] xl:max-2xl:text-[26px]">
-                Bookstore
-              </button>
-            </Link>
-            <Link href={"/about/why-choose-us"}>
-              <button className="absolute left-[28vw] top-[16vh] font-mountains font-bold text-green-accent hover:text-gray-200 sm:max-md:text-[16px] md:max-lg:text-[18px] lg:max-xl:text-[20px] xl:text-[28px] xl:max-2xl:text-[26px]">
-                About
-              </button>
-            </Link>
-            <Link href={"https://thedonovansmusicgames.netlify.app/"}>
-              <button className="absolute left-[19vw] top-[42vh] font-mountains font-bold text-green-accent  hover:text-gray-200 sm:max-md:text-[16px] md:max-lg:text-[18px] lg:max-xl:text-[20px] xl:text-[28px] xl:max-2xl:text-[26px]">
-                Games
-              </button>
-            </Link>
+          <div className="relative flex h-[100%] w-fit flex-col justify-center">
+            <Image height={600} width={600} src="/home/map.svg" alt="" />
+            <div className=" absolute bottom-10 right-5 sm:right-5 flex sm:bottom-28 md:bottom-8 md2:bottom-5 lg:bottom-0 xl:right-10">
+              <Image
+                className="pt-44 sm:h-[150px] sm:w-[200px]"
+                height={50}
+                width={150}
+                src="/home/little.svg"
+                alt=""
+              />
+              <Image
+                className=" sm:h-[160px] sm:w-[160px] md2:h-[210px] md2:w-[210px]"
+                height={100}
+                width={100}
+                src="/home/listen-music.svg"
+                alt=""
+              />
+            </div>
           </div>
         </div>
 
