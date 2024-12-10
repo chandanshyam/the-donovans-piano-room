@@ -28,11 +28,8 @@ export default function MembershipIncludes() {
         try {
             setIsLoading(true);
             const isValid = await validateCouponCode(membershipChoiceContent.id, discountCode);
-            if (isValid) {
-                setStatus("success");
-            } else {
-                setStatus("error");
-            }
+            console.log(isValid);
+            setStatus("success");
         } catch (error) {
             setStatus("error");
         } finally {

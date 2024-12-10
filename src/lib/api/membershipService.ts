@@ -42,7 +42,7 @@ export async function getUserMembership() {
     }
 }
  
-export async function validateCouponCode(memberId: number, discountCode: string) {
+export async function validateCouponCode(memberId: number, couponCode: string) {
     try {
         // Send GET request to the backend
         const response = await fetch(`http://localhost:3333/api/membership/${memberId}/apply-coupon`, {
@@ -50,7 +50,8 @@ export async function validateCouponCode(memberId: number, discountCode: string)
             headers: {
                 'Content-Type': 'application/json', 
             },
-            body: JSON.stringify({ couponCode: discountCode }),
+            credentials: 'include',
+            body: JSON.stringify({ couponCode }),
         });
         // Parse response
         const data = await response.json();
