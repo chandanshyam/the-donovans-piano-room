@@ -3,13 +3,13 @@ import React from "react";
 
 export default function WhoWeServeContent() {
   return (
-    <div className="flex h-full flex-row">
+    <div className="flex h-full flex-col max-lg:space-y-10 lg:flex-row">
       <div className="flex h-full flex-1 items-center justify-center">
-        <div className="w-[325px]">
-          <h2 className=" font-montserrat text-6xl font-semibold text-primary-brown 3xl:text-7xl 4xl:text-8xl">
-            Music for <br /> everybody
+        <div className=" w-[485px] lg:w-[325px]">
+          <h2 className=" font-montserrat text-6xl font-semibold text-primary-brown max-lg:text-center 3xl:text-7xl 4xl:text-8xl">
+            Music for <br className=" hidden lg:block" /> everybody
           </h2>
-          <p className="mt-4 text-2xl text-primary-gray">
+          <p className="mt-4 text-2xl text-primary-gray max-lg:text-center">
             Our program offers a well-rounded approach to musical growth, from
             learning to read music, to help preparing for college. We offer a
             range of programs to help children of any age and skill level
@@ -19,7 +19,7 @@ export default function WhoWeServeContent() {
       </div>
       <div className="flex flex-1 items-center justify-center">
         <div className="flex w-[90%] flex-col gap-6">
-          <div className="flex w-full items-center gap-[51px] rounded-3xl border-2 border-[#FCF0D8] bg-white px-12 py-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280]">
+          <div className="flex w-full items-center sm:gap-[51px] rounded-3xl border-2 border-[#FCF0D8] bg-white pl-12 pr-1 sm:px-12 py-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280] max-sm:flex-col">
             <div className="flex w-36 flex-col items-center gap-2">
               <Image
                 src="/about/who-we-serve/Icon1.svg"
@@ -40,7 +40,7 @@ export default function WhoWeServeContent() {
               </li>
             </ul>
           </div>
-          <div className="flex w-full items-center gap-[51px] rounded-3xl border-2 border-[#FCF0D8] bg-white px-12 py-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280]">
+          <div className="flex w-full items-center sm:gap-[51px] rounded-3xl border-2 border-[#FCF0D8] bg-white pl-12 pr-1 sm:px-12 py-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280] max-sm:flex-col">
             <div className="flex w-36 flex-col items-center gap-2">
               <Image
                 src="/about/who-we-serve/Icon2.svg"
@@ -61,7 +61,7 @@ export default function WhoWeServeContent() {
               </li>
             </ul>
           </div>
-          <div className="flex w-full items-center gap-[51px] rounded-3xl border-2 border-[#FCF0D8] bg-white px-12 py-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280]">
+          <div className="flex w-full items-center sm:gap-[51px] rounded-3xl border-2 border-[#FCF0D8] bg-white pl-12 pr-1 sm:px-12 py-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280] max-sm:flex-col">
             <div className="flex w-36 flex-col items-center gap-2">
               <Image
                 src="/about/who-we-serve/Icon3.svg"

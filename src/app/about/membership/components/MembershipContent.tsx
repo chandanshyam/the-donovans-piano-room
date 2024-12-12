@@ -8,9 +8,9 @@ export default function MembershipContent() {
       <h2 className="font-montserrat text-6xl font-[555] text-primary-brown 3xl:text-7xl 4xl:text-8xl">
         Enjoy unlimited access
       </h2>
-      <div className="flex w-full justify-evenly">
+      <div className=" w-full justify-items-center gap-y-10 grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 ">
         <div className=" relative w-fit">
-          <div className=" absolute flex h-[270px] w-[250px] flex-col rounded-3xl border-2 border-[#D8BCFD] bg-white p-6">
+          <div className=" absolute flex h-[270px] w-[220px] flex-col rounded-3xl border-2 border-[#D8BCFD] bg-white p-6 lg:w-[250px]">
             <h4 className="text-[26px] font-semibold">1 Day Access</h4>
             <ul className="mt-6">
               <li className="mt-2 flex gap-6">
@@ -51,16 +51,16 @@ export default function MembershipContent() {
               </li>
             </ul>
             <Link
-              className="mt-10 flex w-[100%] items-center justify-center self-center rounded-l-full rounded-r-full bg-primary-purple px-20 py-3 text-xl font-bold text-white"
+              className="px-auto mt-10 flex w-[100%] items-center justify-center self-center rounded-l-full rounded-r-full bg-primary-purple py-3 text-xl font-bold text-white"
               href=""
             >
               Choose plan
             </Link>
           </div>
-          <div className=" h-[280px] w-[250px] rounded-3xl bg-[#D8BCFD]"></div>
+          <div className=" h-[280px] w-[220px] rounded-3xl bg-[#D8BCFD] lg:w-[250px]"></div>
         </div>
         <div className=" relative w-fit">
-          <div className=" absolute flex h-[270px] w-[250px] flex-col rounded-3xl border-2 border-[#D8BCFD] bg-white p-6">
+          <div className=" absolute flex h-[270px] w-[220px] flex-col rounded-3xl border-2 border-[#D8BCFD] bg-white p-6 lg:w-[250px]">
             <h4 className="text-[26px] font-semibold">Monthly Access</h4>
             <ul className="mt-6">
               <li className="mt-2 flex gap-6">
@@ -101,16 +101,16 @@ export default function MembershipContent() {
               </li>
             </ul>
             <Link
-              className="mt-10 flex w-[100%] items-center justify-center self-center rounded-l-full rounded-r-full bg-primary-purple px-20 py-3 text-xl font-bold text-white"
+              className="px-auto mt-10 flex w-[100%] items-center justify-center self-center rounded-l-full rounded-r-full bg-primary-purple py-3 text-xl font-bold text-white"
               href=""
             >
               Choose plan
             </Link>
           </div>
-          <div className=" h-[280px] w-[250px] rounded-3xl bg-[#D8BCFD]"></div>
+          <div className=" h-[280px] w-[220px] rounded-3xl bg-[#D8BCFD] lg:w-[250px]"></div>
         </div>
         <div className=" relative w-fit">
-          <div className=" absolute flex h-[270px] w-[250px] flex-col rounded-3xl border-2 border-[#D8BCFD] bg-white p-6">
+          <div className=" absolute flex h-[270px] w-[220px] flex-col rounded-3xl border-2 border-[#D8BCFD] bg-white p-6 lg:w-[250px]">
             <h4 className="text-[26px] font-semibold">Yearly Access</h4>
             <ul className="mt-6">
               <li className="mt-2 flex gap-6">
@@ -151,13 +151,13 @@ export default function MembershipContent() {
               </li>
             </ul>
             <Link
-              className="mt-10 flex w-[100%] items-center justify-center self-center rounded-l-full rounded-r-full bg-primary-purple px-20 py-3 text-xl font-bold text-white"
+              className="px-auto mt-10 flex w-[100%] items-center justify-center self-center rounded-l-full rounded-r-full bg-primary-purple py-3 text-xl font-bold text-white"
               href=""
             >
               Choose plan
             </Link>
           </div>
-          <div className=" h-[280px] w-[250px] rounded-3xl bg-[#D8BCFD]"></div>
+          <div className=" h-[280px] w-[220px] rounded-3xl bg-[#D8BCFD] lg:w-[250px]"></div>
         </div>
       </div>
     </div>

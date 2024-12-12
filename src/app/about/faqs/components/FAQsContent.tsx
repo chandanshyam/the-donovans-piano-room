@@ -396,7 +396,7 @@ export default function FAQsContent() {
         <h4 className="text-center font-montserrat text-6xl font-semibold text-secondary-brown 3xl:text-7xl 4xl:text-8xl">
           Your questions, answered.
         </h4>
-        <div className="mt-6 flex w-full justify-between">
+        <div className="mt-6 flex flex-col lg:flex-row w-full justify-between">
           <div className="w-full select-none">
             {faqsList.map((item, i) => (
               <QuestionAndAnswer question={item.question} key={i}>

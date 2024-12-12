@@ -5,13 +5,13 @@ import Image from "next/image";
 
 export default function WhatsIncludedContent() {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-[5%] py-40">
-      <h2 className="text-6xl font-semibold text-primary-brown 3xl:text-7xl 4xl:text-8xl">
+    <div className="flex h-full flex-col items-center justify-center space-y-10">
+      <h2 className="text-6xl font-semibold text-primary-brown 3xl:text-7xl 4xl:text-8xl text-center">
         Unlock Potential with Scholarship Power!
       </h2>
       <AboutMembershipNav page={aboutScholarshipNavigation.whatsIncluded} />
-      <div className="mt-5 flex h-[full] w-full items-center justify-around p-5">
-        <div className="h-full w-[18%] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
+      <div className="mt-5 gap-y-10 grid grid-cols-1 [@media(min-width:470px)]:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 h-[full] w-full justify-items-center p-5">
+        <div className="h-full w-[170px] xl2:w-[250px] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
           <Image
             src="/about/scholarship/what-is-included/Icon1.svg"
             height={50}
@@ -27,7 +27,7 @@ export default function WhatsIncludedContent() {
             activities related to music learning.
           </p>
         </div>
-        <div className="h-full w-[18%] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
+        <div className="h-full  w-[170px] xl2:w-[250px] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
           <Image
             src="/about/scholarship/what-is-included/Icon2.svg"
             height={50}
@@ -43,7 +43,7 @@ export default function WhatsIncludedContent() {
             other resources provided.
           </p>
         </div>
-        <div className="h-full w-[18%] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
+        <div className="h-full  w-[170px] xl2:w-[250px] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
           <Image
             src="/about/scholarship/what-is-included/Icon3.svg"
             height={50}
@@ -58,7 +58,7 @@ export default function WhatsIncludedContent() {
             caters to beginners as well as those with prior musical experience.
           </p>
         </div>
-        <div className="h-full w-[18%] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
+        <div className="h-full  w-[170px] xl2:w-[250px] rounded-3xl border-4 border-[#FCF0D8] bg-white p-5">
           <Image
             src="/about/scholarship/what-is-included/Icon4.svg"
             height={50}

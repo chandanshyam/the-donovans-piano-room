@@ -9,7 +9,7 @@ export default function QuestionAndAnswer({
   children: React.ReactNode;
 }) {
   return (
-    <details className="group mb-7 w-[75%]">
+    <details className="group mb-7 w-full lg:w-[75%]">
       <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
         <span className="flex justify-between">
           <span className="text-[18px] font-bold text-primary-purple">
