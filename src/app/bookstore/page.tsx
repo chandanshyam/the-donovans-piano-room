@@ -7,7 +7,7 @@ import Image from "next/image";
 import AddedToCartPopup from "./components/AddedToCartPopup";
 export default function Page() {
   return (
-    <div className="min-h-screen flex flex-col justify-between w-full bg-[#F5E8FF]">
+    <div className="flex min-h-screen w-full flex-col justify-between bg-[#F5E8FF]">
       <Navbar1 page={navigationPages.bookstore} />
       <AddedToCartPopup />
       <Catalog />
