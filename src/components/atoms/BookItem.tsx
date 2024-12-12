@@ -25,7 +25,7 @@ export default function BookItem({ book }: { book: bookInterface }) {
     [book, addedCartItems],
   );
   return (
-    <div className="min-h-[40vh] w-[27.5%] rounded-2xl bg-[#FEF8EE] p-[1vw] shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280]">
+    <div className="min-h-[40vh] w-[250px] rounded-2xl bg-[#FEF8EE] px-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280]">
       <div className="flex w-full justify-between">
         <div className="flex items-center gap-[2%]">
           <div className="relative h-[2.5vh] w-[2.5vh]">
@@ -82,7 +82,7 @@ export default function BookItem({ book }: { book: bookInterface }) {
       ) : (
         <Button3
           text="Add to cart"
-          style={{ fontSize: "1vw" }}
+          style={{ fontSize: "12px" }}
           onClick={addToCart}
         />
       )}
