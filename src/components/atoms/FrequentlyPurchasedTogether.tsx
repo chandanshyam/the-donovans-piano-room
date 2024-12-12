@@ -10,7 +10,7 @@ export default function FrequentlyPurchasedTogether() {
         <div className="text-4xl font-semibold text-primary-brown max-sm:text-center">
           Frequently purchased together
         </div>
-        <div className="mt-[3vh] flex flex-col sm:flex-row justify-start items-center gap-[2vw]">
+        <div className="mt-[3vh] flex flex-col items-center justify-start gap-[2vw] sm:flex-row">
           {booksList.map((book, i) => (
             <BookItem key={i} book={book} />
           ))}

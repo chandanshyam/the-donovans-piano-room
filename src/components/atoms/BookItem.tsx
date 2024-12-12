@@ -25,8 +25,8 @@ export default function BookItem({ book }: { book: bookInterface }) {
     [book, addedCartItems],
   );
   return (
-    <div className="min-h-[40vh] w-[250px] rounded-2xl bg-[#FEF8EE] px-5 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280]">
-      <div className="flex w-full justify-between">
+    <div className="min-h-[40vh] w-[250px] rounded-2xl bg-[#FEF8EE] px-5 pb-3 shadow-[rgba(0,0,15,0.5)_2px_3px_4px_0px] shadow-[#AC7A2280]">
+      <div className="flex w-full justify-between pt-1">
         <div className="flex items-center gap-[2%]">
           <div className="relative h-[2.5vh] w-[2.5vh]">
             <Image src="/bookstore/dollar-icon.svg" fill alt="" />
@@ -43,7 +43,7 @@ export default function BookItem({ book }: { book: bookInterface }) {
         </p>
       </div>
       <div className="my-[5%] h-[0.2vw] bg-[#F8DCB0]"></div>
-      <div className="relative mb-[5%] h-[16vw] w-full">
+      <div className="relative mb-[5%] h-[200px] w-[225px]">
         <Image src={book.imageSrc} fill alt="" />
       </div>
       <p className="text-2xl font-semibold text-primary-brown 3xl:text-3xl 4xl:text-4xl">
