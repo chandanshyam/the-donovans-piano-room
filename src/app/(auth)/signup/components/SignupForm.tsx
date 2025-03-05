@@ -44,20 +44,12 @@ export default function SignupForm() {
         ...obj,
         fullName: fullName,
         email: email,
-<<<<<<< HEAD
-      }));
-      setSingupStep((prev) => prev + 1);
-    } else {
-      console.log("Failed");
-      alert(`Error: ${data}`);
-=======
       }))
       setSingupStep(prev => prev + 1);
     } 
     else{
       console.log("Failed")
       alert(`Error: ${data.message}`)
->>>>>>> b6c4057d7611edde87c84fc643dbada0c603d067
     }
     setDiabled(!disabled);
   };
