@@ -28,7 +28,7 @@ export default function Page() {
     }
      useEffect(() =>{
         fetchUserData()
-     }, []) 
+     }) 
   return (
     <AuthorizedWrapper2 pageTitle={authorizedWrapperTitles.Dashboard} openedLink={nav4leftLinks.dashboard}>
         <div className="relative flex h-[75vh] mt-[1.5%] overflow-y-auto z-[30] gap-[8%]">

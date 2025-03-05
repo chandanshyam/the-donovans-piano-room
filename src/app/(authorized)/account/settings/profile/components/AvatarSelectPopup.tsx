@@ -19,7 +19,7 @@ export default function AvatarSelectPopup({avatar, setAvatar, closeSelectingAvat
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  });
   const submitNewAvatar = () => {
     setProfile((prev: any) => {
       const newProfile = {...prev, imageSrc: selectedAvatar} 

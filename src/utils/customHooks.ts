@@ -6,5 +6,5 @@ export const WillMountEffect = (cb: any) => {
         if(didMount.current)return
         cb()
         didMount.current = true
-    }, [])
+    })
 }

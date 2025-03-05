@@ -25,7 +25,7 @@ export default function AccountForm() {
             }
         }
         getProfile();
-    }, [])
+    })
 
     const onChange = (e: any) => {
         setProfile({...profile, [e.target.name]: e.target.value})
