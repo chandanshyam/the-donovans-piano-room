@@ -13,8 +13,8 @@ export default function AllBooks() {
 
     const fetchBooks = async () => {
       try {
-        const response = await getAllBooks(); 
-
+        const response = await getAllBooks();
+        console.log(response);
         let booksList: [bookInterface[], bookInterface[], bookInterface[]] = [[], [], []];
 
         response.forEach((category: any) => {
@@ -33,13 +33,13 @@ export default function AllBooks() {
             };
 
             switch (mappedBook.type) {
-              case "Soft cover":
+              case "Soft Cover Books":
                 booksList[0].push(mappedBook);
                 break;
-              case "E-book":
+              case "E-Books":
                 booksList[1].push(mappedBook);
                 break;
-              case "Audio book":
+              case "Audio Books":
                 booksList[2].push(mappedBook);
                 break;
               default:
@@ -48,6 +48,7 @@ export default function AllBooks() {
           });
         });
 
+        console.log(booksList);
         setBooksList(booksList);
         setLoading(false);
       } catch (error) {
@@ -67,7 +68,7 @@ export default function AllBooks() {
       </div>
     );
   }
-  
+
   if (loading) {
     return (
       <div className="text-primary-purple font-medium text-lg">
@@ -75,7 +76,7 @@ export default function AllBooks() {
       </div>
     );
   }
-  
+
 
   return (
     <div className="min-h-[50.9vh] my-[6vh] flex justify-center">
