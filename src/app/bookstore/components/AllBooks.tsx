@@ -14,7 +14,6 @@ export default function AllBooks() {
     const fetchBooks = async () => {
       try {
         const response = await getAllBooks();
-        console.log(response);
         let booksList: [bookInterface[], bookInterface[], bookInterface[]] = [[], [], []];
 
         response.forEach((category: any) => {
@@ -48,7 +47,6 @@ export default function AllBooks() {
           });
         });
 
-        console.log(booksList);
         setBooksList(booksList);
         setLoading(false);
       } catch (error) {
