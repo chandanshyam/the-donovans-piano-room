@@ -1,62 +1,78 @@
+'use client';
 import { useEffect, useRef, useState } from 'react'
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined'
 import Button1 from '@/components/atoms/Button1'
 import Button2 from '@/components/atoms/Button2'
 import { profileAtom, singupStepAtom } from '@/utils/stores'
 import { useAtomValue, useSetAtom } from 'jotai'
-import {verify, refreshOTP} from '@/lib/api/authService'
+import { verify, refreshOTP } from '@/lib/api/authService'
 
-export default function EmailVerificationForm({setToIsVerified}: {setToIsVerified: any}) {
+export default function EmailVerificationForm({ setToIsVerified }: { setToIsVerified: any }) {
     const [verificationCode, setVerificationCode] = useState(Array(6).fill(''))
-    const {email} = useAtomValue(profileAtom);
-    const setSingupStep = useSetAtom(singupStepAtom)
+    const { email } = useAtomValue(profileAtom);
+    const setSingupStep = useSetAtom(singupStepAtom);
+
+    const [timeLeft, setTimeLeft] = useState(100)
+    const timeCounterRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+
+
     const handleChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
         const newVerificationCode = [...verificationCode]
         newVerificationCode[index] = event.target.value
         setVerificationCode(newVerificationCode)
     }
 
-    const handleVerify = async (e: any) =>{
+    const handleVerify = async (e: any) => {
         e.preventDefault()
         let otp = ""
         verificationCode.forEach((i) => otp += i.toString())
-        const {data, ok} = await verify(email, otp)
-
-        if (ok){
-            setSingupStep(prev => prev + 1)  
-            setToIsVerified()
+        if (otp === "") {
+            alert("Please Enter Validation token");
+            return;
         }
-        else{;
-            console.log(data)
-            alert(`Error: ${data.message}`)
+        const { data, ok, error } = await verify(email, otp)
+
+        if (ok) {
+            setSingupStep(prev => prev + 1);
+            setToIsVerified();
+        }
+        else {
+            setVerificationCode(Array(6).fill(''));
+            alert(`Error: ${data.status || error}`);
         }
     }
-    
-    const [timeLeft, setTimeLeft] = useState(600)
-    const timeCounterRef = useRef<NodeJS.Timeout | null>(null)
+
+
     useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft((prevTime) => {
-                if(prevTime-1 <= 0 && timeCounterRef.current ){
-                    clearInterval(timeCounterRef.current)
+        startTimer(100);
+        return () => {
+            clearInterval(timeCounterRef.current);
+        };
+    }, []);
+
+    const startTimer = (seconds = 10) => {
+        if (timeCounterRef.current) {
+            clearInterval(timeCounterRef.current);
+        }
+        setTimeLeft(seconds);
+        timeCounterRef.current = setInterval(() => {
+            setTimeLeft((prev) => {
+                if (prev - 1 == 0) {
+                    clearInterval(timeCounterRef.current);
+                    return 0;
                 }
-                return prevTime - 1
+                return prev - 1;
             });
         }, 1000);
-
-        timeCounterRef.current = timer
-        return () => {
-            clearInterval(timer);
-        };
-    }, [timeLeft]);
+    };
 
     const sendNewCode = async () => {
-        const {data, ok} = await refreshOTP(email)
-        if (ok){
-            setTimeLeft(600)
-        }
-        else{
-            alert(`Error: ${data.message}`)
+        startTimer(100);
+        const { data, ok } = await refreshOTP(email);
+        if (!ok) {
+            alert(`User data not found. Please register again.`);
+            setTimeLeft(0);
+            clearInterval(timeCounterRef.current);
         }
     }
 
@@ -86,9 +102,9 @@ export default function EmailVerificationForm({setToIsVerified}: {setToIsVerifie
                         />
                     ))}
                 </div>
-                <Button1 text="Verify" onClick={handleVerify}/>
+                <Button1 text="Verify" onClick={handleVerify} />
             </form>
-            <Button2 text='Send a new code' onClick={sendNewCode}/>
+            <Button2 text='Send a new code' onClick={sendNewCode} style={{ pointerEvents: `${timeLeft > 0 ? 'none' : 'initial'}` }} />
         </section>
     )
 }
