@@ -4,7 +4,6 @@ import Button4 from "@/components/atoms/Button4";
 import CatalogItems from "./CatalogItems";
 import { highlightBookAtom } from "@/utils/stores";
 import { useAtom } from "jotai";
-import { books } from "@/utils/general";
 import { addedCartItemsAtom, useCartOperations } from "@/store/cartStore";
 
 export default function Catalog() {

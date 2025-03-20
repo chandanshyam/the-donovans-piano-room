@@ -9,7 +9,7 @@ export default function PaymentCard() {
   const cartItemsPrice = useMemo(() => {
     let total = 0.00
     addedCartItems.forEach(item => {
-      total += parseFloat(item.price) * item.quantity
+      total += item.price * item.quantity
     })
     return total
   }, [addedCartItems])
