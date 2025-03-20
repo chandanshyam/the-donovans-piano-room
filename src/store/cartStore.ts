@@ -52,6 +52,10 @@ export function useCartOperations() {
     const clearCart = () => {
       setCartItems([]);
     };
+
+    const isAdded = (book:bookInterface)=>{
+      return cartItems.find((item) => item.id === book.id)
+    }
   
     return {
       cartItems,
@@ -59,5 +63,6 @@ export function useCartOperations() {
       removeFromCart,
       updateQuantity,
       clearCart,
+      isAdded,
     };
   }

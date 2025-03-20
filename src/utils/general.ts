@@ -1,4 +1,5 @@
 import AccountAndSettingsNav from "@/components/atoms/AccountAndSettingsNav"
+import { backendBookInterface, bookInterface } from "@/interfaces/bookInterface"
 
 export const aboutNavigationPages = {
     whyChooseUs: "why-choose-us",
@@ -118,4 +119,18 @@ export const dummyNoticationsData = [
         imageSrc: "/ToBeRemoved/notification-icons/profile.svg"
     }
 ]
+
+export const mapBackendToFrontend = (backendBook: backendBookInterface): bookInterface => {
+    return {
+        id: backendBook.id,
+        title: backendBook.title,
+        color: backendBook.color,
+        imageSrc: backendBook.picture,
+        coverImageSrc: backendBook.picture2,
+        titleColor: backendBook.tdprColor,
+        type: backendBook.comments,
+        price: backendBook.price,
+        description: backendBook.intro,
+    }
+}
 

@@ -10,6 +10,19 @@ export interface bookInterface {
     description: string,  
 }
 
+export interface backendBookInterface{
+    id: string,
+    title: string,
+    level: string,
+    price: number,
+    color: string,
+    tdprColor: string,
+    picture: string,
+    picture2: string,
+    intro: string,
+    comments: string,
+}
+
 export interface bookCartItemInterface {
     id: string,
     title: string,

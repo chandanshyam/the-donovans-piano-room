@@ -1,13 +1,13 @@
 import Footer1 from "@/components/footers/Footer1";
-import Navbar5 from "@/components/navbars/Navbar5";
 import { navigationPages } from "@/utils/general";
 import Image from "next/image";
 import BooksPreview from "./components/BooksPreview";
 import FrequentlyPurchasedTogether from "../../../components/atoms/FrequentlyPurchasedTogether";
+import Navbar1 from "@/components/navbars/Navbar1";
 export default function Page() {
   return (
     <div className="absolute min-h-[100vh] w-full bg-[#F5E8FF]">
-      <Navbar5 page={navigationPages.bookstore} />
+      <Navbar1 page={navigationPages.bookstore} />
       <div className="relative mt-[15vh] flex justify-center">
         <div className="relative z-10">
           <BooksPreview />
