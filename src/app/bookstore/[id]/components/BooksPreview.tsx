@@ -3,15 +3,26 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { bookInterface } from "@/interfaces/bookInterface";
 import Button3 from "@/components/atoms/Button3";
-import { books } from "@/utils/general";
+import { getBookById } from "@/lib/api/bookService";
+import { useParams } from "next/navigation";
 
 export default function BooksPreview() {
-  const [book, setBook] = useState<bookInterface>();
+  const [book, setBook] = useState<any>();
+  const params = useParams();
+  const fetchBook = async () => {
+
+    const bookId: string = params.id as string;
+    if (!bookId) {
+      console.error("No book ID found in URL");
+      return;
+    }
+    const response: any = await getBookById(bookId);
+    setBook(response);
+  }
   useEffect(() => {
-    const bookId = window.location.pathname.split("/").pop();
-    const book: bookInterface = books[Number(bookId)];
-    setBook(book);
+    fetchBook();
   }, []);
+
   return (
     book && (
       <div className=" flex flex-col-reverse sm:flex-row w-[full] rounded-2xl bg-[#ECD6FE] max-sm:pl-5 pr-5 md:px-20">
@@ -19,7 +30,7 @@ export default function BooksPreview() {
           <div className="sm:mb-20 mt-16 flex w-full justify-center">
             <div className="relative h-[400px] sm:h-[460px] w-[250px] py-x sm:p-5">
               <Image
-                src={book.coverImageSrc}
+                src={book.picture2}
                 fill
                 alt=""
                 className="rounded-xl"
@@ -34,7 +45,7 @@ export default function BooksPreview() {
             </div>
             <div className="flex justify-end">
               <div className="rounded-lg bg-white px-3 py-2 text-[#C89C2A]">
-                ${book.price.split(".")[0]}
+                ${book.price}
               </div>
             </div>
           </div>

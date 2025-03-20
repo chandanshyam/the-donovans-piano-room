@@ -1,6 +1,6 @@
 import Footer1 from "@/components/footers/Footer1";
 import Navbar5 from "@/components/navbars/Navbar5";
-import { books, navigationPages } from "@/utils/general";
+import { navigationPages } from "@/utils/general";
 import Image from "next/image";
 import BooksPreview from "./components/BooksPreview";
 import FrequentlyPurchasedTogether from "../../../components/atoms/FrequentlyPurchasedTogether";
