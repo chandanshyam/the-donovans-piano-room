@@ -16,11 +16,9 @@ const Games = () => {
     try {
       // First, try to get user with current access token
       let { data, ok } = await getUser();
-      console.log('Authentication response:', { ok, data });
 
       // If user is not authenticated, try refreshing the token
       if (!ok) {
-        console.log('Initial authentication failed, attempting token refresh');
         try {
           const refreshResult = await refreshToken();
           if (refreshResult.ok) {
@@ -28,9 +26,6 @@ const Games = () => {
             const retryResult = await getUser();
             ok = retryResult.ok;
             data = retryResult.data;
-            console.log('Authentication after token refresh:', { ok, data });
-          } else {
-            console.log('Token refresh failed');
           }
         } catch (refreshError) {
           console.error('Error refreshing token:', refreshError);
@@ -39,12 +34,10 @@ const Games = () => {
 
       // Final authentication check after potential token refresh
       if (ok) {
-        console.log('User authenticated, redirecting to games');
         setIsAuthenticated(true);
         router.replace("https://thedonovansmusicgames.netlify.app/");
         return;
       } else {
-        console.log('Authentication failed, showing membership info');
         setIsAuthenticated(false);
       }
     } catch (error) {
