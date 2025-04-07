@@ -57,13 +57,19 @@ export default function Navbar4Left({
           style={{ width: isNavOpen ? "80%" : "50%" }}
         >
           <div className="relative h-[8vh] w-[8vh]">
-            <Image src={profile.imageSrc} fill alt="" />
+            <Image src={profile.picture} fill alt="" />
           </div>
           <p
             className="mt-[1vh] text-center font-montserrat text-4xl font-bold text-white 3xl:text-5xl 4xl:text-6xl"
             style={{ textAlign: isNavOpen ? "start" : "center" }}
           >
-            {isNavOpen ? profile.fullName : profile.fullName[0]}
+            {
+              (() => {
+                const hasSpace = profile.fullName.indexOf(" ") !== -1;
+                const str = profile.fullName[0] + (hasSpace ? " " + profile.fullName[profile.fullName.indexOf(" ") + 1] : "");
+                return isNavOpen ? profile.fullName : str;
+              })()
+            }
           </p>
           <p
             className="mt-[0.5vh] text-xl font-bold text-white 3xl:text-2xl 4xl:text-3xl"
@@ -85,10 +91,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.dashboard
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -132,10 +138,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.lessons
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -173,16 +179,16 @@ export default function Navbar4Left({
                 )}
               </div>
             </Link>
-            <Link href="https://thedonovansmusicgames.netlify.app/">
+            <Link href="/games">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
                 style={
                   openedLink === nav4leftLinks.games
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -226,10 +232,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.musicTools
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -277,10 +283,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.planner
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -324,10 +330,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.contactUs
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
