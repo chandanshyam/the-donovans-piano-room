@@ -91,10 +91,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.dashboard
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -138,10 +138,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.lessons
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -179,16 +179,16 @@ export default function Navbar4Left({
                 )}
               </div>
             </Link>
-            <Link href="https://thedonovansmusicgames.netlify.app/">
+            <Link href="/games">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
                 style={
                   openedLink === nav4leftLinks.games
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -232,10 +232,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.musicTools
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -283,10 +283,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.planner
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
@@ -330,10 +330,10 @@ export default function Navbar4Left({
                 style={
                   openedLink === nav4leftLinks.contactUs
                     ? {
-                        borderColor: "white",
-                        backgroundColor: "#F6E892",
-                        ...linkDynamicSyle,
-                      }
+                      borderColor: "white",
+                      backgroundColor: "#F6E892",
+                      ...linkDynamicSyle,
+                    }
                     : linkDynamicSyle
                 }
               >
