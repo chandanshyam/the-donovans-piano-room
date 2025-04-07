@@ -11,9 +11,12 @@ export default function EmailVerificationForm({ setToIsVerified }: { setToIsVeri
     const [verificationCode, setVerificationCode] = useState(Array(6).fill(''))
     const { email } = useAtomValue(profileAtom);
     const setSingupStep = useSetAtom(singupStepAtom);
+    const [resendBtnTimer, setResendBtnTimeLeft] = useState(0)
+    const [loading, setLoading] = useState(false)
 
-    const [timeLeft, setTimeLeft] = useState(100)
+    const [timeLeft, setTimeLeft] = useState(600)
     const timeCounterRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+    const resendTimeCounterRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
 
     const handleChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +47,7 @@ export default function EmailVerificationForm({ setToIsVerified }: { setToIsVeri
 
 
     useEffect(() => {
-        startTimer(100);
+        startTimer(600);
         return () => {
             clearInterval(timeCounterRef.current);
         };
@@ -66,14 +69,37 @@ export default function EmailVerificationForm({ setToIsVerified }: { setToIsVeri
         }, 1000);
     };
 
+
+    const setResendBtnTimer = (seconds = 10) => {
+        if (resendTimeCounterRef.current) {
+            clearInterval(resendTimeCounterRef.current);
+        }
+        setResendBtnTimeLeft(seconds);
+        resendTimeCounterRef.current = setInterval(() => {
+            setResendBtnTimeLeft((prev) => {
+                if (prev - 1 == 0) {
+                    clearInterval(resendTimeCounterRef.current);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+    };
+
     const sendNewCode = async () => {
-        startTimer(100);
+        setLoading(true)
         const { data, ok } = await refreshOTP(email);
         if (!ok) {
             alert(`User data not found. Please register again.`);
             setTimeLeft(0);
             clearInterval(timeCounterRef.current);
         }
+        else{
+            startTimer(600);
+            setResendBtnTimer(30);
+        }
+        setLoading(false)
+     
     }
 
     return (
@@ -104,7 +130,27 @@ export default function EmailVerificationForm({ setToIsVerified }: { setToIsVeri
                 </div>
                 <Button1 text="Verify" onClick={handleVerify} />
             </form>
-            <Button2 text='Send a new code' onClick={sendNewCode} style={{ pointerEvents: `${timeLeft > 0 ? 'none' : 'initial'}` }} />
+            {loading?(
+                <Button2
+                    text={
+                    <div className="flex items-center justify-center gap-2">
+                        <div className="w-10 h-10 border-2 border-primary-yellow border-t-transparent rounded-full animate-spin" />
+                    </div>
+                    }
+                    disable={true}
+                    style={{ pointerEvents: 'none' }}
+                />
+            ): resendBtnTimer > 0 ? (
+                <Button2
+                    text={`Wait for ${resendBtnTimer}s to resend`}
+                    onClick={sendNewCode}
+                    disable={true}
+                    style={{ pointerEvents: 'none' }}
+                />
+                ): (
+                <Button2 text='Send a new code' onClick={sendNewCode} />
+                )
+            }
         </section>
     )
 }
