@@ -1,4 +1,3 @@
-import { navigationPages } from "@/utils/general";
 import Image from "next/image";
 import Link from "next/link";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -11,6 +10,7 @@ export default function Navbar2() {
       color: "#E98427",
     },
   };
+
 
   return (
     <>
@@ -40,9 +40,9 @@ export default function Navbar2() {
           </Link>
           <Link
             className="group relative flex h-full flex-col items-center justify-between text-xl font-bold text-primary-yellow-accent hover:text-[#E98427] active:text-[#Da6a1c] 2xl:text-3xl"
-            href="https://thedonovansmusicgames.netlify.app/"
+            href={"/games"}
           >
-            <p className=" m-auto px-1">GAMES</p>
+            <p className="m-auto px-1">GAMES</p>
             <div className="h-[4px] w-full rounded-t-lg bg-[#Da6a1c] opacity-0 transition-opacity duration-200 ease-in group-focus-within:opacity-100 group-hover:opacity-100 group-hover:transition-none group-hover:delay-[0ms] group-hover:duration-[800ms]"></div>
           </Link>
           <Link

@@ -1,10 +1,15 @@
 export const getUser = async () =>{
-    const response = await fetch('/api/user/', {
-        method: "GET", 
-        credentials: 'include'
-    })
-    const data = await response.json()
-    return {data, ok: response.ok}
+    try{
+        const response = await fetch('/api/user/', {
+            method: "GET", 
+            credentials: 'include'
+        })
+        const data = await response.json()
+        return {data, ok: response.ok}
+    }catch(err){
+        return {ok:false}
+    }
+    
 }
 
 export const updateUser = async (fullName: string, displayName: string, email: string, phoneNumber: string, pronouns: string, DOB: string) => {
