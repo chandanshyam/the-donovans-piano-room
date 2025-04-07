@@ -28,8 +28,6 @@ export default function EmailVerificationForm({ setToIsVerified }: { setToIsVeri
 
 
 
-    const {timeLeft, resetTimer} = useTimer(600)
-
     const {isValidOTP, error} = useOTPValidation(verificationCode.join(''))
 
     const handleVerify = async (e: any) => {
@@ -94,7 +92,7 @@ export default function EmailVerificationForm({ setToIsVerified }: { setToIsVeri
 
     const sendNewCode = async () => {
         setLoading(true)
-        const { data, ok } = await refreshOTP(email);
+        const { data, ok } = await requestNewOTP(email);
         if (!ok) {
             alert(`User data not found. Please register again.`);
             setTimeLeft(0);
