@@ -1,17 +1,46 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { bookInterface } from "@/interfaces/bookInterface";
+import { backendBookInterface, bookInterface } from "@/interfaces/bookInterface";
 import Button3 from "@/components/atoms/Button3";
-import { books } from "@/utils/general";
+import { getBookById } from "@/lib/api/bookService";
+import { useParams } from "next/navigation";
+import { useAtom, useSetAtom } from "jotai";
+import { addedCartItemAtom, addedCartItemsAtom, useCartOperations } from "@/store/cartStore";
+import { CircularProgress } from "@mui/material";
+import { mapBackendToFrontend } from "@/utils/general";
 
 export default function BooksPreview() {
   const [book, setBook] = useState<bookInterface>();
+  const [loading, setLoading] = useState(false);
+  const setAddedCartItem = useSetAtom(addedCartItemAtom);
+  const { addToCart, isAdded } = useCartOperations();
+  const params = useParams();
+  const fetchBook = async () => {
+
+    const bookId: string = params.id as string;
+    if (!bookId) {
+      console.error("No book ID found in URL");
+      return;
+    }
+    const response: backendBookInterface = await getBookById(bookId);
+    setBook(mapBackendToFrontend(response));
+  }
+
+  const handleAddToCart = () => {
+    if (!book) return;
+    setLoading(true);
+    setTimeout(() => {
+      addToCart(book, 1);
+      setLoading(false);
+      setAddedCartItem(book);
+    }, 2000);
+  }
+
   useEffect(() => {
-    const bookId = window.location.pathname.split("/").pop();
-    const book: bookInterface = books[Number(bookId)];
-    setBook(book);
+    fetchBook();
   }, []);
+
   return (
     book && (
       <div className=" flex flex-col-reverse sm:flex-row w-[full] rounded-2xl bg-[#ECD6FE] max-sm:pl-5 pr-5 md:px-20">
@@ -34,7 +63,7 @@ export default function BooksPreview() {
             </div>
             <div className="flex justify-end">
               <div className="rounded-lg bg-white px-3 py-2 text-[#C89C2A]">
-                ${book.price.split(".")[0]}
+                ${book.price}
               </div>
             </div>
           </div>
@@ -45,10 +74,26 @@ export default function BooksPreview() {
             This exciting new learning method will teach you the fundamentals of
             music theory and piano in a fun, digestible way!
           </div>
-          <Button3
-            text="Add to cart"
-            style={{ marginTop: "12px", marginBottom: "12px", width: "60%" }}
-          />
+
+          {loading ? (
+            <div className="flex w-full items-center justify-center gap-[2%] rounded-full bg-[#DDDADA] py-3 text-[1vw] font-semibold text-[#564E4E] 2xl:py-4 3xl:py-5">
+              <CircularProgress size={15} sx={{ color: "#564E4E" }} />
+              <p>Adding to cart</p>
+            </div>
+          ) : isAdded(book) ? (
+            <div className="flex w-full items-center justify-center gap-[2%] rounded-full border border-primary-purple py-3 text-[1vw] font-semibold text-primary-purple 2xl:py-4 3xl:py-5">
+              <div className="relative h-[1.1vw] w-[1.1vw]">
+                <Image src="/account/notifications/mark-as-read.svg" fill alt="" />
+              </div>
+              <p>Added to the cart</p>
+            </div>
+          ) : (
+            <Button3
+              text="Add to cart"
+              style={{ fontSize: "12px" }}
+              onClick={handleAddToCart}
+            />
+          )}
         </div>
       </div>
     )
