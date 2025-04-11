@@ -1,4 +1,8 @@
+import { profileAtom } from "@/utils/stores"
+import { useSetAtom } from "jotai"
+
 export const signup  = async (fullName: string, email: string, password: string) =>{
+    fullName = fullName.trim()
     const response = await fetch('/api/auth/signup', {
         method: 'POST', 
         headers: {
@@ -16,36 +20,46 @@ export const signup  = async (fullName: string, email: string, password: string)
 }
 
 export const verify = async (email: string, otp: string) => {
-    const response = await fetch('/api/auth/verify',{
-        method: 'POST', 
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                email,
-                otp
-            }
-        )
-    })
-    const data = await response.json()
-    return { data, ok: response.ok}
+    try{
+        const response = await fetch('/api/auth/verify',{
+            method: 'POST', 
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    email,
+                    otp
+                }
+            )
+        })
+        const data = await response.json()
+        return { data, ok: response.ok}
+    }catch(error:any){
+        console.error("Verification Failed:", error);
+        return {data:null, ok:false, error:error};
+    }
 }
 
 export const refreshOTP = async (email: string) => {
-    const response = await fetch('/api/auth/refresh-otp', {
-        method: 'POST', 
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(
-            {
-                email
-            }
-        )
-    })
+    try{
+        const response = await fetch('/api/auth/refresh-otp', {
+            method: 'POST', 
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                {
+                    email
+                }
+            )
+        })
     const data = await response.json()
     return {data, ok: response.ok}
+    }catch(error:any){
+        console.error("Request Failed:", error);
+        return {data:null, ok:false, error:error.message};
+    }
 }
 
 export const login = async (email: string, password: string) => {
