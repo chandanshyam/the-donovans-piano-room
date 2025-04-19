@@ -64,13 +64,8 @@ export default function Navbar5({ page }: { page: string }) {
               <p>BOOKSTORE</p>
              {navigationPages.bookstore === page && displayBorder()}
             </Link>
-
-            <Link 
-              className='text-primary-purple hover:text-[#E98427] active:text-[#Da6a1c] text-xl 2xl:text-3xl font-bold flex items-center relative' 
-              style={navigationPages.contact === page ? highlightLink: {}} 
-              href="#"
-              >
-              <p>CONTACT</p>
+            <Link className='text-primary-purple hover:text-[#E98427] active:text-[#Da6a1c] text-xl 2xl:text-3xl font-bold flex items-center relative' style={navigationPages.contact === page ? highlightLink: {}} href="/contact-us">
+             <p>CONTACT</p>
              {navigationPages.contact === page && displayBorder()}
             </Link>
 
