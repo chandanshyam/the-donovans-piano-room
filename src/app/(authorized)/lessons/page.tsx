@@ -6,6 +6,8 @@ import EbooksComponent from "./components/EbooksComponent";
 import VideosComponent from "./components/VideosComponent";
 import LiveSessionsComponent from "./components/LiveSessionsComponent";
 import { useState } from "react";
+import { Lesson } from "./components/Lesson";
+import LessonDetailPage from './[id]/page';
 
 interface NavItem {
     name: string;
@@ -22,7 +24,7 @@ const sections: NavItem[] = [
     {
         name: "Videos",
         id: "videos",
-        element: <VideosComponent />
+        element: null as any
     },
     {
         name: "Live sessions",
@@ -33,11 +35,20 @@ const sections: NavItem[] = [
 
 const LessonsPage = () => {
     const [activeSection, setActiveSection] = useState<string>("ebooks");
-    const section = sections.find(s => s.id === activeSection)?.element;
+    
+    const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+    const section =  
+        activeSection === "videos"
+        ? selectedVideoId
+            ? <LessonDetailPage id={selectedVideoId} onBack={() => setSelectedVideoId(null)} />
+            : < VideosComponent onSelectVideo={(vid: Lesson) => setSelectedVideoId(vid.id)} /> : sections.find(s => s.id === activeSection)?.element;
     return (
         <AuthorizedWrapper2 pageTitle={authorizedWrapperTitles.Lessons} openedLink={nav4leftLinks.lessons}>
             <div className="flex flex-col h-[75vh] mt-[20px] overflow-y-auto">
-                <NavBar items={sections} activeItem={activeSection} onItemClick={setActiveSection} />
+                <NavBar items={sections} activeItem={activeSection} onItemClick={id => {
+                    setActiveSection(id);
+                    setSelectedVideoId(null);      // reset if switching tabs
+                    }} />
                 {section}
             </div>
         </AuthorizedWrapper2>
