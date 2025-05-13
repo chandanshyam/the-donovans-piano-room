@@ -8,25 +8,26 @@ const ebooks = [
     {
         id: "1",
         title: "Book I",
-        url: "www.google.com",
+        url: process.env.NEXT_PUBLIC_EBOOK1,
         imgsrc: "/bookstore/books/book-1.svg"
     },
     {
         id: "2",
         title: "Book II",
-        url: "www.google.com",
+        url: process.env.NEXT_PUBLIC_EBOOK2,
         imgsrc: "/bookstore/books/book-2.svg"
     },
     {
         id: "3",
         title: "Book III",
-        url: "www.google.com",
+        url: process.env.NEXT_PUBLIC_EBOOK3,
         imgsrc: "/bookstore/books/book-3.svg"
     }
 ]
 function EbooksComponent() {
     const [selected, setSelected] = useState<number>(0);
     const [read, setRead] = useState(false);
+    console.log(process.env.EBOOK2);
     const handleRead = () => {
         console.log(selected);
         setRead(read => !read);
@@ -34,6 +35,7 @@ function EbooksComponent() {
     const handleBack = () => {
         setRead(read => !read);
     }
+    console.log(ebooks[selected].url, "something.............")
     return (
         <>
             <h2 className="text-4xl font-medium text-primary-brown mb-4">
@@ -81,7 +83,7 @@ function EbooksComponent() {
                     <button onClick={handleBack}>Go Back to All Books</button>
                     <ReaderPortal onClose={() => setRead(false)}>
                         <iframe
-                            src={`${ebooks[selected].url}`}
+                            src={ebooks[selected].url}
                             className="w-full min-h-[100vh] rounded-lg"
                             sandbox="allow-same-origin allow-scripts"
                             title={ebooks[selected].title}
