@@ -90,7 +90,6 @@ function EbooksComponent() {
                 </div>
             }
 
-
         </>
 
     )
