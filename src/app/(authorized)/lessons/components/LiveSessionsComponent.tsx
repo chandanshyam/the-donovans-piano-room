@@ -17,7 +17,8 @@ function LiveSessionsComponent() {
         {isSessionJoined ? (
             <div className="bg-white rounded-lg shadow-md p-4">
                 <iframe
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Placeholder URL
+                    //src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Placeholder URL
+                    src="rtmp://x.rtmp.youtube.com/live2"
                     title="Live Session"
                     className="w-full h-[400px] rounded-lg"
                     allowFullScreen>
