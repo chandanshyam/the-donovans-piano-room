@@ -27,15 +27,12 @@ const ebooks = [
 function EbooksComponent() {
     const [selected, setSelected] = useState<number>(0);
     const [read, setRead] = useState(false);
-    console.log(process.env.EBOOK2);
     const handleRead = () => {
-        console.log(selected);
         setRead(read => !read);
     }
     const handleBack = () => {
         setRead(read => !read);
     }
-    console.log(ebooks[selected].url, "something.............")
     return (
         <>
             <h2 className="text-4xl font-medium text-primary-brown mb-4">
@@ -57,7 +54,6 @@ function EbooksComponent() {
                 </div>
                 <div className="flex gap-8 p-10 bg-secondary-purple items-center rounded-lg">
                     <div className="min-w-[160px]">
-                        {/* cat */}
                         <Image src="/lessons/Cat.svg" alt="Cat" width={160} height={136} />
                     </div>
                     <div className="flex-[2]">
@@ -77,7 +73,6 @@ function EbooksComponent() {
 
                 </div>
             </div>
-            {/* books list */}
             {
                 read && <div>
                     <button onClick={handleBack}>Go Back to All Books</button>

@@ -30,7 +30,19 @@ export default function ReaderPortal({ onClose, children }: ReaderPortalProps) {
 
     return createPortal(
         <div className="reader-container">
-            <button className="exit-btn" onClick={onClose}>×</button>
+            <button
+                className="exit-btn"
+                style={{
+                    border: '1px solid black',
+                    padding: '8px 16px',
+                    borderRadius: '999px',
+                    background: 'white',
+                    cursor: 'pointer'
+                }}
+                onClick={onClose}
+            >
+                close
+            </button>
             {children}
         </div>,
         elRef.current as Element
