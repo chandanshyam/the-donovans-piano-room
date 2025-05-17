@@ -38,7 +38,7 @@ function LiveSessionsComponent() {
                             className="w-full h-40 object-cover rounded-lg"
                         />
                         <div className="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">
-                            Donovan's Piano Room
+                            Donovan&apos;s Piano Room
                         </div>
                     </div>
 
@@ -56,5 +56,5 @@ function LiveSessionsComponent() {
             )}
             </div>
         );
-    }
+    } 
 export default LiveSessionsComponent
