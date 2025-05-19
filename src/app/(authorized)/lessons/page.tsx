@@ -48,7 +48,7 @@ const LessonsPage = () => {
     const section =  
         activeSection === "videos"
         ? selectedVideoId
-            ? < VideoDetail lesson={selectedVideoId} 
+            ? < VideoDetail lesson={selectedVideoId} prevLesson={prevLesson} nextLesson={nextLesson}
             onBack={() => setSelectedVideoId(null)} onPrev={() => prevLesson && setSelectedVideoId(prevLesson)}
             onNext={() => nextLesson && setSelectedVideoId(nextLesson)}  />
             : < VideosComponent onSelectVideo={setSelectedVideoId} /> : sections.find(s => s.id === activeSection)?.element;

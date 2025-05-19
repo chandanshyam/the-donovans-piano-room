@@ -8,7 +8,8 @@ interface Props {
 
 export default function LessonCard({ lesson, onClick }: Props) {
   return (
-    <div className="bg-white border border-purple-300 rounded-xl shadow-sm overflow-hidden flex flex-col w-[350px] h-[380px]  ">
+    <div className="group bg-secondary-purple border-2 border-purple-300 rounded-2xl shadow-sm overflow-hidden flex flex-col w-[350px] h-[380px] hover:bg-primary-purple hover:border-primary-purple cursor-pointer ">
+      <div className={`bg-white min-h-[calc(100%-10px)] rounded-2xl hover:bg-secondary-purple flex flex-col p-8 `}>
       {/* Thumbnail */}
       <div className="relative">
         <Image
@@ -52,13 +53,14 @@ export default function LessonCard({ lesson, onClick }: Props) {
             </div>
           </div>
         </div>
-        <hr className="mt-4 border-purple-300" />
+        <hr className="mt-4 border-purple-300 group-hover:border-primary-purple cursor-pointer" />
         {/* Footer */}
         <div className="mt-4 flex justify-between text-m text-gray-600">
           <span>{lesson.duration}</span>
           <span>{lesson.meta}</span>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -3,12 +3,14 @@ import { Lesson } from './Lesson'
 
 interface VideoDetailProps {
   lesson: Lesson
+  prevLesson: Lesson | null
+  nextLesson: Lesson | null
   onBack: () => void
   onPrev: () => void
   onNext: () => void
 }
 
-export default function VideoDetail({ lesson, onBack, onPrev, onNext }: VideoDetailProps) {
+export default function VideoDetail({ lesson, prevLesson, nextLesson, onBack, onPrev, onNext }: VideoDetailProps) {
   return (
     <div className="bg-transparent text-[#3F3B3C] h-full">
       <div className=" mx-auto py-8 ">
@@ -21,13 +23,17 @@ export default function VideoDetail({ lesson, onBack, onPrev, onNext }: VideoDet
           ← All videos
         </button>
           <div className=" flex space-x-4">
+              {prevLesson && (
                 <button  onClick={onPrev}>
                     <img src='/lessons/Videos/Left Chevron Arrow.svg'/>
                 </button>
-                <span className="text-[#3F3B3C] mt-2 " >{lesson.title}</span>
+             )}
+              <span className="text-[#3F3B3C] mt-2 " >{lesson.title}</span>
+              {nextLesson && (
                 <button onClick={onNext}>
-                <img src='/lessons/Videos/Right Chevron Arrow.svg'/>
+                  <img src='/lessons/Videos/Right Chevron Arrow.svg'/>
                 </button>
+              )}
           </div>
           <div>{/* space for adding transcript function*/}</div>
           </div>
