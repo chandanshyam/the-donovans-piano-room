@@ -63,7 +63,7 @@ function LiveSessionsComponent() {
                             className="w-full h-48 object-cover rounded-lg"
                         />
                         <div className="absolute top-4 left-4 bg-white text-black text-lg font-semibold px-4 py-2 rounded-full">
-                            Donovan's Piano Room
+                            Donovan&apos;s Piano Room
                         </div>
                     </div>
 
