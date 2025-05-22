@@ -6,6 +6,8 @@ import EbooksComponent from "./components/EbooksComponent";
 import VideosComponent from "./components/VideosComponent";
 import LiveSessionsComponent from "./components/LiveSessionsComponent";
 import { useState } from "react";
+import { lessons, Lesson } from "./components/Lesson";
+import VideoDetail from "./components/VideoDetailPage";
 
 interface NavItem {
     name: string;
@@ -22,7 +24,7 @@ const sections: NavItem[] = [
     {
         name: "Videos",
         id: "videos",
-        element: <VideosComponent />
+        element: null as any
     },
     {
         name: "Live sessions",
@@ -33,11 +35,33 @@ const sections: NavItem[] = [
 
 const LessonsPage = () => {
     const [activeSection, setActiveSection] = useState<string>("ebooks");
-    const section = sections.find(s => s.id === activeSection)?.element;
+    
+    // logic for lessons navigation setting
+    const [selectedVideoId, setSelectedVideoId] = useState<Lesson | null>(null);
+    const idx = selectedVideoId
+        ? lessons.findIndex((l) => l.id === selectedVideoId.id)
+        : -1
+    const prevLesson = idx > 0 ? lessons[idx - 1] : null
+    const nextLesson = idx >= 0 && idx < lessons.length - 1 ? lessons[idx + 1] : null
+    
+    // Set section to video list if videoId is null, if not -> redirect to VideoDetails
+    const section =  
+        activeSection === "videos"
+        ? selectedVideoId
+            ? < VideoDetail lesson={selectedVideoId} prevLesson={prevLesson} nextLesson={nextLesson}
+            onBack={() => setSelectedVideoId(null)} onPrev={() => prevLesson && setSelectedVideoId(prevLesson)}
+            onNext={() => nextLesson && setSelectedVideoId(nextLesson)}  />
+            : < VideosComponent onSelectVideo={setSelectedVideoId} /> : sections.find(s => s.id === activeSection)?.element;
+    
+    // Main Component
+    
     return (
         <AuthorizedWrapper2 pageTitle={authorizedWrapperTitles.Lessons} openedLink={nav4leftLinks.lessons}>
             <div className="flex flex-col h-[75vh] mt-[20px] overflow-y-auto">
-                <NavBar items={sections} activeItem={activeSection} onItemClick={setActiveSection} />
+                <NavBar items={sections} activeItem={activeSection} onItemClick={id => {
+                    setActiveSection(id);
+                    setSelectedVideoId(null);      // reset if switching tabs
+                    }} />
                 {section}
             </div>
         </AuthorizedWrapper2>
