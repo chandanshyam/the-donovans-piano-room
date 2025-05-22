@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Lesson } from './Lesson';
+import Card from '@/components/atoms/Card';
 
 interface Props {
   lesson: Lesson;
@@ -8,14 +9,13 @@ interface Props {
 
 export default function LessonCard({ lesson, onClick }: Props) {
   return (
-    <div className="bg-white border border-purple-300 rounded-xl shadow-sm overflow-hidden flex flex-col w-[350px] h-[380px]  ">
-      {/* Thumbnail */}
+    <Card width={350} height={380}>
       <div className="relative">
         <Image
           className='justify-self-center rounded-xl mt-4'
           src={lesson.thumbnailUrl}
-          alt = {lesson.title}
-          height ='180' width='318' 
+          alt={lesson.title}
+          height='180' width='318'
 
         />
       </div>
@@ -27,18 +27,18 @@ export default function LessonCard({ lesson, onClick }: Props) {
         </div>
         <div className='flex flex-row justify-between'>
           <div>
-            <h4 className="mt-2 text-gray-900 text-lg text-wrap">{lesson.description}</h4>
+            <h4 className="mt-2 text-gray-900 text-lg text-wrap" title={lesson.description}>{lesson.description}</h4>
           </div>
           {/* Arrow button & divider */}
           <div className="mt-4">
             <div>
-            {/* Arrow button with layered SVGs */}
+              {/* Arrow button with layered SVGs */}
               <div className="mt-4">
                 <div className="relative w-10 h-10 ">
                   <button onClick={() => onClick?.(lesson)}>
                     {/* Purple circle background */}
                     <img
-                        src="/lessons/Videos/Purple Circle Button.svg"
+                      src="/lessons/Videos/Purple Circle Button.svg"
                     />
                     {/* White chevron centered */}
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -59,6 +59,6 @@ export default function LessonCard({ lesson, onClick }: Props) {
           <span>{lesson.meta}</span>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
