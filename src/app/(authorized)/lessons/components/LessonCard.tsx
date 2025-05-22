@@ -52,7 +52,7 @@ export default function LessonCard({ lesson, onClick }: Props) {
             </div>
           </div>
         </div>
-        <hr className="mt-4 border-purple-300" />
+        <hr className="mt-4 border-purple-300 group-hover:border-primary-purple cursor-pointer" />
         {/* Footer */}
         <div className="mt-4 flex justify-between text-m text-gray-600">
           <span>{lesson.duration}</span>
