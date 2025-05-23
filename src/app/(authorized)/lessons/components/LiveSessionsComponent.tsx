@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; 
 
 function LiveSessionsComponent() {
-    const [isSessionJoined, setIsSessionJoined] = useState(false); // Reset on component mount
-    const [isStreamActive, setIsStreamActive] = useState(false); // Initialize as false
+    const [isSessionJoined, setIsSessionJoined] = useState(false);
+    const [isStreamActive, setIsStreamActive] = useState(false);
 
-    // Logic to determine if stream is active
     const isCurrentlyActive = () => {
-        const now = new Date(); // Use current time (May 21, 2025, 06:48 PM EDT)
-        //const now = new Date('2025-06-16T10:30:00');
+        const now = new Date();
         const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
         const hour = now.getHours();
         return (day === 1 || day === 4) && hour >= 9 && hour < 17; // Active Mon/Thu, 9 AM - 5 PM EDT
@@ -18,21 +16,22 @@ function LiveSessionsComponent() {
         sessionStorage.setItem('sessionJoined', 'true');
     };
 
-    // Update stream status on mount and clear session storage
     useEffect(() => {
+        // Reset sessionJoined on page load to ensure video is not shown after refresh
         sessionStorage.removeItem('sessionJoined');
         setIsSessionJoined(false);
         setIsStreamActive(isCurrentlyActive());
     }, []);
 
     return (
-        <div className="flex flex-col items-start p-2 bg-[#F5E6FF] h-screen">
-            <h2 className="text-4xl font-medium text-[#8B4513] mb-2">
-                Live Session
+        <div className="flex flex-col items-start p-4 bg-[#F5E6FF]">
+            <h2 className="text-4xl font-medium text-[#8B4513] mb-6">
+                Live session
             </h2>
 
-            {isSessionJoined && isStreamActive ? (
-                <div className="bg-white rounded-xl shadow-lg p-2 border-b-4 border-[#8B4513] w-full max-w-6xl flex flex-col">
+            {isSessionJoined ? (
+                /*<div className="bg-white rounded-xl shadow-lg p-2 border-b-4 w-full max-w-6xl flex flex-col">*/
+                <div className="bg-white rounded-xl shadow-lg p-2 border-b-4 w-full max-w-6xl flex flex-col">
                     <iframe
                         src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/-MAPZS1mP6U"}
                         title="Live Session"
@@ -41,48 +40,49 @@ function LiveSessionsComponent() {
                     ></iframe>
                 </div>
             ) : (
-                <div className="bg-white rounded-xl shadow-lg p-6 max-w-md border-b-4 border-[#8B4513]">
-                    {isStreamActive && (
-                        <div className="flex justify-between items-center mb-6">
-                            <span className="flex items-center text-lg text-pink-500 font-semibold">
-                                <span className="w-3 h-3 bg-pink-500 rounded-full mr-3"></span>
-                                Session in progress
+                <div className="bg-white rounded-x4 shadow-lg p-8 w-full max-w-lg border-b-8 border-2 rounded-2xl border-secondary-purple">
+                    <div className="flex justify-between items-center mb-6">
+                        {isStreamActive ? (
+                            <>
+                                <span className="flex items-center text-lg text-pink-500 font-semibold">
+                                    <span className="w-3 h-3 bg-pink-500 rounded-full mr-2"></span>
+                                    Session in progress
+                                </span>
+                                <span className="text-sm text-gray-600 bg-[#FFF5E1] px-3 py-1 rounded-full">
+                                    Every Monday and Thursday
+                                </span>
+                            </>
+                        ) : (
+                            <span className="text-lg text-gray-500 font-semibold">
                             </span>
-                            <span className="text-lg text-gray-600 bg-[#FFF5E1] px-4 py-2 rounded-full">
-                                Every Monday & Thursday
-                            </span>
-                        </div>
-                    )}
-                    {isStreamActive && <hr className="border-t-2 border-gray-300 mb-6" />}
-
-                    <div className="relative">
+                        )}
+                    </div>
+                    <div className="relative mb-4">
                         <img
-                            //src="https://via.placeholder.com/400x200?text=Donovan's+Piano+Room"
                             src="/journal-book/logo.svg"
-                            alt="Session Preview"
+                            alt="Piano Room"
                             className="w-full h-48 object-cover rounded-lg"
                         />
-                        <div className="absolute top-4 left-4 bg-white text-black text-lg font-semibold px-4 py-2 rounded-full">
-                            Donovan&apos;s Piano Room
+                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
+                            {/*icon or text overlay can be added here if needed*/ }
                         </div>
                     </div>
-
-                    <h3 className="text-2xl font-semibold mt-6 text-gray-800">
-                        Lesson 2 - The Eight Note
+                    <h3 className="text-xl font-semibold mt-2 text-gray-800">
+                        Lesson 2 - The eighth note
                     </h3>
-                    <p className="text-lg text-gray-500 mt-4">
-                        Donec sed tortor ut justo consectetur venenatis. Curabitur sed enim in diam porta congue...
+                    <p className="text-base text-gray-500 mt-2">
+                        Donec sed tortor ut justo consectetur venenatis. Curabitur sed enim in diam porta congue.
                     </p>
                     <button
                         onClick={handleJoinSession}
-                        className="mt-8 w-full bg-purple-700 text-white text-xl font-semibold py-3 rounded-full hover:bg-purple-800 transition duration-300 ease-in-out"
+                        className="mt-6 w-1/2 mx-auto bg-purple-700 text-white text-lg font-semibold py-2 rounded-full hover:bg-purple-800 transition duration-300 ease-in-out"
+                        disabled={isSessionJoined}
                     >
-                        Join Session
+                        {isSessionJoined ? 'Joined' : 'Join session'}
                     </button>
                 </div>
             )}
         </div>
     );
 }
-
 export default LiveSessionsComponent;
