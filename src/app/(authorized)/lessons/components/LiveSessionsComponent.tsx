@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'; 
+import Card from '@/components/atoms/Card';
 
 function LiveSessionsComponent() {
     const [isSessionJoined, setIsSessionJoined] = useState(false);
     const [isStreamActive, setIsStreamActive] = useState(false);
 
     const isCurrentlyActive = () => {
-        const now = new Date();
+        //const now = new Date();
+        const now = new Date('2025-05-26T10:00:00-04:00');
         const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
         const hour = now.getHours();
         return (day === 1 || day === 4) && hour >= 9 && hour < 17; // Active Mon/Thu, 9 AM - 5 PM EDT
@@ -53,23 +55,27 @@ function LiveSessionsComponent() {
                 </div>
 
             ) : (
-                <div className="bg-white rounded-x4 shadow-lg p-8 w-full max-w-lg border-b-8 border-2 rounded-2xl border-secondary-purple">
-                    <div className="flex justify-between items-center mb-6">
-                        {isStreamActive ? (
-                            <>
+
+                <Card width={487} height={428}>
+                    {isStreamActive ? (
+                        <>
+                            <div className="flex items-center justify-end text-lg text-pink-500 font-semibold mb-4 px-4">
+                                {/*
                                 <span className="flex items-center text-lg text-pink-500 font-semibold">
-                                    <span className="w-3 h-3 bg-pink-500 rounded-full mr-2"></span>
+                                <span className="w-3 h-3 bg-pink-500 rounded-full mr-2"></span>
                                     Session in progress
                                 </span>
+                                */}
                                 <span className="text-sm text-gray-600 bg-[#FFF5E1] px-3 py-1 rounded-full">
                                     Every Monday and Thursday
                                 </span>
-                            </>
-                        ) : (
+                            </div>
+                        </>
+                    ) : (
                             <span className="text-lg text-gray-500 font-semibold">
                             </span>
-                        )}
-                    </div>
+                    )}
+
                     <div className="relative mb-4">
                         <img
                             src="/journal-book/logo.svg"
@@ -88,12 +94,12 @@ function LiveSessionsComponent() {
                     </p>
                     <button
                         onClick={handleJoinSession}
-                        className="mt-6 w-1/2 mx-auto bg-purple-700 text-white text-lg font-semibold py-2 rounded-full hover:bg-purple-800 transition duration-300 ease-in-out"
+                        className="mt-6 w-1/4 bg-purple-700 text-white text-lg font-semibold py-2 px-4 rounded-full hover:bg-purple-800 transition duration-300 ease-in-out"
                         disabled={isSessionJoined}
                     >
                         {isSessionJoined ? 'Joined' : 'Join session'}
                     </button>
-                </div>
+                </Card>
             )}
         </div>
     );
