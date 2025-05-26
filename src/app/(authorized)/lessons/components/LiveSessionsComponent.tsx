@@ -30,7 +30,7 @@ function LiveSessionsComponent() {
             </h2>
 
             {isSessionJoined ? (
-                /*<div className="bg-white rounded-xl shadow-lg p-2 border-b-4 w-full max-w-6xl flex flex-col">*/
+                /*<div className="bg-white rounded-xl shadow-lg p-2 border-b-4 w-full max-w-6xl flex flex-col">
                 <div className="bg-white rounded-xl shadow-lg p-2 border-b-4 w-full max-w-6xl flex flex-col">
                     <iframe
                         src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/-MAPZS1mP6U"}
@@ -38,7 +38,20 @@ function LiveSessionsComponent() {
                         className="w-full h-[450px] rounded-lg"
                         allowFullScreen
                     ></iframe>
+                </div>*/
+
+                <div className="bg-secondary-purple rounded-2xl shadow-lg p-2 border-2 border-secondary-purple cursor-pointer w-full flex flex-col">
+                    <div className="relative w-full h-0 pb-[40%] rounded-lg overflow-hidden">
+                        <iframe
+                            //src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/-MAPZS1mP6U"}
+                            src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/tRScKDcYxlk"}
+                            title="Live Session"
+                            className="absolute top-0 left-0 w-full h-full"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
                 </div>
+
             ) : (
                 <div className="bg-white rounded-x4 shadow-lg p-8 w-full max-w-lg border-b-8 border-2 rounded-2xl border-secondary-purple">
                     <div className="flex justify-between items-center mb-6">
