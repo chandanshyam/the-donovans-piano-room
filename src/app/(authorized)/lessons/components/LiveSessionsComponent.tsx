@@ -45,8 +45,8 @@ function LiveSessionsComponent() {
                 <div className="bg-secondary-purple rounded-2xl shadow-lg p-2 border-2 border-secondary-purple cursor-pointer w-full flex flex-col">
                     <div className="relative w-full h-0 pb-[40%] rounded-lg overflow-hidden">
                         <iframe
-                            //src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/-MAPZS1mP6U"}
-                            src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/tRScKDcYxlk"}
+                            src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/-MAPZS1mP6U"}
+                            //src={process.env.REACT_APP_LIVE_STREAM_URL || "https://www.youtube.com/embed/tRScKDcYxlk"}
                             title="Live Session"
                             className="absolute top-0 left-0 w-full h-full"
                             allowFullScreen
