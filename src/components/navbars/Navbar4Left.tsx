@@ -1,4 +1,6 @@
+import { logout } from "@/lib/api/authService";
 import { IsNavOpenAtom, nav4leftLinks, profileAtom } from "@/utils/stores";
+import { Skeleton } from "@mui/material";
 import { useAtom, useAtomValue } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +14,11 @@ export default function Navbar4Left({
   const profile = useAtomValue(profileAtom);
   const linkDynamicSyle = { justifyContent: isNavOpen ? "start" : "center" };
   const toggleOpenNav = () => setIsNavOpen((state) => !state);
+  const handleLogout = async () => {
+    const response = await logout();
+    window.location.replace('/');
+  }
+
   return (
     <div
       className="relative z-50 h-[100vh]"
@@ -56,34 +63,43 @@ export default function Navbar4Left({
           className="mt-[5vh] h-[80%]"
           style={{ width: isNavOpen ? "80%" : "50%" }}
         >
-          <div className="relative h-[8vh] w-[8vh]">
-            <Image src={profile.picture} fill alt="" />
-          </div>
-          <p
-            className="mt-[1vh] text-center font-montserrat text-4xl font-bold text-white 3xl:text-5xl 4xl:text-6xl"
-            style={{ textAlign: isNavOpen ? "start" : "center" }}
-          >
-            {
-              (() => {
-                const hasSpace = profile.fullName.indexOf(" ") !== -1;
-                const str = profile.fullName[0] + (hasSpace ? " " + profile.fullName[profile.fullName.indexOf(" ") + 1] : "");
-                return isNavOpen ? profile.fullName : str;
-              })()
-            }
-          </p>
-          <p
-            className="mt-[0.5vh] text-xl font-bold text-white 3xl:text-2xl 4xl:text-3xl"
-            style={{ textAlign: isNavOpen ? "start" : "center" }}
-          >
-            {isNavOpen ? profile.pronouns : ""}
-            <Link
-              href="/account/settings/profile"
-              className="text-primary-yellow-accent underline"
-              style={{ marginLeft: isNavOpen ? ".5vw" : "" }}
-            >
-              Edit
-            </Link>
-          </p>
+          {
+            profile.id ? <>
+              <div className="relative h-[8vh] w-[8vh]">
+                <Image src={profile.picture} fill alt="" />
+              </div>
+              <p
+                className="mt-[1vh] text-center font-montserrat text-4xl font-bold text-white 3xl:text-5xl 4xl:text-6xl"
+                style={{ textAlign: isNavOpen ? "start" : "center" }}
+              >
+                {
+                  (() => {
+                    const hasSpace = profile.fullName.indexOf(" ") !== -1;
+                    const str = profile.fullName[0] + (hasSpace ? " " + profile.fullName[profile.fullName.indexOf(" ") + 1] : "");
+                    return isNavOpen ? profile.fullName : str;
+                  })()
+                }
+              </p>
+              <p
+                className="mt-[0.5vh] text-xl font-bold text-white 3xl:text-2xl 4xl:text-3xl"
+                style={{ textAlign: isNavOpen ? "start" : "center" }}
+              >
+                {isNavOpen ? profile.pronouns : ""}
+                <Link
+                  href="/account/settings/profile"
+                  className="text-primary-yellow-accent underline"
+                  style={{ marginLeft: isNavOpen ? ".5vw" : "" }}
+                >
+                  Edit
+                </Link>
+              </p></> : <>
+              <Skeleton variant="rectangular" width={52} height={52} />
+              <Skeleton variant="rectangular" width={40} height={10} className="mt-[1vh]" />
+              <Skeleton variant="rectangular" width={40} height={10} className="mt-[0.5vh]" />
+            </>
+          }
+
+
           <div className="mt-[1vh] flex flex-col gap-[1vh]">
             <Link href="/dashboard">
               <div
@@ -132,7 +148,7 @@ export default function Navbar4Left({
                 )}
               </div>
             </Link>
-            <Link href="">
+            <Link href="/lessons">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
                 style={
@@ -324,7 +340,7 @@ export default function Navbar4Left({
                 )}
               </div>
             </Link>
-            <Link href="">
+            <Link href="/contact-page">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
                 style={
@@ -376,7 +392,7 @@ export default function Navbar4Left({
       </div>
       <div className="flex h-[9vh] w-full items-center justify-center rounded-br-[20px] bg-[#601d86]">
         <div style={{ width: isNavOpen ? "80%" : "50%" }}>
-          <button className="flex rounded-full border border-primary-yellow-accent px-8 py-1 text-[12px] font-semibold text-primary-yellow-accent 2xl:text-2xl 4xl:text-3xl">
+          <button className="flex rounded-full border border-primary-yellow-accent px-8 py-1 text-[12px] font-semibold text-primary-yellow-accent 2xl:text-2xl 4xl:text-3xl" onClick={handleLogout}>
             {isNavOpen && (
               <p className="mr-[.3vw] mt-1 text-center text-primary-yellow-accent 3xl:mt-[4px] 3xl:text-2xl 4xl:text-3xl">
                 Log out
