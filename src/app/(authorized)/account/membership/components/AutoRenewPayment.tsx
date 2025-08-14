@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function AutoRenewPayment() {
   const formattedDate = new Date().toLocaleDateString("en-US", {
     month: "2-digit",
@@ -16,6 +18,54 @@ export default function AutoRenewPayment() {
         auto renewed on <span className="font-semibold text-tertiary-orange">{formattedDate}</span>.
       </p>
 
+      {/* Payment method card */}
+      <div className="rounded-2xl border border-[#F6E2D1] bg-[#FFEBD5] p-4 shadow-custom">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="relative flex h-[38px] w-[58px] items-center justify-center rounded-xl border border-[#CCCCCC] bg-white">
+              <Image
+                src="/memberships/Auto Renew Payment/Visa.svg"
+                width={45}
+                height={14}
+                alt="Visa"
+                priority
+              />
+            </div>
+            <div className="flex flex-col">
+              <div className="text-lg font-semibold text-primary-brown leading-6">
+                Ending in <span className="text-tertiary-orange">1234</span>
+              </div>
+              <div className="text-sm text-primary-gray">Expires 02/28</div>
+            </div>
+          </div>
+
+          <button type="button" className="inline-flex items-center gap-2 text-primary-purple">
+            <span className="text-sm font-medium">Edit</span>
+            <Image
+              src="/memberships/Auto Renew Payment/pencil-outline.svg"
+              width={14}
+              height={14}
+              alt="Edit payment method"
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="flex w-full flex-col items-center gap-2 md:flex-row">
+        <button
+          type="button"
+          className="w-full rounded-full bg-primary-purple px-6 py-3 text-center font-medium text-white md:flex-1"
+        >
+          Add payment method
+        </button>
+        <button
+          type="button"
+          className="w-full rounded-full border border-primary-purple px-6 py-3 text-center font-medium text-primary-purple md:flex-1"
+        >
+          Cancel auto pay
+        </button>
+      </div>
     </div>
   );
 }
