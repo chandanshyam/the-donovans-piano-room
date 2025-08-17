@@ -24,7 +24,7 @@ export default function Page() {
     >
       <AccountAndSettingsNav currentPage={settingsNavigation.membership} />
 
-        <div className="mx-auto mt-4 w-full max-w-[1112px]">
+        <div className="mt-4 w-full max-w-[1112px]">
         <h1 className="mt-[3vh] font-montserrat text-5xl font-medium text-primary-brown 3xl:text-6xl 4xl:text-7xl">
           Your membership
           </h1>
