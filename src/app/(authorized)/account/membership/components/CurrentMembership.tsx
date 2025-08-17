@@ -137,7 +137,7 @@ export default function CurrentMembership() {
           {showMoreBenefits && (
             <div className="px-4 pb-6">
               <div className="p-1">
-                <ul className="list-disc list-inside space-y-2 text-2xl">
+                <ul className="list-disc list-inside text-2xl">
                   {moreBenefits.map((benefit) => (
                     <li key={benefit}>
                       {benefit}
@@ -152,7 +152,7 @@ export default function CurrentMembership() {
       </div>
 
       {/* Actions */}
-      <div className="mt-6 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
+      <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
           <button
             type="button"
             className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
