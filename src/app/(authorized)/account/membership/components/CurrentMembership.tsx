@@ -1,6 +1,22 @@
 import Image from "next/image";
+import { useState } from "react";
 
 export default function CurrentMembership() {
+  const [showMoreBenefits, setShowMoreBenefits] = useState(false);
+  const benefits = [
+    "Voice lessons",
+    "Ear training",
+    "Games",
+    "Benefit 4",
+  ];
+  const moreBenefits = [
+    "Flexibility: easily choose to continue or cancel based on your needs and satisfaction.",
+    "Lower upfront cost: it ideal for budget-conscious individuals or those wanting to test the program before committing long-term.",
+    "Reduced commitment: with this plan, you&apos;re not tied to a long-term commitment.",
+  ];
+  const toggleBenefits = () => {
+    setShowMoreBenefits(!showMoreBenefits);
+  };
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6">
       <h1 className="font-montserrat text-2xl font-semibold text-primary-brown md:text-3xl">
@@ -8,15 +24,20 @@ export default function CurrentMembership() {
       </h1>
 
       {/* Card */}
-      <div className="w-full rounded-2xl border border-[#FCF0D8] bg-[#FEF8EE] p-4 shadow-custom">
+      <div className="w-full rounded-2xl border border-[#FCF0D8] bg-[#ffffff] shadow-custom">
         {/* Header ribbon */}
-        <div className="relative rounded-xl bg-primary-green px-5 py-3 text-white">
-          <div className="text-lg font-semibold md:text-xl">1-Month</div>
+        <div className="relative rounded-t-xl bg-primary-green px-5 py-3 text-white">
+          <div className="text-2xl font-semibold">1-Month</div>
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            <span className="inline-flex items-center gap-2 rounded-md border border-[#D9D9D9] bg-white px-3 py-1 text-xs font-medium text-primary-brown md:text-sm">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M6 2a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V8.828a2 2 0 00-.586-1.414l-3.828-3.828A2 2 0 0014.172 3H6zM14 4v3a1 1 0 001 1h3"/>
-              </svg>
+            <span className="inline-flex items-center gap-2 rounded-md border border-[#D9D9D9] bg-[#ffffffcc] px-3 py-1 text-xl font-medium text-primary-brown">
+
+              <Image
+                className="cursor-pointer h-5 w-5 shrink-0"
+                src="/memberships/Current Membership/request_quote_FILL0_wght400_GRAD0_opsz24 1.svg"
+                alt="Current plan"
+                width={20}
+                height={20}
+              />
               Current plan
             </span>
           </div>
@@ -74,69 +95,76 @@ export default function CurrentMembership() {
         {/* Divider */}
         <div className="h-px w-full bg-[#F4E6CF]"></div>
 
-        {/* Benefits */}
-        <div className="grid grid-cols-1 gap-y-3 gap-x-6 py-6 md:grid-cols-2">
-          {[
-            "Voice lessons",
-            "Games",
-            "Ear training",
-            "Benefit 4",
-          ].map((label) => (
-            <div key={label} className="flex items-center gap-3 text-primary-brown">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-secondary-green text-white">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414l2.293 2.293 6.543-6.543a1 1 0 011.414 0z"
-                    clipRule="evenodd"
+        <div className="py-6 p-4 ">
+          {/* Benefits */}
+          <div className="grid grid-cols-1 gap-y-3 gap-x-6 md:grid-cols-2">
+            {benefits.map((label) => (
+              <div key={label} className="flex items-center gap-3 text-primary-brown">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full ">
+                  <Image
+                    className="shrink-0"
+                    src="/memberships/Current Membership/Success.svg"
+                    alt="Success"
+                    width={16}
+                    height={16}
                   />
-                </svg>
-              </span>
-              <span className="text-base md:text-lg 3xl:text-xl">{label}</span>
-            </div>
-          ))}
-        </div>
+                </span>
+                <span className="text-2xl">{label}</span>
+              </div>
+            ))}
+          </div>
 
-        {/* See more benefits */}
-        <div className="px-2 pb-2 pt-1">
-          <button
-            type="button"
-            className="inline-flex select-none items-center gap-2 rounded-lg bg-[#ECE1FB] px-4 py-2 text-sm font-medium text-primary-purple hover:bg-[#E6DAFA]"
-          >
-            See more benefits
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
+          {/* More benefits */}
+          <div className="pb-2 pt-4">
+            <button
+              type="button"
+              onClick={toggleBenefits}
+              className="inline-flex select-none items-center gap-2 rounded-lg bg-[#fbf5ff] px-4 py-2 text-xl font-bold text-primary-purple hover:bg-[#E6DAFA] underline"
             >
-              <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
+              See more benefits
+              <Image
+                className={`cursor-pointer h-4 w-4 shrink-0 transition-transform duration-200 ${
+                  showMoreBenefits ? "rotate-180" : ""
+                }`}
+                src="/memberships/Current Membership/Vector (4).svg"
+                alt="Arrow"
+                width={16}
+                height={16}
+              />
+            </button>
+          </div>
+            
+          {showMoreBenefits && (
+            <div className="px-4 pb-6">
+              <div className="p-1">
+                <ul className="list-disc list-inside space-y-2 text-2xl">
+                  {moreBenefits.map((benefit) => (
+                    <li key={benefit}>
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
 
-        {/* Actions */}
-        <div className="mt-6 flex w-full flex-col items-center gap-4 md:flex-row">
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="mt-6 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
           <button
             type="button"
-            className="w-full rounded-full bg-primary-purple px-6 py-3 text-center font-medium text-white md:flex-1"
+            className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
           >
             Upgrade membership
           </button>
           <button
             type="button"
-            className="w-full rounded-full border border-primary-purple px-6 py-3 text-center font-medium text-primary-purple md:flex-1"
+            className="w-full rounded-full border border-primary-purple px-6 py-5 text-center text-primary-purple md:flex-1"
           >
             Cancel
           </button>
-        </div>
       </div>
     </div>
   );
