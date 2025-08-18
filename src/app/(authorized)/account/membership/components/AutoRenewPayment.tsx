@@ -8,7 +8,7 @@ export default function AutoRenewPayment() {
   });
 
   return (
-    <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6">
+    <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">
       <h1 className="font-montserrat text-3xl font-semibold text-primary-brown md:text-3xl">
         Auto renew payment
       </h1>
@@ -22,12 +22,12 @@ export default function AutoRenewPayment() {
       <div className="rounded-2xl border border-[#F6E2D1] bg-[#FFEBD5] p-4 shadow-custom">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="relative flex h-[38px] w-[58px] items-center justify-center rounded-xl border border-[#CCCCCC] bg-white">
+            <div className="relative flex h-[38px] w-[58px] items-center justify-center rounded-3xl border-[#CCCCCC] bg-white">
               <Image
                 src="/memberships/Auto Renew Payment/Visa.svg"
-                width={45}
-                height={14}
+                fill
                 alt="Visa"
+                className="object-contain"
                 priority
               />
             </div>
