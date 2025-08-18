@@ -44,14 +44,15 @@ export default function CurrentMembership() {
         </div>
 
         {/* Price block with patterned background assets from /public/memberships/Current Membership */}
-        <div className="relative flex flex-col items-center overflow-hidden bg-primary-blue-accent py-10">
-          {/* background ornaments */}
+        <div className="relative flex flex-col items-center overflow-hidden bg-[#F5F9F4] py-10">
+          {/* background music notes */}
+
           <Image
             src="/memberships/Current Membership/Vector.svg"
             alt="pattern"
             width={140}
             height={120}
-            className="pointer-events-none absolute left-6 top-4 opacity-60"
+            className="pointer-events-none absolute left-6 top-20 opacity-60 scale-[0.7]"
             priority
           />
           <Image
@@ -59,7 +60,7 @@ export default function CurrentMembership() {
             alt="pattern"
             width={120}
             height={80}
-            className="pointer-events-none absolute left-1/2 top-5 -translate-x-1/2 opacity-60"
+            className="pointer-events-none absolute -right-8 -top-2 -translate-x-1/2 opacity-60 scale-[0.2]"
             priority
           />
           <Image
@@ -67,7 +68,7 @@ export default function CurrentMembership() {
             alt="pattern"
             width={200}
             height={200}
-            className="pointer-events-none absolute right-2 top-0 opacity-60"
+            className="pointer-events-none absolute -right-10 -top-8 opacity-60 scale-[0.75]"
             priority
           />
           <Image
@@ -75,7 +76,7 @@ export default function CurrentMembership() {
             alt="pattern"
             width={120}
             height={120}
-            className="pointer-events-none absolute left-24 bottom-2 opacity-60"
+            className="pointer-events-none absolute -left-8 -top-3 opacity-60 scale-[0.8]"
             priority
           />
           <Image
@@ -83,13 +84,37 @@ export default function CurrentMembership() {
             alt="dot"
             width={20}
             height={20}
-            className="pointer-events-none absolute left-[45%] top-[35%] opacity-60"
+            className="pointer-events-none absolute left-[45%] top-[35%] opacity-60 scale-[0.5]"
             priority
           />
-          <div className="font-montserrat text-4xl font-semibold text-primary-brown md:text-5xl 3xl:text-6xl 4xl:text-7xl">
+          <Image
+            src="/memberships/Current Membership/Ellipse 215.svg"
+            alt="eclipse pattern"
+            width={30}
+            height={30}
+            className="pointer-events-none absolute left-[20%] top-2 opacity-50 scale-[0.6]"
+            priority
+          />
+          <Image
+            src="/memberships/Current Membership/Ellipse 217.svg"
+            alt="eclipse pattern"
+            width={25}
+            height={25}
+            className="pointer-events-none absolute left-1/2 top-0 opacity-45 scale-[0.3]"
+            priority
+          />
+          <Image
+            src="/memberships/Current Membership/Ellipse 218.svg"
+            alt="eclipse pattern"
+            width={60}
+            height={60}
+            className="pointer-events-none absolute left-[35%] -top-1 opacity-40 scale-[0.7]"
+            priority
+          />
+          <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown md:text-5xl 3xl:text-6xl 4xl:text-7xl">
             $29.99
           </div>
-          <div className="mt-1 text-sm text-primary-gray md:text-base">one day</div>
+          <div className="relative z-10 mt-1 text-sm text-primary-gray md:text-base">one day</div>
         </div>
 
         {/* Divider */}
