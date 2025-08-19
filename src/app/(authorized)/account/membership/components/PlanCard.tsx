@@ -9,6 +9,7 @@ interface PlanCardProps {
   period: string;
   headerColor: string;
   headerTextColor: string;
+  priceBackgroundColor?: string;
   
   // Status
   isCurrent?: boolean;
@@ -40,6 +41,7 @@ export default function PlanCard({
   period,
   headerColor,
   headerTextColor,
+  priceBackgroundColor = "",
   isCurrent = false,
   isPopular = false,
   showCurrentInHeader = true,
@@ -88,7 +90,7 @@ export default function PlanCard({
         </div>
 
         {/* Price block with background assets */}
-        <div className={`relative flex flex-col items-center justify-center overflow-hidden ${priceBlockSize}`}>
+        <div className={`relative flex flex-col items-center justify-center overflow-hidden ${priceBlockSize} ${priceBackgroundColor}`}>
           {/* Background assets */}
           {backgroundAssets.map((asset, index) => (
             (

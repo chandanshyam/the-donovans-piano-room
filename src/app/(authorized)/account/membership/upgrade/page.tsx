@@ -93,6 +93,7 @@ export default function UpgradePage() {
             period=""
             headerColor="bg-[#e98427]"
             headerTextColor="text-white"
+            priceBackgroundColor="bg-orange-50"
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
             priceBlockSize = "py-14"
@@ -109,6 +110,7 @@ export default function UpgradePage() {
             period="per month"
             headerColor="bg-[#438342]"
             headerTextColor="text-white"
+            priceBackgroundColor="bg-green-10"
             isCurrent={true}
             showCurrentInHeader={false}
             priceBlockSize = "py-14"
@@ -125,6 +127,7 @@ export default function UpgradePage() {
             period="one day"
             headerColor="bg-[#6F219E]"
             headerTextColor="text-white"
+            priceBackgroundColor="bg-purple-100"
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
             priceBlockSize = "py-14"
@@ -141,6 +144,7 @@ export default function UpgradePage() {
             period="per month"
             headerColor="bg-[#E9BB18]"
             headerTextColor="text-white"
+            priceBackgroundColor="bg-yellow-50"
             isPopular={true}
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
