@@ -109,7 +109,7 @@ export default function PlanCard({
           <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown md:text-5xl 3xl:text-6xl 4xl:text-7xl">
             {price}
           </div>
-          <div className="relative z-10 mt-1 text-sm text-primary-gray md:text-base">{period}</div>
+          <div className="relative z-10 mt-1 text-sm text-primary-gray md:text-base min-h-[1.5rem]">{period}</div>
           {isCurrent && !showCurrentInHeader && (
             <div className="relative z-10 mt-2 inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-5 text-2xl font-medium text-black">
               <Image
