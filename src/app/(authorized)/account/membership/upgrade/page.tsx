@@ -95,6 +95,7 @@ export default function UpgradePage() {
             headerTextColor="text-white"
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
+            priceBlockSize = "py-14"
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/Scholoarship-free/Success.svg"
@@ -110,6 +111,7 @@ export default function UpgradePage() {
             headerTextColor="text-white"
             isCurrent={true}
             showCurrentInHeader={false}
+            priceBlockSize = "py-14"
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/1-Month/Success.svg"
@@ -125,6 +127,7 @@ export default function UpgradePage() {
             headerTextColor="text-white"
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
+            priceBlockSize = "py-14"
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/Scholoarship/Success.svg"
@@ -141,6 +144,7 @@ export default function UpgradePage() {
             isPopular={true}
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
+            priceBlockSize = "py-14"
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/1-Year/Success.svg"

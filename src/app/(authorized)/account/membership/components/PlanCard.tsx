@@ -17,6 +17,9 @@ interface PlanCardProps {
   showChooseButton?: boolean; // shows "Choose plan" button in price block for non-current plans
   onChooseClick?: () => void; // handler for choose button
   
+  // Price block styling
+  priceBlockSize?: string; // custom size classes for price block
+  
   // Benefits
   benefits: string[];
   moreBenefits?: string[];
@@ -42,6 +45,7 @@ export default function PlanCard({
   showCurrentInHeader = true,
   showChooseButton = false,
   onChooseClick,
+  priceBlockSize = "py-10",
   benefits,
   moreBenefits = [],
   successIcon = "/memberships/Current Membership/Success.svg",
@@ -84,7 +88,7 @@ export default function PlanCard({
         </div>
 
         {/* Price block with background assets */}
-        <div className={"relative flex flex-col items-center overflow-hidden py-10"}>
+        <div className={`relative flex flex-col items-center justify-center overflow-hidden ${priceBlockSize}`}>
           {/* Background assets */}
           {backgroundAssets.map((asset, index) => (
             (
