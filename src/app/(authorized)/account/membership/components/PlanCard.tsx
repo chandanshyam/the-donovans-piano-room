@@ -90,7 +90,7 @@ export default function PlanCard({
         </div>
 
         {/* Price block with background assets */}
-        <div className={`relative flex flex-col items-center justify-center overflow-hidden ${priceBlockSize} ${priceBackgroundColor}`}>
+        <div className={`relative flex flex-col items-center justify-center overflow-hidden ${priceBlockSize} ${priceBackgroundColor} space-y-2`}>
           {/* Background assets */}
           {backgroundAssets.map((asset, index) => (
             (
@@ -106,12 +106,12 @@ export default function PlanCard({
             )
           )}
           
-          <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown md:text-5xl 3xl:text-6xl 4xl:text-7xl">
+          <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown 3xl:text-6xl 4xl:text-7xl">
             {price}
           </div>
-          <div className="relative z-10 mt-1 text-sm text-primary-gray md:text-base min-h-[1.5rem]">{period}</div>
+          <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{period}</div>
           {isCurrent && !showCurrentInHeader && (
-            <div className="relative z-10 mt-2 inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-5 text-2xl font-medium text-black">
+            <div className="relative z-10 inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-6 text-2xl font-medium text-black">
               <Image
                 className="h-8 w-8 shrink-0"
                 src="/memberships/upgrade/request_quote_FILL0_wght400_GRAD0_opsz24 1.svg"
@@ -139,7 +139,7 @@ export default function PlanCard({
         {/* Benefits */}
         <div className="py-6 p-4">
         {benefits.length > 0 && 
-          <div className="grid grid-cols-1 gap-y-3 gap-x-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-y-3 gap-x-6 md:grid-cols-2">  {/* TODO: adjust the benefit display to one column in upgrade page */}
             {benefits.map((label) => (
               <div key={label} className="flex items-center gap-3 text-primary-brown">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full">
