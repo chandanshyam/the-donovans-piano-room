@@ -7,8 +7,60 @@ import {
 } from "@/utils/general";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import PlanCard from "../components/PlanCard";
 export default function UpgradePage() {
   const router = useRouter();
+
+  const commonBenefits = [
+    "Voice lessons",
+    "Ear training",
+    "Games",
+    "Benefit 4",
+  ];
+
+  const moreBenefits = [
+    "Flexibility: easily choose to continue or cancel based on your needs and satisfaction.",
+    "Lower upfront cost: it ideal for budget-conscious individuals or those wanting to test the program before committing long-term.",
+    "Reduced commitment: with this plan, you're not tied to a long-term commitment.",
+  ];
+
+  // Plan assets (you can add more assets as needed)
+  const scholarshipFreeAssets = [
+    {
+      src: "/memberships/upgrade/Vector.svg",
+      width: 140,
+      height: 120,
+      className: "left-6 top-20 scale-[0.7]"
+    }
+  ];
+
+  const monthlyAssets = [
+    {
+      src: "/memberships/upgrade/1-Month/Group 48096278.svg",
+      width: 200,
+      height: 150,
+      className: "inset-0 scale-[0.8]"
+    }
+  ];
+
+  const scholarshipPaidAssets = [
+    {
+      src: "/memberships/upgrade/Vector.svg", 
+      width: 140,
+      height: 120,
+      className: "left-6 top-20 scale-[0.7]"
+    }
+  ];
+
+  const yearlyAssets = [
+    {
+      src: "/memberships/upgrade/1-Year/Group 48095969.svg",
+      width: 180,
+      height: 140, 
+      className: "inset-0 scale-[0.75]"
+    }
+  ];
+
   return (
     <AuthorizedWrapper1 
       pageTitle={authorizedWrapperTitles.AccountAndSettings}
@@ -38,11 +90,62 @@ export default function UpgradePage() {
         </p>
         <div className='mt-[5vh] mb-[5vh] bg-[#FED2AA] h-1'></div>
         
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {/* Scholarship (FREE) */}
-          {/* 1-Month */}
-          {/* Scholarshio ($1.99)*/}
-          {/* 1-Year */}
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          
+          {/* Scholarship FREE */}
+          <PlanCard
+            planName="Scholarship"
+            price="FREE"
+            period=""
+            headerColor="bg-orange-400"
+            headerTextColor="text-white"
+            priceBackgroundColor="bg-orange-50"
+            benefits={commonBenefits}
+            moreBenefits={moreBenefits}
+            backgroundAssets={scholarshipFreeAssets}
+          />
+
+          {/* 1-Month $29.99 */}
+          <PlanCard
+            planName="1-Month"
+            price="$29.99"
+            period="per month"
+            headerColor="bg-green-600"
+            headerTextColor="text-white"
+            priceBackgroundColor="bg-green-50"
+            isCurrent={true}
+            benefits={commonBenefits}
+            moreBenefits={moreBenefits}
+            backgroundAssets={monthlyAssets}
+          />
+
+          {/* Scholarship $1.99 */}
+          <PlanCard
+            planName="Scholarship"
+            price="$1.99"
+            period="one day"
+            headerColor="bg-purple-600"
+            headerTextColor="text-white"
+            priceBackgroundColor="bg-purple-50"
+            benefits={commonBenefits}
+            moreBenefits={moreBenefits}
+            backgroundAssets={scholarshipPaidAssets}
+          />
+
+          {/* 1-Year $19.99 */}
+          <PlanCard
+            planName="1 Year"
+            price="$19.99"
+            period="per month"
+            headerColor="bg-yellow-500"
+            headerTextColor="text-white"
+            priceBackgroundColor="bg-yellow-50"
+            isPopular={true}
+            benefits={commonBenefits}
+            moreBenefits={moreBenefits}
+            backgroundAssets={yearlyAssets}
+          />
+
         </div>
       </div>
     </AuthorizedWrapper1>
