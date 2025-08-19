@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function CurrentMembership() {
   const [showMoreBenefits, setShowMoreBenefits] = useState(false);
+  const router = useRouter();
   const benefits = [
     "Voice lessons",
     "Ear training",
@@ -181,6 +182,7 @@ export default function CurrentMembership() {
           <button
             type="button"
             className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
+            onClick={() => router.push('/account/membership/upgrade')}
           >
             Upgrade membership
           </button>
