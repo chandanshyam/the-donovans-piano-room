@@ -14,6 +14,7 @@ interface PlanCardProps {
   // Status
   isCurrent?: boolean;
   isPopular?: boolean;
+  showCurrentInHeader?: boolean; // controls where "Current plan" badge appears
   
   // Benefits
   benefits: string[];
@@ -39,6 +40,7 @@ export default function PlanCard({
   priceBackgroundColor,
   isCurrent = false,
   isPopular = false,
+  showCurrentInHeader = true,
   benefits,
   moreBenefits = [],
   backgroundAssets,
@@ -56,7 +58,7 @@ export default function PlanCard({
         {/* Header ribbon */}
         <div className={`relative rounded-t-xl px-5 py-3 ${headerColor} ${headerTextColor}`}>
           <div className="text-2xl font-semibold">{planName}</div>
-          {isCurrent && (
+          {isCurrent && showCurrentInHeader && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
               <span className="inline-flex items-center gap-2 rounded-md border border-[#D9D9D9] bg-[#ffffffcc] px-3 py-1 text-xl font-medium text-primary-brown">
                 <Image
@@ -70,7 +72,7 @@ export default function PlanCard({
               </span>
             </div>
           )}
-          {!isCurrent && isPopular && (
+          {isPopular && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
               <span className="inline-flex items-center gap-2 rounded-md border border-[#D9D9D9] bg-[#ffffffcc] px-3 py-1 text-xl font-medium text-primary-brown">
                 Popular
@@ -98,6 +100,18 @@ export default function PlanCard({
             {price}
           </div>
           <div className="relative z-10 mt-1 text-sm text-primary-gray md:text-base">{period}</div>
+          {isCurrent && !showCurrentInHeader && (
+            <div className="relative z-10 mt-2 inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
+              <Image
+                className="h-4 w-4 shrink-0"
+                src="/memberships/upgrade/request_quote_FILL0_wght400_GRAD0_opsz24 1.svg"
+                alt="Current plan"
+                width={16}
+                height={16}
+              />
+              Current plan
+            </div>
+          )}
         </div>
 
         {/* Divider */}

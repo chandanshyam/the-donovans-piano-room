@@ -114,6 +114,7 @@ export default function UpgradePage() {
             headerTextColor="text-white"
             priceBackgroundColor="bg-green-50"
             isCurrent={true}
+            showCurrentInHeader={false}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             backgroundAssets={monthlyAssets}
