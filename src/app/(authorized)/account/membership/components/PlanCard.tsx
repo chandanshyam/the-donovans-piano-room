@@ -25,6 +25,7 @@ interface PlanCardProps {
   benefits: string[];
   moreBenefits?: string[];
   successIcon?: string; // custom success icon path
+  useSingleColumn?: boolean; // forces single column layout for benefits
   
   // Assets
   backgroundAssets: {
@@ -51,6 +52,7 @@ export default function PlanCard({
   benefits,
   moreBenefits = [],
   successIcon = "/memberships/Current Membership/Success.svg",
+  useSingleColumn = false,
   backgroundAssets,
 }: PlanCardProps) {
   const [showMoreBenefits, setShowMoreBenefits] = useState(false);
@@ -139,7 +141,7 @@ export default function PlanCard({
         {/* Benefits */}
         <div className="py-6 p-4">
         {benefits.length > 0 && 
-          <div className="grid grid-cols-1 gap-y-3 gap-x-6 md:grid-cols-2">  {/* TODO: adjust the benefit display to one column in upgrade page */}
+          <div className={`grid grid-cols-1 gap-y-3 gap-x-6 ${useSingleColumn ? '' : 'md:grid-cols-2'}`}>
             {benefits.map((label) => (
               <div key={label} className="flex items-center gap-3 text-primary-brown">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full">

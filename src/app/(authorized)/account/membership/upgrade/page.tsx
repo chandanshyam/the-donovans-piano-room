@@ -100,6 +100,7 @@ export default function UpgradePage() {
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/Scholoarship-free/Success.svg"
+            useSingleColumn={true}
             backgroundAssets={scholarshipFreeAssets}
           />
 
@@ -117,6 +118,7 @@ export default function UpgradePage() {
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/1-Month/Success.svg"
+            useSingleColumn={true}
             backgroundAssets={monthlyAssets}
           />
 
@@ -134,6 +136,7 @@ export default function UpgradePage() {
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/Scholoarship/Success.svg"
+            useSingleColumn={true}
             backgroundAssets={scholarshipPaidAssets}
           />
 
@@ -152,6 +155,7 @@ export default function UpgradePage() {
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             successIcon="/memberships/upgrade/1-Year/Success.svg"
+            useSingleColumn={true}
             backgroundAssets={yearlyAssets}
           />
 
