@@ -26,8 +26,6 @@ interface PlanCardProps {
   // Assets
   backgroundAssets: {
     src: string;
-    width: number;
-    height: number;
     className: string;
   }[];
   
