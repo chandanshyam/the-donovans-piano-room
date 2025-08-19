@@ -20,52 +20,8 @@ export default function CurrentMembership() {
 
   const backgroundAssets = [
     {
-      src: "/memberships/Current Membership/Vector.svg",
-      width: 140,
-      height: 120,
-      className: "left-6 top-20 scale-[0.7]"
-    },
-    {
-      src: "/memberships/Current Membership/Vector (1).svg", 
-      width: 120,
-      height: 80,
-      className: "-right-8 -top-2 -translate-x-1/2 scale-[0.2]"
-    },
-    {
-      src: "/memberships/Current Membership/Vector (2).svg",
-      width: 200, 
-      height: 200,
-      className: "-right-10 -top-8 scale-[0.75]"
-    },
-    {
-      src: "/memberships/Current Membership/Vector (3).svg",
-      width: 120,
-      height: 120, 
-      className: "-left-8 -top-3 scale-[0.8]"
-    },
-    {
-      src: "/memberships/Current Membership/Ellipse 214.svg",
-      width: 20,
-      height: 20,
-      className: "left-[45%] top-[35%] scale-[0.5]"
-    },
-    {
-      src: "/memberships/Current Membership/Ellipse 215.svg",
-      width: 30,
-      height: 30,
-      className: "left-[20%] top-2 scale-[0.6]"
-    },
-    {
-      src: "/memberships/Current Membership/Ellipse 217.svg",
-      width: 25,
-      height: 25,
-      className: "left-1/2 top-0 scale-[0.3]"
-    },
-    {
-      src: "/memberships/Current Membership/Ellipse 218.svg",
-      width: 60,
-      height: 60,
-      className: "left-[35%] -top-1 scale-[0.7]"
+      src: "/memberships/upgrade/1-Month/Group 48096278.svg",
+      className: "inset-0 object-cover"
     }
   ];
 
@@ -79,9 +35,8 @@ export default function CurrentMembership() {
         planName="1-Month"
         price="$29.99"
         period="per month"
-        headerColor="bg-primary-green"
+        headerColor="bg-[#438342]"
         headerTextColor="text-white"
-        priceBackgroundColor="bg-[#F5F9F4]"
         isCurrent={true}
         benefits={benefits}
         moreBenefits={moreBenefits}

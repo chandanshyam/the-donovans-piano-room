@@ -9,7 +9,6 @@ interface PlanCardProps {
   period: string;
   headerColor: string;
   headerTextColor: string;
-  priceBackgroundColor: string;
   
   // Status
   isCurrent?: boolean;
@@ -38,7 +37,6 @@ export default function PlanCard({
   period,
   headerColor,
   headerTextColor,
-  priceBackgroundColor,
   isCurrent = false,
   isPopular = false,
   showCurrentInHeader = true,
@@ -86,7 +84,7 @@ export default function PlanCard({
         </div>
 
         {/* Price block with background assets */}
-        <div className={`relative flex flex-col items-center overflow-hidden py-10 ${priceBackgroundColor}`}>
+        <div className={"relative flex flex-col items-center overflow-hidden py-10"}>
           {/* Background assets */}
           {backgroundAssets.map((asset, index) => (
             (

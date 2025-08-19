@@ -93,7 +93,6 @@ export default function UpgradePage() {
             period=""
             headerColor="bg-[#e98427]"
             headerTextColor="text-white"
-            priceBackgroundColor="bg-orange-50"
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
             benefits={commonBenefits}
@@ -109,7 +108,6 @@ export default function UpgradePage() {
             period="per month"
             headerColor="bg-[#438342]"
             headerTextColor="text-white"
-            priceBackgroundColor="bg-green-50"
             isCurrent={true}
             showCurrentInHeader={false}
             benefits={commonBenefits}
@@ -125,7 +123,6 @@ export default function UpgradePage() {
             period="one day"
             headerColor="bg-[#6F219E]"
             headerTextColor="text-white"
-            priceBackgroundColor="bg-purple-50"
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
             benefits={commonBenefits}
@@ -141,7 +138,6 @@ export default function UpgradePage() {
             period="per month"
             headerColor="bg-[#E9BB18]"
             headerTextColor="text-white"
-            priceBackgroundColor="bg-yellow-50"
             isPopular={true}
             showChooseButton={true}
             onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
