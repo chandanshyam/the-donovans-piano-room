@@ -15,6 +15,8 @@ interface PlanCardProps {
   isCurrent?: boolean;
   isPopular?: boolean;
   showCurrentInHeader?: boolean; // controls where "Current plan" badge appears
+  showChooseButton?: boolean; // shows "Choose plan" button in price block for non-current plans
+  onChooseClick?: () => void; // handler for choose button
   
   // Benefits
   benefits: string[];
@@ -41,6 +43,8 @@ export default function PlanCard({
   isCurrent = false,
   isPopular = false,
   showCurrentInHeader = true,
+  showChooseButton = false,
+  onChooseClick,
   benefits,
   moreBenefits = [],
   backgroundAssets,
@@ -111,6 +115,15 @@ export default function PlanCard({
               />
               Current plan
             </div>
+          )}
+          {!isCurrent && showChooseButton && onChooseClick && (
+            <button
+              type="button"
+              onClick={onChooseClick}
+              className="relative z-10 mt-3 rounded-full border border-primary-purple px-6 py-3 text-center font-medium text-primary-purple hover:bg-primary-purple hover:text-white transition-colors"
+            > 
+              Choose plan
+            </button>
           )}
         </div>
 

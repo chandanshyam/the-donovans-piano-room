@@ -11,6 +11,7 @@ import PlanCard from "../components/PlanCard";
 export default function UpgradePage() {
   const router = useRouter();
 
+  // hardcoded for now
   const commonBenefits = [
     "Voice lessons",
     "Ear training",
@@ -18,13 +19,14 @@ export default function UpgradePage() {
     "Benefit 4",
   ];
 
+  // hardcoded for now
   const moreBenefits = [
     "Flexibility: easily choose to continue or cancel based on your needs and satisfaction.",
     "Lower upfront cost: it ideal for budget-conscious individuals or those wanting to test the program before committing long-term.",
     "Reduced commitment: with this plan, you're not tied to a long-term commitment.",
   ];
 
-  // Plan assets (you can add more assets as needed)
+  // Plan assets
   const scholarshipFreeAssets = [
     {
       src: "/memberships/upgrade/Vector.svg",
@@ -100,6 +102,8 @@ export default function UpgradePage() {
             headerColor="bg-orange-400"
             headerTextColor="text-white"
             priceBackgroundColor="bg-orange-50"
+            showChooseButton={true}
+            onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             backgroundAssets={scholarshipFreeAssets}
@@ -128,6 +132,8 @@ export default function UpgradePage() {
             headerColor="bg-purple-600"
             headerTextColor="text-white"
             priceBackgroundColor="bg-purple-50"
+            showChooseButton={true}
+            onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             backgroundAssets={scholarshipPaidAssets}
@@ -142,6 +148,8 @@ export default function UpgradePage() {
             headerTextColor="text-white"
             priceBackgroundColor="bg-yellow-50"
             isPopular={true}
+            showChooseButton={true}
+            onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
             backgroundAssets={yearlyAssets}
