@@ -98,6 +98,7 @@ export default function UpgradePage() {
             onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
+            successIcon="/memberships/upgrade/Scholoarship-free/Success.svg"
             backgroundAssets={scholarshipFreeAssets}
           />
 
@@ -113,6 +114,7 @@ export default function UpgradePage() {
             showCurrentInHeader={false}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
+            successIcon="/memberships/upgrade/1-Month/Success.svg"
             backgroundAssets={monthlyAssets}
           />
 
@@ -128,6 +130,7 @@ export default function UpgradePage() {
             onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
+            successIcon="/memberships/upgrade/Scholoarship/Success.svg"
             backgroundAssets={scholarshipPaidAssets}
           />
 
