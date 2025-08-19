@@ -21,6 +21,7 @@ interface PlanCardProps {
   // Benefits
   benefits: string[];
   moreBenefits?: string[];
+  successIcon?: string; // custom success icon path
   
   // Assets
   backgroundAssets: {
@@ -47,6 +48,7 @@ export default function PlanCard({
   onChooseClick,
   benefits,
   moreBenefits = [],
+  successIcon = "/memberships/Current Membership/Success.svg",
   backgroundAssets,
 }: PlanCardProps) {
   const [showMoreBenefits, setShowMoreBenefits] = useState(false);
@@ -89,25 +91,27 @@ export default function PlanCard({
         <div className={`relative flex flex-col items-center overflow-hidden py-10 ${priceBackgroundColor}`}>
           {/* Background assets */}
           {backgroundAssets.map((asset, index) => (
-            <Image
-              key={index}
-              src={asset.src}
-              alt="background pattern"
-              width={asset.width}
-              height={asset.height}
-              className={`pointer-events-none absolute opacity-60 ${asset.className}`}
-              priority
-            />
-          ))}
+            (
+              <Image
+                key={index}
+                src={asset.src}
+                alt="background pattern"
+                fill
+                className={`pointer-events-none opacity-60 ${asset.className}`}
+                priority
+              />
+            )
+            )
+          )}
           
           <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown md:text-5xl 3xl:text-6xl 4xl:text-7xl">
             {price}
           </div>
           <div className="relative z-10 mt-1 text-sm text-primary-gray md:text-base">{period}</div>
           {isCurrent && !showCurrentInHeader && (
-            <div className="relative z-10 mt-2 inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
+            <div className="relative z-10 mt-2 inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-5 text-2xl font-medium text-black">
               <Image
-                className="h-4 w-4 shrink-0"
+                className="h-8 w-8 shrink-0"
                 src="/memberships/upgrade/request_quote_FILL0_wght400_GRAD0_opsz24 1.svg"
                 alt="Current plan"
                 width={16}
@@ -139,7 +143,7 @@ export default function PlanCard({
                 <span className="flex h-6 w-6 items-center justify-center rounded-full">
                   <Image
                     className="shrink-0"
-                    src="/memberships/Current Membership/Success.svg"
+                    src={successIcon}
                     alt="Success"
                     width={16}
                     height={16}

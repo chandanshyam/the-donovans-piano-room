@@ -29,37 +29,29 @@ export default function UpgradePage() {
   // Plan assets
   const scholarshipFreeAssets = [
     {
-      src: "/memberships/upgrade/Vector.svg",
-      width: 140,
-      height: 120,
-      className: "left-6 top-20 scale-[0.7]"
+      src: "/memberships/upgrade/Scholoarship-free/Group 48096278.svg",
+      className: "inset-0 object-cover"
     }
   ];
 
   const monthlyAssets = [
     {
       src: "/memberships/upgrade/1-Month/Group 48096278.svg",
-      width: 200,
-      height: 150,
-      className: "inset-0 scale-[0.8]"
+      className: "inset-0 object-cover"
     }
   ];
 
   const scholarshipPaidAssets = [
     {
-      src: "/memberships/upgrade/Vector.svg", 
-      width: 140,
-      height: 120,
-      className: "left-6 top-20 scale-[0.7]"
+      src: "/memberships/upgrade/Scholoarship/Group 48096278.svg", 
+      className: "inset-0 object-cover"
     }
   ];
 
   const yearlyAssets = [
     {
       src: "/memberships/upgrade/1-Year/Group 48095969.svg",
-      width: 180,
-      height: 140, 
-      className: "inset-0 scale-[0.75]"
+      className: "inset-0 object-cover"
     }
   ];
 
@@ -99,7 +91,7 @@ export default function UpgradePage() {
             planName="Scholarship"
             price="FREE"
             period=""
-            headerColor="bg-orange-400"
+            headerColor="bg-[#e98427]"
             headerTextColor="text-white"
             priceBackgroundColor="bg-orange-50"
             showChooseButton={true}
@@ -114,7 +106,7 @@ export default function UpgradePage() {
             planName="1-Month"
             price="$29.99"
             period="per month"
-            headerColor="bg-green-600"
+            headerColor="bg-[#438342]"
             headerTextColor="text-white"
             priceBackgroundColor="bg-green-50"
             isCurrent={true}
@@ -129,7 +121,7 @@ export default function UpgradePage() {
             planName="Scholarship"
             price="$1.99"
             period="one day"
-            headerColor="bg-purple-600"
+            headerColor="bg-[#6F219E]"
             headerTextColor="text-white"
             priceBackgroundColor="bg-purple-50"
             showChooseButton={true}
@@ -144,7 +136,7 @@ export default function UpgradePage() {
             planName="1 Year"
             price="$19.99"
             period="per month"
-            headerColor="bg-yellow-500"
+            headerColor="bg-[#E9BB18]"
             headerTextColor="text-white"
             priceBackgroundColor="bg-yellow-50"
             isPopular={true}
@@ -152,6 +144,7 @@ export default function UpgradePage() {
             onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
             benefits={commonBenefits}
             moreBenefits={moreBenefits}
+            successIcon="/memberships/upgrade/1-Year/Success.svg"
             backgroundAssets={yearlyAssets}
           />
 
