@@ -7,9 +7,12 @@ import {
 } from "@/utils/general";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import PlanCard from "../components/PlanCard";
+import BenefitAccessCard from "../components/BenefitAccessCard";
 export default function UpgradePage() {
   const router = useRouter();
+  const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
 
   // hardcoded for now
   const commonBenefits = [
@@ -25,6 +28,34 @@ export default function UpgradePage() {
     "Lower upfront cost: it ideal for budget-conscious individuals or those wanting to test the program before committing long-term.",
     "Reduced commitment: with this plan, you're not tied to a long-term commitment.",
   ];
+
+  // Plan-specific benefits for benefit access cards
+  const planBenefits = {
+    0: { // Scholarship FREE
+      name: "Free access",
+      headerColor: "bg-[#e98427]",
+      textColor: "text-white",
+      benefits: moreBenefits
+    },
+    1: { // 1-Month
+      name: "Monthly access", 
+      headerColor: "bg-[#FED2AA]",
+      textColor: "text-[#8B4513]",
+      benefits: moreBenefits
+    },
+    2: { // Scholarship $1.99
+      name: "Scholarship access",
+      headerColor: "bg-[#6F219E]", 
+      textColor: "text-white",
+      benefits: moreBenefits
+    },
+    3: { // 1-Year
+      name: "Annual access",
+      headerColor: "bg-[#E9BB18]",
+      textColor: "text-white", 
+      benefits: moreBenefits
+    }
+  };
 
   // Plan assets
   const scholarshipFreeAssets = [
@@ -84,80 +115,136 @@ export default function UpgradePage() {
         </p>
         <div className='mt-[5vh] mb-[5vh] bg-[#FED2AA] h-1'></div>
         
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className={`mt-8 grid grid-cols-1 gap-6 ${selectedPlan !== null ? 'md:grid-cols-2 xl:grid-cols-5' : 'md:grid-cols-2 xl:grid-cols-4'}`}>
           
           {/* Scholarship FREE */}
-          <PlanCard
-            planName="Scholarship"
-            price="FREE"
-            period=""
-            headerColor="bg-[#e98427]"
-            headerTextColor="text-white"
-            priceBackgroundColor="bg-orange-50"
-            showChooseButton={true}
-            onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
-            priceBlockSize = "py-14"
-            benefits={commonBenefits}
-            moreBenefits={moreBenefits}
-            successIcon="/memberships/upgrade/Scholoarship-free/Success.svg"
-            useSingleColumn={true}
-            backgroundAssets={scholarshipFreeAssets}
-          />
+          <div onClick={() => setSelectedPlan(selectedPlan === 0 ? null : 0)} className="cursor-pointer">
+            <PlanCard
+              planName="Scholarship"
+              price="FREE"
+              period=""
+              headerColor="bg-[#e98427]"
+              headerTextColor="text-white"
+              priceBackgroundColor="bg-orange-50"
+              showChooseButton={true}
+              onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
+              priceBlockSize = "py-14"
+              benefits={commonBenefits}
+              moreBenefits={moreBenefits}
+              successIcon="/memberships/upgrade/Scholoarship-free/Success.svg"
+              useSingleColumn={true}
+              backgroundAssets={scholarshipFreeAssets}
+            />
+          </div>
+
+          {/* Benefit Access Card for Plan 0 */}
+          {selectedPlan === 0 && (
+            <BenefitAccessCard 
+              onClose={() => setSelectedPlan(null)}
+              planName={planBenefits[0].name}
+              headerColor={planBenefits[0].headerColor}
+              textColor={planBenefits[0].textColor}
+              benefits={planBenefits[0].benefits}
+              characterSize={120}
+            />
+          )}
 
           {/* 1-Month $29.99 */}
-          <PlanCard
-            planName="1-Month"
-            price="$29.99"
-            period="per month"
-            headerColor="bg-[#438342]"
-            headerTextColor="text-white"
-            priceBackgroundColor="bg-green-10"
-            isCurrent={true}
-            showCurrentInHeader={false}
-            priceBlockSize = "py-14"
-            benefits={commonBenefits}
-            moreBenefits={moreBenefits}
-            successIcon="/memberships/upgrade/1-Month/Success.svg"
-            useSingleColumn={true}
-            backgroundAssets={monthlyAssets}
-          />
+          <div onClick={() => setSelectedPlan(selectedPlan === 1 ? null : 1)} className="cursor-pointer">
+            <PlanCard
+              planName="1-Month"
+              price="$29.99"
+              period="per month"
+              headerColor="bg-[#438342]"
+              headerTextColor="text-white"
+              priceBackgroundColor="bg-green-10"
+              isCurrent={true}
+              showCurrentInHeader={false}
+              priceBlockSize = "py-14"
+              benefits={commonBenefits}
+              moreBenefits={moreBenefits}
+              successIcon="/memberships/upgrade/1-Month/Success.svg"
+              useSingleColumn={true}
+              backgroundAssets={monthlyAssets}
+            />
+          </div>
+
+          {/* Benefit Access Card for Plan 1 */}
+          {selectedPlan === 1 && (
+            <BenefitAccessCard 
+              onClose={() => setSelectedPlan(null)}
+              planName={planBenefits[1].name}
+              headerColor={planBenefits[1].headerColor}
+              textColor={planBenefits[1].textColor}
+              benefits={planBenefits[1].benefits}
+              characterSize={120}
+            />
+          )}
 
           {/* Scholarship $1.99 */}
-          <PlanCard
-            planName="Scholarship"
-            price="$1.99"
-            period="one day"
-            headerColor="bg-[#6F219E]"
-            headerTextColor="text-white"
-            priceBackgroundColor="bg-purple-100"
-            showChooseButton={true}
-            onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
-            priceBlockSize = "py-14"
-            benefits={commonBenefits}
-            moreBenefits={moreBenefits}
-            successIcon="/memberships/upgrade/Scholoarship/Success.svg"
-            useSingleColumn={true}
-            backgroundAssets={scholarshipPaidAssets}
-          />
+          <div onClick={() => setSelectedPlan(selectedPlan === 2 ? null : 2)} className="cursor-pointer">
+            <PlanCard
+              planName="Scholarship"
+              price="$1.99"
+              period="one day"
+              headerColor="bg-[#6F219E]"
+              headerTextColor="text-white"
+              priceBackgroundColor="bg-purple-100"
+              showChooseButton={true}
+              onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
+              priceBlockSize = "py-14"
+              benefits={commonBenefits}
+              moreBenefits={moreBenefits}
+              successIcon="/memberships/upgrade/Scholoarship/Success.svg"
+              useSingleColumn={true}
+              backgroundAssets={scholarshipPaidAssets}
+            />
+          </div>
+
+          {/* Benefit Access Card for Plan 2 */}
+          {selectedPlan === 2 && (
+            <BenefitAccessCard 
+              onClose={() => setSelectedPlan(null)}
+              planName={planBenefits[2].name}
+              headerColor={planBenefits[2].headerColor}
+              textColor={planBenefits[2].textColor}
+              benefits={planBenefits[2].benefits}
+              characterSize={120}
+            />
+          )}
 
           {/* 1-Year $19.99 */}
-          <PlanCard
-            planName="1 Year"
-            price="$19.99"
-            period="per month"
-            headerColor="bg-[#E9BB18]"
-            headerTextColor="text-white"
-            priceBackgroundColor="bg-yellow-50"
-            isPopular={true}
-            showChooseButton={true}
-            onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
-            priceBlockSize = "py-14"
-            benefits={commonBenefits}
-            moreBenefits={moreBenefits}
-            successIcon="/memberships/upgrade/1-Year/Success.svg"
-            useSingleColumn={true}
-            backgroundAssets={yearlyAssets}
-          />
+          <div onClick={() => setSelectedPlan(selectedPlan === 3 ? null : 3)} className="cursor-pointer">
+            <PlanCard
+              planName="1 Year"
+              price="$19.99"
+              period="per month"
+              headerColor="bg-[#E9BB18]"
+              headerTextColor="text-white"
+              priceBackgroundColor="bg-yellow-50"
+              isPopular={true}
+              showChooseButton={true}
+              onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
+              priceBlockSize = "py-14"
+              benefits={commonBenefits}
+              moreBenefits={moreBenefits}
+              successIcon="/memberships/upgrade/1-Year/Success.svg"
+              useSingleColumn={true}
+              backgroundAssets={yearlyAssets}
+            />
+          </div>
+
+          {/* Benefit Access Card for Plan 3 */}
+          {selectedPlan === 3 && (
+            <BenefitAccessCard 
+              onClose={() => setSelectedPlan(null)}
+              planName={planBenefits[3].name}
+              headerColor={planBenefits[3].headerColor}
+              textColor={planBenefits[3].textColor}
+              benefits={planBenefits[3].benefits}
+              characterSize={120}
+            />
+          )}
 
         </div>
       </div>
