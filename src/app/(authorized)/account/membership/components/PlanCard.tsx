@@ -84,7 +84,7 @@ export default function PlanCard({
           )}
           {isPopular && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
-              <span className="inline-flex items-center gap-2 rounded-md border border-[#D9D9D9] bg-[#ffffffcc] px-3 py-1 text-xl font-medium text-primary-brown">
+              <span className="rounded-md bg-[#F8D867] px-3 py-1 text-xl font-medium text-black">
                 Popular
               </span>
             </div>
