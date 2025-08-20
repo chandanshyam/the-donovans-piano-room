@@ -261,6 +261,40 @@ export default function UpgradePage() {
 
           </div>
         </div>
+
+        {/* Horizontal Scroller Indicators */}
+        <div className="mt-8 flex justify-center">
+          <div className="flex items-center gap-3">
+            <div
+              className={`h-3 rounded-full transition-all duration-300 ${
+                selectedPlan === 0 
+                  ? "bg-[#6F219E] w-12" 
+                  : "bg-[#B457F5] w-3"
+              }`}
+            />
+            <div
+              className={`h-3 rounded-full transition-all duration-300 ${
+                selectedPlan === 1 
+                  ? "bg-[#6F219E] w-12" 
+                  : "bg-[#B457F5] w-3"
+              }`}
+            />
+            <div
+              className={`h-3 rounded-full transition-all duration-300 ${
+                selectedPlan === 2 
+                  ? "bg-[#6F219E] w-12" 
+                  : "bg-[#B457F5] w-3"
+              }`}
+            />
+            <div
+              className={`h-3 rounded-full transition-all duration-300 ${
+                selectedPlan === 3 
+                  ? "bg-[#6F219E] w-12" 
+                  : "bg-[#B457F5] w-3"
+              }`}
+            />
+          </div>
+        </div>
       </div>
     </AuthorizedWrapper1>
   );
