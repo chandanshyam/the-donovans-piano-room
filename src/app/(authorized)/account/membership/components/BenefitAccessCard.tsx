@@ -15,14 +15,13 @@ export default function BenefitAccessCard({ onClose, planName, headerColor, text
   return (
     <div>
       {/* Character with headphones */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-4">
         <div className="relative">
           <Image
             src="/memberships/upgrade/Group 48096280.svg"
             alt="Character with headphones"
-            width={characterSize}
-            height={characterSize}
-            style={{ width: characterSize, height: characterSize }}
+            width={190}
+            height={180}
           />
         </div>
       </div>

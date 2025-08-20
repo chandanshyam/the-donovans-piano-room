@@ -145,7 +145,6 @@ export default function UpgradePage() {
               headerColor={planBenefits[0].headerColor}
               textColor={planBenefits[0].textColor}
               benefits={planBenefits[0].benefits}
-              characterSize={120}
             />
           )}
 
@@ -177,7 +176,6 @@ export default function UpgradePage() {
               headerColor={planBenefits[1].headerColor}
               textColor={planBenefits[1].textColor}
               benefits={planBenefits[1].benefits}
-              characterSize={120}
             />
           )}
 
@@ -209,7 +207,6 @@ export default function UpgradePage() {
               headerColor={planBenefits[2].headerColor}
               textColor={planBenefits[2].textColor}
               benefits={planBenefits[2].benefits}
-              characterSize={120}
             />
           )}
 
@@ -242,7 +239,6 @@ export default function UpgradePage() {
               headerColor={planBenefits[3].headerColor}
               textColor={planBenefits[3].textColor}
               benefits={planBenefits[3].benefits}
-              characterSize={120}
             />
           )}
 
