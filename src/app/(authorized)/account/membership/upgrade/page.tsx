@@ -115,10 +115,12 @@ export default function UpgradePage() {
         </p>
         <div className='mt-[5vh] mb-[5vh] bg-[#FED2AA] h-1'></div>
         
-        <div className={`mt-8 grid grid-cols-1 gap-6 ${selectedPlan !== null ? 'md:grid-cols-2 xl:grid-cols-5' : 'md:grid-cols-2 xl:grid-cols-4'}`}>
+        <div className="mt-8 overflow-x-auto">
+          <div className="flex gap-6 min-w-fit">
           
           {/* Scholarship FREE */}
-          <div onClick={() => setSelectedPlan(selectedPlan === 0 ? null : 0)} className="cursor-pointer">
+          <div className="flex-shrink-0 w-80">
+            <div onClick={() => setSelectedPlan(selectedPlan === 0 ? null : 0)} className="cursor-pointer">
             <PlanCard
               planName="Scholarship"
               price="FREE"
@@ -135,21 +137,25 @@ export default function UpgradePage() {
               useSingleColumn={true}
               backgroundAssets={scholarshipFreeAssets}
             />
+            </div>
           </div>
 
           {/* Benefit Access Card for Plan 0 */}
           {selectedPlan === 0 && (
-            <BenefitAccessCard 
-              onClose={() => setSelectedPlan(null)}
-              planName={planBenefits[0].name}
-              headerColor={planBenefits[0].headerColor}
-              textColor={planBenefits[0].textColor}
-              benefits={planBenefits[0].benefits}
-            />
+            <div className="flex-shrink-0 w-80">
+              <BenefitAccessCard 
+                onClose={() => setSelectedPlan(null)}
+                planName={planBenefits[0].name}
+                headerColor={planBenefits[0].headerColor}
+                textColor={planBenefits[0].textColor}
+                benefits={planBenefits[0].benefits}
+              />
+            </div>
           )}
 
           {/* 1-Month $29.99 */}
-          <div onClick={() => setSelectedPlan(selectedPlan === 1 ? null : 1)} className="cursor-pointer">
+          <div className="flex-shrink-0 w-80">
+            <div onClick={() => setSelectedPlan(selectedPlan === 1 ? null : 1)} className="cursor-pointer">
             <PlanCard
               planName="1-Month"
               price="$29.99"
@@ -166,21 +172,25 @@ export default function UpgradePage() {
               useSingleColumn={true}
               backgroundAssets={monthlyAssets}
             />
+            </div>
           </div>
 
           {/* Benefit Access Card for Plan 1 */}
           {selectedPlan === 1 && (
-            <BenefitAccessCard 
-              onClose={() => setSelectedPlan(null)}
-              planName={planBenefits[1].name}
-              headerColor={planBenefits[1].headerColor}
-              textColor={planBenefits[1].textColor}
-              benefits={planBenefits[1].benefits}
-            />
+            <div className="flex-shrink-0 w-80">
+              <BenefitAccessCard 
+                onClose={() => setSelectedPlan(null)}
+                planName={planBenefits[1].name}
+                headerColor={planBenefits[1].headerColor}
+                textColor={planBenefits[1].textColor}
+                benefits={planBenefits[1].benefits}
+              />
+            </div>
           )}
 
           {/* Scholarship $1.99 */}
-          <div onClick={() => setSelectedPlan(selectedPlan === 2 ? null : 2)} className="cursor-pointer">
+          <div className="flex-shrink-0 w-80">
+            <div onClick={() => setSelectedPlan(selectedPlan === 2 ? null : 2)} className="cursor-pointer">
             <PlanCard
               planName="Scholarship"
               price="$1.99"
@@ -197,21 +207,25 @@ export default function UpgradePage() {
               useSingleColumn={true}
               backgroundAssets={scholarshipPaidAssets}
             />
+            </div>
           </div>
 
           {/* Benefit Access Card for Plan 2 */}
           {selectedPlan === 2 && (
-            <BenefitAccessCard 
-              onClose={() => setSelectedPlan(null)}
-              planName={planBenefits[2].name}
-              headerColor={planBenefits[2].headerColor}
-              textColor={planBenefits[2].textColor}
-              benefits={planBenefits[2].benefits}
-            />
+            <div className="flex-shrink-0 w-80">
+              <BenefitAccessCard 
+                onClose={() => setSelectedPlan(null)}
+                planName={planBenefits[2].name}
+                headerColor={planBenefits[2].headerColor}
+                textColor={planBenefits[2].textColor}
+                benefits={planBenefits[2].benefits}
+              />
+            </div>
           )}
 
           {/* 1-Year $19.99 */}
-          <div onClick={() => setSelectedPlan(selectedPlan === 3 ? null : 3)} className="cursor-pointer">
+          <div className="flex-shrink-0 w-80">
+            <div onClick={() => setSelectedPlan(selectedPlan === 3 ? null : 3)} className="cursor-pointer">
             <PlanCard
               planName="1 Year"
               price="$19.99"
@@ -229,19 +243,23 @@ export default function UpgradePage() {
               useSingleColumn={true}
               backgroundAssets={yearlyAssets}
             />
+            </div>
           </div>
 
           {/* Benefit Access Card for Plan 3 */}
           {selectedPlan === 3 && (
-            <BenefitAccessCard 
-              onClose={() => setSelectedPlan(null)}
-              planName={planBenefits[3].name}
-              headerColor={planBenefits[3].headerColor}
-              textColor={planBenefits[3].textColor}
-              benefits={planBenefits[3].benefits}
-            />
+            <div className="flex-shrink-0 w-80">
+              <BenefitAccessCard 
+                onClose={() => setSelectedPlan(null)}
+                planName={planBenefits[3].name}
+                headerColor={planBenefits[3].headerColor}
+                textColor={planBenefits[3].textColor}
+                benefits={planBenefits[3].benefits}
+              />
+            </div>
           )}
 
+          </div>
         </div>
       </div>
     </AuthorizedWrapper1>

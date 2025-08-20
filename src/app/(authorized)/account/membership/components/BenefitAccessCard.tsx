@@ -7,15 +7,14 @@ interface BenefitAccessCardProps {
   headerColor: string;
   textColor: string;
   benefits: string[];
-  characterSize?: number; // Custom size for character
 }
 
-export default function BenefitAccessCard({ onClose, planName, headerColor, textColor, benefits, characterSize = 120 }: BenefitAccessCardProps) {
+export default function BenefitAccessCard({ onClose, planName, headerColor, textColor, benefits}: BenefitAccessCardProps) {
 
   return (
     <div>
       {/* Character with headphones */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-4 mt-4">
         <div className="relative">
           <Image
             src="/memberships/upgrade/Group 48096280.svg"
@@ -41,7 +40,9 @@ export default function BenefitAccessCard({ onClose, planName, headerColor, text
         </div>
 
         {/* Divider */}
-        <div className="h-px w-full bg-[#391F0F]"></div>
+        <div className="px-4">
+          <div className="h-px w-full bg-[#391F0F]"></div>
+        </div>
 
         {/* Content */}
         <div className="p-6">
