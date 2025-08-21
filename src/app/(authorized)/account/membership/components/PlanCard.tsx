@@ -18,6 +18,10 @@ interface PlanCardProps {
   showChooseButton?: boolean; // shows "Choose plan" button in price block for non-current plans
   onChooseClick?: () => void; // handler for choose button
   
+  // Expiration
+  expirationDays?: number; // number of days until membership expires
+  showExpirationMessage?: boolean; // whether to show expiration message (only for upgrade page)
+  
   // Price block styling
   priceBlockSize?: string; // custom size classes for price block
   
@@ -48,6 +52,8 @@ export default function PlanCard({
   showCurrentInHeader = true,
   showChooseButton = false,
   onChooseClick,
+  expirationDays,
+  showExpirationMessage = false,
   priceBlockSize = "py-10",
   benefits,
   moreBenefits = [],
@@ -113,15 +119,22 @@ export default function PlanCard({
           </div>
           <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{period}</div>
           {isCurrent && !showCurrentInHeader && (
-            <div className="relative z-10 inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-6 text-2xl font-medium text-black">
-              <Image
-                className="h-8 w-8 shrink-0"
-                src="/memberships/upgrade/request_quote_FILL0_wght400_GRAD0_opsz24 1.svg"
-                alt="Current plan"
-                width={16}
-                height={16}
-              />
-              Current plan
+            <div className="relative z-10 flex flex-col items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-6 text-2xl font-medium text-black">
+                <Image
+                  className="h-8 w-8 shrink-0"
+                  src="/memberships/upgrade/request_quote_FILL0_wght400_GRAD0_opsz24 1.svg"
+                  alt="Current plan"
+                  width={16}
+                  height={16}
+                />
+                Current plan
+              </div>
+              {showExpirationMessage && expirationDays !== undefined && (
+                <p className="text-lg text-[#817676]">
+                  * Membership expires after {expirationDays} Day{expirationDays !== 1 ? 's' : ''}
+                </p>
+              )}
             </div>
           )}
           {!isCurrent && showChooseButton && onChooseClick && (

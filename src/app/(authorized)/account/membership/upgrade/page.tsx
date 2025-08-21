@@ -165,6 +165,8 @@ export default function UpgradePage() {
               priceBackgroundColor="bg-green-10"
               isCurrent={true}
               showCurrentInHeader={false}
+              showExpirationMessage={true}
+              expirationDays={15}
               priceBlockSize = "py-14"
               benefits={commonBenefits}
               moreBenefits={moreBenefits}
