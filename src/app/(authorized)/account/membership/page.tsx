@@ -24,15 +24,15 @@ export default function Page() {
     >
       <AccountAndSettingsNav currentPage={settingsNavigation.membership} />
 
-        <div className="mt-4 w-full max-w-[1112px]">
-        <h1 className="mt-[3vh] font-montserrat text-5xl font-medium text-primary-brown 3xl:text-6xl 4xl:text-7xl">
-          Your membership
+        <div className="w-full max-w-[1112px]">
+          <h1 className="mt-[3vh] font-montserrat text-5xl font-medium text-primary-brown 3xl:text-6xl 4xl:text-7xl">
+            Your membership
           </h1>
 
-          <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium mt-[2%]">As a valued monthly 
+          <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">As a valued monthly 
           paying member, your membership #123456789 will be auto renewed on <span className="font-semibold 
           text-primary-orange">{formattedDate}.</span></p>
-          <div className='mt-[5vh] mb-[5vh] bg-[#FED2AA] h-1'></div>
+          <div className='mt-[4vh] mb-[4vh] bg-[#FED2AA] h-1'></div>
 
           <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9">
             <CurrentMembership />
