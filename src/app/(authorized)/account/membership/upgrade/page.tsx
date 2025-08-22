@@ -93,7 +93,7 @@ export default function UpgradePage() {
     >
       <AccountAndSettingsNav currentPage={settingsNavigation.membership} />
 
-      <div className="mt-4 w-full max-w-[1112px]">
+      <div className="mt-4 w-full">
         {/* Back button */}
         <button className="mb-6 flex items-center gap-2 text-primary-purple" onClick={() => router.push('/account/membership')}>
           <Image

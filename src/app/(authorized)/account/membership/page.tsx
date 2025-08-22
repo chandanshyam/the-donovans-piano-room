@@ -24,7 +24,7 @@ export default function Page() {
     >
       <AccountAndSettingsNav currentPage={settingsNavigation.membership} />
 
-        <div className="w-full max-w-[1112px]">
+        <div className="w-full">
           <h1 className="mt-[3vh] font-montserrat text-5xl font-medium text-primary-brown 3xl:text-6xl 4xl:text-7xl">
             Your membership
           </h1>
@@ -34,7 +34,7 @@ export default function Page() {
           text-primary-orange">{formattedDate}.</span></p>
           <div className='mt-[4vh] mb-[4vh] bg-[#FED2AA] h-1'></div>
 
-          <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9">
+          <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9 md:max-w-[1000px]">
             <CurrentMembership />
             <AutoRenewPayment />
           </div>
