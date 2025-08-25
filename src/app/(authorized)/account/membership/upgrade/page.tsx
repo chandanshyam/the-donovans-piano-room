@@ -12,7 +12,7 @@ import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 export default function UpgradePage() {
   const router = useRouter();
-  const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   // hardcoded for now
   const commonBenefits = [
@@ -128,7 +128,7 @@ export default function UpgradePage() {
             
             {/* Scholarship FREE */}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 0 ? null : 0)} className="cursor-pointer">
+              <div onClick={() => setSelectedPlan(selectedPlan === 'free' ? null : 'free')} className="cursor-pointer">
               <PlanCard
                 planName="Scholarship"
                 price="FREE"
@@ -148,8 +148,8 @@ export default function UpgradePage() {
               </div>
             </div>
 
-            {/* Benefit Access Card for Plan 0 */}
-            {selectedPlan === 0 && (
+            {/* Benefit Access Card for FREE */}
+            {selectedPlan === 'free' && (
               <div className="flex-shrink-0 w-80 md:w-96">
                 <BenefitAccessCard 
                   onClose={() => setSelectedPlan(null)}
@@ -160,9 +160,9 @@ export default function UpgradePage() {
                 />
               </div>
             )}
-            {/* Scholarship $1.99 */}
+            {/* Scholarship $1.99/day*/}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 2 ? null : 2)} className="cursor-pointer">
+              <div onClick={() => setSelectedPlan(selectedPlan === 'day' ? null : 'day')} className="cursor-pointer">
               <PlanCard
                 planName="1-Day Scholarship"
                 price={`$${planPrices['day']}`}
@@ -184,8 +184,8 @@ export default function UpgradePage() {
               </div>
             </div>
 
-            {/* Benefit Access Card for Plan 2 */}
-            {selectedPlan === 2 && (
+            {/* Benefit Access Card for Scholarship $1.99 per day */}
+            {selectedPlan === 'day' && (
               <div className="flex-shrink-0 w-80 md:w-96">
                 <BenefitAccessCard 
                   onClose={() => setSelectedPlan(null)}
@@ -197,9 +197,9 @@ export default function UpgradePage() {
               </div>
             )}
 
-            {/* 1-Month $29.99 */}
+            {/* 1-Month: $29.99/month */}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 1 ? null : 1)} className="cursor-pointer">
+              <div onClick={() => setSelectedPlan(selectedPlan === 'month' ? null : 'month')} className="cursor-pointer">
               <PlanCard
                 planName="1-Month Scholarship"
                 price={`$${planPrices['month']}`}
@@ -223,12 +223,12 @@ export default function UpgradePage() {
               </div>
             </div>
 
-            {/* Benefit Access Card for Plan 1 */}
-            {selectedPlan === 1 && (
+            {/* Benefit Access Card for 1-Month $29.99 */}
+            {selectedPlan === 'month' && (
               <div className="flex-shrink-0 w-80 md:w-96">
                 <BenefitAccessCard 
                   onClose={() => setSelectedPlan(null)}
-                  planName={planBenefits[1].name}
+                  planName={planBenefits['month'].name}
                   headerColor={planBenefits['month'].headerColor}
                   textColor={planBenefits['month'].textColor}
                   benefits={planBenefits['month'].benefits}
@@ -237,9 +237,9 @@ export default function UpgradePage() {
             )}
 
 
-            {/* 1-Year $19.99 */}
+            {/* 1-Year: $19.99/month */}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 3 ? null : 3)} className="cursor-pointer">
+              <div onClick={() => setSelectedPlan(selectedPlan === 'year' ? null : 'year')} className="cursor-pointer">
               <PlanCard
                 planName="1-Year Scholarship"
                 price={`$${planPrices['year']}`}
@@ -262,8 +262,8 @@ export default function UpgradePage() {
               </div>
             </div>
 
-            {/* Benefit Access Card for Plan 3 */}
-            {selectedPlan === 3 && (
+            {/* Benefit Access Card for 1-Year $19.99 */}
+            {selectedPlan === 'year' && (
               <div className="flex-shrink-0 w-80 md:w-96">
                 <BenefitAccessCard 
                   onClose={() => setSelectedPlan(null)}
@@ -283,28 +283,28 @@ export default function UpgradePage() {
           <div className="flex items-center gap-3">
             <div
               className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 0 
+                selectedPlan === 'free' 
                   ? "bg-[#6F219E] w-12" 
                   : "bg-[#B457F5] w-3"
               }`}
             />
             <div
               className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 1 
+                selectedPlan === 'day' 
                   ? "bg-[#6F219E] w-12" 
                   : "bg-[#B457F5] w-3"
               }`}
             />
             <div
               className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 2 
+                selectedPlan === 'month' 
                   ? "bg-[#6F219E] w-12" 
                   : "bg-[#B457F5] w-3"
               }`}
             />
             <div
               className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 3 
+                selectedPlan === 'year' 
                   ? "bg-[#6F219E] w-12" 
                   : "bg-[#B457F5] w-3"
               }`}
