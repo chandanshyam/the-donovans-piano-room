@@ -147,6 +147,17 @@ export default function PlanCard({
             {price}
           </div>
           <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{period}</div>
+            {/* Yearly price and billing message - only show for paid plans */}
+            {yearlyPrice && yearlyPrice !== "FREE" && (
+            <div className="relative z-10 text-center">
+              <div className="text-lg text-primary-gray font-medium">
+                Yearly payment: {yearlyPrice} / year
+              </div>
+              <div className="text-lg text-primary-gray font-medium">
+                {billingMessage}
+              </div>
+            </div>
+          )}
           {isCurrent && !showCurrentInHeader && (
             <div className="relative z-10 flex flex-col items-center gap-2">
               <div className="inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-6 text-2xl font-medium text-black">
