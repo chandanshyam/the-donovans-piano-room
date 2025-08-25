@@ -22,6 +22,11 @@ interface PlanCardProps {
   expirationDays?: number; // number of days until membership expires
   showExpirationMessage?: boolean; // whether to show expiration message (only for upgrade page)
   
+  // Discount
+  originalPrice?: string; // original price to show crossed out
+  discountAmount?: string; // amount saved
+  showDiscountIndicator?: boolean; // whether to show discount indicator
+  
   // Price block styling
   priceBlockSize?: string; // custom size classes for price block
   
@@ -37,6 +42,9 @@ interface PlanCardProps {
     className: string;
   }[];
   
+  // Yearly price and billing message
+  yearlyPrice?: string;
+  billingMessage?: string;
 
 }
 
@@ -54,12 +62,17 @@ export default function PlanCard({
   onChooseClick,
   expirationDays,
   showExpirationMessage = false,
+  originalPrice,
+  discountAmount,
+  showDiscountIndicator = false,
   priceBlockSize = "py-10",
   benefits,
   moreBenefits = [],
   successIcon = "/memberships/Current Membership/Success.svg",
   useSingleColumn = false,
   backgroundAssets,
+  yearlyPrice,
+  billingMessage,
 }: PlanCardProps) {
   const [showMoreBenefits, setShowMoreBenefits] = useState(false);
 
@@ -114,10 +127,28 @@ export default function PlanCard({
             )
           )}
           
-          <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown 3xl:text-6xl 4xl:text-7xl">
+          <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown 3xl:text-6xl 4xl:text-7xl flex flex-col items-center gap-1">
+            {showDiscountIndicator && originalPrice && (
+              <p className="text-2xl text-red-500 opacity-80 line-through">
+                {originalPrice}
+              </p>
+            )}
             {price}
           </div>
           <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{period}</div>
+          
+          {/* Yearly price and billing message - only show for paid plans */}
+          {yearlyPrice && yearlyPrice !== "FREE" && (
+            <div className="relative z-10 text-center">
+              <div className="text-lg text-primary-gray font-medium">
+                Yearly payment: {yearlyPrice} / year
+              </div>
+              <div className="text-lg text-primary-gray font-medium">
+                {billingMessage}
+              </div>
+            </div>
+          )}
+          
           {isCurrent && !showCurrentInHeader && (
             <div className="relative z-10 flex flex-col items-center gap-2">
               <div className="inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-6 text-2xl font-medium text-black">

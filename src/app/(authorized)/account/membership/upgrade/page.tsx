@@ -29,27 +29,35 @@ export default function UpgradePage() {
     "Reduced commitment: with this plan, you're not tied to a long-term commitment.",
   ];
 
+  // hardcoded for now
+  const planPrices = {
+    'free': "0", // Scholarship FREE
+    'day': "1.99", // 1-Day
+    'month': "29.99", // 1-Month 
+    'year': "19.99"  // 1-Year
+  };
+
   // Plan-specific benefits for benefit access cards
   const planBenefits = {
-    0: { // Scholarship FREE
+    'free': { // Scholarship FREE
       name: "Free access",
       headerColor: "bg-[#e98427]",
       textColor: "text-white",
       benefits: moreBenefits
     },
-    1: { // 1-Month
-      name: "Monthly access", 
+    'month': { // 1-Month
+      name: "Monthly scholarship access", 
       headerColor: "bg-[#FED2AA]",
       textColor: "text-[#8B4513]",
       benefits: moreBenefits
     },
-    2: { // Scholarship $1.99
-      name: "Scholarship access",
+    'day': { // Scholarship $1.99
+      name: "Daily scholarship access",
       headerColor: "bg-[#6F219E]", 
       textColor: "text-white",
       benefits: moreBenefits
     },
-    3: { // 1-Year
+    'year': { // 1-Year
       name: "Annual access",
       headerColor: "bg-[#E9BB18]",
       textColor: "text-white", 
@@ -145,10 +153,46 @@ export default function UpgradePage() {
               <div className="flex-shrink-0 w-80 md:w-96">
                 <BenefitAccessCard 
                   onClose={() => setSelectedPlan(null)}
-                  planName={planBenefits[0].name}
-                  headerColor={planBenefits[0].headerColor}
-                  textColor={planBenefits[0].textColor}
-                  benefits={planBenefits[0].benefits}
+                  planName={planBenefits['free'].name}
+                  headerColor={planBenefits['free'].headerColor}
+                  textColor={planBenefits['free'].textColor}
+                  benefits={planBenefits['free'].benefits}
+                />
+              </div>
+            )}
+            {/* Scholarship $1.99 */}
+            <div className="flex-shrink-0 w-80 md:w-96">
+              <div onClick={() => setSelectedPlan(selectedPlan === 2 ? null : 2)} className="cursor-pointer">
+              <PlanCard
+                planName="1-Day Scholarship"
+                price={`$${planPrices['day']}`}
+                period="per day"
+                headerColor="bg-[#6F219E]"
+                headerTextColor="text-white"
+                priceBackgroundColor="bg-purple-100"
+                showChooseButton={true}
+                onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
+                priceBlockSize = "py-14"
+                benefits={commonBenefits}
+                moreBenefits={moreBenefits}
+                successIcon="/memberships/upgrade/Scholoarship/Success.svg"
+                useSingleColumn={true}
+                backgroundAssets={scholarshipPaidAssets}
+                yearlyPrice={`$${Number(planPrices['day']) * 365}`}
+                billingMessage={"Billed daily"}
+              />
+              </div>
+            </div>
+
+            {/* Benefit Access Card for Plan 2 */}
+            {selectedPlan === 2 && (
+              <div className="flex-shrink-0 w-80 md:w-96">
+                <BenefitAccessCard 
+                  onClose={() => setSelectedPlan(null)}
+                  planName={planBenefits['day'].name}
+                  headerColor={planBenefits['day'].headerColor}
+                  textColor={planBenefits['day'].textColor}
+                  benefits={planBenefits['day'].benefits}
                 />
               </div>
             )}
@@ -157,8 +201,8 @@ export default function UpgradePage() {
             <div className="flex-shrink-0 w-80 md:w-96">
               <div onClick={() => setSelectedPlan(selectedPlan === 1 ? null : 1)} className="cursor-pointer">
               <PlanCard
-                planName="1-Month"
-                price="$29.99"
+                planName="1-Month Scholarship"
+                price={`$${planPrices['month']}`}
                 period="per month"
                 headerColor="bg-[#438342]"
                 headerTextColor="text-white"
@@ -173,6 +217,8 @@ export default function UpgradePage() {
                 successIcon="/memberships/upgrade/1-Month/Success.svg"
                 useSingleColumn={true}
                 backgroundAssets={monthlyAssets}
+                yearlyPrice={`$${Number(planPrices['month']) * 12}`}
+                billingMessage={"Billed monthly"}
               />
               </div>
             </div>
@@ -183,54 +229,20 @@ export default function UpgradePage() {
                 <BenefitAccessCard 
                   onClose={() => setSelectedPlan(null)}
                   planName={planBenefits[1].name}
-                  headerColor={planBenefits[1].headerColor}
-                  textColor={planBenefits[1].textColor}
-                  benefits={planBenefits[1].benefits}
+                  headerColor={planBenefits['month'].headerColor}
+                  textColor={planBenefits['month'].textColor}
+                  benefits={planBenefits['month'].benefits}
                 />
               </div>
             )}
 
-            {/* Scholarship $1.99 */}
-            <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 2 ? null : 2)} className="cursor-pointer">
-              <PlanCard
-                planName="Scholarship"
-                price="$1.99"
-                period="one day"
-                headerColor="bg-[#6F219E]"
-                headerTextColor="text-white"
-                priceBackgroundColor="bg-purple-100"
-                showChooseButton={true}
-                onChooseClick={() => {/* TODO: Handle scholarship paid plan selection */}}
-                priceBlockSize = "py-14"
-                benefits={commonBenefits}
-                moreBenefits={moreBenefits}
-                successIcon="/memberships/upgrade/Scholoarship/Success.svg"
-                useSingleColumn={true}
-                backgroundAssets={scholarshipPaidAssets}
-              />
-              </div>
-            </div>
-
-            {/* Benefit Access Card for Plan 2 */}
-            {selectedPlan === 2 && (
-              <div className="flex-shrink-0 w-80 md:w-96">
-                <BenefitAccessCard 
-                  onClose={() => setSelectedPlan(null)}
-                  planName={planBenefits[2].name}
-                  headerColor={planBenefits[2].headerColor}
-                  textColor={planBenefits[2].textColor}
-                  benefits={planBenefits[2].benefits}
-                />
-              </div>
-            )}
 
             {/* 1-Year $19.99 */}
             <div className="flex-shrink-0 w-80 md:w-96">
               <div onClick={() => setSelectedPlan(selectedPlan === 3 ? null : 3)} className="cursor-pointer">
               <PlanCard
-                planName="1 Year"
-                price="$19.99"
+                planName="1-Year Scholarship"
+                price={`$${planPrices['year']}`}
                 period="per month"
                 headerColor="bg-[#E9BB18]"
                 headerTextColor="text-white"
@@ -244,6 +256,8 @@ export default function UpgradePage() {
                 successIcon="/memberships/upgrade/1-Year/Success.svg"
                 useSingleColumn={true}
                 backgroundAssets={yearlyAssets}
+                yearlyPrice={`$${Number(planPrices['year']) * 12}`}
+                billingMessage={"Billed yearly"}
               />
               </div>
             </div>
@@ -253,10 +267,10 @@ export default function UpgradePage() {
               <div className="flex-shrink-0 w-80 md:w-96">
                 <BenefitAccessCard 
                   onClose={() => setSelectedPlan(null)}
-                  planName={planBenefits[3].name}
-                  headerColor={planBenefits[3].headerColor}
-                  textColor={planBenefits[3].textColor}
-                  benefits={planBenefits[3].benefits}
+                  planName={planBenefits['year'].name}
+                  headerColor={planBenefits['year'].headerColor}
+                  textColor={planBenefits['year'].textColor}
+                  benefits={planBenefits['year'].benefits}
                 />
               </div>
             )}
