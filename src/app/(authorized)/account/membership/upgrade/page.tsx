@@ -10,9 +10,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
+
 export default function UpgradePage() {
   const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+
+  const handleBenefitCardToggle = (planKey: string) => {
+    // If this plan is already open, close it. Otherwise, open it.
+    setSelectedPlan(selectedPlan === planKey ? null : planKey);
+  };
 
   // hardcoded for now
   const commonBenefits = [
@@ -128,7 +134,6 @@ export default function UpgradePage() {
             
             {/* Scholarship FREE */}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 'free' ? null : 'free')} className="cursor-pointer">
               <PlanCard
                 planName="Scholarship"
                 price="FREE"
@@ -144,8 +149,9 @@ export default function UpgradePage() {
                 successIcon="/memberships/upgrade/Scholoarship-free/Success.svg"
                 useSingleColumn={true}
                 backgroundAssets={scholarshipFreeAssets}
+                useBenefitAccessCard={true}
+                onBenefitAccessCardToggle={() => handleBenefitCardToggle('free')}
               />
-              </div>
             </div>
 
             {/* Benefit Access Card for FREE */}
@@ -160,9 +166,9 @@ export default function UpgradePage() {
                 />
               </div>
             )}
+
             {/* Scholarship $1.99/day*/}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 'day' ? null : 'day')} className="cursor-pointer">
               <PlanCard
                 planName="1-Day Scholarship"
                 price={`$${planPrices['day']}`}
@@ -180,8 +186,9 @@ export default function UpgradePage() {
                 backgroundAssets={scholarshipPaidAssets}
                 yearlyPrice={`$${Number(planPrices['day']) * 365}`}
                 billingMessage={"Billed daily"}
+                useBenefitAccessCard={true}
+                onBenefitAccessCardToggle={() => handleBenefitCardToggle('day')}
               />
-              </div>
             </div>
 
             {/* Benefit Access Card for Scholarship $1.99 per day */}
@@ -199,7 +206,6 @@ export default function UpgradePage() {
 
             {/* 1-Month: $29.99/month */}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 'month' ? null : 'month')} className="cursor-pointer">
               <PlanCard
                 planName="1-Month Scholarship"
                 price={`$${planPrices['month']}`}
@@ -219,8 +225,9 @@ export default function UpgradePage() {
                 backgroundAssets={monthlyAssets}
                 yearlyPrice={`$${Number(planPrices['month']) * 12}`}
                 billingMessage={"Billed monthly"}
+                useBenefitAccessCard={true}
+                onBenefitAccessCardToggle={() => handleBenefitCardToggle('month')}
               />
-              </div>
             </div>
 
             {/* Benefit Access Card for 1-Month $29.99 */}
@@ -236,10 +243,8 @@ export default function UpgradePage() {
               </div>
             )}
 
-
             {/* 1-Year: $19.99/month */}
             <div className="flex-shrink-0 w-80 md:w-96">
-              <div onClick={() => setSelectedPlan(selectedPlan === 'year' ? null : 'year')} className="cursor-pointer">
               <PlanCard
                 planName="1-Year Scholarship"
                 price={`$${planPrices['year']}`}
@@ -258,8 +263,9 @@ export default function UpgradePage() {
                 backgroundAssets={yearlyAssets}
                 yearlyPrice={`$${Number(planPrices['year']) * 12}`}
                 billingMessage={"Billed yearly"}
+                useBenefitAccessCard={true}
+                onBenefitAccessCardToggle={() => handleBenefitCardToggle('year')}
               />
-              </div>
             </div>
 
             {/* Benefit Access Card for 1-Year $19.99 */}

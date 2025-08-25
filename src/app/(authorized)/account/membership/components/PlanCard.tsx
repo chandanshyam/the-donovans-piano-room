@@ -46,6 +46,9 @@ interface PlanCardProps {
   yearlyPrice?: string;
   billingMessage?: string;
 
+  // Benefit access card behavior
+  useBenefitAccessCard?: boolean; // if true, shows BenefitAccessCard instead of expanding inline
+  onBenefitAccessCardToggle?: () => void; // callback to parent when benefit access card should be toggled
 }
 
 export default function PlanCard({
@@ -73,11 +76,19 @@ export default function PlanCard({
   backgroundAssets,
   yearlyPrice = "",
   billingMessage = "",
+  useBenefitAccessCard = false,
+  onBenefitAccessCardToggle,
 }: PlanCardProps) {
   const [showMoreBenefits, setShowMoreBenefits] = useState(false);
 
   const toggleBenefits = () => {
-    setShowMoreBenefits(!showMoreBenefits);
+    if (useBenefitAccessCard && onBenefitAccessCardToggle) {
+      // For upgrade page: simply notify parent to toggle the card
+      onBenefitAccessCardToggle();
+    } else {
+      // For current membership: expand inline
+      setShowMoreBenefits(!showMoreBenefits);
+    }
   };
 
   return (
