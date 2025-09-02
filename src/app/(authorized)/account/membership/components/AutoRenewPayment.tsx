@@ -1,11 +1,44 @@
 import Image from "next/image";
 
-export default function AutoRenewPayment() {
-  const formattedDate = new Date().toLocaleDateString("en-US", {
-    month: "2-digit",
-    day: "2-digit",
-    year: "numeric",
-  });
+type PaymentMethodSummary = {
+  brand: string;
+  last4: string;
+  expMonth: number;
+  expYear: number;
+};
+
+interface AutoRenewPaymentProps {
+  membershipId: string;
+  nextRenewalAt?: string;
+  autoRenew?: boolean;
+  paymentMethodSummary?: PaymentMethodSummary;
+}
+
+export default function AutoRenewPayment({
+  membershipId,
+  nextRenewalAt,
+  autoRenew,
+  paymentMethodSummary,
+}: AutoRenewPaymentProps) {
+  const formattedDate = nextRenewalAt
+    ? new Date(nextRenewalAt).toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      })
+    : "";
+
+  const brandImageSrc = (() => {
+    switch ((paymentMethodSummary?.brand || '').toLowerCase()) {
+      case 'visa':
+        return "/memberships/Auto Renew Payment/Visa.svg";
+      case 'mastercard':
+      case 'amex':
+      case 'american express':
+      default:
+        return "/memberships/Auto Renew Payment/Visa.svg";
+    }
+  })();
 
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">
@@ -13,10 +46,16 @@ export default function AutoRenewPayment() {
         Auto renew payment
       </h1>
 
-      <p className="text-2xl text-primary-black">
-        Your Monthly Membership <span className="font-medium">#123456789</span> will be
-        auto renewed on <span className="font-semibold text-tertiary-orange">{formattedDate}</span>.
-      </p>
+      {autoRenew && formattedDate ? (
+        <p className="text-2xl text-primary-black">
+          Your Membership <span className="font-medium">#{membershipId}</span> will be
+          auto renewed on <span className="font-semibold text-tertiary-orange">{formattedDate}</span>.
+        </p>
+      ) : (
+        <p className="text-2xl text-primary-black">
+          Auto renew is currently disabled.
+        </p>
+      )}
 
       {/* Payment method card */}
       <div className="rounded-2xl border border-[#F6E2D1] bg-[#FFEBD5] p-4 shadow-custom">
@@ -24,18 +63,20 @@ export default function AutoRenewPayment() {
           <div className="flex items-center gap-4">
             <div className="relative flex h-[38px] w-[58px] items-center justify-center rounded-3xl border-[#CCCCCC] bg-white">
               <Image
-                src="/memberships/Auto Renew Payment/Visa.svg"
+                src={brandImageSrc}
                 fill
-                alt="Visa"
+                alt={paymentMethodSummary?.brand || 'Card'}
                 className="object-contain"
                 priority
               />
             </div>
             <div className="flex flex-col">
               <div className="text-2xl font-semibold text-primary-brown leading-6">
-                Ending in <span className="text-tertiary-orange">1234</span>
+                Ending in <span className="text-tertiary-orange">{paymentMethodSummary?.last4 || '----'}</span>
               </div>
-              <div className="text-xl text-primary-gray">Expires 02/28</div>
+              <div className="text-xl text-primary-gray">
+                Expires {paymentMethodSummary?.expMonth?.toString().padStart(2, '0') || '--'}/{paymentMethodSummary?.expYear || '----'}
+              </div>
             </div>
           </div>
 
@@ -61,9 +102,11 @@ export default function AutoRenewPayment() {
           </button>
           <button
             type="button"
-            className="w-full rounded-full border border-primary-purple px-6 py-5 text-center text-primary-purple md:flex-1"
+            className={`w-full rounded-full px-6 py-5 text-center md:flex-1 border ${
+              autoRenew ? 'border-primary-purple text-primary-purple' : 'border-primary-purple text-primary-purple'
+            }`}
           >
-            Cancel auto pay
+            {autoRenew ? 'Cancel auto pay' : 'Enable auto pay'}
           </button>
       </div>
     </div>
