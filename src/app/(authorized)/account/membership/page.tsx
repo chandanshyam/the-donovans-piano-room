@@ -161,7 +161,15 @@ export default function Page() {
             {error}
           </p>
         )}
-        {!loading && !error && membership && (
+        {!loading && !error && membership && membership.status === 'cancelled' && (
+          <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
+            Your membership has been cancelled. You’ll keep access until {formattedNextRenewal && (
+              <span className="font-semibold text-primary-orange">{formattedNextRenewal}</span>
+            )}. Auto‑renew is off and no further charges will occur. You can rejoin anytime from Upgrade membership.
+          </p>
+        )}
+
+        {!loading && !error && membership && membership.status !== 'cancelled' && (
           <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
             As a valued member, your membership #{membership.membershipId}
             {membership.autoRenew && formattedNextRenewal && (
