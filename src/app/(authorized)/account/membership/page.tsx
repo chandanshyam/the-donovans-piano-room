@@ -200,6 +200,7 @@ export default function Page() {
             paymentMethodSummary={membership?.paymentMethodSummary}
             onToggleAutoRenew={handleToggleAutoRenew}
             isUpdating={isUpdatingAuto}
+            isMembershipActive={membership?.status === 'active'}
           />
         </div>
       </div>

@@ -14,6 +14,7 @@ interface AutoRenewPaymentProps {
   paymentMethodSummary?: PaymentMethodSummary;
   onToggleAutoRenew?: (nextEnable: boolean) => void;
   isUpdating?: boolean;
+  isMembershipActive?: boolean;
 }
 
 export default function AutoRenewPayment({
@@ -23,6 +24,7 @@ export default function AutoRenewPayment({
   paymentMethodSummary,
   onToggleAutoRenew,
   isUpdating = false,
+  isMembershipActive = true,
 }: AutoRenewPaymentProps) {
   const formattedDate = nextRenewalAt
     ? new Date(nextRenewalAt).toLocaleDateString("en-US", {
@@ -106,11 +108,16 @@ export default function AutoRenewPayment({
           </button>
           <button
             type="button"
-            disabled={isUpdating}
+            disabled={isUpdating || !isMembershipActive}
             className={`w-full rounded-full px-6 py-5 text-center md:flex-1 border ${
-              isUpdating ? 'border-gray-300 text-gray-400 cursor-not-allowed' : 'border-primary-purple text-primary-purple'
+              (isUpdating || !isMembershipActive)
+                ? 'border-gray-300 text-gray-400 cursor-not-allowed'
+                : 'border-primary-purple text-primary-purple'
             }`}
-            onClick={() => onToggleAutoRenew && onToggleAutoRenew(!autoRenew)}
+            onClick={() => {
+              if (!isMembershipActive || isUpdating) return;
+              onToggleAutoRenew && onToggleAutoRenew(!autoRenew);
+            }}
           >
             {isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay'}
           </button>
