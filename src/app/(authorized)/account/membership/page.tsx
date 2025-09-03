@@ -6,7 +6,7 @@ import {
   authorizedWrapperTitles,
   settingsNavigation,
 } from "@/utils/general";
-import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
+import { getLevelInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
 import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
 import "../../../../styles/primary-purple-scrollbar.css";
@@ -41,6 +41,8 @@ export default function Page() {
   const [level, setLevel] = useState<LevelInfo | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isCancelling, setIsCancelling] = useState<boolean>(false);
+  const [isUpdatingAuto, setIsUpdatingAuto] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -67,6 +69,41 @@ export default function Page() {
       isMounted = false;
     };
   }, []);
+
+  const refresh = async () => {
+    try {
+      const userMembership = await getUserMembership();
+      setMembership(userMembership);
+      if (userMembership?.levelId) {
+        const levelDetails = await getLevelInfo(userMembership.levelId);
+        setLevel(levelDetails);
+      }
+    } catch (e) {}
+  };
+
+  const handleCancel = async () => {
+    try {
+      setIsCancelling(true);
+      await cancelUserMembership();
+      await refresh();
+    } catch (e: any) {
+      setError(e?.message || 'Failed to cancel membership');
+    } finally {
+      setIsCancelling(false);
+    }
+  };
+
+  const handleToggleAutoRenew = async (nextEnable: boolean) => {
+    try {
+      setIsUpdatingAuto(true);
+      await toggleAutoRenew(nextEnable);
+      await refresh();
+    } catch (e: any) {
+      setError(e?.message || 'Failed to update auto renew');
+    } finally {
+      setIsUpdatingAuto(false);
+    }
+  };
 
   const formattedNextRenewal = useMemo(() => {
     if (!membership?.nextRenewalAt) return "";
@@ -136,12 +173,16 @@ export default function Page() {
             moreBenefits={level?.additional_benefits || []}
             levelId={membership?.levelId || ""}
             status={membership?.status || ""}
+            onCancel={handleCancel}
+            isCancelling={isCancelling}
           />
           <AutoRenewPayment
             membershipId={membership?.membershipId || ""}
             nextRenewalAt={membership?.nextRenewalAt}
             autoRenew={Boolean(membership?.autoRenew)}
             paymentMethodSummary={membership?.paymentMethodSummary}
+            onToggleAutoRenew={handleToggleAutoRenew}
+            isUpdating={isUpdatingAuto}
           />
         </div>
       </div>

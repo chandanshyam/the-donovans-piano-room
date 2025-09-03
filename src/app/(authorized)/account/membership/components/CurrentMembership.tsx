@@ -9,6 +9,8 @@ interface CurrentMembershipProps {
   moreBenefits: string[];
   levelId: string; // e.g., lvl_free, lvl_day, lvl_month, lvl_year
   status: string; // e.g., active, inactive
+  onCancel?: () => void; // cancel membership handler
+  isCancelling?: boolean;
 }
 
 export default function CurrentMembership({
@@ -19,6 +21,8 @@ export default function CurrentMembership({
   moreBenefits,
   levelId,
   status,
+  onCancel,
+  isCancelling = false,
 }: CurrentMembershipProps) {
   const router = useRouter();
 
@@ -90,14 +94,18 @@ export default function CurrentMembership({
         </button>
         <button
           type="button"
-          disabled={!isActive}
+          disabled={!isActive || isCancelling}
           className={`w-full rounded-full border px-6 py-5 text-center md:flex-1 ${
-            isActive
+            isActive && !isCancelling
               ? "border-primary-purple text-primary-purple"
               : "border-gray-300 text-gray-400 cursor-not-allowed"
           }`}
+          onClick={() => {
+            if (!isActive || isCancelling) return;
+            onCancel && onCancel();
+          }}
         >
-          Cancel
+          {isCancelling ? 'Cancelling...' : 'Cancel'}
         </button>
       </div>
     </div>

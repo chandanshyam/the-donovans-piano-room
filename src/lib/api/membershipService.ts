@@ -84,3 +84,51 @@ export async function getLevelInfo(levelId: string) {
         throw new Error(error.message || 'An error occurred while retrieving level details');
     }
 }
+
+export async function cancelUserMembership() {
+    try {
+        const response = await fetch('/api/membership/user/cancel', {
+            method: 'POST',
+            credentials: 'include',
+        });
+        let data: any = null;
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+            try { data = await response.json(); } catch { data = null; }
+        } else {
+            try { const text = await response.text(); data = text || null; } catch { data = null; }
+        }
+        if (!response.ok) {
+            const message = typeof data === 'object' && data?.message ? data.message : 'Failed to cancel membership';
+            throw new Error(message);
+        }
+        return data ?? {};
+    } catch (error: any) {
+        throw new Error(error.message || 'An error occurred while cancelling membership');
+    }
+}
+
+export async function toggleAutoRenew(enable: boolean) {
+    try {
+        // Backend expects empty POST body for cancel auto pay. Send no body and no Content-Type.
+        // If enabling is supported later, adjust accordingly.
+        const response = await fetch('/api/membership/user/auto-renew', {
+            method: 'POST',
+            credentials: 'include',
+        });
+        let data: any = null;
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+            try { data = await response.json(); } catch { data = null; }
+        } else {
+            try { const text = await response.text(); data = text || null; } catch { data = null; }
+        }
+        if (!response.ok) {
+            const message = typeof data === 'object' && data?.message ? data.message : 'Failed to update auto renew';
+            throw new Error(message);
+        }
+        return data ?? {};
+    } catch (error: any) {
+        throw new Error(error.message || 'An error occurred while updating auto renew');
+    }
+}
