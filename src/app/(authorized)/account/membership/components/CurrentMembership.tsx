@@ -8,7 +8,7 @@ interface CurrentMembershipProps {
   benefits: string[];
   moreBenefits: string[];
   levelId: string; // e.g., lvl_free, lvl_day, lvl_month, lvl_year
-  status: string; // e.g., active, inactive
+  status: string; // e.g., active, cancelled
   onCancel?: () => void; // cancel membership handler
   isCancelling?: boolean;
 }
@@ -105,7 +105,7 @@ export default function CurrentMembership({
             onCancel && onCancel();
           }}
         >
-          {isCancelling ? 'Cancelling...' : 'Cancel'}
+          {isCancelling ? 'Cancelling...' : (isActive ? 'Cancel' : 'Cancelled')}
         </button>
       </div>
     </div>

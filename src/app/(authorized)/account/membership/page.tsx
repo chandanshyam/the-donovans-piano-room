@@ -43,6 +43,7 @@ export default function Page() {
   const [error, setError] = useState<string | null>(null);
   const [isCancelling, setIsCancelling] = useState<boolean>(false);
   const [isUpdatingAuto, setIsUpdatingAuto] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   useEffect(() => {
     let isMounted = true;
@@ -86,6 +87,8 @@ export default function Page() {
       setIsCancelling(true);
       await cancelUserMembership();
       await refresh();
+      setSuccessMessage("Your membership has been successfully cancelled.");
+      setTimeout(() => setSuccessMessage(""), 4000);
     } catch (e: any) {
       setError(e?.message || 'Failed to cancel membership');
     } finally {
@@ -141,6 +144,12 @@ export default function Page() {
         <h1 className="mt-[3vh] font-montserrat text-5xl font-medium text-primary-brown 3xl:text-6xl 4xl:text-7xl">
           Your membership
         </h1>
+
+        {!!successMessage && (
+          <p className="mt-3 rounded-md bg-emerald-500/15 p-3 text-xl font-medium text-emerald-600 3xl:text-2xl 4xl:text-3xl">
+            {successMessage}
+          </p>
+        )}
 
         {loading && (
           <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
