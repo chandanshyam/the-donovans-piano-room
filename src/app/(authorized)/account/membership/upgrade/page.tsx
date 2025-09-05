@@ -11,7 +11,52 @@ import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, LevelInfo, MembershipLevelId, BackgroundAsset, LevelUI } from "@/interfaces/membershipInterface";
+import { UserMembership, LevelInfo, MembershipLevelId, BackgroundAsset, LevelUI, PlanConfig } from "@/interfaces/membershipInterface";
+
+// Plan configuration for rendering
+const PLAN_CONFIGS: PlanConfig[] = [
+  {
+    levelId: MembershipLevelId.FREE,
+    planKey: 'free',
+    displayName: 'Scholarship',
+    billingMessage: 'Free access',
+    benefitCardColors: {
+      headerColor: 'bg-[#FED2AA]',
+      textColor: 'text-[#8B4513]'
+    }
+  },
+  {
+    levelId: MembershipLevelId.DAY,
+    planKey: 'day',
+    yearlyMultiplier: 365,
+    billingMessage: 'Billed daily',
+    benefitCardColors: {
+      headerColor: 'bg-[#6F219E]',
+      textColor: 'text-white'
+    }
+  },
+  {
+    levelId: MembershipLevelId.MONTH,
+    planKey: 'month',
+    yearlyMultiplier: 12,
+    billingMessage: 'Billed monthly',
+    benefitCardColors: {
+      headerColor: 'bg-[#FED2AA]',
+      textColor: 'text-[#8B4513]'
+    }
+  },
+  {
+    levelId: MembershipLevelId.YEAR,
+    planKey: 'year',
+    isPopular: true,
+    yearlyMultiplier: 12,
+    billingMessage: 'Billed yearly',
+    benefitCardColors: {
+      headerColor: 'bg-[#E9BB18]',
+      textColor: 'text-white'
+    }
+  }
+];
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -130,11 +175,6 @@ export default function UpgradePage() {
     return `per ${period}`;
   };
 
-  const displayNameFor = (levelId: MembershipLevelId, name?: string) => {
-    if (levelId === MembershipLevelId.FREE) return 'Scholarship';
-    return name || '';
-  };
-
   const periodLabelFor = (levelId: MembershipLevelId, period?: string) => {
     if (levelId === MembershipLevelId.FREE) return '';
     return periodLabel(period);
@@ -148,6 +188,62 @@ export default function UpgradePage() {
     if (Number.isNaN(ms)) return undefined;
     return Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
   }, [membership?.nextRenewalAt]);
+
+  // Helper function to render a single plan
+  const renderPlan = (config: PlanConfig) => {
+    const level = levels[config.levelId];
+    if (!level) return null;
+
+    const yearlyPrice = config.yearlyMultiplier && level.price > 0 
+      ? `$${(level.price * config.yearlyMultiplier).toFixed(2)}` 
+      : '';
+
+    return (
+      <>
+        {/* Plan Card */}
+        <div className="flex-shrink-0 w-80 md:w-96">
+          <PlanCard
+            planName={config.displayName || level.name}
+            price={priceLabel(level.price)}
+            period={periodLabelFor(config.levelId, level.period)}
+            headerColor={uiForLevel(config.levelId).headerColor}
+            headerTextColor={uiForLevel(config.levelId).headerTextColor}
+            priceBackgroundColor={uiForLevel(config.levelId).priceBackgroundColor}
+            isCurrent={isCurrent(config.levelId)}
+            showCurrentInHeader={false}
+            showExpirationMessage={isCurrent(config.levelId)}
+            expirationDays={expirationDays}
+            showChooseButton={!isCurrent(config.levelId)}
+            onChooseClick={() => {/* TODO: Handle plan selection */}}
+            priceBlockSize="py-14"
+            benefits={level.basic_benefits}
+            moreBenefits={level.additional_benefits}
+            successIcon={uiForLevel(config.levelId).successIcon}
+            useSingleColumn={true}
+            backgroundAssets={assetsForLevel(config.levelId)}
+            yearlyPrice={yearlyPrice}
+            billingMessage={config.billingMessage}
+            useBenefitAccessCard={true}
+            onBenefitAccessCardToggle={() => handleBenefitCardToggle(config.planKey)}
+            isPopular={config.isPopular}
+          />
+        </div>
+
+        {/* Benefit Access Card */}
+        {selectedPlan === config.planKey && (
+          <div className="flex-shrink-0 w-80 md:w-96">
+            <BenefitAccessCard 
+              onClose={() => setSelectedPlan(null)}
+              planName={config.displayName || level.name}
+              headerColor={config.benefitCardColors.headerColor}
+              textColor={config.benefitCardColors.textColor}
+              benefits={level.additional_benefits}
+            />
+          </div>
+        )}
+      </>
+    );
+  };
 
   return (
     <AuthorizedWrapper1 
@@ -188,212 +284,23 @@ export default function UpgradePage() {
         
         <div className="mt-8 overflow-x-auto">
           <div className="flex gap-6 min-w-fit">
-            
-            {/* Scholarship FREE */}
-            <div className="flex-shrink-0 w-80 md:w-96">
-              {levels[MembershipLevelId.FREE] && (
-                <PlanCard
-                  planName={displayNameFor(MembershipLevelId.FREE, levels[MembershipLevelId.FREE]!.name)}
-                  price={priceLabel(levels[MembershipLevelId.FREE]!.price)}
-                  period={periodLabelFor(MembershipLevelId.FREE, levels[MembershipLevelId.FREE]!.period)}
-                  headerColor={uiForLevel(MembershipLevelId.FREE).headerColor}
-                  headerTextColor={uiForLevel(MembershipLevelId.FREE).headerTextColor}
-                  priceBackgroundColor={uiForLevel(MembershipLevelId.FREE).priceBackgroundColor}
-                  isCurrent={isCurrent(MembershipLevelId.FREE)}
-                  showCurrentInHeader={false}
-                  showExpirationMessage={isCurrent(MembershipLevelId.FREE)}
-                  expirationDays={expirationDays}
-                  showChooseButton={!isCurrent(MembershipLevelId.FREE)}
-                  onChooseClick={() => {/* TODO: Handle scholarship free plan selection */}}
-                  priceBlockSize = "py-14"
-                  benefits={levels[MembershipLevelId.FREE]!.basic_benefits}
-                  moreBenefits={levels[MembershipLevelId.FREE]!.additional_benefits}
-                  successIcon={uiForLevel(MembershipLevelId.FREE).successIcon}
-                  useSingleColumn={true}
-                  backgroundAssets={assetsForLevel(MembershipLevelId.FREE)}
-                  useBenefitAccessCard={true}
-                  onBenefitAccessCardToggle={() => handleBenefitCardToggle('free')}
-                />
-              )}
-            </div>
-
-            {/* Benefit Access Card for FREE */}
-            {selectedPlan === 'free' && (
-              <div className="flex-shrink-0 w-80 md:w-96">
-                <BenefitAccessCard 
-                  onClose={() => setSelectedPlan(null)}
-                  planName={displayNameFor(MembershipLevelId.FREE, levels[MembershipLevelId.FREE]?.name) || 'Scholarship'}
-                  headerColor="bg-[#FED2AA]"
-                  textColor="text-[#8B4513]"
-                  benefits={levels[MembershipLevelId.FREE]?.additional_benefits || []}
-                />
-              </div>
-            )}
-
-            {/* Scholarship $1.99/day*/}
-            <div className="flex-shrink-0 w-80 md:w-96">
-              {levels[MembershipLevelId.DAY] && (
-                <PlanCard
-                  planName={levels[MembershipLevelId.DAY]!.name}
-                  price={priceLabel(levels[MembershipLevelId.DAY]!.price)}
-                  period={periodLabel(levels[MembershipLevelId.DAY]!.period)}
-                  headerColor={uiForLevel(MembershipLevelId.DAY).headerColor}
-                  headerTextColor={uiForLevel(MembershipLevelId.DAY).headerTextColor}
-                  priceBackgroundColor={uiForLevel(MembershipLevelId.DAY).priceBackgroundColor}
-                  isCurrent={isCurrent(MembershipLevelId.DAY)}
-                  showCurrentInHeader={false}
-                  showExpirationMessage={isCurrent(MembershipLevelId.DAY)}
-                  expirationDays={expirationDays}
-                  showChooseButton={!isCurrent(MembershipLevelId.DAY)}
-                  onChooseClick={() => {/* TODO: Handle daily plan selection */}}
-                  priceBlockSize = "py-14"
-                  benefits={levels[MembershipLevelId.DAY]!.basic_benefits}
-                  moreBenefits={levels[MembershipLevelId.DAY]!.additional_benefits}
-                  successIcon={uiForLevel(MembershipLevelId.DAY).successIcon}
-                  useSingleColumn={true}
-                  backgroundAssets={assetsForLevel(MembershipLevelId.DAY)}
-                  yearlyPrice={levels[MembershipLevelId.DAY]!.price ? `$${(levels[MembershipLevelId.DAY]!.price * 365).toFixed(2)}` : ''}
-                  billingMessage={"Billed daily"}
-                  useBenefitAccessCard={true}
-                  onBenefitAccessCardToggle={() => handleBenefitCardToggle('day')}
-                />
-              )}
-            </div>
-
-            {/* Benefit Access Card for Scholarship $1.99 per day */}
-            {selectedPlan === 'day' && (
-              <div className="flex-shrink-0 w-80 md:w-96">
-                <BenefitAccessCard 
-                  onClose={() => setSelectedPlan(null)}
-                  planName={levels[MembershipLevelId.DAY]?.name || 'Daily scholarship access'}
-                  headerColor="bg-[#6F219E]"
-                  textColor="text-white"
-                  benefits={levels[MembershipLevelId.DAY]?.additional_benefits || []}
-                />
-              </div>
-            )}
-
-            {/* 1-Month: $29.99/month */}
-            <div className="flex-shrink-0 w-80 md:w-96">
-              {levels[MembershipLevelId.MONTH] && (
-                <PlanCard
-                  planName={levels[MembershipLevelId.MONTH]!.name}
-                  price={priceLabel(levels[MembershipLevelId.MONTH]!.price)}
-                  period={periodLabel(levels[MembershipLevelId.MONTH]!.period)}
-                  headerColor={uiForLevel(MembershipLevelId.MONTH).headerColor}
-                  headerTextColor={uiForLevel(MembershipLevelId.MONTH).headerTextColor}
-                  priceBackgroundColor={uiForLevel(MembershipLevelId.MONTH).priceBackgroundColor}
-                  isCurrent={isCurrent(MembershipLevelId.MONTH)}
-                  showCurrentInHeader={false}
-                  showExpirationMessage={isCurrent(MembershipLevelId.MONTH)}
-                  expirationDays={expirationDays}
-                  showChooseButton={!isCurrent(MembershipLevelId.MONTH)}
-                  onChooseClick={() => { /* TODO: Handle monthly plan selection */ }}
-                  priceBlockSize = "py-14"
-                  benefits={levels[MembershipLevelId.MONTH]!.basic_benefits}
-                  moreBenefits={levels[MembershipLevelId.MONTH]!.additional_benefits}
-                  successIcon={uiForLevel(MembershipLevelId.MONTH).successIcon}
-                  useSingleColumn={true}
-                  backgroundAssets={assetsForLevel(MembershipLevelId.MONTH)}
-                  yearlyPrice={levels[MembershipLevelId.MONTH]!.price ? `$${(levels[MembershipLevelId.MONTH]!.price * 12).toFixed(2)}` : ''}
-                  billingMessage={"Billed monthly"}
-                  useBenefitAccessCard={true}
-                  onBenefitAccessCardToggle={() => handleBenefitCardToggle('month')}
-                />
-              )}
-            </div>
-
-            {/* Benefit Access Card for 1-Month $29.99 */}
-            {selectedPlan === 'month' && (
-              <div className="flex-shrink-0 w-80 md:w-96">
-                <BenefitAccessCard 
-                  onClose={() => setSelectedPlan(null)}
-                  planName={levels[MembershipLevelId.MONTH]?.name || 'Monthly scholarship access'}
-                  headerColor="bg-[#FED2AA]"
-                  textColor="text-[#8B4513]"
-                  benefits={levels[MembershipLevelId.MONTH]?.additional_benefits || []}
-                />
-              </div>
-            )}
-
-            {/* 1-Year: $19.99/month */}
-            <div className="flex-shrink-0 w-80 md:w-96">
-              {levels[MembershipLevelId.YEAR] && (
-                <PlanCard
-                  planName={levels[MembershipLevelId.YEAR]!.name}
-                  price={priceLabel(levels[MembershipLevelId.YEAR]!.price)}
-                  period={periodLabel(levels[MembershipLevelId.YEAR]!.period)}
-                  headerColor={uiForLevel(MembershipLevelId.YEAR).headerColor}
-                  headerTextColor={uiForLevel(MembershipLevelId.YEAR).headerTextColor}
-                  priceBackgroundColor={uiForLevel(MembershipLevelId.YEAR).priceBackgroundColor}
-                  isCurrent={isCurrent(MembershipLevelId.YEAR)}
-                  showCurrentInHeader={false}
-                  showExpirationMessage={isCurrent(MembershipLevelId.YEAR)}
-                  expirationDays={expirationDays}
-                  isPopular={true}
-                  showChooseButton={!isCurrent(MembershipLevelId.YEAR)}
-                  onChooseClick={() => {/* TODO: Handle yearly plan selection */}}
-                  priceBlockSize = "py-14"
-                  benefits={levels[MembershipLevelId.YEAR]!.basic_benefits}
-                  moreBenefits={levels[MembershipLevelId.YEAR]!.additional_benefits}
-                  successIcon={uiForLevel(MembershipLevelId.YEAR).successIcon}
-                  useSingleColumn={true}
-                  backgroundAssets={assetsForLevel(MembershipLevelId.YEAR)}
-                  yearlyPrice={levels[MembershipLevelId.YEAR]!.price ? `$${(levels[MembershipLevelId.YEAR]!.price * 12).toFixed(2)}` : ''}
-                  billingMessage={"Billed yearly"}
-                  useBenefitAccessCard={true}
-                  onBenefitAccessCardToggle={() => handleBenefitCardToggle('year')}
-                />
-              )}
-            </div>
-
-            {/* Benefit Access Card for 1-Year $19.99 */}
-            {selectedPlan === 'year' && (
-              <div className="flex-shrink-0 w-80 md:w-96">
-                <BenefitAccessCard 
-                  onClose={() => setSelectedPlan(null)}
-                  planName={levels[MembershipLevelId.YEAR]?.name || 'Annual access'}
-                  headerColor="bg-[#E9BB18]"
-                  textColor="text-white"
-                  benefits={levels[MembershipLevelId.YEAR]?.additional_benefits || []}
-                />
-              </div>
-            )}
-
+            {PLAN_CONFIGS.map((config) => renderPlan(config))}
           </div>
         </div>
 
         {/* Horizontal Scroller Indicators */}
         <div className="mt-8 flex justify-center">
           <div className="flex items-center gap-3">
-            <div
-              className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 'free' 
-                  ? "bg-[#6F219E] w-12" 
-                  : "bg-[#B457F5] w-3"
-              }`}
-            />
-            <div
-              className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 'day' 
-                  ? "bg-[#6F219E] w-12" 
-                  : "bg-[#B457F5] w-3"
-              }`}
-            />
-            <div
-              className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 'month' 
-                  ? "bg-[#6F219E] w-12" 
-                  : "bg-[#B457F5] w-3"
-              }`}
-            />
-            <div
-              className={`h-3 rounded-full transition-all duration-300 ${
-                selectedPlan === 'year' 
-                  ? "bg-[#6F219E] w-12" 
-                  : "bg-[#B457F5] w-3"
-              }`}
-            />
+            {PLAN_CONFIGS.map((config) => (
+              <div
+                key={config.planKey}
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  selectedPlan === config.planKey 
+                    ? "bg-[#6F219E] w-12" 
+                    : "bg-[#B457F5] w-3"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </div>
