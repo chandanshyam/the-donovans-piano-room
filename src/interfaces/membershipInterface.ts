@@ -22,6 +22,29 @@ export enum PaymentMethodBrand {
   AMERICAN_EXPRESS = 'american express'
 }
 
+export enum PlanDisplayName {
+  SCHOLARSHIP = 'Scholarship',
+  ONE_DAY = '1-Day',
+  ONE_MONTH = '1-Month',
+  ONE_YEAR = '1-Year'
+}
+
+// Mapping function to get display name for membership level
+export const getPlanDisplayName = (levelId: MembershipLevelId): PlanDisplayName => {
+  switch (levelId) {
+    case MembershipLevelId.FREE:
+      return PlanDisplayName.SCHOLARSHIP;
+    case MembershipLevelId.DAY:
+      return PlanDisplayName.ONE_DAY;
+    case MembershipLevelId.MONTH:
+      return PlanDisplayName.ONE_MONTH;
+    case MembershipLevelId.YEAR:
+      return PlanDisplayName.ONE_YEAR;
+    default:
+      return PlanDisplayName.SCHOLARSHIP;
+  }
+};
+
 // Core data structures
 export interface PaymentMethodSummary {
   brand: string;

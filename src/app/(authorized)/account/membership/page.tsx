@@ -159,7 +159,6 @@ export default function Page() {
 
         <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9 md:max-w-[1000px]">
           <CurrentMembership
-            planName={level?.name || ""}
             price={priceLabel}
             period={periodLabel}
             benefits={level?.basic_benefits || []}

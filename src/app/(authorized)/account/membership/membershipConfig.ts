@@ -1,4 +1,4 @@
-import { MembershipLevelId, LevelUIConfig, PlanConfig } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, LevelUIConfig, PlanConfig, PlanDisplayName, getPlanDisplayName } from "@/interfaces/membershipInterface";
 
 // Shared UI configuration for all membership levels
 export const LEVEL_UI_CONFIG: Record<MembershipLevelId, LevelUIConfig> = {
@@ -45,7 +45,7 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.FREE,
     planKey: 'free',
-    displayName: 'Scholarship',
+    displayName: PlanDisplayName.SCHOLARSHIP,
     billingMessage: 'Free access',
     benefitCardColors: {
       headerColor: 'bg-[#FED2AA]',
@@ -55,6 +55,7 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.DAY,
     planKey: 'day',
+    displayName: PlanDisplayName.ONE_DAY,
     yearlyMultiplier: 365,
     billingMessage: 'Billed daily',
     benefitCardColors: {
@@ -65,6 +66,7 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.MONTH,
     planKey: 'month',
+    displayName: PlanDisplayName.ONE_MONTH,
     yearlyMultiplier: 12,
     billingMessage: 'Billed monthly',
     benefitCardColors: {
@@ -75,6 +77,7 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.YEAR,
     planKey: 'year',
+    displayName: PlanDisplayName.ONE_YEAR,
     isPopular: true,
     yearlyMultiplier: 12,
     billingMessage: 'Billed yearly',
@@ -88,4 +91,9 @@ export const PLAN_CONFIGS: PlanConfig[] = [
 // Helper function to get UI config for a level
 export const getLevelUIConfig = (levelId: MembershipLevelId): LevelUIConfig => {
   return LEVEL_UI_CONFIG[levelId];
+};
+
+// Helper function to get plan display name for a level
+export const getPlanDisplayNameForLevel = (levelId: MembershipLevelId): PlanDisplayName => {
+  return getPlanDisplayName(levelId);
 };
