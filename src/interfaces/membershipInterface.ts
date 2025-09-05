@@ -95,6 +95,15 @@ export interface MembershipApiResponse<T> {
   success: boolean;
 }
 
+// UI configuration for membership levels
+export interface LevelUIConfig {
+  headerColor: string;
+  headerTextColor: string;
+  successIcon: string;
+  priceBackgroundColor: string;
+  backgroundAssets: BackgroundAsset[];
+}
+
 // Plan configuration for rendering
 export interface PlanConfig {
   levelId: MembershipLevelId;

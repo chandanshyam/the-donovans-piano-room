@@ -11,52 +11,8 @@ import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, LevelInfo, MembershipLevelId, BackgroundAsset, LevelUI, PlanConfig } from "@/interfaces/membershipInterface";
-
-// Plan configuration for rendering
-const PLAN_CONFIGS: PlanConfig[] = [
-  {
-    levelId: MembershipLevelId.FREE,
-    planKey: 'free',
-    displayName: 'Scholarship',
-    billingMessage: 'Free access',
-    benefitCardColors: {
-      headerColor: 'bg-[#FED2AA]',
-      textColor: 'text-[#8B4513]'
-    }
-  },
-  {
-    levelId: MembershipLevelId.DAY,
-    planKey: 'day',
-    yearlyMultiplier: 365,
-    billingMessage: 'Billed daily',
-    benefitCardColors: {
-      headerColor: 'bg-[#6F219E]',
-      textColor: 'text-white'
-    }
-  },
-  {
-    levelId: MembershipLevelId.MONTH,
-    planKey: 'month',
-    yearlyMultiplier: 12,
-    billingMessage: 'Billed monthly',
-    benefitCardColors: {
-      headerColor: 'bg-[#FED2AA]',
-      textColor: 'text-[#8B4513]'
-    }
-  },
-  {
-    levelId: MembershipLevelId.YEAR,
-    planKey: 'year',
-    isPopular: true,
-    yearlyMultiplier: 12,
-    billingMessage: 'Billed yearly',
-    benefitCardColors: {
-      headerColor: 'bg-[#E9BB18]',
-      textColor: 'text-white'
-    }
-  }
-];
+import { UserMembership, LevelInfo, MembershipLevelId, LevelUI, BackgroundAsset, PlanConfig } from "@/interfaces/membershipInterface";
+import { PLAN_CONFIGS, getLevelUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -106,60 +62,17 @@ export default function UpgradePage() {
   }, []);
 
   const uiForLevel = (levelId: MembershipLevelId): LevelUI => {
-    switch (levelId) {
-      case MembershipLevelId.FREE:
-        return { headerColor: 'bg-[#e98427]', headerTextColor: 'text-white', successIcon: '/memberships/upgrade/Scholoarship-free/Success.svg', priceBackgroundColor: 'bg-orange-50' };
-      case MembershipLevelId.DAY:
-        return { headerColor: 'bg-[#6F219E]', headerTextColor: 'text-white', successIcon: '/memberships/upgrade/Scholoarship/Success.svg', priceBackgroundColor: 'bg-purple-100' };
-      case MembershipLevelId.YEAR:
-        return { headerColor: 'bg-[#E9BB18]', headerTextColor: 'text-white', successIcon: '/memberships/upgrade/1-Year/Success.svg', priceBackgroundColor: 'bg-yellow-50' };
-      case MembershipLevelId.MONTH:
-      default:
-        return { headerColor: 'bg-[#438342]', headerTextColor: 'text-white', successIcon: '/memberships/upgrade/1-Month/Success.svg', priceBackgroundColor: 'bg-green-10' };
-    }
+    const config = getLevelUIConfig(levelId);
+    return {
+      headerColor: config.headerColor,
+      headerTextColor: config.headerTextColor,
+      successIcon: config.successIcon,
+      priceBackgroundColor: config.priceBackgroundColor
+    };
   };
 
-  // Plan assets
-  const scholarshipFreeAssets = [
-    {
-      src: "/memberships/upgrade/Scholoarship-free/Group 48096278.svg",
-      className: "inset-0 object-cover"
-    }
-  ];
-
-  const monthlyAssets = [
-    {
-      src: "/memberships/upgrade/1-Month/Group 48096278.svg",
-      className: "inset-0 object-cover"
-    }
-  ];
-
-  const scholarshipPaidAssets = [
-    {
-      src: "/memberships/upgrade/Scholoarship/Group 48096278.svg", 
-      className: "inset-0 object-cover"
-    }
-  ];
-
-  const yearlyAssets = [
-    {
-      src: "/memberships/upgrade/1-Year/Group 48095969.svg",
-      className: "inset-0 object-cover"
-    }
-  ];
-
   const assetsForLevel = (levelId: MembershipLevelId): BackgroundAsset[] => {
-    switch (levelId) {
-      case MembershipLevelId.DAY:
-        return scholarshipPaidAssets;
-      case MembershipLevelId.MONTH:
-        return monthlyAssets;
-      case MembershipLevelId.YEAR:
-        return yearlyAssets;
-      case MembershipLevelId.FREE:
-      default: 
-        return scholarshipFreeAssets;
-    }
+    return getLevelUIConfig(levelId).backgroundAssets;
   };
 
   const isCurrent = (levelId: MembershipLevelId) => membership?.levelId === levelId;
@@ -191,7 +104,7 @@ export default function UpgradePage() {
 
   // Helper function to render a single plan
   const renderPlan = (config: PlanConfig) => {
-    const level = levels[config.levelId];
+    const level = levels[config.levelId as MembershipLevelId];
     if (!level) return null;
 
     const yearlyPrice = config.yearlyMultiplier && level.price > 0 

@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import PlanCard from "./PlanCard";
 import { MembershipLevelId, MembershipStatus } from "@/interfaces/membershipInterface";
+import { getLevelUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
 
 interface CurrentMembershipProps {
   planName: string;
@@ -27,43 +28,7 @@ export default function CurrentMembership({
 }: CurrentMembershipProps) {
   const router = useRouter();
 
-  const { headerColor, headerTextColor, backgroundAssets } = (() => {
-    switch (levelId) {
-      case MembershipLevelId.FREE:
-        return {
-          headerColor: "bg-[#e98427]",
-          headerTextColor: "text-white",
-          backgroundAssets: [
-            { src: "/memberships/upgrade/Scholoarship-free/Group 48096278.svg", className: "inset-0 object-cover" },
-          ],
-        };
-      case MembershipLevelId.DAY:
-        return {
-          headerColor: "bg-[#6F219E]",
-          headerTextColor: "text-white",
-          backgroundAssets: [
-            { src: "/memberships/upgrade/Scholoarship/Group 48096278.svg", className: "inset-0 object-cover" },
-          ],
-        };
-      case MembershipLevelId.YEAR:
-        return {
-          headerColor: "bg-[#E9BB18]",
-          headerTextColor: "text-white",
-          backgroundAssets: [
-            { src: "/memberships/upgrade/1-Year/Group 48095969.svg", className: "inset-0 object-cover" },
-          ],
-        };
-      case MembershipLevelId.MONTH:
-      default:
-        return {
-          headerColor: "bg-[#438342]",
-          headerTextColor: "text-white",
-          backgroundAssets: [
-            { src: "/memberships/upgrade/1-Month/Group 48096278.svg", className: "inset-0 object-cover" },
-          ],
-        };
-    }
-  })();
+  const { headerColor, headerTextColor, backgroundAssets } = getLevelUIConfig(levelId);
 
   const isActive = status === MembershipStatus.ACTIVE;
 
