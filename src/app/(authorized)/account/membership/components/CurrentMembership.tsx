@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import PlanCard from "./PlanCard";
+import { MembershipLevelId, MembershipStatus } from "@/interfaces/membershipInterface";
 
 interface CurrentMembershipProps {
   planName: string;
@@ -7,9 +8,9 @@ interface CurrentMembershipProps {
   period: string;
   benefits: string[];
   moreBenefits: string[];
-  levelId: string; // e.g., lvl_free, lvl_day, lvl_month, lvl_year
-  status: string; // e.g., active, cancelled
-  onCancel?: () => void; // cancel membership handler
+  levelId: MembershipLevelId;
+  status: MembershipStatus;
+  onCancel?: () => void;
   isCancelling?: boolean;
 }
 
@@ -28,7 +29,7 @@ export default function CurrentMembership({
 
   const { headerColor, headerTextColor, backgroundAssets } = (() => {
     switch (levelId) {
-      case "lvl_free":
+      case MembershipLevelId.FREE:
         return {
           headerColor: "bg-[#e98427]",
           headerTextColor: "text-white",
@@ -36,7 +37,7 @@ export default function CurrentMembership({
             { src: "/memberships/upgrade/Scholoarship-free/Group 48096278.svg", className: "inset-0 object-cover" },
           ],
         };
-      case "lvl_day":
+      case MembershipLevelId.DAY:
         return {
           headerColor: "bg-[#6F219E]",
           headerTextColor: "text-white",
@@ -44,7 +45,7 @@ export default function CurrentMembership({
             { src: "/memberships/upgrade/Scholoarship/Group 48096278.svg", className: "inset-0 object-cover" },
           ],
         };
-      case "lvl_year":
+      case MembershipLevelId.YEAR:
         return {
           headerColor: "bg-[#E9BB18]",
           headerTextColor: "text-white",
@@ -52,7 +53,7 @@ export default function CurrentMembership({
             { src: "/memberships/upgrade/1-Year/Group 48095969.svg", className: "inset-0 object-cover" },
           ],
         };
-      case "lvl_month":
+      case MembershipLevelId.MONTH:
       default:
         return {
           headerColor: "bg-[#438342]",
@@ -64,7 +65,7 @@ export default function CurrentMembership({
     }
   })();
 
-  const isActive = status === "active";
+  const isActive = status === MembershipStatus.ACTIVE;
 
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6">

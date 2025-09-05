@@ -1,18 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { BackgroundAsset, PlanCardSharedProps } from "@/interfaces/membershipInterface";
 
-interface PlanCardProps {
-  // Plan details
-  planName: string;
-  price: string;
-  period: string;
-  headerColor: string;
-  headerTextColor: string;
+interface PlanCardProps extends PlanCardSharedProps {
+  // Additional props specific to PlanCard
   priceBackgroundColor?: string;
   
   // Status
-  isCurrent?: boolean;
   isPopular?: boolean;
   showCurrentInHeader?: boolean; // controls where "Current plan" badge appears
   showChooseButton?: boolean; // shows "Choose plan" button in price block for non-current plans
@@ -31,16 +26,8 @@ interface PlanCardProps {
   priceBlockSize?: string; // custom size classes for price block
   
   // Benefits
-  benefits: string[];
-  moreBenefits?: string[];
   successIcon?: string; // custom success icon path
   useSingleColumn?: boolean; // forces single column layout for benefits
-  
-  // Assets
-  backgroundAssets: {
-    src: string;
-    className: string;
-  }[];
 
   // Yearly price and billing message
   yearlyPrice?: string;

@@ -1,11 +1,5 @@
 import Image from "next/image";
-
-type PaymentMethodSummary = {
-  brand: string;
-  last4: string;
-  expMonth: number;
-  expYear: number;
-};
+import { PaymentMethodSummary, PaymentMethodBrand } from "@/interfaces/membershipInterface";
 
 interface AutoRenewPaymentProps {
   membershipId: string;
@@ -36,11 +30,11 @@ export default function AutoRenewPayment({
 
   const brandImageSrc = (() => {
     switch ((paymentMethodSummary?.brand || '').toLowerCase()) {
-      case 'visa':
+      case PaymentMethodBrand.VISA:
         return "/memberships/Auto Renew Payment/Visa.svg";
-      case 'mastercard':
-      case 'amex':
-      case 'american express':
+      case PaymentMethodBrand.MASTERCARD:
+      case PaymentMethodBrand.AMEX:
+      case PaymentMethodBrand.AMERICAN_EXPRESS:
       default:
         return "/memberships/Auto Renew Payment/Visa.svg";
     }

@@ -9,32 +9,8 @@ import {
 import { getLevelInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
 import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
+import { UserMembership, LevelInfo, MembershipStatus, MembershipLevelId } from "@/interfaces/membershipInterface";
 import "../../../../styles/primary-purple-scrollbar.css";
-
-type PaymentMethodSummary = {
-  brand: string;
-  last4: string;
-  expMonth: number;
-  expYear: number;
-};
-
-type UserMembership = {
-  membershipId: string;
-  status: string;
-  levelId: string;
-  nextRenewalAt?: string;
-  autoRenew?: boolean;
-  paymentMethodSummary?: PaymentMethodSummary;
-};
-
-type LevelInfo = {
-  levelId: string;
-  name: string;
-  price: number;
-  period: string;
-  basic_benefits: string[];
-  additional_benefits: string[];
-};
 
 export default function Page() {
   const [membership, setMembership] = useState<UserMembership | null>(null);
@@ -161,15 +137,15 @@ export default function Page() {
             {error}
           </p>
         )}
-        {!loading && !error && membership && membership.status === 'cancelled' && (
+        {!loading && !error && membership && membership.status === MembershipStatus.CANCELLED && (
           <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
-            Your membership has been cancelled. You’ll keep access until {formattedNextRenewal && (
+            Your membership has been cancelled. You&apos;ll keep access until {formattedNextRenewal && (
               <span className="font-semibold text-primary-orange">{formattedNextRenewal}</span>
             )}. Auto‑renew is off and no further charges will occur. You can rejoin anytime from Upgrade membership.
           </p>
         )}
 
-        {!loading && !error && membership && membership.status !== 'cancelled' && (
+        {!loading && !error && membership && membership.status !== MembershipStatus.CANCELLED && (
           <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
             As a valued member, your membership #{membership.membershipId}
             {membership.autoRenew && formattedNextRenewal && (
@@ -188,8 +164,8 @@ export default function Page() {
             period={periodLabel}
             benefits={level?.basic_benefits || []}
             moreBenefits={level?.additional_benefits || []}
-            levelId={membership?.levelId || ""}
-            status={membership?.status || ""}
+            levelId={membership?.levelId || MembershipLevelId.FREE}
+            status={membership?.status || MembershipStatus.PENDING}
             onCancel={handleCancel}
             isCancelling={isCancelling}
           />
@@ -200,7 +176,7 @@ export default function Page() {
             paymentMethodSummary={membership?.paymentMethodSummary}
             onToggleAutoRenew={handleToggleAutoRenew}
             isUpdating={isUpdatingAuto}
-            isMembershipActive={membership?.status === 'active'}
+            isMembershipActive={membership?.status === MembershipStatus.ACTIVE}
           />
         </div>
       </div>
