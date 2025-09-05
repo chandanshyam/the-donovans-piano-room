@@ -28,7 +28,7 @@ export default function CurrentMembership({
 }: CurrentMembershipProps) {
   const router = useRouter();
 
-  const { headerColor, headerTextColor, backgroundAssets } = getLevelUIConfig(levelId);
+  const { headerColor, headerTextColor, backgroundAssets, successIcon } = getLevelUIConfig(levelId);
 
   const isActive = status === MembershipStatus.ACTIVE;
 
@@ -45,6 +45,7 @@ export default function CurrentMembership({
         headerColor={headerColor}
         headerTextColor={headerTextColor}
         isCurrent={true}
+        successIcon={successIcon}
         benefits={benefits}
         moreBenefits={moreBenefits}
         backgroundAssets={backgroundAssets}
