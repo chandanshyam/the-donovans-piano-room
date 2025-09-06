@@ -69,8 +69,7 @@ export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> =
 export const PAYMENT_METHOD_ICONS: Record<PaymentMethodBrand, string> = {
   [PaymentMethodBrand.VISA]: "/memberships/Auto Renew Payment/Visa.svg",
   [PaymentMethodBrand.MASTERCARD]: "/memberships/Auto Renew Payment/Visa.svg", // fallback to Visa icon
-  [PaymentMethodBrand.AMEX]: "/memberships/Auto Renew Payment/Visa.svg", // fallback to Visa icon
-  [PaymentMethodBrand.AMERICAN_EXPRESS]: "/memberships/Auto Renew Payment/Visa.svg" // fallback to Visa icon
+  [PaymentMethodBrand.AMEX]: "/memberships/Auto Renew Payment/Visa.svg" // fallback to Visa icon
 };
 
 // Date formatting configuration

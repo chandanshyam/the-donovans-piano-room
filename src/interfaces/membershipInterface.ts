@@ -4,8 +4,6 @@
 export enum MembershipStatus {
   ACTIVE = 'active',
   CANCELLED = 'cancelled',
-  EXPIRED = 'expired',
-  PENDING = 'pending'
 }
 
 export enum MembershipLevelId {
@@ -18,8 +16,7 @@ export enum MembershipLevelId {
 export enum PaymentMethodBrand {
   VISA = 'visa',
   MASTERCARD = 'mastercard',
-  AMEX = 'amex',
-  AMERICAN_EXPRESS = 'american express'
+  AMEX = 'amex'// 'american express'
 }
 
 export enum PlanDisplayName {
@@ -71,27 +68,6 @@ export interface LevelInfo {
   additional_benefits: string[];
 }
 
-// UI-specific types
-export interface BackgroundAsset {
-  src: string;
-  className: string;
-}
-
-// Error handling
-export interface MembershipError {
-  message: string;
-  code?: string;
-  field?: string;
-}
-
-// Component prop types
-export interface MembershipComponentProps {
-  membership?: UserMembership | null;
-  level?: LevelInfo | null;
-  loading?: boolean;
-  error?: string | null;
-}
-
 // Comprehensive UI styling configuration for PlanCard
 export interface PlanCardUIConfig {
   useSingleColumn?: boolean;
@@ -104,7 +80,7 @@ export interface PlanCardUIConfig {
   headerTextColor: string;
   successIcon: string;
   priceBackgroundColor: string;
-  backgroundAssets: BackgroundAsset[];
+  backgroundAssets: { src: string; className: string }[];
 }
 
 // Comprehensive plan data for PlanCard
@@ -122,12 +98,5 @@ export interface PlanData {
   moreBenefits?: string[];
   yearlyPrice?: string;
   billingMessage?: string;
-}
-
-// API response types
-export interface MembershipApiResponse<T> {
-  data?: T;
-  error?: MembershipError;
-  success: boolean;
 }
 

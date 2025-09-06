@@ -163,7 +163,7 @@ export default function Page() {
           <CurrentMembership
             planData={planData}
             levelId={membership?.levelId || MembershipLevelId.FREE}
-            status={membership?.status || MembershipStatus.PENDING}
+            status={membership?.status || MembershipStatus.ACTIVE}
             onCancel={handleCancel}
             isCancelling={isCancelling}
           />
