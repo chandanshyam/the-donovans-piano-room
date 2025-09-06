@@ -1,13 +1,10 @@
 import { useRouter } from "next/navigation";
 import PlanCard from "./PlanCard";
-import { MembershipLevelId, MembershipStatus, PlanDisplayName } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, MembershipStatus, PlanDisplayName, PlanData } from "@/interfaces/membershipInterface";
 import { getLevelUIConfig, getPlanDisplayNameForLevel, getPlanCardUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
 
 interface CurrentMembershipProps {
-  price: string;
-  period: string;
-  benefits: string[];
-  moreBenefits: string[];
+  planData: PlanData;
   levelId: MembershipLevelId;
   status: MembershipStatus;
   onCancel?: () => void;
@@ -15,10 +12,7 @@ interface CurrentMembershipProps {
 }
 
 export default function CurrentMembership({
-  price,
-  period,
-  benefits,
-  moreBenefits,
+  planData,
   levelId,
   status,
   onCancel,
@@ -27,7 +21,6 @@ export default function CurrentMembership({
   const router = useRouter();
 
   const uiConfig = getPlanCardUIConfig(levelId);
-  const planDisplayName = getPlanDisplayNameForLevel(levelId);
 
   const isActive = status === MembershipStatus.ACTIVE;
 
@@ -38,14 +31,7 @@ export default function CurrentMembership({
       </h1>
 
       <PlanCard
-        planData={{
-          planName: planDisplayName,
-          price,
-          period,
-          isCurrent: true,
-          benefits,
-          moreBenefits
-        }}
+        planData={planData}
         uiConfig={uiConfig}
       />
       {/* Actions */}

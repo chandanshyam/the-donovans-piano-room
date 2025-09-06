@@ -9,8 +9,8 @@ import {
 import { getLevelInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
 import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
-import { UserMembership, LevelInfo, MembershipStatus, MembershipLevelId } from "@/interfaces/membershipInterface";
-import { formatRenewalDate } from "./membershipConfig";
+import { UserMembership, LevelInfo, MembershipStatus, MembershipLevelId, PlanData } from "@/interfaces/membershipInterface";
+import { formatRenewalDate, getPlanDisplayNameForLevel } from "./membershipConfig";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
@@ -101,6 +101,15 @@ export default function Page() {
     return "";
   }, [level?.price]);
 
+  const planData: PlanData = useMemo(() => ({
+    planName: getPlanDisplayNameForLevel(membership?.levelId || MembershipLevelId.FREE),
+    price: priceLabel,
+    period: periodLabel,
+    isCurrent: true,
+    benefits: level?.basic_benefits || [],
+    moreBenefits: level?.additional_benefits || []
+  }), [membership?.levelId, priceLabel, periodLabel, level?.basic_benefits, level?.additional_benefits]);
+
   return (
     <AuthorizedWrapper1
       pageTitle={authorizedWrapperTitles.AccountAndSettings}
@@ -151,10 +160,7 @@ export default function Page() {
 
         <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9 md:max-w-[1000px]">
           <CurrentMembership
-            price={priceLabel}
-            period={periodLabel}
-            benefits={level?.basic_benefits || []}
-            moreBenefits={level?.additional_benefits || []}
+            planData={planData}
             levelId={membership?.levelId || MembershipLevelId.FREE}
             status={membership?.status || MembershipStatus.PENDING}
             onCancel={handleCancel}
