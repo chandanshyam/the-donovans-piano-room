@@ -119,6 +119,23 @@ export interface PlanCardUIConfig {
   priceBlockSize?: string;
 }
 
+// Comprehensive plan data for PlanCard
+export interface PlanData {
+  planName: string;
+  price: string;
+  period: string;
+  isCurrent?: boolean;
+  isPopular?: boolean;
+  expirationDays?: number;
+  originalPrice?: string;
+  discountAmount?: string;
+  showDiscountIndicator?: boolean;
+  benefits: string[];
+  moreBenefits?: string[];
+  yearlyPrice?: string;
+  billingMessage?: string;
+}
+
 // API response types
 export interface MembershipApiResponse<T> {
   data?: T;

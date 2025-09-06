@@ -115,27 +115,29 @@ export default function UpgradePage() {
         {/* Plan Card */}
         <div className="flex-shrink-0 w-80 md:w-96">
           <PlanCard
-            planName={planDisplayName}
-            price={priceLabel(level.price)}
-            period={periodLabelFor(config.levelId, level.period)}
+            planData={{
+              planName: planDisplayName,
+              price: priceLabel(level.price),
+              period: periodLabelFor(config.levelId, level.period),
+              isCurrent: isCurrent(config.levelId),
+              isPopular: config.isPopular,
+              expirationDays: isCurrent(config.levelId) ? expirationDays : undefined,
+              benefits: level.basic_benefits,
+              moreBenefits: level.additional_benefits,
+              yearlyPrice,
+              billingMessage: config.billingMessage
+            }}
             uiConfig={{
               ...getPlanCardUIConfig(config.levelId),
               useSingleColumn: true,
               priceBlockSize: "py-14"
             }}
-            isCurrent={isCurrent(config.levelId)}
             showCurrentInHeader={false}
             showExpirationMessage={isCurrent(config.levelId)}
-            expirationDays={expirationDays}
             showChooseButton={!isCurrent(config.levelId)}
             onChooseClick={() => {/* TODO: Handle plan selection */}}
-            benefits={level.basic_benefits}
-            moreBenefits={level.additional_benefits}
-            yearlyPrice={yearlyPrice}
-            billingMessage={config.billingMessage}
             useBenefitAccessCard={true}
             onBenefitAccessCardToggle={() => handleBenefitCardToggle(config.planKey)}
-            isPopular={config.isPopular}
           />
         </div>
 

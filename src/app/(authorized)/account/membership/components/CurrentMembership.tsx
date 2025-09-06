@@ -38,13 +38,15 @@ export default function CurrentMembership({
       </h1>
 
       <PlanCard
-        planName={planDisplayName}
-        price={price}
-        period={period}
+        planData={{
+          planName: planDisplayName,
+          price,
+          period,
+          isCurrent: true,
+          benefits,
+          moreBenefits
+        }}
         uiConfig={uiConfig}
-        isCurrent={true}
-        benefits={benefits}
-        moreBenefits={moreBenefits}
       />
       {/* Actions */}
       <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
