@@ -1,4 +1,4 @@
-import { MembershipLevelId, LevelUIConfig, PlanConfig, PlanDisplayName, getPlanDisplayName, PaymentMethodBrand } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, LevelUIConfig, PlanConfig, PlanDisplayName, getPlanDisplayName, PaymentMethodBrand, PlanCardUIConfig } from "@/interfaces/membershipInterface";
 
 // Shared UI configuration for all membership levels
 export const LEVEL_UI_CONFIG: Record<MembershipLevelId, LevelUIConfig> = {
@@ -104,9 +104,62 @@ export const DATE_FORMATS = {
   }
 } as const;
 
+// Comprehensive UI styling configuration for PlanCard components
+export const PLAN_CARD_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> = {
+  [MembershipLevelId.FREE]: {
+    headerColor: "bg-[#e98427]",
+    headerTextColor: "text-white",
+    priceBackgroundColor: "bg-orange-50",
+    successIcon: "/memberships/upgrade/Scholoarship-free/Success.svg",
+    backgroundAssets: [
+      { src: "/memberships/upgrade/Scholoarship-free/Group 48096278.svg", className: "inset-0 object-cover" }
+    ],
+    useSingleColumn: false,
+    priceBlockSize: "py-10"
+  },
+  [MembershipLevelId.DAY]: {
+    headerColor: "bg-[#6F219E]",
+    headerTextColor: "text-white",
+    priceBackgroundColor: "bg-purple-100",
+    successIcon: "/memberships/upgrade/Scholoarship/Success.svg",
+    backgroundAssets: [
+      { src: "/memberships/upgrade/Scholoarship/Group 48096278.svg", className: "inset-0 object-cover" }
+    ],
+    useSingleColumn: false,
+    priceBlockSize: "py-10"
+  },
+  [MembershipLevelId.MONTH]: {
+    headerColor: "bg-[#438342]",
+    headerTextColor: "text-white",
+    priceBackgroundColor: "bg-green-10",
+    successIcon: "/memberships/upgrade/1-Month/Success.svg",
+    backgroundAssets: [
+      { src: "/memberships/upgrade/1-Month/Group 48096278.svg", className: "inset-0 object-cover" }
+    ],
+    useSingleColumn: false,
+    priceBlockSize: "py-10"
+  },
+  [MembershipLevelId.YEAR]: {
+    headerColor: "bg-[#E9BB18]",
+    headerTextColor: "text-white",
+    priceBackgroundColor: "bg-yellow-50",
+    successIcon: "/memberships/upgrade/1-Year/Success.svg",
+    backgroundAssets: [
+      { src: "/memberships/upgrade/1-Year/Group 48095969.svg", className: "inset-0 object-cover" }
+    ],
+    useSingleColumn: false,
+    priceBlockSize: "py-10"
+  }
+};
+
 // Helper function to get UI config for a level
 export const getLevelUIConfig = (levelId: MembershipLevelId): LevelUIConfig => {
   return LEVEL_UI_CONFIG[levelId];
+};
+
+// Helper function to get PlanCard UI config for a level
+export const getPlanCardUIConfig = (levelId: MembershipLevelId): PlanCardUIConfig => {
+  return PLAN_CARD_UI_CONFIG[levelId];
 };
 
 // Helper function to get plan display name for a level

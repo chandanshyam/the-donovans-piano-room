@@ -12,7 +12,7 @@ import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, LevelInfo, MembershipLevelId, LevelUI, BackgroundAsset, PlanConfig } from "@/interfaces/membershipInterface";
-import { PLAN_CONFIGS, getLevelUIConfig, getPlanDisplayNameForLevel } from "@/app/(authorized)/account/membership/membershipConfig";
+import { PLAN_CONFIGS, getLevelUIConfig, getPlanDisplayNameForLevel, getPlanCardUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -71,9 +71,6 @@ export default function UpgradePage() {
     };
   };
 
-  const assetsForLevel = (levelId: MembershipLevelId): BackgroundAsset[] => {
-    return getLevelUIConfig(levelId).backgroundAssets;
-  };
 
   const isCurrent = (levelId: MembershipLevelId) => membership?.levelId === levelId;
 
@@ -121,21 +118,19 @@ export default function UpgradePage() {
             planName={planDisplayName}
             price={priceLabel(level.price)}
             period={periodLabelFor(config.levelId, level.period)}
-            headerColor={uiForLevel(config.levelId).headerColor}
-            headerTextColor={uiForLevel(config.levelId).headerTextColor}
-            priceBackgroundColor={uiForLevel(config.levelId).priceBackgroundColor}
+            uiConfig={{
+              ...getPlanCardUIConfig(config.levelId),
+              useSingleColumn: true,
+              priceBlockSize: "py-14"
+            }}
             isCurrent={isCurrent(config.levelId)}
             showCurrentInHeader={false}
             showExpirationMessage={isCurrent(config.levelId)}
             expirationDays={expirationDays}
             showChooseButton={!isCurrent(config.levelId)}
             onChooseClick={() => {/* TODO: Handle plan selection */}}
-            priceBlockSize="py-14"
             benefits={level.basic_benefits}
             moreBenefits={level.additional_benefits}
-            successIcon={uiForLevel(config.levelId).successIcon}
-            useSingleColumn={true}
-            backgroundAssets={assetsForLevel(config.levelId)}
             yearlyPrice={yearlyPrice}
             billingMessage={config.billingMessage}
             useBenefitAccessCard={true}

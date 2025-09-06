@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { BackgroundAsset, PlanCardSharedProps } from "@/interfaces/membershipInterface";
+import { BackgroundAsset, PlanCardSharedProps, PlanCardUIConfig } from "@/interfaces/membershipInterface";
 
 interface PlanCardProps extends PlanCardSharedProps {
-  // Additional props specific to PlanCard
-  priceBackgroundColor?: string;
+  // UI Configuration - centralized styling
+  uiConfig: PlanCardUIConfig;
   
   // Status
   isPopular?: boolean;
@@ -21,13 +21,6 @@ interface PlanCardProps extends PlanCardSharedProps {
   originalPrice?: string; // original price to show crossed out
   discountAmount?: string; // amount saved
   showDiscountIndicator?: boolean; // whether to show discount indicator
-  
-  // Price block styling
-  priceBlockSize?: string; // custom size classes for price block
-  
-  // Benefits
-  successIcon?: string; // custom success icon path
-  useSingleColumn?: boolean; // forces single column layout for benefits
 
   // Yearly price and billing message
   yearlyPrice?: string;
@@ -42,9 +35,7 @@ export default function PlanCard({
   planName,
   price,
   period,
-  headerColor,
-  headerTextColor,
-  priceBackgroundColor = "",
+  uiConfig,
   isCurrent = false,
   isPopular = false,
   showCurrentInHeader = true,
@@ -55,12 +46,8 @@ export default function PlanCard({
   originalPrice,
   discountAmount,
   showDiscountIndicator = false,
-  priceBlockSize = "py-10",
   benefits,
   moreBenefits = [],
-  successIcon = "/memberships/Current Membership/Success.svg",
-  useSingleColumn = false,
-  backgroundAssets,
   yearlyPrice = "",
   billingMessage = "",
   useBenefitAccessCard = false,
@@ -83,7 +70,7 @@ export default function PlanCard({
       {/* Card */}
       <div className="w-full rounded-2xl border border-[#FCF0D8] bg-white shadow-custom">
         {/* Header ribbon */}
-        <div className={`relative rounded-t-xl px-5 py-3 ${headerColor} ${headerTextColor}`}>
+        <div className={`relative rounded-t-xl px-5 py-3 ${uiConfig.headerColor} ${uiConfig.headerTextColor}`}>
           <div className="text-2xl font-semibold">{planName}</div>
           {isCurrent && showCurrentInHeader && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -109,9 +96,9 @@ export default function PlanCard({
         </div>
 
         {/* Price block with background assets */}
-        <div className={`relative flex flex-col items-center justify-center overflow-hidden ${priceBlockSize} ${priceBackgroundColor} space-y-2`}>
+        <div className={`relative flex flex-col items-center justify-center overflow-hidden ${uiConfig.priceBlockSize || "py-10"} ${uiConfig.priceBackgroundColor} space-y-2`}>
           {/* Background assets */}
-          {backgroundAssets.map((asset, index) => (
+          {uiConfig.backgroundAssets.map((asset, index) => (
             (
               <Image
                 key={index}
@@ -181,13 +168,13 @@ export default function PlanCard({
         {/* Benefits */}
         <div className="py-6 p-4">
         {benefits.length > 0 && 
-          <div className={`grid grid-cols-1 gap-y-3 gap-x-6 ${useSingleColumn ? '' : 'md:grid-cols-2'}`}>
+          <div className={`grid grid-cols-1 gap-y-3 gap-x-6 ${uiConfig.useSingleColumn ? '' : 'md:grid-cols-2'}`}>
             {benefits.map((label) => (
               <div key={label} className="flex items-center gap-3 text-primary-brown">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full">
                   <Image
                     className="shrink-0"
-                    src={successIcon}
+                    src={uiConfig.successIcon}
                     alt="Success"
                     width={16}
                     height={16}

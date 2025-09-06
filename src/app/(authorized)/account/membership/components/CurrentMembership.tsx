@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import PlanCard from "./PlanCard";
 import { MembershipLevelId, MembershipStatus, PlanDisplayName } from "@/interfaces/membershipInterface";
-import { getLevelUIConfig, getPlanDisplayNameForLevel } from "@/app/(authorized)/account/membership/membershipConfig";
+import { getLevelUIConfig, getPlanDisplayNameForLevel, getPlanCardUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
 
 interface CurrentMembershipProps {
   price: string;
@@ -26,7 +26,7 @@ export default function CurrentMembership({
 }: CurrentMembershipProps) {
   const router = useRouter();
 
-  const { headerColor, headerTextColor, backgroundAssets, successIcon } = getLevelUIConfig(levelId);
+  const uiConfig = getPlanCardUIConfig(levelId);
   const planDisplayName = getPlanDisplayNameForLevel(levelId);
 
   const isActive = status === MembershipStatus.ACTIVE;
@@ -41,13 +41,10 @@ export default function CurrentMembership({
         planName={planDisplayName}
         price={price}
         period={period}
-        headerColor={headerColor}
-        headerTextColor={headerTextColor}
+        uiConfig={uiConfig}
         isCurrent={true}
-        successIcon={successIcon}
         benefits={benefits}
         moreBenefits={moreBenefits}
-        backgroundAssets={backgroundAssets}
       />
       {/* Actions */}
       <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">

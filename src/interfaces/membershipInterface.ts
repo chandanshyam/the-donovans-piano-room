@@ -103,12 +103,20 @@ export interface PlanCardSharedProps {
   planName: string;
   price: string;
   period: string;
-  headerColor: string;
-  headerTextColor: string;
   benefits: string[];
   moreBenefits?: string[];
-  backgroundAssets: BackgroundAsset[];
   isCurrent?: boolean;
+}
+
+// Comprehensive UI styling configuration for PlanCard
+export interface PlanCardUIConfig {
+  headerColor: string;
+  headerTextColor: string;
+  priceBackgroundColor: string;
+  successIcon: string;
+  backgroundAssets: BackgroundAsset[];
+  useSingleColumn?: boolean;
+  priceBlockSize?: string;
 }
 
 // API response types
