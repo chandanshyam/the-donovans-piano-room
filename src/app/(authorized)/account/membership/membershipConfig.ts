@@ -1,4 +1,4 @@
-import { MembershipLevelId, PlanConfig, PlanDisplayName, getPlanDisplayName, PaymentMethodBrand, PlanCardUIConfig } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, PaymentMethodBrand, PlanCardUIConfig } from "@/interfaces/membershipInterface";
 
 // Unified UI configuration for all membership levels
 export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> = {
@@ -64,33 +64,6 @@ export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> =
   }
 };
 
-// Plan configuration for upgrade page
-export const PLAN_CONFIGS: PlanConfig[] = [
-  {
-    levelId: MembershipLevelId.FREE,
-    planKey: 'free',
-    billingMessage: 'Free access'
-  },
-  {
-    levelId: MembershipLevelId.DAY,
-    planKey: 'day',
-    yearlyMultiplier: 365,
-    billingMessage: 'Billed daily'
-  },
-  {
-    levelId: MembershipLevelId.MONTH,
-    planKey: 'month',
-    yearlyMultiplier: 12,
-    billingMessage: 'Billed monthly'
-  },
-  {
-    levelId: MembershipLevelId.YEAR,
-    planKey: 'year',
-    isPopular: true,
-    yearlyMultiplier: 12,
-    billingMessage: 'Billed yearly'
-  }
-];
 
 // Payment method brand icons configuration
 export const PAYMENT_METHOD_ICONS: Record<PaymentMethodBrand, string> = {

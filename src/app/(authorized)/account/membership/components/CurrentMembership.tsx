@@ -1,8 +1,7 @@
 import { useRouter } from "next/navigation";
 import PlanCard from "./PlanCard";
-import { MembershipLevelId, MembershipStatus, PlanDisplayName, PlanData } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, MembershipStatus, PlanData } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
-import { getPlanDisplayName } from "@/interfaces/membershipInterface";
 
 interface CurrentMembershipProps {
   planData: PlanData;

@@ -11,22 +11,22 @@ import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, LevelInfo, MembershipLevelId, PlanConfig } from "@/interfaces/membershipInterface";
-import { PLAN_CONFIGS, MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
+import { UserMembership, LevelInfo, MembershipLevelId } from "@/interfaces/membershipInterface";
+import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
 import { getPlanDisplayName } from "@/interfaces/membershipInterface";
 
 export default function UpgradePage() {
   const router = useRouter();
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<MembershipLevelId | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const [membership, setMembership] = useState<UserMembership | null>(null);
   const [levels, setLevels] = useState<Record<MembershipLevelId, LevelInfo | undefined>>({} as Record<MembershipLevelId, LevelInfo | undefined>);
 
-  const handleBenefitCardToggle = (planKey: string) => {
+  const handleBenefitCardToggle = (levelId: MembershipLevelId) => {
     // If this plan is already open, close it. Otherwise, open it.
-    setSelectedPlan(selectedPlan === planKey ? null : planKey);
+    setSelectedPlan(selectedPlan === levelId ? null : levelId);
   };
 
   useEffect(() => {
@@ -64,6 +64,20 @@ export default function UpgradePage() {
 
   const isCurrent = (levelId: MembershipLevelId) => membership?.levelId === levelId;
 
+  // Helper function to get yearly multiplier for a level
+  const getYearlyMultiplier = (levelId: MembershipLevelId): number | undefined => {
+    switch (levelId) {
+      case MembershipLevelId.DAY:
+        return 365;
+      case MembershipLevelId.MONTH:
+      case MembershipLevelId.YEAR:
+        return 12;
+      case MembershipLevelId.FREE:
+      default:
+        return undefined;
+    }
+  };
+
   const priceLabel = (price?: number) => {
     if (price === undefined) return "";
     if (price === 0) return "FREE";
@@ -90,15 +104,16 @@ export default function UpgradePage() {
   }, [membership?.nextRenewalAt]);
 
   // Helper function to render a single plan
-  const renderPlan = (config: PlanConfig) => {
-    const level = levels[config.levelId as MembershipLevelId];
+  const renderPlan = (levelId: MembershipLevelId) => {
+    const level = levels[levelId];
     if (!level) return null;
 
-    const yearlyPrice = config.yearlyMultiplier && level.price > 0 
-      ? `$${(level.price * config.yearlyMultiplier).toFixed(2)}` 
+    const yearlyMultiplier = getYearlyMultiplier(levelId);
+    const yearlyPrice = yearlyMultiplier && level.price > 0 
+      ? `$${(level.price * yearlyMultiplier).toFixed(2)}` 
       : '';
 
-    const planDisplayName = getPlanDisplayName(config.levelId);
+    const planDisplayName = getPlanDisplayName(levelId);
 
     return (
       <>
@@ -108,37 +123,39 @@ export default function UpgradePage() {
             planData={{
               planName: planDisplayName,
               price: priceLabel(level.price),
-              period: periodLabelFor(config.levelId, level.period),
-              isCurrent: isCurrent(config.levelId),
-              isPopular: config.isPopular,
-              expirationDays: isCurrent(config.levelId) ? expirationDays : undefined,
+              period: periodLabelFor(levelId, level.period),
+              isCurrent: isCurrent(levelId),
+              isPopular: levelId === MembershipLevelId.YEAR, // Year plan is popular
+              expirationDays: isCurrent(levelId) ? expirationDays : undefined,
               benefits: level.basic_benefits,
               moreBenefits: level.additional_benefits,
               yearlyPrice,
-              billingMessage: config.billingMessage
+              billingMessage: levelId === MembershipLevelId.FREE ? 'Free access' : 
+                            levelId === MembershipLevelId.DAY ? 'Billed daily' :
+                            levelId === MembershipLevelId.MONTH ? 'Billed monthly' : 'Billed yearly'
             }}
             uiConfig={{
-              ...MEMBERSHIP_UI_CONFIG[config.levelId],
+              ...MEMBERSHIP_UI_CONFIG[levelId],
               useSingleColumn: true,
               priceBlockSize: "py-14"
             }}
             showCurrentInHeader={false}
-            showExpirationMessage={isCurrent(config.levelId)}
-            showChooseButton={!isCurrent(config.levelId)}
+            showExpirationMessage={isCurrent(levelId)}
+            showChooseButton={!isCurrent(levelId)}
             onChooseClick={() => {/* TODO: Handle plan selection */}}
             useBenefitAccessCard={true}
-            onBenefitAccessCardToggle={() => handleBenefitCardToggle(config.planKey)}
+            onBenefitAccessCardToggle={() => handleBenefitCardToggle(levelId)}
           />
         </div>
 
         {/* Benefit Access Card */}
-        {selectedPlan === config.planKey && (
+        {selectedPlan === levelId && (
           <div className="flex-shrink-0 w-80 md:w-96">
             <BenefitAccessCard 
               onClose={() => setSelectedPlan(null)}
               planName={planDisplayName}
-              headerColor={MEMBERSHIP_UI_CONFIG[config.levelId].benefitCardColors?.headerColor || 'bg-gray-500'}
-              textColor={MEMBERSHIP_UI_CONFIG[config.levelId].benefitCardColors?.textColor || 'text-white'}
+              headerColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.headerColor || 'bg-gray-500'}
+              textColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.textColor || 'text-white'}
               benefits={level.additional_benefits}
             />
           </div>
@@ -186,18 +203,18 @@ export default function UpgradePage() {
         
         <div className="mt-8 overflow-x-auto">
           <div className="flex gap-6 min-w-fit">
-            {PLAN_CONFIGS.map((config) => renderPlan(config))}
+            {Object.values(MembershipLevelId).map((levelId) => renderPlan(levelId))}
           </div>
         </div>
 
         {/* Horizontal Scroller Indicators */}
         <div className="mt-8 flex justify-center">
           <div className="flex items-center gap-3">
-            {PLAN_CONFIGS.map((config) => (
+            {Object.values(MembershipLevelId).map((levelId) => (
               <div
-                key={config.planKey}
+                key={levelId}
                 className={`h-3 rounded-full transition-all duration-300 ${
-                  selectedPlan === config.planKey 
+                  selectedPlan === levelId 
                     ? "bg-[#6F219E] w-12" 
                     : "bg-[#B457F5] w-3"
                 }`}

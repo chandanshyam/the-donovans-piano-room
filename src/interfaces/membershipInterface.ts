@@ -131,11 +131,3 @@ export interface MembershipApiResponse<T> {
   success: boolean;
 }
 
-// Plan configuration for rendering
-export interface PlanConfig {
-  levelId: MembershipLevelId;
-  planKey: string; // for selectedPlan state
-  isPopular?: boolean;
-  yearlyMultiplier?: number; // for calculating yearly price
-  billingMessage: string;
-}
