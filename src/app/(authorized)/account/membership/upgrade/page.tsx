@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, LevelInfo, MembershipLevelId, LevelUI, BackgroundAsset, PlanConfig } from "@/interfaces/membershipInterface";
+import { UserMembership, LevelInfo, MembershipLevelId, LevelUI, PlanConfig } from "@/interfaces/membershipInterface";
 import { PLAN_CONFIGS, getLevelUIConfig, getPlanDisplayNameForLevel, getPlanCardUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
 
 export default function UpgradePage() {

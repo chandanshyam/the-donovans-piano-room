@@ -109,12 +109,7 @@ export interface PlanCardSharedProps {
 }
 
 // Comprehensive UI styling configuration for PlanCard
-export interface PlanCardUIConfig {
-  headerColor: string;
-  headerTextColor: string;
-  priceBackgroundColor: string;
-  successIcon: string;
-  backgroundAssets: BackgroundAsset[];
+export interface PlanCardUIConfig extends LevelUIConfig {
   useSingleColumn?: boolean;
   priceBlockSize?: string;
 }
