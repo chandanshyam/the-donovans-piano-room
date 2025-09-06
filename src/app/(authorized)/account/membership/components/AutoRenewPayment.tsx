@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PaymentMethodSummary, PaymentMethodBrand } from "@/interfaces/membershipInterface";
+import { getPaymentMethodIcon } from "@/app/(authorized)/account/membership/membershipConfig";
 
 interface AutoRenewPaymentProps {
   membershipId: string;
@@ -28,17 +29,7 @@ export default function AutoRenewPayment({
       })
     : "";
 
-  const brandImageSrc = (() => {
-    switch ((paymentMethodSummary?.brand || '').toLowerCase()) {
-      case PaymentMethodBrand.VISA:
-        return "/memberships/Auto Renew Payment/Visa.svg";
-      case PaymentMethodBrand.MASTERCARD:
-      case PaymentMethodBrand.AMEX:
-      case PaymentMethodBrand.AMERICAN_EXPRESS:
-      default:
-        return "/memberships/Auto Renew Payment/Visa.svg";
-    }
-  })();
+  const brandImageSrc = getPaymentMethodIcon(paymentMethodSummary?.brand || '');
 
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">

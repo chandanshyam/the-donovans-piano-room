@@ -1,4 +1,4 @@
-import { MembershipLevelId, LevelUIConfig, PlanConfig, PlanDisplayName, getPlanDisplayName } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, LevelUIConfig, PlanConfig, PlanDisplayName, getPlanDisplayName, PaymentMethodBrand } from "@/interfaces/membershipInterface";
 
 // Shared UI configuration for all membership levels
 export const LEVEL_UI_CONFIG: Record<MembershipLevelId, LevelUIConfig> = {
@@ -84,6 +84,14 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   }
 ];
 
+// Payment method brand icons configuration
+export const PAYMENT_METHOD_ICONS: Record<PaymentMethodBrand, string> = {
+  [PaymentMethodBrand.VISA]: "/memberships/Auto Renew Payment/Visa.svg",
+  [PaymentMethodBrand.MASTERCARD]: "/memberships/Auto Renew Payment/Visa.svg", // fallback to Visa icon
+  [PaymentMethodBrand.AMEX]: "/memberships/Auto Renew Payment/Visa.svg", // fallback to Visa icon
+  [PaymentMethodBrand.AMERICAN_EXPRESS]: "/memberships/Auto Renew Payment/Visa.svg" // fallback to Visa icon
+};
+
 // Helper function to get UI config for a level
 export const getLevelUIConfig = (levelId: MembershipLevelId): LevelUIConfig => {
   return LEVEL_UI_CONFIG[levelId];
@@ -92,4 +100,10 @@ export const getLevelUIConfig = (levelId: MembershipLevelId): LevelUIConfig => {
 // Helper function to get plan display name for a level
 export const getPlanDisplayNameForLevel = (levelId: MembershipLevelId): PlanDisplayName => {
   return getPlanDisplayName(levelId);
+};
+
+// Helper function to get payment method icon
+export const getPaymentMethodIcon = (brand: string): string => {
+  const normalizedBrand = brand.toLowerCase() as PaymentMethodBrand;
+  return PAYMENT_METHOD_ICONS[normalizedBrand] || PAYMENT_METHOD_ICONS[PaymentMethodBrand.VISA];
 };
