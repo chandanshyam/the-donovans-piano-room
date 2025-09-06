@@ -131,7 +131,6 @@ export interface LevelUIConfig {
 export interface PlanConfig {
   levelId: MembershipLevelId;
   planKey: string; // for selectedPlan state
-  displayName?: string; // custom display name override
   isPopular?: boolean;
   yearlyMultiplier?: number; // for calculating yearly price
   billingMessage: string;

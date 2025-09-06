@@ -45,7 +45,6 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.FREE,
     planKey: 'free',
-    displayName: PlanDisplayName.SCHOLARSHIP,
     billingMessage: 'Free access',
     benefitCardColors: {
       headerColor: 'bg-[#FED2AA]',
@@ -55,7 +54,6 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.DAY,
     planKey: 'day',
-    displayName: PlanDisplayName.ONE_DAY,
     yearlyMultiplier: 365,
     billingMessage: 'Billed daily',
     benefitCardColors: {
@@ -66,7 +64,6 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.MONTH,
     planKey: 'month',
-    displayName: PlanDisplayName.ONE_MONTH,
     yearlyMultiplier: 12,
     billingMessage: 'Billed monthly',
     benefitCardColors: {
@@ -77,7 +74,6 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.YEAR,
     planKey: 'year',
-    displayName: PlanDisplayName.ONE_YEAR,
     isPopular: true,
     yearlyMultiplier: 12,
     billingMessage: 'Billed yearly',

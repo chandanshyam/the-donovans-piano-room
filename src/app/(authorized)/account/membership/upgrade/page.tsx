@@ -12,7 +12,7 @@ import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, LevelInfo, MembershipLevelId, LevelUI, BackgroundAsset, PlanConfig } from "@/interfaces/membershipInterface";
-import { PLAN_CONFIGS, getLevelUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
+import { PLAN_CONFIGS, getLevelUIConfig, getPlanDisplayNameForLevel } from "@/app/(authorized)/account/membership/membershipConfig";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -111,12 +111,14 @@ export default function UpgradePage() {
       ? `$${(level.price * config.yearlyMultiplier).toFixed(2)}` 
       : '';
 
+    const planDisplayName = getPlanDisplayNameForLevel(config.levelId);
+
     return (
       <>
         {/* Plan Card */}
         <div className="flex-shrink-0 w-80 md:w-96">
           <PlanCard
-            planName={config.displayName || level.name}
+            planName={planDisplayName}
             price={priceLabel(level.price)}
             period={periodLabelFor(config.levelId, level.period)}
             headerColor={uiForLevel(config.levelId).headerColor}
@@ -147,7 +149,7 @@ export default function UpgradePage() {
           <div className="flex-shrink-0 w-80 md:w-96">
             <BenefitAccessCard 
               onClose={() => setSelectedPlan(null)}
-              planName={config.displayName || level.name}
+              planName={planDisplayName}
               headerColor={config.benefitCardColors.headerColor}
               textColor={config.benefitCardColors.textColor}
               benefits={level.additional_benefits}
