@@ -1,7 +1,8 @@
 import { useRouter } from "next/navigation";
 import PlanCard from "./PlanCard";
 import { MembershipLevelId, MembershipStatus, PlanDisplayName, PlanData } from "@/interfaces/membershipInterface";
-import { getLevelUIConfig, getPlanDisplayNameForLevel, getPlanCardUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
+import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
+import { getPlanDisplayName } from "@/interfaces/membershipInterface";
 
 interface CurrentMembershipProps {
   planData: PlanData;
@@ -20,7 +21,7 @@ export default function CurrentMembership({
 }: CurrentMembershipProps) {
   const router = useRouter();
 
-  const uiConfig = getPlanCardUIConfig(levelId);
+  const uiConfig = MEMBERSHIP_UI_CONFIG[levelId];
 
   const isActive = status === MembershipStatus.ACTIVE;
 

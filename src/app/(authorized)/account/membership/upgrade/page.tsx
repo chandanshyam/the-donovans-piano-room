@@ -11,8 +11,9 @@ import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, LevelInfo, MembershipLevelId, LevelUI, PlanConfig } from "@/interfaces/membershipInterface";
-import { PLAN_CONFIGS, getLevelUIConfig, getPlanDisplayNameForLevel, getPlanCardUIConfig } from "@/app/(authorized)/account/membership/membershipConfig";
+import { UserMembership, LevelInfo, MembershipLevelId, PlanConfig } from "@/interfaces/membershipInterface";
+import { PLAN_CONFIGS, MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
+import { getPlanDisplayName } from "@/interfaces/membershipInterface";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -61,17 +62,6 @@ export default function UpgradePage() {
     };
   }, []);
 
-  const uiForLevel = (levelId: MembershipLevelId): LevelUI => {
-    const config = getLevelUIConfig(levelId);
-    return {
-      headerColor: config.headerColor,
-      headerTextColor: config.headerTextColor,
-      successIcon: config.successIcon,
-      priceBackgroundColor: config.priceBackgroundColor
-    };
-  };
-
-
   const isCurrent = (levelId: MembershipLevelId) => membership?.levelId === levelId;
 
   const priceLabel = (price?: number) => {
@@ -108,7 +98,7 @@ export default function UpgradePage() {
       ? `$${(level.price * config.yearlyMultiplier).toFixed(2)}` 
       : '';
 
-    const planDisplayName = getPlanDisplayNameForLevel(config.levelId);
+    const planDisplayName = getPlanDisplayName(config.levelId);
 
     return (
       <>
@@ -128,7 +118,7 @@ export default function UpgradePage() {
               billingMessage: config.billingMessage
             }}
             uiConfig={{
-              ...getPlanCardUIConfig(config.levelId),
+              ...MEMBERSHIP_UI_CONFIG[config.levelId],
               useSingleColumn: true,
               priceBlockSize: "py-14"
             }}
@@ -147,8 +137,8 @@ export default function UpgradePage() {
             <BenefitAccessCard 
               onClose={() => setSelectedPlan(null)}
               planName={planDisplayName}
-              headerColor={config.benefitCardColors.headerColor}
-              textColor={config.benefitCardColors.textColor}
+              headerColor={MEMBERSHIP_UI_CONFIG[config.levelId].benefitCardColors?.headerColor || 'bg-gray-500'}
+              textColor={MEMBERSHIP_UI_CONFIG[config.levelId].benefitCardColors?.textColor || 'text-white'}
               benefits={level.additional_benefits}
             />
           </div>

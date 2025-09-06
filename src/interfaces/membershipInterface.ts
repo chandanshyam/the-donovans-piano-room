@@ -77,13 +77,6 @@ export interface BackgroundAsset {
   className: string;
 }
 
-export interface LevelUI {
-  headerColor: string;
-  headerTextColor: string;
-  successIcon: string;
-  priceBackgroundColor: string;
-}
-
 // Error handling
 export interface MembershipError {
   message: string;
@@ -99,19 +92,19 @@ export interface MembershipComponentProps {
   error?: string | null;
 }
 
-export interface PlanCardSharedProps {
-  planName: string;
-  price: string;
-  period: string;
-  benefits: string[];
-  moreBenefits?: string[];
-  isCurrent?: boolean;
-}
-
 // Comprehensive UI styling configuration for PlanCard
-export interface PlanCardUIConfig extends LevelUIConfig {
+export interface PlanCardUIConfig {
   useSingleColumn?: boolean;
   priceBlockSize?: string;
+  benefitCardColors?: {
+    headerColor: string;
+    textColor: string;
+  };
+  headerColor: string;
+  headerTextColor: string;
+  successIcon: string;
+  priceBackgroundColor: string;
+  backgroundAssets: BackgroundAsset[];
 }
 
 // Comprehensive plan data for PlanCard
@@ -138,15 +131,6 @@ export interface MembershipApiResponse<T> {
   success: boolean;
 }
 
-// UI configuration for membership levels
-export interface LevelUIConfig {
-  headerColor: string;
-  headerTextColor: string;
-  successIcon: string;
-  priceBackgroundColor: string;
-  backgroundAssets: BackgroundAsset[];
-}
-
 // Plan configuration for rendering
 export interface PlanConfig {
   levelId: MembershipLevelId;
@@ -154,8 +138,4 @@ export interface PlanConfig {
   isPopular?: boolean;
   yearlyMultiplier?: number; // for calculating yearly price
   billingMessage: string;
-  benefitCardColors: {
-    headerColor: string;
-    textColor: string;
-  };
 }

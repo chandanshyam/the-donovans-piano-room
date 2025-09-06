@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { BackgroundAsset, PlanCardSharedProps, PlanCardUIConfig, PlanData } from "@/interfaces/membershipInterface";
+import { BackgroundAsset, PlanCardUIConfig, PlanData } from "@/interfaces/membershipInterface";
 
 interface PlanCardProps {
   // Plan Data - centralized plan information

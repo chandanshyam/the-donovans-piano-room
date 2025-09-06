@@ -1,4 +1,4 @@
-import { MembershipLevelId, LevelUIConfig, PlanConfig, PlanDisplayName, getPlanDisplayName, PaymentMethodBrand, PlanCardUIConfig } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, PlanConfig, PlanDisplayName, getPlanDisplayName, PaymentMethodBrand, PlanCardUIConfig } from "@/interfaces/membershipInterface";
 
 // Unified UI configuration for all membership levels
 export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> = {
@@ -11,7 +11,11 @@ export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> =
       { src: "/memberships/upgrade/Scholoarship-free/Group 48096278.svg", className: "inset-0 object-cover" }
     ],
     useSingleColumn: false,
-    priceBlockSize: "py-10"
+    priceBlockSize: "py-10",
+    benefitCardColors: {
+      headerColor: 'bg-[#FED2AA]',
+      textColor: 'text-[#8B4513]'
+    }
   },
   [MembershipLevelId.DAY]: {
     headerColor: "bg-[#6F219E]",
@@ -22,7 +26,11 @@ export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> =
       { src: "/memberships/upgrade/Scholoarship/Group 48096278.svg", className: "inset-0 object-cover" }
     ],
     useSingleColumn: false,
-    priceBlockSize: "py-10"
+    priceBlockSize: "py-10",
+    benefitCardColors: {
+      headerColor: 'bg-[#6F219E]',
+      textColor: 'text-white'
+    }
   },
   [MembershipLevelId.MONTH]: {
     headerColor: "bg-[#438342]",
@@ -33,7 +41,11 @@ export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> =
       { src: "/memberships/upgrade/1-Month/Group 48096278.svg", className: "inset-0 object-cover" }
     ],
     useSingleColumn: false,
-    priceBlockSize: "py-10"
+    priceBlockSize: "py-10",
+    benefitCardColors: {
+      headerColor: 'bg-[#FED2AA]',
+      textColor: 'text-[#8B4513]'
+    }
   },
   [MembershipLevelId.YEAR]: {
     headerColor: "bg-[#E9BB18]",
@@ -44,7 +56,11 @@ export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> =
       { src: "/memberships/upgrade/1-Year/Group 48095969.svg", className: "inset-0 object-cover" }
     ],
     useSingleColumn: false,
-    priceBlockSize: "py-10"
+    priceBlockSize: "py-10",
+    benefitCardColors: {
+      headerColor: 'bg-[#E9BB18]',
+      textColor: 'text-white'
+    }
   }
 };
 
@@ -53,42 +69,26 @@ export const PLAN_CONFIGS: PlanConfig[] = [
   {
     levelId: MembershipLevelId.FREE,
     planKey: 'free',
-    billingMessage: 'Free access',
-    benefitCardColors: {
-      headerColor: 'bg-[#FED2AA]',
-      textColor: 'text-[#8B4513]'
-    }
+    billingMessage: 'Free access'
   },
   {
     levelId: MembershipLevelId.DAY,
     planKey: 'day',
     yearlyMultiplier: 365,
-    billingMessage: 'Billed daily',
-    benefitCardColors: {
-      headerColor: 'bg-[#6F219E]',
-      textColor: 'text-white'
-    }
+    billingMessage: 'Billed daily'
   },
   {
     levelId: MembershipLevelId.MONTH,
     planKey: 'month',
     yearlyMultiplier: 12,
-    billingMessage: 'Billed monthly',
-    benefitCardColors: {
-      headerColor: 'bg-[#FED2AA]',
-      textColor: 'text-[#8B4513]'
-    }
+    billingMessage: 'Billed monthly'
   },
   {
     levelId: MembershipLevelId.YEAR,
     planKey: 'year',
     isPopular: true,
     yearlyMultiplier: 12,
-    billingMessage: 'Billed yearly',
-    benefitCardColors: {
-      headerColor: 'bg-[#E9BB18]',
-      textColor: 'text-white'
-    }
+    billingMessage: 'Billed yearly'
   }
 ];
 
@@ -111,29 +111,6 @@ export const DATE_FORMATS = {
     }
   }
 } as const;
-
-
-// Helper function to get UI config for a level (returns LevelUIConfig subset)
-export const getLevelUIConfig = (levelId: MembershipLevelId): LevelUIConfig => {
-  const config = MEMBERSHIP_UI_CONFIG[levelId];
-  return {
-    headerColor: config.headerColor,
-    headerTextColor: config.headerTextColor,
-    successIcon: config.successIcon,
-    priceBackgroundColor: config.priceBackgroundColor,
-    backgroundAssets: config.backgroundAssets
-  };
-};
-
-// Helper function to get PlanCard UI config for a level (returns full PlanCardUIConfig)
-export const getPlanCardUIConfig = (levelId: MembershipLevelId): PlanCardUIConfig => {
-  return MEMBERSHIP_UI_CONFIG[levelId];
-};
-
-// Helper function to get plan display name for a level
-export const getPlanDisplayNameForLevel = (levelId: MembershipLevelId): PlanDisplayName => {
-  return getPlanDisplayName(levelId);
-};
 
 // Helper function to get payment method icon
 export const getPaymentMethodIcon = (brand: string): string => {

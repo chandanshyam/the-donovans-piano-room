@@ -10,7 +10,8 @@ import { getLevelInfo, getUserMembership, cancelUserMembership, toggleAutoRenew 
 import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
 import { UserMembership, LevelInfo, MembershipStatus, MembershipLevelId, PlanData } from "@/interfaces/membershipInterface";
-import { formatRenewalDate, getPlanDisplayNameForLevel } from "./membershipConfig";
+import { formatRenewalDate } from "./membershipConfig";
+import { getPlanDisplayName } from "@/interfaces/membershipInterface";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
@@ -102,7 +103,7 @@ export default function Page() {
   }, [level?.price]);
 
   const planData: PlanData = useMemo(() => ({
-    planName: getPlanDisplayNameForLevel(membership?.levelId || MembershipLevelId.FREE),
+    planName: getPlanDisplayName(membership?.levelId || MembershipLevelId.FREE),
     price: priceLabel,
     period: periodLabel,
     isCurrent: true,
