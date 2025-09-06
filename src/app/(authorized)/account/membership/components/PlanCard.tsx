@@ -145,7 +145,7 @@ export default function PlanCard({
 
         {/* Benefits */}
         <div className="py-6 p-4">
-        {planData.benefits.length > 0 && 
+        {planData.benefits && planData.benefits.length > 0 && 
           <div className={`grid grid-cols-1 gap-y-3 gap-x-6 ${uiConfig.useSingleColumn ? '' : 'md:grid-cols-2'}`}>
             {planData.benefits.map((label) => (
               <div key={label} className="flex items-center gap-3 text-primary-brown">

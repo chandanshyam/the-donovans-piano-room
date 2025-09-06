@@ -107,9 +107,9 @@ export default function Page() {
     price: priceLabel,
     period: periodLabel,
     isCurrent: true,
-    benefits: level?.basic_benefits || [],
-    moreBenefits: level?.additional_benefits || []
-  }), [membership?.levelId, priceLabel, periodLabel, level?.basic_benefits, level?.additional_benefits]);
+    benefits: level?.benefits || [],
+    moreBenefits: level?.moreBenefits || []
+  }), [membership?.levelId, priceLabel, periodLabel, level?.benefits, level?.moreBenefits]);
 
   return (
     <AuthorizedWrapper1

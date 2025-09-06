@@ -79,7 +79,13 @@ export async function getLevelInfo(levelId: string) {
         if (!response.ok) {
             throw new Error(data.message || 'Failed to retrieve level details');
         }
-        return data;
+        
+        // Map API response to LevelInfo interface
+        return {
+            ...data,
+            benefits: data.basic_benefits,
+            moreBenefits: data.additional_benefits
+        };
     } catch (error: any) {
         throw new Error(error.message || 'An error occurred while retrieving level details');
     }

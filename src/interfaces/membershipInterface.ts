@@ -64,8 +64,8 @@ export interface LevelInfo {
   name: string;
   price: number;
   period: string;
-  basic_benefits: string[];
-  additional_benefits: string[];
+  benefits: string[];
+  moreBenefits: string[];
 }
 
 // Comprehensive UI styling configuration for PlanCard

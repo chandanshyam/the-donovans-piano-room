@@ -127,8 +127,8 @@ export default function UpgradePage() {
               isCurrent: isCurrent(levelId),
               isPopular: levelId === MembershipLevelId.YEAR, // Year plan is popular
               expirationDays: isCurrent(levelId) ? expirationDays : undefined,
-              benefits: level.basic_benefits,
-              moreBenefits: level.additional_benefits,
+              benefits: level.benefits,
+              moreBenefits: level.moreBenefits,
               yearlyPrice,
               billingMessage: levelId === MembershipLevelId.FREE ? 'Free access' : 
                             levelId === MembershipLevelId.DAY ? 'Billed daily' :
@@ -156,7 +156,7 @@ export default function UpgradePage() {
               planName={planDisplayName}
               headerColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.headerColor || 'bg-gray-500'}
               textColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.textColor || 'text-white'}
-              benefits={level.additional_benefits}
+              benefits={level.moreBenefits}
             />
           </div>
         )}
@@ -211,14 +211,14 @@ export default function UpgradePage() {
         <div className="mt-8 flex justify-center">
           <div className="flex items-center gap-3">
             {Object.values(MembershipLevelId).map((levelId) => (
-              <div
-                key={levelId}
-                className={`h-3 rounded-full transition-all duration-300 ${
-                  selectedPlan === levelId 
-                    ? "bg-[#6F219E] w-12" 
-                    : "bg-[#B457F5] w-3"
-                }`}
-              />
+            <div
+              key={levelId}
+              className={`h-3 rounded-full transition-all duration-300 ${
+                selectedPlan === levelId 
+                ? "bg-[#6F219E] w-12" 
+                : "bg-[#B457F5] w-3"
+              }`}
+            />
             ))}
           </div>
         </div>
