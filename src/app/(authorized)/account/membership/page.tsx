@@ -10,6 +10,7 @@ import { getLevelInfo, getUserMembership, cancelUserMembership, toggleAutoRenew 
 import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
 import { UserMembership, LevelInfo, MembershipStatus, MembershipLevelId } from "@/interfaces/membershipInterface";
+import { formatRenewalDate } from "./membershipConfig";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
@@ -85,16 +86,7 @@ export default function Page() {
   };
 
   const formattedNextRenewal = useMemo(() => {
-    if (!membership?.nextRenewalAt) return "";
-    try {
-      return new Date(membership.nextRenewalAt).toLocaleDateString("en-US", {
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-      });
-    } catch {
-      return "";
-    }
+    return formatRenewalDate(membership?.nextRenewalAt);
   }, [membership?.nextRenewalAt]);
 
   const periodLabel = useMemo(() => {

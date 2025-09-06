@@ -92,6 +92,18 @@ export const PAYMENT_METHOD_ICONS: Record<PaymentMethodBrand, string> = {
   [PaymentMethodBrand.AMERICAN_EXPRESS]: "/memberships/Auto Renew Payment/Visa.svg" // fallback to Visa icon
 };
 
+// Date formatting configuration
+export const DATE_FORMATS = {
+  renewalDate: {
+    locale: "en-US",
+    options: {
+      month: "2-digit",
+      day: "2-digit",
+      year: "numeric"
+    }
+  }
+} as const;
+
 // Helper function to get UI config for a level
 export const getLevelUIConfig = (levelId: MembershipLevelId): LevelUIConfig => {
   return LEVEL_UI_CONFIG[levelId];
@@ -106,4 +118,17 @@ export const getPlanDisplayNameForLevel = (levelId: MembershipLevelId): PlanDisp
 export const getPaymentMethodIcon = (brand: string): string => {
   const normalizedBrand = brand.toLowerCase() as PaymentMethodBrand;
   return PAYMENT_METHOD_ICONS[normalizedBrand] || PAYMENT_METHOD_ICONS[PaymentMethodBrand.VISA];
+};
+
+// Helper function to format renewal date
+export const formatRenewalDate = (dateString?: string): string => {
+  if (!dateString) return "";
+  try {
+    return new Date(dateString).toLocaleDateString(
+      DATE_FORMATS.renewalDate.locale,
+      DATE_FORMATS.renewalDate.options
+    );
+  } catch {
+    return "";
+  }
 };

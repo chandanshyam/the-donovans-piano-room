@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PaymentMethodSummary, PaymentMethodBrand } from "@/interfaces/membershipInterface";
-import { getPaymentMethodIcon } from "@/app/(authorized)/account/membership/membershipConfig";
+import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/account/membership/membershipConfig";
 
 interface AutoRenewPaymentProps {
   membershipId: string;
@@ -21,13 +21,7 @@ export default function AutoRenewPayment({
   isUpdating = false,
   isMembershipActive = true,
 }: AutoRenewPaymentProps) {
-  const formattedDate = nextRenewalAt
-    ? new Date(nextRenewalAt).toLocaleDateString("en-US", {
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-      })
-    : "";
+  const formattedDate = formatRenewalDate(nextRenewalAt);
 
   const brandImageSrc = getPaymentMethodIcon(paymentMethodSummary?.brand || '');
 
