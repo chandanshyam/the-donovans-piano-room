@@ -96,9 +96,9 @@ export default function PlanCard({
                 {planData.originalPrice}
               </p>
             )}
-            {planData.price}
+            {planData.formattedPrice}
           </div>
-          <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{planData.period}</div>
+          <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{planData.formattedPeriod}</div>
             {/* Yearly price and billing message - only show for paid plans */}
             {planData.yearlyPrice && planData.yearlyPrice !== "FREE" && (
             <div className="relative z-10 text-center">

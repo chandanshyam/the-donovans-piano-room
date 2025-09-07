@@ -10,10 +10,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
-import { getLevelInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, LevelInfo, MembershipLevelId } from "@/interfaces/membershipInterface";
+import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
+import { UserMembership, MembershipLevelId, PlanData } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
-import { getPlanDisplayName } from "@/interfaces/membershipInterface";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -22,7 +21,7 @@ export default function UpgradePage() {
   const [error, setError] = useState<string | null>(null);
 
   const [membership, setMembership] = useState<UserMembership | null>(null);
-  const [levels, setLevels] = useState<Record<MembershipLevelId, LevelInfo | undefined>>({} as Record<MembershipLevelId, LevelInfo | undefined>);
+  const [plans, setPlans] = useState<Record<MembershipLevelId, PlanData | undefined>>({} as Record<MembershipLevelId, PlanData | undefined>);
 
   const handleBenefitCardToggle = (levelId: MembershipLevelId) => {
     // If this plan is already open, close it. Otherwise, open it.
@@ -36,14 +35,14 @@ export default function UpgradePage() {
         setLoading(true);
         const [m, free, day, month, year] = await Promise.all([
           getUserMembership(),
-          getLevelInfo(MembershipLevelId.FREE),
-          getLevelInfo(MembershipLevelId.DAY),
-          getLevelInfo(MembershipLevelId.MONTH),
-          getLevelInfo(MembershipLevelId.YEAR),
+          getPlanInfo(MembershipLevelId.FREE),
+          getPlanInfo(MembershipLevelId.DAY),
+          getPlanInfo(MembershipLevelId.MONTH),
+          getPlanInfo(MembershipLevelId.YEAR),
         ]);
         if (!isMounted) return;
         setMembership(m);
-        setLevels({
+        setPlans({
           [MembershipLevelId.FREE]: free,
           [MembershipLevelId.DAY]: day,
           [MembershipLevelId.MONTH]: month,
@@ -78,22 +77,6 @@ export default function UpgradePage() {
     }
   };
 
-  const priceLabel = (price?: number) => {
-    if (price === undefined) return "";
-    if (price === 0) return "FREE";
-    return `$${price.toFixed(2)}`;
-  };
-
-  const periodLabel = (period?: string) => {
-    if (!period) return "";
-    return `per ${period}`;
-  };
-
-  const periodLabelFor = (levelId: MembershipLevelId, period?: string) => {
-    if (levelId === MembershipLevelId.FREE) return '';
-    return periodLabel(period);
-  };
-
   const expirationDays = useMemo(() => {
     if (!membership?.nextRenewalAt) return undefined;
     const now = new Date();
@@ -105,7 +88,7 @@ export default function UpgradePage() {
 
   // Helper function to render a single plan
   const renderPlan = (levelId: MembershipLevelId) => {
-    const level = levels[levelId];
+    const level = plans[levelId];
     if (!level) return null;
 
     const yearlyMultiplier = getYearlyMultiplier(levelId);
@@ -113,27 +96,20 @@ export default function UpgradePage() {
       ? `$${(level.price * yearlyMultiplier).toFixed(2)}` 
       : '';
 
-    const planDisplayName = getPlanDisplayName(levelId);
+    // Create the plan data with current status and yearly price
+    const planData: PlanData = {
+      ...level,
+      isCurrent: isCurrent(levelId),
+      expirationDays: isCurrent(levelId) ? expirationDays : undefined,
+      yearlyPrice
+    };
 
     return (
       <>
         {/* Plan Card */}
         <div className="flex-shrink-0 w-80 md:w-96">
           <PlanCard
-            planData={{
-              planName: planDisplayName,
-              price: priceLabel(level.price),
-              period: periodLabelFor(levelId, level.period),
-              isCurrent: isCurrent(levelId),
-              isPopular: levelId === MembershipLevelId.YEAR, // Year plan is popular
-              expirationDays: isCurrent(levelId) ? expirationDays : undefined,
-              benefits: level.benefits,
-              moreBenefits: level.moreBenefits,
-              yearlyPrice,
-              billingMessage: levelId === MembershipLevelId.FREE ? 'Free access' : 
-                            levelId === MembershipLevelId.DAY ? 'Billed daily' :
-                            levelId === MembershipLevelId.MONTH ? 'Billed monthly' : 'Billed yearly'
-            }}
+            planData={planData}
             uiConfig={{
               ...MEMBERSHIP_UI_CONFIG[levelId],
               useSingleColumn: true,
@@ -153,10 +129,10 @@ export default function UpgradePage() {
           <div className="flex-shrink-0 w-80 md:w-96">
             <BenefitAccessCard 
               onClose={() => setSelectedPlan(null)}
-              planName={planDisplayName}
+              planName={planData.planName}
               headerColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.headerColor || 'bg-gray-500'}
               textColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.textColor || 'text-white'}
-              benefits={level.moreBenefits}
+              benefits={planData.moreBenefits}
             />
           </div>
         )}

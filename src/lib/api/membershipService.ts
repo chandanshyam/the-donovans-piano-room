@@ -64,7 +64,7 @@ export async function validateCouponCode(memberId: number, couponCode: string) {
     }
 }
 
-export async function getLevelInfo(levelId: string) {
+export async function getPlanInfo(levelId: string) {
     try {
         if (!levelId) {
             throw new Error('levelId is required');
@@ -80,11 +80,17 @@ export async function getLevelInfo(levelId: string) {
             throw new Error(data.message || 'Failed to retrieve level details');
         }
         
-        // Map API response to LevelInfo interface
+        // Map API response to PlanData interface
         return {
-            ...data,
+            levelId: data.levelId,
+            planName: data.levelId === 'lvl_free' ? "Scholarship" : data.name,
+            name: data.name,
+            price: data.price,
+            period: data.period,
             benefits: data.basic_benefits,
-            moreBenefits: data.additional_benefits
+            moreBenefits: data.additional_benefits,
+            formattedPrice: data.price === 0 ? "FREE" : `$${data.price.toFixed(2)}`,
+            formattedPeriod: data.levelId === 'lvl_free' ? "" : (data.period === "" ? "" : `per ${data.period}`)
         };
     } catch (error: any) {
         throw new Error(error.message || 'An error occurred while retrieving level details');

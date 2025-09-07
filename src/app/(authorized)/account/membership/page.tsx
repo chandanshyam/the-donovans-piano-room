@@ -6,17 +6,16 @@ import {
   authorizedWrapperTitles,
   settingsNavigation,
 } from "@/utils/general";
-import { getLevelInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
+import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
 import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
-import { UserMembership, LevelInfo, MembershipStatus, MembershipLevelId, PlanData } from "@/interfaces/membershipInterface";
+import { UserMembership, MembershipStatus, MembershipLevelId, PlanData } from "@/interfaces/membershipInterface";
 import { formatRenewalDate } from "./membershipConfig";
-import { getPlanDisplayName } from "@/interfaces/membershipInterface";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
   const [membership, setMembership] = useState<UserMembership | null>(null);
-  const [level, setLevel] = useState<LevelInfo | null>(null);
+  const [plan, setPlan] = useState<PlanData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isCancelling, setIsCancelling] = useState<boolean>(false);
@@ -32,9 +31,9 @@ export default function Page() {
         if (!isMounted) return;
         setMembership(userMembership);
         if (userMembership?.levelId) {
-          const levelDetails = await getLevelInfo(userMembership.levelId);
+          const levelDetails = await getPlanInfo(userMembership.levelId);
           if (!isMounted) return;
-          setLevel(levelDetails);
+          setPlan(levelDetails);
         }
       } catch (e: any) {
         if (!isMounted) return;
@@ -54,8 +53,8 @@ export default function Page() {
       const userMembership = await getUserMembership();
       setMembership(userMembership);
       if (userMembership?.levelId) {
-        const levelDetails = await getLevelInfo(userMembership.levelId);
-        setLevel(levelDetails);
+        const levelDetails = await getPlanInfo(userMembership.levelId);
+        setPlan(levelDetails);
       }
     } catch (e) {}
   };
@@ -90,26 +89,7 @@ export default function Page() {
     return formatRenewalDate(membership?.nextRenewalAt);
   }, [membership?.nextRenewalAt]);
 
-  const periodLabel = useMemo(() => {
-    if (!level?.period) return "";
-    if (level.period === "") return "";
-    return `per ${level.period}`;
-  }, [level?.period]);
-
-  const priceLabel = useMemo(() => {
-    if (level?.price === 0) return "FREE";
-    if (typeof level?.price === "number") return `$${level.price.toFixed(2)}`;
-    return "";
-  }, [level?.price]);
-
-  const planData: PlanData = useMemo(() => ({
-    planName: getPlanDisplayName(membership?.levelId || MembershipLevelId.FREE),
-    price: priceLabel,
-    period: periodLabel,
-    isCurrent: true,
-    benefits: level?.benefits || [],
-    moreBenefits: level?.moreBenefits || []
-  }), [membership?.levelId, priceLabel, periodLabel, level?.benefits, level?.moreBenefits]);
+  const planData: PlanData | null = plan;
 
   return (
     <AuthorizedWrapper1
@@ -160,13 +140,15 @@ export default function Page() {
         <div className='mt-[4vh] mb-[4vh] bg-[#FED2AA] h-1'></div>
 
         <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9 md:max-w-[1000px]">
-          <CurrentMembership
-            planData={planData}
-            levelId={membership?.levelId || MembershipLevelId.FREE}
-            status={membership?.status || MembershipStatus.ACTIVE}
-            onCancel={handleCancel}
-            isCancelling={isCancelling}
-          />
+          {planData && (
+            <CurrentMembership
+              planData={planData}
+              levelId={membership?.levelId || MembershipLevelId.FREE}
+              status={membership?.status || MembershipStatus.ACTIVE}
+              onCancel={handleCancel}
+              isCancelling={isCancelling}
+            />
+          )}
           <AutoRenewPayment
             membershipId={membership?.membershipId || ""}
             nextRenewalAt={membership?.nextRenewalAt}
