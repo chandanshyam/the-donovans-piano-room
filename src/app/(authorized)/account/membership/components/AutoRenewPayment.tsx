@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { PaymentMethodSummary, PaymentMethodBrand } from "@/interfaces/membershipInterface";
 import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/account/membership/membershipConfig";
 
@@ -21,6 +22,7 @@ export default function AutoRenewPayment({
   isUpdating = false,
   isMembershipActive = true,
 }: AutoRenewPaymentProps) {
+  const router = useRouter();
   const formattedDate = formatRenewalDate(nextRenewalAt);
 
   const brandImageSrc = getPaymentMethodIcon(paymentMethodSummary?.brand || '');
@@ -65,7 +67,7 @@ export default function AutoRenewPayment({
             </div>
           </div>
 
-          <button type="button" className="inline-flex items-center gap-2 text-primary-purple">
+          <button type="button" className="inline-flex items-center gap-2 text-primary-purple" onClick={() => router.push('/account/payment')}>
             <span className="text-xl font-medium">Edit</span>
             <Image
               src="/memberships/Auto Renew Payment/pencil-outline.svg"
@@ -82,6 +84,7 @@ export default function AutoRenewPayment({
           <button
             type="button"
             className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
+            onClick={() => router.push('/account/payment')}
           >
             Add payment method
           </button>
