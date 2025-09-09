@@ -31,9 +31,9 @@ export default function Page() {
         if (!isMounted) return;
         setMembership(userMembership);
         if (userMembership?.levelId) {
-          const levelDetails = await getPlanInfo(userMembership.levelId);
+          const planDetails = await getPlanInfo(userMembership.levelId);
           if (!isMounted) return;
-          setPlan(levelDetails);
+          setPlan(planDetails);
         }
       } catch (e: any) {
         if (!isMounted) return;
@@ -53,8 +53,8 @@ export default function Page() {
       const userMembership = await getUserMembership();
       setMembership(userMembership);
       if (userMembership?.levelId) {
-        const levelDetails = await getPlanInfo(userMembership.levelId);
-        setPlan(levelDetails);
+        const planDetails = await getPlanInfo(userMembership.levelId);
+        setPlan(planDetails);
       }
     } catch (e) {}
   };
@@ -88,8 +88,6 @@ export default function Page() {
   const formattedNextRenewal = useMemo(() => {
     return formatRenewalDate(membership?.nextRenewalAt);
   }, [membership?.nextRenewalAt]);
-
-  const planData: PlanData | null = plan;
 
   return (
     <AuthorizedWrapper1
@@ -140,9 +138,9 @@ export default function Page() {
         <div className='mt-[4vh] mb-[4vh] bg-[#FED2AA] h-1'></div>
 
         <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9 md:max-w-[1000px]">
-          {planData && (
+          {plan && (
             <CurrentMembership
-              planData={planData}
+              planData={plan}
               levelId={membership?.levelId || MembershipLevelId.FREE}
               status={membership?.status || MembershipStatus.ACTIVE}
               onCancel={handleCancel}
