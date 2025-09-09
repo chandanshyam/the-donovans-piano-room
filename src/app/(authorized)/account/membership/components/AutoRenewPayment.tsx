@@ -67,7 +67,7 @@ export default function AutoRenewPayment({
             </div>
           </div>
 
-          <button type="button" className="inline-flex items-center gap-2 text-primary-purple" onClick={() => router.push('/account/payment')}>
+          <button type="button" className="inline-flex items-center gap-2 text-primary-purple" onClick={() => router.push('/account/payments')}>
             <span className="text-xl font-medium">Edit</span>
             <Image
               src="/memberships/Auto Renew Payment/pencil-outline.svg"
@@ -84,7 +84,7 @@ export default function AutoRenewPayment({
           <button
             type="button"
             className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
-            onClick={() => router.push('/account/payment')}
+            onClick={() => router.push('/account/payments')}
           >
             Add payment method
           </button>
