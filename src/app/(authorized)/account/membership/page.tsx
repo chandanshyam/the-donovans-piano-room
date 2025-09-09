@@ -128,9 +128,13 @@ export default function Page() {
         {!loading && !error && membership && membership.status !== MembershipStatus.CANCELLED && (
           <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
             As a valued member, your membership #{membership.membershipId}
-            {membership.autoRenew && formattedNextRenewal && (
+            {membership.autoRenew && formattedNextRenewal ? (
               <>
                 {" "}will be auto renewed on <span className="font-semibold text-primary-orange">{formattedNextRenewal}.</span>
+              </>
+            ) : (
+              <>
+                {" "}will not auto renew. You can enable auto-renewal below to ensure uninterrupted access.
               </>
             )}
           </p>
