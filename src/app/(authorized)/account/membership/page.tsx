@@ -32,7 +32,11 @@ export default function Page() {
         if (userMembership?.levelId) {
           const planDetails = await getPlanInfo(userMembership.levelId);
           if (!isMounted) return;
-          setPlan(planDetails);
+          setPlan({ 
+            ...planDetails, 
+            isCurrent: true,
+            isPopular: planDetails.levelId === MembershipLevelId.YEAR
+          });
         }
       } catch (e: any) {
         if (!isMounted) return;
@@ -53,7 +57,11 @@ export default function Page() {
       setMembership(userMembership);
       if (userMembership?.levelId) {
         const planDetails = await getPlanInfo(userMembership.levelId);
-        setPlan(planDetails);
+        setPlan({ 
+          ...planDetails, 
+          isCurrent: true,
+          isPopular: planDetails.levelId === MembershipLevelId.YEAR
+        });
       }
     } catch (e) {}
   };

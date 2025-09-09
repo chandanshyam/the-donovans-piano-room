@@ -61,9 +61,7 @@ export default function UpgradePage() {
     };
   }, []);
 
-  const isCurrent = (levelId: MembershipLevelId) => membership?.levelId === levelId;
-
-  // Helper function to get yearly multiplier for a level
+  // Helper function to get yearly multiplier for a plan
   const getYearlyMultiplier = (levelId: MembershipLevelId): number | undefined => {
     switch (levelId) {
       case MembershipLevelId.DAY:
@@ -88,19 +86,20 @@ export default function UpgradePage() {
 
   // Helper function to render a single plan
   const renderPlan = (levelId: MembershipLevelId) => {
-    const level = plans[levelId];
-    if (!level) return null;
+    const plan = plans[levelId];
+    if (!plan) return null;
 
     const yearlyMultiplier = getYearlyMultiplier(levelId);
-    const yearlyPrice = yearlyMultiplier && level.price > 0 
-      ? `$${(level.price * yearlyMultiplier).toFixed(2)}` 
+    const yearlyPrice = yearlyMultiplier && plan.price > 0 
+      ? `$${(plan.price * yearlyMultiplier).toFixed(2)}` 
       : '';
 
     // Create the plan data with current status and yearly price
     const planData: PlanData = {
-      ...level,
-      isCurrent: isCurrent(levelId),
-      expirationDays: isCurrent(levelId) ? expirationDays : undefined,
+      ...plan,
+      isPopular: plan.levelId === MembershipLevelId.YEAR,
+      isCurrent: plan.levelId === membership?.levelId,
+      expirationDays: plan.isCurrent ? expirationDays : undefined,
       yearlyPrice
     };
 
@@ -116,8 +115,8 @@ export default function UpgradePage() {
               priceBlockSize: "py-14"
             }}
             showCurrentInHeader={false}
-            showExpirationMessage={isCurrent(levelId)}
-            showChooseButton={!isCurrent(levelId)}
+            showExpirationMessage={plan.isCurrent}
+            showChooseButton={!plan.isCurrent}
             onChooseClick={() => {/* TODO: Handle plan selection */}}
             useBenefitAccessCard={true}
             onBenefitAccessCardToggle={() => handleBenefitCardToggle(levelId)}
