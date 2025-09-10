@@ -4,7 +4,7 @@ import { MembershipLevelId, MembershipStatus, PlanData } from "@/interfaces/memb
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
 
 interface CurrentMembershipProps {
-  planData: PlanData;
+  plan: PlanData;
   levelId: MembershipLevelId;
   status: MembershipStatus;
   onCancel?: () => void;
@@ -12,7 +12,7 @@ interface CurrentMembershipProps {
 }
 
 export default function CurrentMembership({
-  planData,
+  plan,
   levelId,
   status,
   onCancel,
@@ -31,7 +31,7 @@ export default function CurrentMembership({
       </h1>
 
       <PlanCard
-        planData={planData}
+        plan={plan}
         uiConfig={uiConfig}
       />
       {/* Actions */}

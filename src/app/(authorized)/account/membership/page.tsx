@@ -143,7 +143,7 @@ export default function Page() {
         <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9 md:max-w-[1000px]">
           {plan && (
             <CurrentMembership
-              planData={plan}
+              plan={plan}
               levelId={membership?.levelId || MembershipLevelId.FREE}
               status={membership?.status || MembershipStatus.ACTIVE}
               onCancel={handleCancel}

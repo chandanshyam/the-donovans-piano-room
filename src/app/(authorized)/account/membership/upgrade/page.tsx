@@ -86,20 +86,21 @@ export default function UpgradePage() {
 
   // Helper function to render a single plan
   const renderPlan = (levelId: MembershipLevelId) => {
-    const plan = plans[levelId];
-    if (!plan) return null;
+    const planInfo = plans[levelId];
+    if (!planInfo) return null;
 
     const yearlyMultiplier = getYearlyMultiplier(levelId);
-    const yearlyPrice = yearlyMultiplier && plan.price > 0 
-      ? `$${(plan.price * yearlyMultiplier).toFixed(2)}` 
+    const yearlyPrice = yearlyMultiplier && planInfo.price > 0 
+      ? `$${(planInfo.price * yearlyMultiplier).toFixed(2)}` 
       : '';
 
     // Create the plan data with current status and yearly price
-    const planData: PlanData = {
-      ...plan,
-      isPopular: plan.levelId === MembershipLevelId.YEAR,
-      isCurrent: plan.levelId === membership?.levelId,
-      expirationDays: plan.isCurrent ? expirationDays : undefined,
+    const isCurrent = planInfo.levelId === membership?.levelId;
+    const plan: PlanData = {
+      ...planInfo,
+      isPopular: planInfo.levelId === MembershipLevelId.YEAR,
+      isCurrent: isCurrent,
+      expirationDays: isCurrent ? expirationDays : undefined,
       yearlyPrice
     };
 
@@ -108,15 +109,15 @@ export default function UpgradePage() {
         {/* Plan Card */}
         <div className="flex-shrink-0 w-80 md:w-96">
           <PlanCard
-            planData={planData}
+            plan={plan}
             uiConfig={{
               ...MEMBERSHIP_UI_CONFIG[levelId],
               useSingleColumn: true,
               priceBlockSize: "py-14"
             }}
-            showCurrentInHeader={planData.isCurrent && membership?.status === MembershipStatus.CANCELLED}
-            showExpirationMessage={planData.isCurrent}
-            showChooseButton={!planData.isCurrent || (planData.isCurrent && membership?.status === MembershipStatus.CANCELLED)}
+            showCurrentInHeader={plan.isCurrent && membership?.status === MembershipStatus.CANCELLED}
+            showExpirationMessage={plan.isCurrent}
+            showChooseButton={!plan.isCurrent || (plan.isCurrent && membership?.status === MembershipStatus.CANCELLED)}
             onChooseClick={() => {/* TODO: Handle plan selection */}}
             useBenefitAccessCard={true}
             onBenefitAccessCardToggle={() => handleBenefitCardToggle(levelId)}
@@ -128,10 +129,10 @@ export default function UpgradePage() {
           <div className="flex-shrink-0 w-80 md:w-96">
             <BenefitAccessCard 
               onClose={() => setSelectedPlan(null)}
-              planName={planData.planName}
+              planName={plan.planName}
               headerColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.headerColor || 'bg-gray-500'}
               textColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.textColor || 'text-white'}
-              benefits={planData.moreBenefits}
+              benefits={plan.moreBenefits}
             />
           </div>
         )}

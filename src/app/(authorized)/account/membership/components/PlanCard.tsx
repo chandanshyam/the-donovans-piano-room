@@ -5,7 +5,7 @@ import { PlanCardUIConfig, PlanData } from "@/interfaces/membershipInterface";
 
 interface PlanCardProps {
   // Plan Data - centralized plan information
-  planData: PlanData;
+  plan: PlanData;
   
   // UI Configuration - centralized styling
   uiConfig: PlanCardUIConfig;
@@ -22,7 +22,7 @@ interface PlanCardProps {
 }
 
 export default function PlanCard({
-  planData,
+  plan,
   uiConfig,
   showCurrentInHeader = true,
   showChooseButton = false,
@@ -49,8 +49,8 @@ export default function PlanCard({
       <div className="w-full rounded-2xl border border-[#FCF0D8] bg-white shadow-custom">
         {/* Header ribbon */}
         <div className={`relative rounded-t-xl px-5 py-3 ${uiConfig.headerColor} ${uiConfig.headerTextColor}`}>
-          <div className="text-2xl font-semibold">{planData.planName}</div>
-          {planData.isCurrent && showCurrentInHeader && (
+          <div className="text-2xl font-semibold">{plan.planName}</div>
+          {plan.isCurrent && showCurrentInHeader && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
               <span className="inline-flex items-center gap-2 rounded-md border border-[#D9D9D9] bg-[#ffffffcc] px-3 py-1 text-xl font-medium text-primary-brown">
                 <Image
@@ -64,7 +64,7 @@ export default function PlanCard({
               </span>
             </div>
           )}
-          {planData.isPopular && (
+          {plan.isPopular && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
               <span className="rounded-md bg-[#F8D867] px-3 py-1 text-xl font-medium text-black">
                 Popular
@@ -91,26 +91,26 @@ export default function PlanCard({
           )}
           
           <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown 3xl:text-6xl 4xl:text-7xl flex flex-col items-center gap-1">
-            {planData.showDiscountIndicator && planData.originalPrice && (
+            {plan.showDiscountIndicator && plan.originalPrice && (
               <p className="text-2xl text-red-500 opacity-80 line-through">
-                {planData.originalPrice}
+                {plan.originalPrice}
               </p>
             )}
-            {planData.formattedPrice}
+            {plan.formattedPrice}
           </div>
-          <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{planData.formattedPeriod}</div>
+          <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{plan.formattedPeriod}</div>
             {/* Yearly price and billing message - only show for paid plans */}
-            {planData.yearlyPrice && planData.yearlyPrice !== "FREE" && (
+            {plan.yearlyPrice && plan.yearlyPrice !== "FREE" && (
             <div className="relative z-10 text-center">
               <div className="text-lg text-primary-gray font-medium">
-                Yearly payment: {planData.yearlyPrice} / year
+                Yearly payment: {plan.yearlyPrice} / year
               </div>
               <div className="text-lg text-primary-gray font-medium">
-                {planData.billingMessage}
+                {plan.billingMessage}
               </div>
             </div>
           )}
-          {planData.isCurrent && !showCurrentInHeader && (
+          {plan.isCurrent && !showCurrentInHeader && (
             <div className="relative z-10 flex flex-col items-center gap-2">
               <div className="inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-6 text-2xl font-medium text-black">
                 <Image
@@ -122,9 +122,9 @@ export default function PlanCard({
                 />
                 Current plan
               </div>
-              {showExpirationMessage && planData.expirationDays !== undefined && (
+              {showExpirationMessage && plan.expirationDays !== undefined && (
                 <p className="text-lg text-[#817676]">
-                  * Membership expires after {planData.expirationDays} Day{planData.expirationDays !== 1 ? 's' : ''}
+                  * Membership expires after {plan.expirationDays} Day{plan.expirationDays !== 1 ? 's' : ''}
                 </p>
               )}
             </div>
@@ -145,9 +145,9 @@ export default function PlanCard({
 
         {/* Benefits */}
         <div className="py-6 p-4">
-        {planData.benefits && planData.benefits.length > 0 && 
+        {plan.benefits && plan.benefits.length > 0 && 
           <div className={`grid grid-cols-1 gap-y-3 gap-x-6 ${uiConfig.useSingleColumn ? '' : 'md:grid-cols-2'}`}>
-            {planData.benefits.map((label) => (
+            {plan.benefits.map((label) => (
               <div key={label} className="flex items-center gap-3 text-primary-brown">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full">
                   <Image
@@ -164,7 +164,7 @@ export default function PlanCard({
           </div>
         }
           {/* More benefits button */}
-          {planData.moreBenefits && planData.moreBenefits.length > 0 && (
+          {plan.moreBenefits && plan.moreBenefits.length > 0 && (
             <div className="pb-2 pt-4">
               <button
                 type="button"
@@ -186,11 +186,11 @@ export default function PlanCard({
           )}
 
           {/* Expanded benefits */}
-          {showMoreBenefits && planData.moreBenefits && planData.moreBenefits.length > 0 && (
+          {showMoreBenefits && plan.moreBenefits && plan.moreBenefits.length > 0 && (
             <div className="px-4 pb-6">
               <div className="p-1">
                 <ul className="list-disc list-inside text-2xl">
-                  {planData.moreBenefits.map((benefit) => (
+                  {plan.moreBenefits.map((benefit) => (
                     <li key={benefit}>
                       {benefit}
                     </li>
