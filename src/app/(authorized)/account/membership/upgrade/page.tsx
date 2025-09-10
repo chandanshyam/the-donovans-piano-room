@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, MembershipLevelId, PlanData } from "@/interfaces/membershipInterface";
+import { UserMembership, MembershipLevelId, MembershipStatus, PlanData } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
 
 export default function UpgradePage() {
@@ -114,9 +114,9 @@ export default function UpgradePage() {
               useSingleColumn: true,
               priceBlockSize: "py-14"
             }}
-            showCurrentInHeader={false}
-            showExpirationMessage={plan.isCurrent}
-            showChooseButton={!plan.isCurrent}
+            showCurrentInHeader={planData.isCurrent && membership?.status === MembershipStatus.CANCELLED}
+            showExpirationMessage={planData.isCurrent}
+            showChooseButton={!planData.isCurrent || (planData.isCurrent && membership?.status === MembershipStatus.CANCELLED)}
             onChooseClick={() => {/* TODO: Handle plan selection */}}
             useBenefitAccessCard={true}
             onBenefitAccessCardToggle={() => handleBenefitCardToggle(levelId)}

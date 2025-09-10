@@ -129,7 +129,7 @@ export default function PlanCard({
               )}
             </div>
           )}
-          {!planData.isCurrent && showChooseButton && onChooseClick && (
+          {showChooseButton && onChooseClick && (
             <button
               type="button"
               onClick={onChooseClick}
