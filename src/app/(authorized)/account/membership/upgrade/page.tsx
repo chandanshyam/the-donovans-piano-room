@@ -61,20 +61,6 @@ export default function UpgradePage() {
     };
   }, []);
 
-  // Helper function to get yearly multiplier for a plan
-  const getYearlyMultiplier = (levelId: MembershipLevelId): number | undefined => {
-    switch (levelId) {
-      case MembershipLevelId.DAY:
-        return 365;
-      case MembershipLevelId.MONTH:
-      case MembershipLevelId.YEAR:
-        return 12;
-      case MembershipLevelId.FREE:
-      default:
-        return undefined;
-    }
-  };
-
   const expirationDays = useMemo(() => {
     if (!membership?.nextRenewalAt) return undefined;
     const now = new Date();
@@ -89,10 +75,8 @@ export default function UpgradePage() {
     const planInfo = plans[levelId];
     if (!planInfo) return null;
 
-    const yearlyMultiplier = getYearlyMultiplier(levelId);
-    const yearlyPrice = yearlyMultiplier && planInfo.price > 0 
-      ? `$${(planInfo.price * yearlyMultiplier).toFixed(2)}` 
-      : '';
+    const multiplier = levelId === MembershipLevelId.DAY ? 365 : (levelId === MembershipLevelId.MONTH || levelId === MembershipLevelId.YEAR ? 12 : 0);
+    const yearlyPrice = `$${(planInfo.price * multiplier).toFixed(2)}` 
 
     // Create the plan data with current status and yearly price
     const isCurrent = planInfo.levelId === membership?.levelId;
