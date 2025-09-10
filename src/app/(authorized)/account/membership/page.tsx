@@ -9,13 +9,13 @@ import {
 import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
 import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
-import { UserMembership, MembershipStatus, MembershipLevelId, PlanData } from "@/interfaces/membershipInterface";
+import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
 import { formatRenewalDate } from "./membershipConfig";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
   const [membership, setMembership] = useState<UserMembership | null>(null);
-  const [plan, setPlan] = useState<PlanData | null>(null);
+  const [plan, setPlan] = useState<Plan | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isCancelling, setIsCancelling] = useState<boolean>(false);

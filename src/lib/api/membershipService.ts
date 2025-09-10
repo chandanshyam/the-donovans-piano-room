@@ -80,7 +80,7 @@ export async function getPlanInfo(levelId: string) {
             throw new Error(data.message || 'Failed to retrieve level details');
         }
         
-        // Map API response to PlanData interface
+        // Map API response to Plan interface
         return {
             levelId: data.levelId,
             planName: data.levelId === 'lvl_free' ? "Scholarship" : data.name,

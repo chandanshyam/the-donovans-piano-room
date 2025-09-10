@@ -50,7 +50,7 @@ export interface PlanCardUIConfig {
 }
 
 // Comprehensive plan data for PlanCard
-export interface PlanData {
+export interface Plan {
   // Raw API data
   levelId: MembershipLevelId;
   name: string;

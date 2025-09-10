@@ -1,10 +1,10 @@
 import { useRouter } from "next/navigation";
 import PlanCard from "./PlanCard";
-import { MembershipLevelId, MembershipStatus, PlanData } from "@/interfaces/membershipInterface";
+import { MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
 
 interface CurrentMembershipProps {
-  plan: PlanData;
+  plan: Plan;
   levelId: MembershipLevelId;
   status: MembershipStatus;
   onCancel?: () => void;

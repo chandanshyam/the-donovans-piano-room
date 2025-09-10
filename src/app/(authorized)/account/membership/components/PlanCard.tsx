@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { PlanCardUIConfig, PlanData } from "@/interfaces/membershipInterface";
+import { PlanCardUIConfig, Plan } from "@/interfaces/membershipInterface";
 
 interface PlanCardProps {
   // Plan Data - centralized plan information
-  plan: PlanData;
+  plan: Plan;
   
   // UI Configuration - centralized styling
   uiConfig: PlanCardUIConfig;

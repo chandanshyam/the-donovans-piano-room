@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
-import { UserMembership, MembershipLevelId, MembershipStatus, PlanData } from "@/interfaces/membershipInterface";
+import { UserMembership, MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
 
 export default function UpgradePage() {
@@ -21,7 +21,7 @@ export default function UpgradePage() {
   const [error, setError] = useState<string | null>(null);
 
   const [membership, setMembership] = useState<UserMembership | null>(null);
-  const [plans, setPlans] = useState<Record<MembershipLevelId, PlanData | undefined>>({} as Record<MembershipLevelId, PlanData | undefined>);
+  const [plans, setPlans] = useState<Record<MembershipLevelId, Plan | undefined>>({} as Record<MembershipLevelId, Plan | undefined>);
 
   const handleBenefitCardToggle = (levelId: MembershipLevelId) => {
     // If this plan is already open, close it. Otherwise, open it.
@@ -96,7 +96,7 @@ export default function UpgradePage() {
 
     // Create the plan data with current status and yearly price
     const isCurrent = planInfo.levelId === membership?.levelId;
-    const plan: PlanData = {
+    const plan: Plan = {
       ...planInfo,
       isPopular: planInfo.levelId === MembershipLevelId.YEAR,
       isCurrent: isCurrent,
