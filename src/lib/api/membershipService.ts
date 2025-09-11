@@ -90,7 +90,6 @@ export async function getPlanInfo(levelId: string) {
             benefits: data.basic_benefits,
             moreBenefits: data.additional_benefits,
             formattedPrice: data.price === 0 ? "FREE" : `$${data.price.toFixed(2)}`,
-            formattedPeriod: data.levelId === 'lvl_free' ? "" : (data.period === "" ? "" : `per ${data.period}`)
         };
     } catch (error: any) {
         throw new Error(error.message || 'An error occurred while retrieving level details');

@@ -79,13 +79,12 @@ export default function UpgradePage() {
     const yearlyPrice = `$${(planInfo.price * multiplier).toFixed(2)}` 
 
     // Create the plan data with current status and yearly price
-    const isCurrent = planInfo.levelId === membership?.levelId;
     const plan: Plan = {
       ...planInfo,
       isPopular: planInfo.levelId === MembershipLevelId.YEAR,
-      isCurrent: isCurrent,
-      expirationDays: isCurrent ? expirationDays : undefined,
-      yearlyPrice
+      isCurrent: planInfo.levelId === membership?.levelId,
+      expirationDays: planInfo.levelId === membership?.levelId ? expirationDays : undefined,
+      yearlyPrice,
     };
 
     return (

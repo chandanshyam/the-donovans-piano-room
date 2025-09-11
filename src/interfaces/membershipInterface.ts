@@ -62,15 +62,12 @@ export interface Plan {
   // Formatted display data
   planName: string;
   formattedPrice: string;
-  formattedPeriod: string;
   
   // Display state
   isCurrent?: boolean;
   isPopular?: boolean;
   expirationDays?: number;
   originalPrice?: string;
-  discountAmount?: string;
-  showDiscountIndicator?: boolean;
   yearlyPrice?: string;
   billingMessage?: string;
 }

@@ -91,25 +91,17 @@ export default function PlanCard({
           )}
           
           <div className="relative z-10 font-montserrat text-4xl font-semibold text-primary-brown 3xl:text-6xl 4xl:text-7xl flex flex-col items-center gap-1">
-            {plan.showDiscountIndicator && plan.originalPrice && (
-              <p className="text-2xl text-red-500 opacity-80 line-through">
-                {plan.originalPrice}
-              </p>
-            )}
             {plan.formattedPrice}
           </div>
-          <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">{plan.formattedPeriod}</div>
-            {/* Yearly price and billing message - only show for paid plans */}
-            {plan.yearlyPrice && plan.yearlyPrice !== "FREE" && (
-            <div className="relative z-10 text-center">
-              <div className="text-lg text-primary-gray font-medium">
-                Yearly payment: {plan.yearlyPrice} / year
-              </div>
-              <div className="text-lg text-primary-gray font-medium">
-                {plan.billingMessage}
-              </div>
+          {plan.planName !== "Scholarship" && (
+            <div className="relative z-10 mt-1 text-2xl text-primary-gray min-h-[1.5rem]">
+              {plan.planName === "Monthly" || plan.planName === "Yearly" ? "per month" : "one day"}
             </div>
           )}
+          {/* Yearly price and billing message */}
+          <div className="relative z-10 text-center text-lg text-primary-gray font-medium">
+              {plan.planName !== "Scholarship" ? `${plan.yearlyPrice} annually, billed ${plan.period}` : "Eligibility for the scholarships is based on family income being below the Federal Poverty Level (FPL)."}
+          </div>
           {plan.isCurrent && !showCurrentInHeader && (
             <div className="relative z-10 flex flex-col items-center gap-2">
               <div className="inline-flex items-center gap-2 rounded-2xl bg-gray-200 px-4 py-6 text-2xl font-medium text-black">
