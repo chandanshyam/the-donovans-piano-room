@@ -35,7 +35,8 @@ export default function Page() {
           setPlan({ 
             ...planDetails, 
             isCurrent: true,
-            isPopular: planDetails.levelId === MembershipLevelId.YEAR
+            isPopular: planDetails.levelId === MembershipLevelId.YEAR,
+            yearlyPrice: (planDetails.price * (userMembership.levelId === MembershipLevelId.DAY ? 365 : (userMembership.levelId === MembershipLevelId.MONTH || userMembership.levelId === MembershipLevelId.YEAR ? 12 : 0))).toFixed(2)
           });
         }
       } catch (e: any) {
