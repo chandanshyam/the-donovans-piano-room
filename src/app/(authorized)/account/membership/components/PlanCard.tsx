@@ -127,7 +127,7 @@ export default function PlanCard({
               onClick={onChooseClick}
               className="relative z-10 mt-3 rounded-full border border-primary-purple px-6 py-3 text-center font-medium bg-primary-purple text-white"
             > 
-              Choose plan
+              {plan.planName === "Scholarship" ? "Apply for Scholarship" : "Choose plan"}
             </button>
           )}
         </div>
