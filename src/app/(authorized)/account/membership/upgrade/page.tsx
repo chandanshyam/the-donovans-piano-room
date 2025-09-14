@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
+import ScholarshipPopup from "../components/ScholarshipPopup";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
@@ -22,10 +23,17 @@ export default function UpgradePage() {
 
   const [membership, setMembership] = useState<UserMembership | null>(null);
   const [plans, setPlans] = useState<Record<MembershipLevelId, Plan | undefined>>({} as Record<MembershipLevelId, Plan | undefined>);
+  const [showScholarshipPopup, setShowScholarshipPopup] = useState<boolean>(false);
 
   const handleBenefitCardToggle = (levelId: MembershipLevelId) => {
     // If this plan is already open, close it. Otherwise, open it.
     setSelectedPlan(selectedPlan === levelId ? null : levelId);
+  };
+
+  const handleScholarshipApply = () => {
+    // TODO: Handle scholarship application - redirect to external form
+    console.log("Redirecting to scholarship application form");
+    setShowScholarshipPopup(false);
   };
 
   useEffect(() => {
@@ -98,7 +106,13 @@ export default function UpgradePage() {
             showCurrentInHeader={plan.isCurrent && membership?.status === MembershipStatus.CANCELLED}
             showExpirationMessage={plan.isCurrent}
             showChooseButton={!plan.isCurrent || (plan.isCurrent && membership?.status === MembershipStatus.CANCELLED)}
-            onChooseClick={() => {/* TODO: Handle plan selection */}}
+            onChooseClick={() => {
+              if (plan.planName === "Scholarship") {
+                setShowScholarshipPopup(true);
+              } else {
+                // TODO: Handle other plan selection
+              }
+            }}
             useBenefitAccessCard={true}
             onBenefitAccessCardToggle={() => handleBenefitCardToggle(levelId)}
           />
@@ -179,6 +193,13 @@ export default function UpgradePage() {
           </div>
         </div>
       </div>
+
+      {/* Scholarship Popup */}
+      <ScholarshipPopup
+        isOpen={showScholarshipPopup}
+        onClose={() => setShowScholarshipPopup(false)}
+        onApply={handleScholarshipApply}
+      />
     </AuthorizedWrapper1>
   );
 }
