@@ -1,5 +1,7 @@
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import PlanCard from "./PlanCard";
+import Popup from "./Popup";
 import { MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
 
@@ -19,10 +21,25 @@ export default function CurrentMembership({
   isCancelling = false,
 }: CurrentMembershipProps) {
   const router = useRouter();
+  const [showCancelPopup, setShowCancelPopup] = useState(false);
 
   const uiConfig = MEMBERSHIP_UI_CONFIG[levelId];
 
   const isActive = status === MembershipStatus.ACTIVE;
+
+  const handleCancelClick = () => {
+    if (!isActive || isCancelling) return;
+    setShowCancelPopup(true);
+  };
+
+  const handleConfirmCancel = () => {
+    setShowCancelPopup(false);
+    onCancel && onCancel();
+  };
+
+  const handleKeepMembership = () => {
+    setShowCancelPopup(false);
+  };
 
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6">
@@ -51,14 +68,19 @@ export default function CurrentMembership({
               ? "border-primary-purple text-primary-purple"
               : "border-gray-300 text-gray-400 cursor-not-allowed"
           }`}
-          onClick={() => {
-            if (!isActive || isCancelling) return;
-            onCancel && onCancel();
-          }}
+          onClick={handleCancelClick}
         >
           {isCancelling ? 'Cancelling...' : (isActive ? 'Cancel' : 'Cancelled')}
         </button>
       </div>
+
+      {/* Cancel Membership Popup */}
+      <Popup
+        isOpen={showCancelPopup}
+        onPrimaryAction={handleConfirmCancel}
+        onSecondaryAction={handleKeepMembership}
+        type="cancel-membership"
+      />
     </div>
   );
 }
