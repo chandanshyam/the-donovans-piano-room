@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Popup from "./Popup";
 import { PaymentMethodSummary, PaymentMethodBrand } from "@/interfaces/membershipInterface";
 import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/account/membership/membershipConfig";
 
@@ -24,8 +26,29 @@ export default function AutoRenewPayment({
 }: AutoRenewPaymentProps) {
   const router = useRouter();
   const formattedDate = formatRenewalDate(nextRenewalAt);
-
+  const [showCancelAutopayPopup, setShowCancelAutopayPopup] = useState(false);
   const brandImageSrc = getPaymentMethodIcon(paymentMethodSummary?.brand || '');
+
+  const handleToggleClick = () => {
+    if (!isMembershipActive || isUpdating) return;
+    
+    if (autoRenew) {
+      // Show popup when trying to cancel autopay
+      setShowCancelAutopayPopup(true);
+    } else {
+      // Enable autopay directly
+      onToggleAutoRenew && onToggleAutoRenew(true);
+    }
+  };
+
+  const handleConfirmCancelAutopay = () => {
+    setShowCancelAutopayPopup(false);
+    onToggleAutoRenew && onToggleAutoRenew(false);
+  };
+
+  const handleKeepAutopay = () => {
+    setShowCancelAutopayPopup(false);
+  };
 
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">
@@ -96,14 +119,18 @@ export default function AutoRenewPayment({
                 ? 'border-gray-300 text-gray-400 cursor-not-allowed'
                 : 'border-primary-purple text-primary-purple'
             }`}
-            onClick={() => {
-              if (!isMembershipActive || isUpdating) return;
-              onToggleAutoRenew && onToggleAutoRenew(!autoRenew);
-            }}
+            onClick={handleToggleClick}
           >
             {isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay'}
           </button>
       </div>
+      {/* Cancel Autopay Popup */}
+      <Popup
+      isOpen={showCancelAutopayPopup}
+      onPrimaryAction={handleConfirmCancelAutopay}
+      onSecondaryAction={handleKeepAutopay}
+      type="cancel-autopay"
+      />
     </div>
   );
 }
