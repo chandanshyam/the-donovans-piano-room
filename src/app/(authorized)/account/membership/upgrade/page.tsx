@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import PlanCard from "../components/PlanCard";
 import BenefitAccessCard from "../components/BenefitAccessCard";
-import ScholarshipPopup from "../components/ScholarshipPopup";
+import Popup from "../components/Popup";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
@@ -195,10 +195,11 @@ export default function UpgradePage() {
       </div>
 
       {/* Scholarship Popup */}
-      <ScholarshipPopup
+      <Popup
         isOpen={showScholarshipPopup}
-        onClose={() => setShowScholarshipPopup(false)}
-        onApply={handleScholarshipApply}
+        onPrimaryAction={handleScholarshipApply}
+        onSecondaryAction={() => setShowScholarshipPopup(false)}
+        type="apply-scholarship"
       />
     </AuthorizedWrapper1>
   );
