@@ -11,8 +11,10 @@ export default function ScholarshipPopup({ isOpen, onClose, onApply }: Scholarsh
   if (!isOpen) return null;
 
   return (
-    <div>
-      This is the scholarship popup.
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-50">
+      <div className="relative bg-[#FFF2E5] rounded-2xl p-8 max-w-3xl shadow-lg">
+        This is the scholarship popup.
+      </div>
     </div>
   );
 }
