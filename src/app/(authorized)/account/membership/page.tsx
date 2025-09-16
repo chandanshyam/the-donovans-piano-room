@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import AccountAndSettingsNav from "@/components/atoms/AccountAndSettingsNav";
 import AuthorizedWrapper1 from "@/components/ContentWrappers/authorized-1/AuthorizedWrapper1";
 import {
@@ -7,19 +8,22 @@ import {
   settingsNavigation,
 } from "@/utils/general";
 import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
-import CurrentMembership from "./components/CurrentMembership";
 import AutoRenewPayment from "./components/AutoRenewPayment";
+import Popup from "./components/Popup";
+import PlanCard from "./components/PlanCard";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
-import { formatRenewalDate } from "./membershipConfig";
+import { formatRenewalDate, MEMBERSHIP_UI_CONFIG } from "./membershipConfig";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
+  const router = useRouter();
   const [membership, setMembership] = useState<UserMembership | null>(null);
   const [plan, setPlan] = useState<Plan | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isCancelling, setIsCancelling] = useState<boolean>(false);
   const [isUpdatingAuto, setIsUpdatingAuto] = useState<boolean>(false);
+  const [showCancelPopup, setShowCancelPopup] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -79,6 +83,21 @@ export default function Page() {
     }
   };
 
+  const handleCancelClick = () => {
+    const isActive = membership?.status === MembershipStatus.ACTIVE;
+    if (!isActive || isCancelling) return;
+    setShowCancelPopup(true);
+  };
+
+  const handleConfirmCancel = () => {
+    setShowCancelPopup(false);
+    handleCancel();
+  };
+
+  const handleKeepMembership = () => {
+    setShowCancelPopup(false);
+  };
+
   const handleToggleAutoRenew = async (nextEnable: boolean) => {
     try {
       setIsUpdatingAuto(true);
@@ -94,6 +113,9 @@ export default function Page() {
   const formattedNextRenewal = useMemo(() => {
     return formatRenewalDate(membership?.nextRenewalAt);
   }, [membership?.nextRenewalAt]);
+
+  const uiConfig = membership?.levelId ? MEMBERSHIP_UI_CONFIG[membership.levelId] : null;
+  const isActive = membership?.status === MembershipStatus.ACTIVE;
 
   return (
     <AuthorizedWrapper1
@@ -142,14 +164,40 @@ export default function Page() {
         <div className='mt-[4vh] mb-[4vh] bg-[#FED2AA] h-1'></div>
 
         <div className="grid w-full grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-9 md:max-w-[1000px]">
-          {plan && (
-            <CurrentMembership
-              plan={plan}
-              levelId={membership?.levelId || MembershipLevelId.FREE}
-              status={membership?.status || MembershipStatus.ACTIVE}
-              onCancel={handleCancel}
-              isCancelling={isCancelling}
-            />
+          {plan && uiConfig && (
+            <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6">
+              <h1 className="font-montserrat text-2xl font-semibold text-primary-brown md:text-3xl">
+                Current membership
+              </h1>
+
+              <PlanCard
+                plan={plan}
+                uiConfig={uiConfig}
+              />
+              
+              {/* Actions */}
+              <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
+                <button
+                  type="button"
+                  className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
+                  onClick={() => router.push('/account/membership/upgrade')}
+                >
+                  Upgrade membership
+                </button>
+                <button
+                  type="button"
+                  disabled={!isActive || isCancelling}
+                  className={`w-full rounded-full border px-6 py-5 text-center md:flex-1 ${
+                    isActive && !isCancelling
+                      ? "border-primary-purple text-primary-purple"
+                      : "border-gray-300 text-gray-400 cursor-not-allowed"
+                  }`}
+                  onClick={handleCancelClick}
+                >
+                  {isCancelling ? 'Cancelling...' : (isActive ? 'Cancel' : 'Cancelled')}
+                </button>
+              </div>
+            </div>
           )}
           <AutoRenewPayment
             membershipId={membership?.membershipId || ""}
@@ -163,6 +211,13 @@ export default function Page() {
         </div>
       </div>
 
+      {/* Cancel Membership Popup */}
+      <Popup
+        isOpen={showCancelPopup}
+        onPrimaryAction={handleConfirmCancel}
+        onSecondaryAction={handleKeepMembership}
+        type="cancel-membership"
+      />
     </AuthorizedWrapper1>
   );
 }
