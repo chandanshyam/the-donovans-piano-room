@@ -110,7 +110,17 @@ export default function UpgradePage() {
               if (plan.planName === "Scholarship") {
                 setShowScholarshipPopup(true);
               } else {
-                // TODO: Handle other plan selection
+                // Navigate to confirmation page based on plan type
+                const planIdMap: Record<string, string> = {
+                  'Yearly': 'yearly',
+                  'Monthly': 'monthly', 
+                  'Day Pass': 'daily',
+                  'Scholarship': /* TODO: Implement scholarship application redirect */ '',
+                };
+                const planId = planIdMap[plan.planName];
+                if (planId) {
+                  router.push(`/account/membership/upgrade/${planId}`);
+                }
               }
             }}
             useBenefitAccessCard={true}
