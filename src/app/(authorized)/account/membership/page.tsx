@@ -8,7 +8,7 @@ import {
   settingsNavigation,
 } from "@/utils/general";
 import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
-import AutoRenewPayment from "./components/AutoRenewPayment";
+import Payment from "./components/Payment";
 import Popup from "./components/Popup";
 import PlanCard from "./components/PlanCard";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
@@ -199,7 +199,8 @@ export default function Page() {
               </div>
             </div>
           )}
-          <AutoRenewPayment
+          <Payment
+            mode="membership"
             membershipId={membership?.membershipId || ""}
             nextRenewalAt={membership?.nextRenewalAt}
             autoRenew={Boolean(membership?.autoRenew)}

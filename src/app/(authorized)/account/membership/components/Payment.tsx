@@ -2,10 +2,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Popup from "./Popup";
-import { PaymentMethodSummary, PaymentMethodBrand } from "@/interfaces/membershipInterface";
+import { PaymentMethodSummary, PaymentMethodBrand, Plan } from "@/interfaces/membershipInterface";
 import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/account/membership/membershipConfig";
 
-interface AutoRenewPaymentProps {
+type PaymentMode = 'membership' | 'upgrade';
+
+interface PaymentProps {
+  mode: PaymentMode;
   membershipId: string;
   nextRenewalAt?: string;
   autoRenew?: boolean;
@@ -13,9 +16,12 @@ interface AutoRenewPaymentProps {
   onToggleAutoRenew?: (nextEnable: boolean) => void;
   isUpdating?: boolean;
   isMembershipActive?: boolean;
+  selectedPlan?: Plan; // for upgrade mode
+  onBack?: () => void; // for upgrade mode
 }
 
-export default function AutoRenewPayment({
+export default function Payment({
+  mode,
   membershipId,
   nextRenewalAt,
   autoRenew,
@@ -23,7 +29,9 @@ export default function AutoRenewPayment({
   onToggleAutoRenew,
   isUpdating = false,
   isMembershipActive = true,
-}: AutoRenewPaymentProps) {
+  selectedPlan,
+  onBack,
+}: PaymentProps) {
   const router = useRouter();
   const formattedDate = formatRenewalDate(nextRenewalAt);
   const [showCancelAutopayPopup, setShowCancelAutopayPopup] = useState(false);
@@ -53,17 +61,23 @@ export default function AutoRenewPayment({
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">
       <h1 className="font-montserrat text-3xl font-semibold text-primary-brown md:text-3xl">
-        Auto renew payment
+        {mode === 'membership' ? 'Auto renew payment' : 'Select Payment Method'}
       </h1>
 
-      {autoRenew && formattedDate ? (
-        <p className="text-2xl text-primary-black">
-          Your Membership <span className="font-medium">#{membershipId}</span> will be
-          auto renewed on <span className="font-semibold text-tertiary-orange">{formattedDate}</span>.
-        </p>
+      {mode === 'membership' ? (
+        autoRenew && formattedDate ? (
+          <p className="text-2xl text-primary-black">
+            Your Membership <span className="font-medium">#{membershipId}</span> will be
+            auto renewed on <span className="font-semibold text-tertiary-orange">{formattedDate}</span>.
+          </p>
+        ) : (
+          <p className="text-2xl text-primary-black">
+            Auto renew is currently disabled.
+          </p>
+        )
       ) : (
         <p className="text-2xl text-primary-black">
-          Auto renew is currently disabled.
+          Select a payment method or add new to change your membership to a <span className="font-semibold text-tertiary-orange">{selectedPlan?.planName || 'Yearly'} Plan</span>.
         </p>
       )}
 
@@ -119,18 +133,23 @@ export default function AutoRenewPayment({
                 ? 'border-gray-300 text-gray-400 cursor-not-allowed'
                 : 'border-primary-purple text-primary-purple'
             }`}
-            onClick={handleToggleClick}
+            onClick={mode === 'membership' ? handleToggleClick : onBack}
           >
-            {isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay'}
+            {mode === 'membership' 
+              ? (isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay')
+              : 'Back'
+            }
           </button>
       </div>
-      {/* Cancel Autopay Popup */}
-      <Popup
-      isOpen={showCancelAutopayPopup}
-      onPrimaryAction={handleConfirmCancelAutopay}
-      onSecondaryAction={handleKeepAutopay}
-      type="cancel-autopay"
-      />
+      {/* Cancel Autopay Popup - only show in membership mode */}
+      {mode === 'membership' && (
+        <Popup
+          isOpen={showCancelAutopayPopup}
+          onPrimaryAction={handleConfirmCancelAutopay}
+          onSecondaryAction={handleKeepAutopay}
+          type="cancel-autopay"
+        />
+      )}
     </div>
   );
 }
