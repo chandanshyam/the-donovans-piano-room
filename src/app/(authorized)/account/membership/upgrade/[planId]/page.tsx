@@ -78,7 +78,7 @@ export default function UpgradeConfirmationPage() {
   }, [levelId]);
 
   const handleBackButton = () => {
-    router.push('/account/membership');
+    router.push('/account/membership/upgrade');
   };
 
   if (loading) {

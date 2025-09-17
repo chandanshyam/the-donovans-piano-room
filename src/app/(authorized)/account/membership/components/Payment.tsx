@@ -127,9 +127,9 @@ export default function Payment({
           </button>
           <button
             type="button"
-            disabled={isUpdating || !isMembershipActive}
+            disabled={mode === 'membership' ? (isUpdating || !isMembershipActive) : false}
             className={`w-full rounded-full px-6 py-5 text-center md:flex-1 border ${
-              (isUpdating || !isMembershipActive)
+              (mode === 'membership' ? (isUpdating || !isMembershipActive) : false)
                 ? 'border-gray-300 text-gray-400 cursor-not-allowed'
                 : 'border-primary-purple text-primary-purple'
             }`}
