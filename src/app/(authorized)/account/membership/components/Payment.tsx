@@ -60,8 +60,15 @@ export default function Payment({
 
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">
-      <h1 className="font-montserrat text-3xl font-semibold text-primary-brown md:text-3xl">
-        {mode === 'membership' ? 'Auto renew payment' : 'Select Payment Method'}
+      <h1 className="font-montserrat text-3xl font-semibold text-primary-brown md:text-3xl flex items-center">
+        {mode === 'membership' ? (
+          <>
+            <Image src="/memberships/Payment/ic_round-autorenew.svg" alt="Auto renew payment" width={20} height={20} />
+            <span className="ml-2">Auto renew payment</span>
+          </>
+        ) : (
+          'Select Payment Method'
+        )}
       </h1>
 
       {mode === 'membership' ? (
