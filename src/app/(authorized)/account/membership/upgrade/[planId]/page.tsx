@@ -160,6 +160,21 @@ export default function UpgradeConfirmationPage() {
               plan={selectedPlan}
               uiConfig={MEMBERSHIP_UI_CONFIG[levelId]}
             />
+            
+            {/* Confirm Plan Selection Button */}
+            <div className="mt-4 flex w-full justify-end text-3xl gap-4 font-semibold">
+              <button
+                type="button"
+                className="w-auto rounded-full bg-primary-purple px-6 py-5 text-center text-white"
+                onClick={() => {
+                  // TODO: need to send a POST request to the backend to update the membership info)
+                  console.log("Button clicked for plan:", selectedPlan?.planName);
+                }}
+              >
+                Confirm Plan Selection
+              </button>
+            </div>
+            
           </div>
           <Payment
             mode="upgrade"
