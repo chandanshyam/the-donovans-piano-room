@@ -107,7 +107,7 @@ export default function Payment({
           <button type="button" className="inline-flex items-center gap-2 text-primary-purple" onClick={() => router.push('/account/payments')}>
             <span className="text-xl font-medium">Edit</span>
             <Image
-              src="/memberships/Auto Renew Payment/pencil-outline.svg"
+              src="/memberships/Payment/pencil-outline.svg"
               width={14}
               height={14}
               alt="Edit payment method"
