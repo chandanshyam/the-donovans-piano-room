@@ -168,7 +168,7 @@ export default function PlanCard({
                   className={`cursor-pointer h-4 w-4 shrink-0 transition-transform duration-200 ${
                     showMoreBenefits ? "rotate-180" : ""
                   }`}
-                  src="/memberships/Current Membership/Vector (4).svg"
+                  src="/memberships/Vector (4).svg"
                   alt="Arrow"
                   width={16}
                   height={16}
