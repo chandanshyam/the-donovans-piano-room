@@ -35,6 +35,7 @@ export default function Payment({
   const router = useRouter();
   const formattedDate = formatRenewalDate(nextRenewalAt);
   const [showCancelAutopayPopup, setShowCancelAutopayPopup] = useState(false);
+  const [showBackConfirmationPopup, setShowBackConfirmationPopup] = useState(false);
   const brandImageSrc = getPaymentMethodIcon(paymentMethodSummary?.brand || '');
 
   const handleToggleClick = () => {
@@ -56,6 +57,23 @@ export default function Payment({
 
   const handleKeepAutopay = () => {
     setShowCancelAutopayPopup(false);
+  };
+
+  const handleBackClick = () => {
+    if (mode === 'upgrade') {
+      setShowBackConfirmationPopup(true);
+    } else {
+      onBack && onBack();
+    }
+  };
+
+  const handleConfirmBack = () => {
+    setShowBackConfirmationPopup(false);
+    onBack && onBack();
+  };
+
+  const handleCancelBack = () => {
+    setShowBackConfirmationPopup(false);
   };
 
   return (
@@ -140,7 +158,7 @@ export default function Payment({
                 ? 'border-gray-300 text-gray-400 cursor-not-allowed'
                 : 'border-primary-purple text-primary-purple'
             }`}
-            onClick={mode === 'membership' ? handleToggleClick : onBack}
+            onClick={mode === 'membership' ? handleToggleClick : handleBackClick}
           >
             {mode === 'membership' 
               ? (isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay')
@@ -155,6 +173,16 @@ export default function Payment({
           onPrimaryAction={handleConfirmCancelAutopay}
           onSecondaryAction={handleKeepAutopay}
           type="cancel-autopay"
+        />
+      )}
+
+      {/* Back Confirmation Popup - only show in upgrade mode */}
+      {mode === 'upgrade' && (
+        <Popup
+          isOpen={showBackConfirmationPopup}
+          onPrimaryAction={handleCancelBack}
+          onSecondaryAction={handleConfirmBack}
+          type="cancel-upgrade"
         />
       )}
     </div>
