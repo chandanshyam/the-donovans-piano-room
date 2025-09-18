@@ -139,6 +139,23 @@ export default function Page() {
   const uiConfig = membership?.levelId ? MEMBERSHIP_UI_CONFIG[membership.levelId] : null;
   const isActive = membership?.status === MembershipStatus.ACTIVE;
 
+  // Button configuration for Payment component
+  const paymentButtons = {
+    primary: {
+      onClick: () => router.push('/account/payments'),
+      text: 'Add payment method',
+      disabled: false,
+      loading: false
+    },
+    secondary: {
+      onClick: handleToggleClick,
+      text: membership?.autoRenew ? 'Cancel auto pay' : 'Enable auto pay',
+      disabled: !isActive || isUpdatingAuto,
+      loading: isUpdatingAuto,
+      loadingText: 'Updating...'
+    }
+  };
+
   return (
     <AuthorizedWrapper1
       pageTitle={authorizedWrapperTitles.AccountAndSettings}
@@ -227,10 +244,7 @@ export default function Page() {
             nextRenewalAt={membership?.nextRenewalAt}
             autoRenew={Boolean(membership?.autoRenew)}
             paymentMethodSummary={membership?.paymentMethodSummary}
-            onToggleAutoRenew={handleToggleAutoRenew}
-            onToggleClick={handleToggleClick}
-            isUpdating={isUpdatingAuto}
-            isMembershipActive={membership?.status === MembershipStatus.ACTIVE}
+            buttons={paymentButtons}
           />
         </div>
       </div>

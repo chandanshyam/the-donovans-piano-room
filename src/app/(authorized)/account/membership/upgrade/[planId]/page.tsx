@@ -96,6 +96,22 @@ export default function UpgradeConfirmationPage() {
     setShowBackConfirmationPopup(false);
   };
 
+  // Button configuration for Payment component
+  const paymentButtons = {
+    primary: {
+      onClick: () => router.push('/account/payments'),
+      text: 'Add payment method',
+      disabled: false,
+      loading: false
+    },
+    secondary: {
+      onClick: handleBackClick,
+      text: 'Back',
+      disabled: false,
+      loading: false
+    }
+  };
+
   if (loading) {
     return (
       <AuthorizedWrapper1
@@ -198,11 +214,7 @@ export default function UpgradeConfirmationPage() {
             autoRenew={Boolean(membership?.autoRenew)}
             paymentMethodSummary={membership?.paymentMethodSummary}
             selectedPlan={selectedPlan}
-            onBack={handleBackButton}
-            onBackClick={handleBackClick}
-            backButtonText="Back"
-            isUpdating={false}
-            isMembershipActive={membership?.status === MembershipStatus.ACTIVE}
+            buttons={paymentButtons}
           />
         </div>
       </div>

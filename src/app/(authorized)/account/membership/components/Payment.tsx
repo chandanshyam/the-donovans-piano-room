@@ -5,23 +5,32 @@ import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/acco
 
 type PaymentMode = 'membership' | 'upgrade';
 
+interface ButtonConfig {
+  primary?: {
+    onClick?: () => void;
+    text?: string;
+    disabled?: boolean;
+    loading?: boolean;
+    loadingText?: string;
+  };
+  secondary?: {
+    onClick?: () => void;
+    text?: string;
+    disabled?: boolean;
+    loading?: boolean;
+    loadingText?: string;
+  };
+}
+
 interface PaymentProps {
   mode: PaymentMode;
   membershipId: string;
   nextRenewalAt?: string;
   autoRenew?: boolean;
   paymentMethodSummary?: PaymentMethodSummary;
-  onToggleAutoRenew?: (nextEnable: boolean) => void;
-  isUpdating?: boolean;
-  isMembershipActive?: boolean;
+  buttons?: ButtonConfig;
+
   selectedPlan?: Plan; // for upgrade mode
-  onBack?: () => void; // for upgrade mode
-  onBackClick?: () => void; // custom back button behavior
-  backButtonText?: string; // custom back button text
-  backButtonDisabled?: boolean; // custom back button disabled state
-  onToggleClick?: () => void; // custom toggle button behavior
-  toggleButtonText?: string; // custom toggle button text
-  toggleButtonDisabled?: boolean; // custom toggle button disabled state
 }
 
 export default function Payment({
@@ -30,17 +39,8 @@ export default function Payment({
   nextRenewalAt,
   autoRenew,
   paymentMethodSummary,
-  onToggleAutoRenew,
-  isUpdating = false,
-  isMembershipActive = true,
   selectedPlan,
-  onBack,
-  onBackClick,
-  backButtonText,
-  backButtonDisabled,
-  onToggleClick,
-  toggleButtonText,
-  toggleButtonDisabled,
+  buttons,
 }: PaymentProps) {
   const router = useRouter();
   const formattedDate = formatRenewalDate(nextRenewalAt);
@@ -111,30 +111,45 @@ export default function Payment({
         </div>
       </div>
 
-      {/* Actions */}
+      {/* Buttons */}
       <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
+        {/* Primary Button */}
+        {buttons?.primary && (
           <button
             type="button"
-            className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
-            onClick={() => router.push('/account/payments')}
+            disabled={buttons.primary.disabled || buttons.primary.loading}
+            className={`w-full rounded-full px-6 py-5 text-center text-white md:flex-1 ${
+              (buttons.primary.disabled || buttons.primary.loading)
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-primary-purple'
+            }`}
+            onClick={buttons.primary.onClick}
           >
-            Add payment method
+            {buttons.primary.loading 
+              ? (buttons.primary.loadingText || 'Loading...')
+              : buttons.primary.text || 'Button'
+            }
           </button>
+        )}
+        
+        {/* Secondary Button */}
+        {buttons?.secondary && (
           <button
             type="button"
-            disabled={mode === 'membership' ? (toggleButtonDisabled || isUpdating || !isMembershipActive) : (backButtonDisabled || false)}
+            disabled={buttons.secondary.disabled || buttons.secondary.loading}
             className={`w-full rounded-full px-6 py-5 text-center md:flex-1 border ${
-              (mode === 'membership' ? (toggleButtonDisabled || isUpdating || !isMembershipActive) : (backButtonDisabled || false))
+              (buttons.secondary.disabled || buttons.secondary.loading)
                 ? 'border-gray-300 text-gray-400 cursor-not-allowed'
                 : 'border-primary-purple text-primary-purple'
             }`}
-            onClick={mode === 'membership' ? (onToggleClick || (() => onToggleAutoRenew && onToggleAutoRenew(!autoRenew))) : (onBackClick || onBack)}
+            onClick={buttons.secondary.onClick}
           >
-            {mode === 'membership' 
-              ? (toggleButtonText || (isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay'))
-              : (backButtonText || 'Back')
+            {buttons.secondary.loading 
+              ? (buttons.secondary.loadingText || 'Loading...')
+              : buttons.secondary.text || 'Button'
             }
           </button>
+        )}
       </div>
     </div>
   );
