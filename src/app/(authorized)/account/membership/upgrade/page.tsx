@@ -13,7 +13,7 @@ import BenefitAccessCard from "../components/BenefitAccessCard";
 import Popup from "../components/Popup";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
-import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/config";
+import { MEMBERSHIP_UI_CONFIG, ButtonConfig } from "@/app/(authorized)/account/membership/config";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -36,6 +36,15 @@ export default function UpgradePage() {
     const scholarshipFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeuNCMufCuXD_C3P5jvoAapQEMGoK2Zem1NpNRufs0uM8WOeA/viewform?usp=sharing&ouid=111419422377560852182";
     window.open(scholarshipFormUrl, '_blank', 'noopener,noreferrer');
     setShowScholarshipPopup(false);
+  };
+
+  // Button configuration for back button
+  const backButton: ButtonConfig = {
+    onClick: () => router.push('/account/membership'),
+    text: 'Your membership',
+    disabled: false,
+    loading: false,
+    style: 'mb-6 flex items-center gap-2 text-primary-purple'
   };
 
   useEffect(() => {
@@ -94,6 +103,30 @@ export default function UpgradePage() {
       yearlyPrice: (planInfo.price * (levelId === MembershipLevelId.DAY ? 365 : (levelId === MembershipLevelId.MONTH || levelId === MembershipLevelId.YEAR ? 12 : 0))).toFixed(2)
     };
 
+    const chooseButton: ButtonConfig = {
+      onClick: () => {
+        if (plan.planName === "Scholarship") {
+          setShowScholarshipPopup(true);
+        } else {
+          // Navigate to confirmation page based on plan type
+          const planIdMap: Record<string, string> = {
+            'Yearly': 'yearly',
+            'Monthly': 'monthly', 
+            'Day Pass': 'daily',
+            // Note: Scholarship plan handled separately via popup, not through planIdMap
+          };
+          const planId = planIdMap[plan.planName];
+          if (planId) {
+            router.push(`/account/membership/upgrade/${planId}`);
+          }
+        }
+      },
+      text: plan.planName === "Scholarship" ? "Apply for Scholarship" : "Choose plan",
+      disabled: false,
+      loading: false,
+      style: "relative z-10 mt-3 rounded-full border border-primary-purple px-6 py-3 text-center font-medium bg-primary-purple text-white"
+    };
+    
     return (
       <>
         {/* Plan Card */}
@@ -108,23 +141,7 @@ export default function UpgradePage() {
             showCurrentInHeader={plan.isCurrent && membership?.status === MembershipStatus.CANCELLED}
             showExpirationMessage={plan.isCurrent}
             showChooseButton={!plan.isCurrent || (plan.isCurrent && membership?.status === MembershipStatus.CANCELLED)}
-            onChooseClick={() => {
-              if (plan.planName === "Scholarship") {
-                setShowScholarshipPopup(true);
-              } else {
-                // Navigate to confirmation page based on plan type
-                const planIdMap: Record<string, string> = {
-                  'Yearly': 'yearly',
-                  'Monthly': 'monthly', 
-                  'Day Pass': 'daily',
-                  // Note: Scholarship plan handled separately via popup, not through planIdMap
-                };
-                const planId = planIdMap[plan.planName];
-                if (planId) {
-                  router.push(`/account/membership/upgrade/${planId}`);
-                }
-              }
-            }}
+            chooseButton={chooseButton}
             useBenefitAccessCard={true}
             onBenefitAccessCardToggle={() => handleBenefitCardToggle(levelId)}
           />
@@ -155,7 +172,11 @@ export default function UpgradePage() {
 
       <div className="mt-4 w-full">
         {/* Back button */}
-        <button className="mb-6 flex items-center gap-2 text-primary-purple" onClick={() => router.push('/account/membership')}>
+        <button 
+          className={backButton.style}
+          disabled={backButton.disabled || backButton.loading}
+          onClick={backButton.onClick}
+        >
           <Image
             className="h-5 w-5 shrink-0"
             src="/memberships/upgrade/arrow_back_FILL0_wght400_GRAD0_opsz24 1.svg"
@@ -163,7 +184,10 @@ export default function UpgradePage() {
             width={20}
             height={20}
           />
-          Your membership
+          {backButton.loading 
+            ? (backButton.loadingText || 'Loading...')
+            : backButton.text
+          }
         </button>
 
         <h1 className="font-montserrat text-5xl font-medium text-primary-brown 3xl:text-6xl 4xl:text-7xl">

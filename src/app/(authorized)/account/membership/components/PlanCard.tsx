@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { PlanCardUIConfig, Plan } from "@/interfaces/membershipInterface";
+import { ButtonConfig } from "../config";
 
 interface PlanCardProps {
   // Plan Data - centralized plan information
@@ -13,7 +14,7 @@ interface PlanCardProps {
   // Display Controls
   showCurrentInHeader?: boolean; // controls where "Current plan" badge appears
   showChooseButton?: boolean; // shows "Choose plan" button in price block for non-current plans
-  onChooseClick?: () => void; // handler for choose button
+  chooseButton?: ButtonConfig; // button configuration for "Choose plan" button
   showExpirationMessage?: boolean; // whether to show expiration message (only for upgrade page)
 
   // Benefit access card behavior
@@ -26,7 +27,7 @@ export default function PlanCard({
   uiConfig,
   showCurrentInHeader = true,
   showChooseButton = false,
-  onChooseClick,
+  chooseButton,
   showExpirationMessage = false,
   useBenefitAccessCard = false,
   onBenefitAccessCardToggle,
@@ -121,13 +122,17 @@ export default function PlanCard({
               )}
             </div>
           )}
-          {showChooseButton && onChooseClick && (
+          {showChooseButton && chooseButton && (
             <button
               type="button"
-              onClick={onChooseClick}
-              className="relative z-10 mt-3 rounded-full border border-primary-purple px-6 py-3 text-center font-medium bg-primary-purple text-white"
+              disabled={chooseButton.disabled || chooseButton.loading}
+              className={chooseButton.style || "relative z-10 mt-3 rounded-full border border-primary-purple px-6 py-3 text-center font-medium bg-primary-purple text-white"}
+              onClick={chooseButton.onClick}
             > 
-              {plan.planName === "Scholarship" ? "Apply for Scholarship" : "Choose plan"}
+              {chooseButton.loading 
+                ? (chooseButton.loadingText || 'Loading...')
+                : chooseButton.text || (plan.planName === "Scholarship" ? "Apply for Scholarship" : "Choose plan")
+              }
             </button>
           )}
         </div>
