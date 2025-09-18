@@ -1,6 +1,17 @@
 import { MembershipLevelId, PaymentMethodBrand, PlanCardUIConfig } from "@/interfaces/membershipInterface";
 
-// Unified UI configuration for all membership levels
+// Button configuration interface
+export interface ButtonConfig {
+  onClick?: () => void;
+  text?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  loadingText?: string;
+  message?: string;
+  style?: string;
+}
+
+// Membership UI configuration
 export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> = {
   [MembershipLevelId.FREE]: {
     headerColor: "bg-[#e98427]",

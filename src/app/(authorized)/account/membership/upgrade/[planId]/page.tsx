@@ -12,7 +12,7 @@ import Payment from "../../components/Payment";
 import PlanCard from "../../components/PlanCard";
 import Popup from "../../components/Popup";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
-import { MEMBERSHIP_UI_CONFIG } from "../../membershipConfig";
+import { MEMBERSHIP_UI_CONFIG } from "../../config";
 import "../../../../../../styles/primary-purple-scrollbar.css";
 import Image from "next/image";
 

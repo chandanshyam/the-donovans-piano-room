@@ -1,19 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { PaymentMethodSummary, PaymentMethodBrand, Plan } from "@/interfaces/membershipInterface";
-import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/account/membership/membershipConfig";
+import { getPaymentMethodIcon, formatRenewalDate, ButtonConfig } from "@/app/(authorized)/account/membership/config";
 
 type PaymentMode = 'membership' | 'upgrade';
-
-interface ButtonConfig {
-  onClick?: () => void;
-  text?: string;
-  disabled?: boolean;
-  loading?: boolean;
-  loadingText?: string;
-  message?: string;
-  style?: string;
-}
 
 interface PaymentProps {
   mode: PaymentMode;

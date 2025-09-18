@@ -13,7 +13,7 @@ import BenefitAccessCard from "../components/BenefitAccessCard";
 import Popup from "../components/Popup";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
-import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/membershipConfig";
+import { MEMBERSHIP_UI_CONFIG } from "@/app/(authorized)/account/membership/config";
 
 export default function UpgradePage() {
   const router = useRouter();

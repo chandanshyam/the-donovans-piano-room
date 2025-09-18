@@ -12,7 +12,7 @@ import Payment from "./components/Payment";
 import Popup from "./components/Popup";
 import PlanCard from "./components/PlanCard";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
-import { formatRenewalDate, MEMBERSHIP_UI_CONFIG } from "./membershipConfig";
+import { formatRenewalDate, MEMBERSHIP_UI_CONFIG } from "./config";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
