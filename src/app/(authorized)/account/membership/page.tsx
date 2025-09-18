@@ -24,6 +24,7 @@ export default function Page() {
   const [isCancelling, setIsCancelling] = useState<boolean>(false);
   const [isUpdatingAuto, setIsUpdatingAuto] = useState<boolean>(false);
   const [showCancelPopup, setShowCancelPopup] = useState<boolean>(false);
+  const [showCancelAutopayPopup, setShowCancelAutopayPopup] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -108,6 +109,27 @@ export default function Page() {
     } finally {
       setIsUpdatingAuto(false);
     }
+  };
+
+  const handleToggleClick = () => {
+    if (!membership || isUpdatingAuto) return;
+    
+    if (membership.autoRenew) {
+      // Show popup when trying to cancel autopay
+      setShowCancelAutopayPopup(true);
+    } else {
+      // Enable autopay directly
+      handleToggleAutoRenew(true);
+    }
+  };
+
+  const handleConfirmCancelAutopay = () => {
+    setShowCancelAutopayPopup(false);
+    handleToggleAutoRenew(false);
+  };
+
+  const handleKeepAutopay = () => {
+    setShowCancelAutopayPopup(false);
   };
 
   const formattedNextRenewal = useMemo(() => {
@@ -206,6 +228,7 @@ export default function Page() {
             autoRenew={Boolean(membership?.autoRenew)}
             paymentMethodSummary={membership?.paymentMethodSummary}
             onToggleAutoRenew={handleToggleAutoRenew}
+            onToggleClick={handleToggleClick}
             isUpdating={isUpdatingAuto}
             isMembershipActive={membership?.status === MembershipStatus.ACTIVE}
           />
@@ -218,6 +241,14 @@ export default function Page() {
         onPrimaryAction={handleConfirmCancel}
         onSecondaryAction={handleKeepMembership}
         type="cancel-membership"
+      />
+
+      {/* Cancel Autopay Popup */}
+      <Popup
+        isOpen={showCancelAutopayPopup}
+        onPrimaryAction={handleConfirmCancelAutopay}
+        onSecondaryAction={handleKeepAutopay}
+        type="cancel-autopay"
       />
     </AuthorizedWrapper1>
   );

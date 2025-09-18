@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import Popup from "./Popup";
 import { PaymentMethodSummary, PaymentMethodBrand, Plan } from "@/interfaces/membershipInterface";
 import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/account/membership/membershipConfig";
 
@@ -18,6 +16,12 @@ interface PaymentProps {
   isMembershipActive?: boolean;
   selectedPlan?: Plan; // for upgrade mode
   onBack?: () => void; // for upgrade mode
+  onBackClick?: () => void; // custom back button behavior
+  backButtonText?: string; // custom back button text
+  backButtonDisabled?: boolean; // custom back button disabled state
+  onToggleClick?: () => void; // custom toggle button behavior
+  toggleButtonText?: string; // custom toggle button text
+  toggleButtonDisabled?: boolean; // custom toggle button disabled state
 }
 
 export default function Payment({
@@ -31,50 +35,16 @@ export default function Payment({
   isMembershipActive = true,
   selectedPlan,
   onBack,
+  onBackClick,
+  backButtonText,
+  backButtonDisabled,
+  onToggleClick,
+  toggleButtonText,
+  toggleButtonDisabled,
 }: PaymentProps) {
   const router = useRouter();
   const formattedDate = formatRenewalDate(nextRenewalAt);
-  const [showCancelAutopayPopup, setShowCancelAutopayPopup] = useState(false);
-  const [showBackConfirmationPopup, setShowBackConfirmationPopup] = useState(false);
   const brandImageSrc = getPaymentMethodIcon(paymentMethodSummary?.brand || '');
-
-  const handleToggleClick = () => {
-    if (!isMembershipActive || isUpdating) return;
-    
-    if (autoRenew) {
-      // Show popup when trying to cancel autopay
-      setShowCancelAutopayPopup(true);
-    } else {
-      // Enable autopay directly
-      onToggleAutoRenew && onToggleAutoRenew(true);
-    }
-  };
-
-  const handleConfirmCancelAutopay = () => {
-    setShowCancelAutopayPopup(false);
-    onToggleAutoRenew && onToggleAutoRenew(false);
-  };
-
-  const handleKeepAutopay = () => {
-    setShowCancelAutopayPopup(false);
-  };
-
-  const handleBackClick = () => {
-    if (mode === 'upgrade') {
-      setShowBackConfirmationPopup(true);
-    } else {
-      onBack && onBack();
-    }
-  };
-
-  const handleConfirmBack = () => {
-    setShowBackConfirmationPopup(false);
-    onBack && onBack();
-  };
-
-  const handleCancelBack = () => {
-    setShowBackConfirmationPopup(false);
-  };
 
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">
@@ -152,39 +122,20 @@ export default function Payment({
           </button>
           <button
             type="button"
-            disabled={mode === 'membership' ? (isUpdating || !isMembershipActive) : false}
+            disabled={mode === 'membership' ? (toggleButtonDisabled || isUpdating || !isMembershipActive) : (backButtonDisabled || false)}
             className={`w-full rounded-full px-6 py-5 text-center md:flex-1 border ${
-              (mode === 'membership' ? (isUpdating || !isMembershipActive) : false)
+              (mode === 'membership' ? (toggleButtonDisabled || isUpdating || !isMembershipActive) : (backButtonDisabled || false))
                 ? 'border-gray-300 text-gray-400 cursor-not-allowed'
                 : 'border-primary-purple text-primary-purple'
             }`}
-            onClick={mode === 'membership' ? handleToggleClick : handleBackClick}
+            onClick={mode === 'membership' ? (onToggleClick || (() => onToggleAutoRenew && onToggleAutoRenew(!autoRenew))) : (onBackClick || onBack)}
           >
             {mode === 'membership' 
-              ? (isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay')
-              : 'Back'
+              ? (toggleButtonText || (isUpdating ? 'Updating...' : autoRenew ? 'Cancel auto pay' : 'Enable auto pay'))
+              : (backButtonText || 'Back')
             }
           </button>
       </div>
-      {/* Cancel Autopay Popup - only show in membership mode */}
-      {mode === 'membership' && (
-        <Popup
-          isOpen={showCancelAutopayPopup}
-          onPrimaryAction={handleConfirmCancelAutopay}
-          onSecondaryAction={handleKeepAutopay}
-          type="cancel-autopay"
-        />
-      )}
-
-      {/* Back Confirmation Popup - only show in upgrade mode */}
-      {mode === 'upgrade' && (
-        <Popup
-          isOpen={showBackConfirmationPopup}
-          onPrimaryAction={handleCancelBack}
-          onSecondaryAction={handleConfirmBack}
-          type="cancel-upgrade"
-        />
-      )}
     </div>
   );
 }

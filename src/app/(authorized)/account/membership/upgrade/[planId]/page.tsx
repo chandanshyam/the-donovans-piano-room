@@ -10,6 +10,7 @@ import {
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
 import Payment from "../../components/Payment";
 import PlanCard from "../../components/PlanCard";
+import Popup from "../../components/Popup";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
 import { MEMBERSHIP_UI_CONFIG } from "../../membershipConfig";
 import "../../../../../../styles/primary-purple-scrollbar.css";
@@ -32,6 +33,7 @@ export default function UpgradeConfirmationPage() {
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [showBackConfirmationPopup, setShowBackConfirmationPopup] = useState(false);
 
   // Get the MembershipLevelId from the URL parameter
   const levelId = PLAN_ID_MAP[planId];
@@ -79,6 +81,19 @@ export default function UpgradeConfirmationPage() {
 
   const handleBackButton = () => {
     router.push('/account/membership/upgrade');
+  };
+
+  const handleBackClick = () => {
+    setShowBackConfirmationPopup(true);
+  };
+
+  const handleConfirmBack = () => {
+    setShowBackConfirmationPopup(false);
+    handleBackButton();
+  };
+
+  const handleCancelBack = () => {
+    setShowBackConfirmationPopup(false);
   };
 
   if (loading) {
@@ -184,11 +199,21 @@ export default function UpgradeConfirmationPage() {
             paymentMethodSummary={membership?.paymentMethodSummary}
             selectedPlan={selectedPlan}
             onBack={handleBackButton}
+            onBackClick={handleBackClick}
+            backButtonText="Back"
             isUpdating={false}
             isMembershipActive={membership?.status === MembershipStatus.ACTIVE}
           />
         </div>
       </div>
+
+      {/* Back Confirmation Popup */}
+      <Popup
+        isOpen={showBackConfirmationPopup}
+        onPrimaryAction={handleCancelBack}
+        onSecondaryAction={handleConfirmBack}
+        type="cancel-upgrade"
+      />
     </AuthorizedWrapper1>
   );
 }
