@@ -12,7 +12,7 @@ import Payment from "./components/Payment";
 import Popup from "./components/Popup";
 import PlanCard from "./components/PlanCard";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
-import { formatRenewalDate, MEMBERSHIP_UI_CONFIG } from "./config";
+import { formatRenewalDate, MEMBERSHIP_UI_CONFIG, ButtonConfig } from "./config";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
@@ -140,7 +140,7 @@ export default function Page() {
   const isActive = membership?.status === MembershipStatus.ACTIVE;
 
   // Button configuration for Payment component
-  const paymentButtons = [
+  const paymentButtons: ButtonConfig[] = [
     {
       onClick: () => router.push('/account/payments'),
       text: 'Add payment method',
@@ -158,6 +158,29 @@ export default function Page() {
         (!isActive || isUpdatingAuto)
           ? 'border-gray-300 text-gray-400 cursor-not-allowed'
           : 'border-primary-purple text-primary-purple'
+      }`
+    }
+  ];
+
+  // Button configuration for membership actions
+  const membershipButtons: ButtonConfig[] = [
+    {
+      onClick: () => router.push('/account/membership/upgrade'),
+      text: 'Upgrade membership',
+      disabled: false,
+      loading: false,
+      style: 'w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1'
+    },
+    {
+      onClick: handleCancelClick,
+      text: isCancelling ? 'Cancelling...' : (isActive ? 'Cancel' : 'Cancelled'),
+      disabled: !isActive || isCancelling,
+      loading: isCancelling,
+      loadingText: 'Cancelling...',
+      style: `w-full rounded-full border px-6 py-5 text-center md:flex-1 ${
+        isActive && !isCancelling
+          ? "border-primary-purple text-primary-purple"
+          : "border-gray-300 text-gray-400 cursor-not-allowed"
       }`
     }
   ];
@@ -222,25 +245,20 @@ export default function Page() {
               
               {/* Actions */}
               <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
-                <button
-                  type="button"
-                  className="w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white md:flex-1"
-                  onClick={() => router.push('/account/membership/upgrade')}
-                >
-                  Upgrade membership
-                </button>
-                <button
-                  type="button"
-                  disabled={!isActive || isCancelling}
-                  className={`w-full rounded-full border px-6 py-5 text-center md:flex-1 ${
-                    isActive && !isCancelling
-                      ? "border-primary-purple text-primary-purple"
-                      : "border-gray-300 text-gray-400 cursor-not-allowed"
-                  }`}
-                  onClick={handleCancelClick}
-                >
-                  {isCancelling ? 'Cancelling...' : (isActive ? 'Cancel' : 'Cancelled')}
-                </button>
+                {membershipButtons.map((button, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    disabled={button.disabled || button.loading}
+                    className={button.style}
+                    onClick={button.onClick}
+                  >
+                    {button.loading 
+                      ? (button.loadingText || 'Loading...')
+                      : button.text
+                    }
+                  </button>
+                ))}
               </div>
             </div>
           )}
