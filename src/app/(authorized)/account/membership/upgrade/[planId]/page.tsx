@@ -97,20 +97,22 @@ export default function UpgradeConfirmationPage() {
   };
 
   // Button configuration for Payment component
-  const paymentButtons = {
-    primary: {
+  const paymentButtons = [
+    {
       onClick: () => router.push('/account/payments'),
       text: 'Add payment method',
       disabled: false,
-      loading: false
+      loading: false,
+      style: 'w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white'
     },
-    secondary: {
+    {
       onClick: handleBackClick,
       text: 'Back',
       disabled: false,
-      loading: false
+      loading: false,
+      style: 'w-full rounded-full px-6 py-5 text-center border border-primary-purple text-primary-purple'
     }
-  };
+  ];
 
   if (loading) {
     return (

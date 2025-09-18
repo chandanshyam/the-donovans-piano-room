@@ -140,21 +140,27 @@ export default function Page() {
   const isActive = membership?.status === MembershipStatus.ACTIVE;
 
   // Button configuration for Payment component
-  const paymentButtons = {
-    primary: {
+  const paymentButtons = [
+    {
       onClick: () => router.push('/account/payments'),
       text: 'Add payment method',
       disabled: false,
-      loading: false
+      loading: false,
+      style: 'w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white'
     },
-    secondary: {
+    {
       onClick: handleToggleClick,
       text: membership?.autoRenew ? 'Cancel auto pay' : 'Enable auto pay',
       disabled: !isActive || isUpdatingAuto,
       loading: isUpdatingAuto,
-      loadingText: 'Updating...'
+      loadingText: 'Updating...',
+      style: `w-full rounded-full px-6 py-5 text-center border ${
+        (!isActive || isUpdatingAuto)
+          ? 'border-gray-300 text-gray-400 cursor-not-allowed'
+          : 'border-primary-purple text-primary-purple'
+      }`
     }
-  };
+  ];
 
   return (
     <AuthorizedWrapper1

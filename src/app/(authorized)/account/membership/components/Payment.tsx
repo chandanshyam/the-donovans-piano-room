@@ -6,20 +6,13 @@ import { getPaymentMethodIcon, formatRenewalDate } from "@/app/(authorized)/acco
 type PaymentMode = 'membership' | 'upgrade';
 
 interface ButtonConfig {
-  primary?: {
-    onClick?: () => void;
-    text?: string;
-    disabled?: boolean;
-    loading?: boolean;
-    loadingText?: string;
-  };
-  secondary?: {
-    onClick?: () => void;
-    text?: string;
-    disabled?: boolean;
-    loading?: boolean;
-    loadingText?: string;
-  };
+  onClick?: () => void;
+  text?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  loadingText?: string;
+  message?: string;
+  style?: string;
 }
 
 interface PaymentProps {
@@ -28,8 +21,7 @@ interface PaymentProps {
   nextRenewalAt?: string;
   autoRenew?: boolean;
   paymentMethodSummary?: PaymentMethodSummary;
-  buttons?: ButtonConfig;
-
+  buttons?: ButtonConfig[];
   selectedPlan?: Plan; // for upgrade mode
 }
 
@@ -112,45 +104,37 @@ export default function Payment({
       </div>
 
       {/* Buttons */}
-      <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
-        {/* Primary Button */}
-        {buttons?.primary && (
-          <button
-            type="button"
-            disabled={buttons.primary.disabled || buttons.primary.loading}
-            className={`w-full rounded-full px-6 py-5 text-center text-white md:flex-1 ${
-              (buttons.primary.disabled || buttons.primary.loading)
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-primary-purple'
-            }`}
-            onClick={buttons.primary.onClick}
-          >
-            {buttons.primary.loading 
-              ? (buttons.primary.loadingText || 'Loading...')
-              : buttons.primary.text || 'Button'
-            }
-          </button>
-        )}
-        
-        {/* Secondary Button */}
-        {buttons?.secondary && (
-          <button
-            type="button"
-            disabled={buttons.secondary.disabled || buttons.secondary.loading}
-            className={`w-full rounded-full px-6 py-5 text-center md:flex-1 border ${
-              (buttons.secondary.disabled || buttons.secondary.loading)
-                ? 'border-gray-300 text-gray-400 cursor-not-allowed'
-                : 'border-primary-purple text-primary-purple'
-            }`}
-            onClick={buttons.secondary.onClick}
-          >
-            {buttons.secondary.loading 
-              ? (buttons.secondary.loadingText || 'Loading...')
-              : buttons.secondary.text || 'Button'
-            }
-          </button>
-        )}
-      </div>
+      {buttons && buttons.length > 0 && (
+        <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
+          {buttons.map((button, index) => (
+            <div key={index} className="w-full md:flex-1">
+              {/* Button Message */}
+              {button.message && (
+                <p className="mb-2 text-sm text-gray-600 text-center">
+                  {button.message}
+                </p>
+              )}
+              
+              {/* Button */}
+              <button
+                type="button"
+                disabled={button.disabled || button.loading}
+                className={button.style || `w-full rounded-full px-6 py-5 text-center ${
+                  (button.disabled || button.loading)
+                    ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                    : 'bg-primary-purple text-white'
+                }`}
+                onClick={button.onClick}
+              >
+                {button.loading 
+                  ? (button.loadingText || 'Loading...')
+                  : button.text || 'Button'
+                }
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
