@@ -1,15 +1,16 @@
 "use client";
 import Image from "next/image";
+import { ButtonConfig } from "../config";
 
 interface BenefitAccessCardProps {
-  onClose: () => void;
   planName: string;
   headerColor: string;
   textColor: string;
   benefits: string[];
+  closeButton?: ButtonConfig;
 }
 
-export default function BenefitAccessCard({ onClose, planName, headerColor, textColor, benefits}: BenefitAccessCardProps) {
+export default function BenefitAccessCard({ planName, headerColor, textColor, benefits, closeButton}: BenefitAccessCardProps) {
 
   return (
     <div>
@@ -31,10 +32,14 @@ export default function BenefitAccessCard({ onClose, planName, headerColor, text
           <div className="flex items-center justify-between">
             <div className="text-2xl font-semibold text-[#59371D]">{planName}</div>
             <button 
-              onClick={onClose}
-              className="text-[#59371D] hover:opacity-75 transition-colors text-3xl font-bold leading-none"
+              onClick={closeButton?.onClick}
+              disabled={closeButton?.disabled}
+              className={closeButton?.style || "text-[#59371D] hover:opacity-75 transition-colors text-3xl font-bold leading-none"}
             >
-              ×
+              {closeButton?.loading 
+                ? (closeButton.loadingText || 'Loading...') 
+                : (closeButton?.text || '×')
+              }
             </button>
           </div>
         </div>
