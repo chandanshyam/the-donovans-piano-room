@@ -224,9 +224,15 @@ export default function UpgradeConfirmationPage() {
       {/* Back Confirmation Popup */}
       <Popup
         isOpen={showBackConfirmationPopup}
-        onPrimaryAction={handleCancelBack}
-        onSecondaryAction={handleConfirmBack}
         type="cancel-upgrade"
+        primaryButton={{
+          onClick: handleCancelBack,
+          text: "Continue with Transaction"
+        }}
+        secondaryButton={{
+          onClick: handleConfirmBack,
+          text: "Go Back"
+        }}
       />
     </AuthorizedWrapper1>
   );

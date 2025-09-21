@@ -151,11 +151,14 @@ export default function UpgradePage() {
         {selectedPlan === levelId && (
           <div className="flex-shrink-0 w-80 md:w-96">
             <BenefitAccessCard 
-              onClose={() => setSelectedPlan(null)}
               planName={plan.planName}
               headerColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.headerColor || 'bg-gray-500'}
               textColor={MEMBERSHIP_UI_CONFIG[levelId].benefitCardColors?.textColor || 'text-white'}
               benefits={plan.moreBenefits}
+              closeButton={{
+                onClick: () => setSelectedPlan(null),
+                text: "×"
+              }}
             />
           </div>
         )}
@@ -233,9 +236,15 @@ export default function UpgradePage() {
       {/* Scholarship Popup */}
       <Popup
         isOpen={showScholarshipPopup}
-        onPrimaryAction={handleScholarshipApply}
-        onSecondaryAction={() => setShowScholarshipPopup(false)}
         type="apply-scholarship"
+        primaryButton={{
+          onClick: handleScholarshipApply,
+          text: "Apply for Scholarship"
+        }}
+        secondaryButton={{
+          onClick: () => setShowScholarshipPopup(false),
+          text: "Go Back"
+        }}
       />
     </AuthorizedWrapper1>
   );

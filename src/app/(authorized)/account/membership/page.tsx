@@ -276,17 +276,29 @@ export default function Page() {
       {/* Cancel Membership Popup */}
       <Popup
         isOpen={showCancelPopup}
-        onPrimaryAction={handleConfirmCancel}
-        onSecondaryAction={handleKeepMembership}
         type="cancel-membership"
+        primaryButton={{
+          onClick: handleConfirmCancel,
+          text: "Cancel Anyway"
+        }}
+        secondaryButton={{
+          onClick: handleKeepMembership,
+          text: "Keep Membership"
+        }}
       />
 
       {/* Cancel Autopay Popup */}
       <Popup
         isOpen={showCancelAutopayPopup}
-        onPrimaryAction={handleConfirmCancelAutopay}
-        onSecondaryAction={handleKeepAutopay}
         type="cancel-autopay"
+        primaryButton={{
+          onClick: handleConfirmCancelAutopay,
+          text: "Cancel Autopay"
+        }}
+        secondaryButton={{
+          onClick: handleKeepAutopay,
+          text: "Keep Autopay"
+        }}
       />
     </AuthorizedWrapper1>
   );

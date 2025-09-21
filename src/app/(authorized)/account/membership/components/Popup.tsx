@@ -1,4 +1,5 @@
 "use client";
+import { ButtonConfig } from "../config";
 
 export type PopupType = 
   | "cancel-membership"
@@ -9,9 +10,9 @@ export type PopupType =
 
 interface PopupProps {
   isOpen: boolean;
-  onPrimaryAction: () => void;
-  onSecondaryAction: () => void;
   type: PopupType;
+  primaryButton?: ButtonConfig;
+  secondaryButton?: ButtonConfig;
 }
 
 const popupConfig = {
@@ -57,7 +58,7 @@ const popupConfig = {
   }
 };
 
-export default function Popup({ isOpen, onPrimaryAction, onSecondaryAction, type }: PopupProps) {
+export default function Popup({ isOpen, type, primaryButton, secondaryButton }: PopupProps) {
   if (!isOpen) return null;
 
   const config = popupConfig[type];
@@ -82,16 +83,24 @@ export default function Popup({ isOpen, onPrimaryAction, onSecondaryAction, type
         {/* Buttons */}
         <div className="flex gap-4">
           <button
-            onClick={onPrimaryAction}
-            className={`flex-1 text-white px-6 py-3 rounded-full font-medium transition-colors ${config.primaryButtonStyle}`}
+            onClick={primaryButton?.onClick}
+            disabled={primaryButton?.disabled || primaryButton?.loading}
+            className={primaryButton?.style || `flex-1 text-white px-6 py-3 rounded-full font-medium transition-colors ${config.primaryButtonStyle}`}
           >
-            {config.primaryButton}
+            {primaryButton?.loading 
+              ? (primaryButton.loadingText || 'Loading...') 
+              : (primaryButton?.text || config.primaryButton)
+            }
           </button>
           <button
-            onClick={onSecondaryAction}
-            className={`flex-1 px-6 py-3 rounded-full font-medium transition-colors ${config.secondaryButtonStyle}`}
+            onClick={secondaryButton?.onClick}
+            disabled={secondaryButton?.disabled || secondaryButton?.loading}
+            className={secondaryButton?.style || `flex-1 px-6 py-3 rounded-full font-medium transition-colors ${config.secondaryButtonStyle}`}
           >
-            {config.secondaryButton}
+            {secondaryButton?.loading 
+              ? (secondaryButton.loadingText || 'Loading...') 
+              : (secondaryButton?.text || config.secondaryButton)
+            }
           </button>
         </div>
       </div>
