@@ -12,7 +12,7 @@ import Payment from "./components/Payment";
 import Popup from "./components/Popup";
 import PlanCard from "./components/PlanCard";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
-import { formatRenewalDate, MEMBERSHIP_UI_CONFIG, ButtonConfig } from "./config";
+import { formatRenewalDate, MEMBERSHIP_UI_CONFIG, ButtonConfig, PopupType } from "./config";
 import "../../../../styles/primary-purple-scrollbar.css";
 
 export default function Page() {
@@ -276,7 +276,7 @@ export default function Page() {
       {/* Cancel Membership Popup */}
       <Popup
         isOpen={showCancelPopup}
-        type="cancel-membership"
+        type={PopupType.CANCEL_MEMBERSHIP}
         primaryButton={{
           onClick: handleConfirmCancel,
           text: "Cancel Anyway"
@@ -290,7 +290,7 @@ export default function Page() {
       {/* Cancel Autopay Popup */}
       <Popup
         isOpen={showCancelAutopayPopup}
-        type="cancel-autopay"
+        type={PopupType.CANCEL_AUTOPAY}
         primaryButton={{
           onClick: handleConfirmCancelAutopay,
           text: "Cancel Autopay"

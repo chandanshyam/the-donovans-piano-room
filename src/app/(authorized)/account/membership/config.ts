@@ -11,6 +11,69 @@ export interface ButtonConfig {
   style?: string;
 }
 
+// Popup types
+export enum PopupType {
+  CANCEL_MEMBERSHIP = "cancel-membership",
+  CANCEL_UPGRADE = "cancel-upgrade",
+  CANCEL_AUTOPAY = "cancel-autopay",
+  APPLY_SCHOLARSHIP = "apply-scholarship",
+  SWITCH_FROM_SCHOLARSHIP = "switch-from-scholarship"
+}
+
+// Popup configuration interface
+export interface PopupConfig {
+  title: string;
+  content: string;
+  primaryButton: string;
+  secondaryButton: string;
+  primaryButtonStyle: string;
+  secondaryButtonStyle: string;
+}
+
+// Popup configuration
+export const POPUP_CONFIG: Record<PopupType, PopupConfig> = {
+  [PopupType.CANCEL_MEMBERSHIP]: {
+    title: "Cancel Membership",
+    content: "We're sorry to see you go. Canceling now means you'll lose access to all member benefits at the end of your billing period.\n\nAre you sure you want to continue?",
+    primaryButton: "Cancel Anyway",
+    secondaryButton: "Keep Membership",
+    primaryButtonStyle: "bg-red-600 hover:bg-red-700",
+    secondaryButtonStyle: "border-2 border-primary-purple text-primary-purple hover:bg-purple-50"
+  },
+  [PopupType.CANCEL_UPGRADE]: {
+    title: "Go Back",
+    content: "Are you sure you want to cancel the upgrade and go back?",
+    primaryButton: "Continue with Transaction",
+    secondaryButton: "Go Back",
+    primaryButtonStyle: "bg-primary-purple hover:bg-purple-700",
+    secondaryButtonStyle: "border-2 border-primary-purple text-primary-purple hover:bg-purple-50"
+  },
+  [PopupType.CANCEL_AUTOPAY]: {
+    title: "Cancel Autopay?",
+    content: "If you cancel autopay, your future payments won't be charged automatically. You'll need to make payments manually to keep your account active and avoid service interruptions.",
+    primaryButton: "Cancel Autopay",
+    secondaryButton: "Keep Autopay",
+    primaryButtonStyle: "bg-red-600 hover:bg-red-700",
+    secondaryButtonStyle: "border-2 border-primary-purple text-primary-purple hover:bg-purple-50"
+  },
+  [PopupType.APPLY_SCHOLARSHIP]: {
+    title: "Apply for Scholarship",
+    content: "Scholarships are available for families with household income below the Federal Poverty Level (FPL).\n\nIf you choose to apply, you'll be directed to an external form to provide your details. Please note that your application will be reviewed and subject to approval.",
+    primaryButton: "Apply for Scholarship",
+    secondaryButton: "Go Back",
+    primaryButtonStyle: "bg-primary-purple hover:bg-purple-700",
+    secondaryButtonStyle: "border-2 border-primary-purple text-primary-purple hover:bg-purple-50"
+  },
+  [PopupType.SWITCH_FROM_SCHOLARSHIP]: {
+    title: "⚠️ Switching from Scholarship Plan",
+    content: "You're currently on a scholarship plan. If you switch to another plan, your scholarship will no longer apply.\n\nTo return to the scholarship plan in the future, you'll need to submit a new application and meet eligibility requirements again.",
+    primaryButton: "Change Plan",
+    secondaryButton: "Stay on Scholarship",
+    primaryButtonStyle: "bg-primary-purple hover:bg-purple-700",
+    secondaryButtonStyle: "border-2 border-primary-purple text-primary-purple hover:bg-purple-50"
+  }
+};
+
 // Membership UI configuration
 export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> = {
   [MembershipLevelId.FREE]: {

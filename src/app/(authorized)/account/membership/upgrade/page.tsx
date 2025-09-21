@@ -13,7 +13,7 @@ import BenefitAccessCard from "../components/BenefitAccessCard";
 import Popup from "../components/Popup";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
-import { MEMBERSHIP_UI_CONFIG, ButtonConfig } from "@/app/(authorized)/account/membership/config";
+import { MEMBERSHIP_UI_CONFIG, ButtonConfig, PopupType } from "@/app/(authorized)/account/membership/config";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -236,7 +236,7 @@ export default function UpgradePage() {
       {/* Scholarship Popup */}
       <Popup
         isOpen={showScholarshipPopup}
-        type="apply-scholarship"
+        type={PopupType.APPLY_SCHOLARSHIP}
         primaryButton={{
           onClick: handleScholarshipApply,
           text: "Apply for Scholarship"

@@ -12,7 +12,7 @@ import Payment from "../../components/Payment";
 import PlanCard from "../../components/PlanCard";
 import Popup from "../../components/Popup";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
-import { MEMBERSHIP_UI_CONFIG } from "../../config";
+import { MEMBERSHIP_UI_CONFIG, PopupType } from "../../config";
 import "../../../../../../styles/primary-purple-scrollbar.css";
 import Image from "next/image";
 
@@ -224,7 +224,7 @@ export default function UpgradeConfirmationPage() {
       {/* Back Confirmation Popup */}
       <Popup
         isOpen={showBackConfirmationPopup}
-        type="cancel-upgrade"
+        type={PopupType.CANCEL_UPGRADE}
         primaryButton={{
           onClick: handleCancelBack,
           text: "Continue with Transaction"
