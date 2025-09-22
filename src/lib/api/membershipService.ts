@@ -143,3 +143,98 @@ export async function toggleAutoRenew(enable: boolean) {
         throw new Error(error.message || 'An error occurred while updating auto renew');
     }
 }
+
+// Payment Methods API functions
+export async function getPaymentMethods() {
+    try {
+        const response = await fetch('/api/payment-methods', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        });
+        
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to retrieve payment methods');
+        }
+        
+        return data;
+    } catch (error: any) {
+        throw new Error(error.message || 'An error occurred while retrieving payment methods');
+    }
+}
+
+export async function previewMembershipUpgrade(newMembershipId: string) {
+    try {
+        const response = await fetch('/api/membership/user/upgrade/preview', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ newMembershipId }),
+        });
+        
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to preview membership upgrade');
+        }
+        
+        return data;
+    } catch (error: any) {
+        throw new Error(error.message || 'An error occurred while previewing membership upgrade');
+    }
+}
+
+export async function requestMembershipUpgrade(
+    newMembershipId: string, 
+    vaultTokenId: string, 
+    prorationPreference: 'immediate' | 'next_cycle' = 'immediate'
+) {
+    try {
+        const response = await fetch('/api/membership/user/upgrade/request', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                newMembershipId,
+                vaultTokenId,
+                prorationPreference,
+            }),
+        });
+        
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to request membership upgrade');
+        }
+        
+        return data;
+    } catch (error: any) {
+        throw new Error(error.message || 'An error occurred while requesting membership upgrade');
+    }
+}
+
+export async function getUpgradeStatus() {
+    try {
+        const response = await fetch('/api/membership/user/upgrade/status', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        });
+        
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to get upgrade status');
+        }
+        
+        return data;
+    } catch (error: any) {
+        throw new Error(error.message || 'An error occurred while getting upgrade status');
+    }
+}

@@ -25,6 +25,48 @@ export interface PaymentMethodSummary {
   expYear: number;
 }
 
+export interface PaymentMethod {
+  vaultTokenId: string;
+  paymentMethodType: string;
+  maskedDetails: {
+    last4: string;
+    brand: string;
+    expiryMonth?: string;
+    expiryYear?: string;
+    displayName: string;
+  };
+  isDefault: boolean;
+  status: string;
+  isExpired: boolean;
+  daysUntilExpiry?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface UpgradePreview {
+  success: boolean;
+  proration?: {
+    currentMembershipDaysRemaining: number;
+    currentMembershipDailyRate: number;
+    newMembershipDailyRate: number;
+    prorationCredit: number;
+    upgradeCharge: number;
+    netAmount: number;
+  };
+  effectiveDate: string;
+}
+
+export interface UpgradeResponse {
+  success: boolean;
+  message?: string;
+  subscriptionId?: string;
+  approvalUrl?: string;
+  effectiveDate?: string;
+  error?: string;
+  membershipHistoryId?: string; // This serves as the transaction ID
+  prorationAmount?: number;
+}
+
 export interface UserMembership {
   membershipId: string;
   status: MembershipStatus;
