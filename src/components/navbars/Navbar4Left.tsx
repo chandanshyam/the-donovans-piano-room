@@ -32,12 +32,12 @@ export default function Navbar4Left({
   const handleMouseLeave = ()=>{
     timerRef.current = setTimeout(()=>{
       setIsNavOpen(false);
-    },1000)
+    },800)
   }
 
   return (
     <div
-      className="relative z-50 h-[100vh]"
+      className="relative z-50 h-[100vh] transition-all duration-300 ease-in-out "
       style={{ width: isNavOpen ? "20vw" : "8vw" }}
     >
       <div className="flex h-[12vh] w-full items-center justify-center rounded-tr-[20px] bg-[#601d86]">
@@ -52,7 +52,7 @@ export default function Navbar4Left({
         )}
         {isNavOpen ? (
           <div
-            className="absolute left-[15.5vw] top-[6vh] cursor-pointer"
+            className="absolute left-[15.5vw] top-[6vh] cursor-pointer transition-all duration-300 ease-in-out"
             onClick={toggleOpenNav}
           >
             <div className="relative h-[8vh] w-[3vw]">
@@ -65,7 +65,7 @@ export default function Navbar4Left({
           </div>
         ) : (
           <div
-            className="absolute left-[6vw] top-[6vh] cursor-pointer"
+            className="absolute left-[6vw] top-[6vh] cursor-pointer transition-all duration-300 ease-in-out"
             onClick={toggleOpenNav}
           >
             <div className="relative h-[8vh] w-[3vw]">
@@ -116,12 +116,12 @@ export default function Navbar4Left({
           }
 
 
-          <div className="mt-[1vh] flex flex-col gap-[1vh]">
+          <div className="mt-[1vh] flex flex-col gap-[1vh]" onMouseOver={handleMouseOver}
+                onMouseLeave={handleMouseLeave}>
             <Link href="/dashboard">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
+
                 style={
                   openedLink === nav4leftLinks.dashboard
                     ? {
@@ -170,8 +170,7 @@ export default function Navbar4Left({
             <Link href="/lessons">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
+                
                 style={
                   openedLink === nav4leftLinks.lessons
                     ? {
@@ -220,8 +219,7 @@ export default function Navbar4Left({
             <Link href="/games">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
+                
                 style={
                   openedLink === nav4leftLinks.games
                     ? {
@@ -269,8 +267,7 @@ export default function Navbar4Left({
             <Link href="">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
+                
                 style={
                   openedLink === nav4leftLinks.musicTools
                     ? {
@@ -322,8 +319,7 @@ export default function Navbar4Left({
             <Link href="">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
+                
                 style={
                   openedLink === nav4leftLinks.planner
                     ? {
@@ -371,8 +367,7 @@ export default function Navbar4Left({
             <Link href="/contact-page">
               <div
                 className="flex h-[8vh] w-full items-center rounded-2xl border border-[#F5E8FF] bg-white"
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
+                
                 style={
                   openedLink === nav4leftLinks.contactUs
                     ? {
