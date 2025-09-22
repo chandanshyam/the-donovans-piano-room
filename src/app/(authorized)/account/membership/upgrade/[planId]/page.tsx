@@ -224,7 +224,7 @@ export default function UpgradeConfirmationPage() {
       {/* Back Confirmation Popup */}
       <Popup
         isOpen={showBackConfirmationPopup}
-        type={PopupType.CANCEL_UPGRADE}
+        type={PopupType.CANCEL_SWITCH}
         primaryButton={{
           onClick: handleCancelBack,
           text: "Continue with Transaction"

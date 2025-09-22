@@ -14,7 +14,7 @@ export interface ButtonConfig {
 // Popup types
 export enum PopupType {
   CANCEL_MEMBERSHIP = "cancel-membership",
-  CANCEL_UPGRADE = "cancel-upgrade",
+  CANCEL_SWITCH = "cancel-switch",
   CANCEL_AUTOPAY = "cancel-autopay",
   APPLY_SCHOLARSHIP = "apply-scholarship",
   SWITCH_FROM_SCHOLARSHIP = "switch-from-scholarship"
@@ -40,9 +40,9 @@ export const POPUP_CONFIG: Record<PopupType, PopupConfig> = {
     primaryButtonStyle: "bg-red-600 hover:bg-red-700",
     secondaryButtonStyle: "border-2 border-primary-purple text-primary-purple hover:bg-purple-50"
   },
-  [PopupType.CANCEL_UPGRADE]: {
+  [PopupType.CANCEL_SWITCH]: {
     title: "Go Back",
-    content: "Are you sure you want to cancel the upgrade and go back?",
+    content: "Are you sure you want to cancel switching plan and go back?",
     primaryButton: "Continue with Transaction",
     secondaryButton: "Go Back",
     primaryButtonStyle: "bg-primary-purple hover:bg-purple-700",
