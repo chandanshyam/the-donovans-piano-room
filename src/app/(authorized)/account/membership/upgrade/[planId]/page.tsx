@@ -389,7 +389,7 @@ export default function UpgradeConfirmationPage() {
 
             
             {/* Confirm Plan Selection Button */}
-            {!switchSuccess && (
+            {!switchSuccess && !switching && !switchError && (
               <div className="mt-4 flex w-full justify-end text-3xl gap-4 font-semibold">
                 <button
                   type="button"
