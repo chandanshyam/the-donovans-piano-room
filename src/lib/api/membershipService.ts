@@ -10,6 +10,7 @@ export async function getMembershipById({ memberId }: { memberId: string }) {
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
         });
         // Parse response
         const data = await response.json();
@@ -30,6 +31,7 @@ export async function getUserMembership() {
             headers: {
                 'Content-Type': 'application/json', 
             },
+            credentials: 'include',
         });
         // Parse response
         const data = await response.json();
@@ -74,6 +76,7 @@ export async function getPlanInfo(levelId: string) {
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
         });
         const data = await response.json();
         if (!response.ok) {
