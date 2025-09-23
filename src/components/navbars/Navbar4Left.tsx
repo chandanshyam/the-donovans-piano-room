@@ -50,6 +50,7 @@ export default function Navbar4Left({
             <Image src="/navbar/MiniLogo.svg" fill alt="" />
           </div>
         )}
+        
         {isNavOpen ? (
           <div
             className="absolute left-[15.5vw] top-[6vh] cursor-pointer transition-all duration-300 ease-in-out"
