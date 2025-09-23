@@ -243,10 +243,11 @@ export default function UpgradeConfirmationPage() {
   };
 
   const handleRetry = () => {
-    // Clear error states and retry the switch
+    // Reset error states and allow user to try again
     setSwitchError(null);
     setTransactionId(null);
-    handleSwitch();
+    setSwitching(false);
+    // User can now click the "Confirm Plan Selection" button again
   };
 
   // Button configuration for Payment component
