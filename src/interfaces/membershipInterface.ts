@@ -13,8 +13,9 @@ export enum MembershipLevelId {
 
 export enum PaymentMethodBrand {
   VISA = 'visa',
-  MASTERCARD = 'mastercard',
-  AMEX = 'amex'// 'american express'
+  AMEX = 'amex',// 'american express'
+  PAYPAL = 'paypal',
+  DEFAULT = 'default'
 }
 
 // Core data structures

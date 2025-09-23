@@ -142,8 +142,9 @@ export const MEMBERSHIP_UI_CONFIG: Record<MembershipLevelId, PlanCardUIConfig> =
 // Payment method brand icons configuration
 export const PAYMENT_METHOD_ICONS: Record<PaymentMethodBrand, string> = {
   [PaymentMethodBrand.VISA]: "/memberships/Payment/Visa.svg",
-  [PaymentMethodBrand.MASTERCARD]: "/memberships/Payment/Visa.svg", // fallback to Visa icon
-  [PaymentMethodBrand.AMEX]: "/memberships/Payment/Visa.svg" // fallback to Visa icon
+  [PaymentMethodBrand.AMEX]: "/memberships/Payment/Amex.svg",
+  [PaymentMethodBrand.PAYPAL]: "/memberships/Payment/logos_paypal.svg",
+  [PaymentMethodBrand.DEFAULT]: "/memberships/Payment/credit_card_FILL0_wght400_GRAD0_opsz24 1.svg"
 };
 
 // Date formatting configuration
@@ -160,8 +161,29 @@ export const DATE_FORMATS = {
 
 // Helper function to get payment method icon
 export const getPaymentMethodIcon = (brand: string): string => {
-  const normalizedBrand = brand.toLowerCase() as PaymentMethodBrand;
-  return PAYMENT_METHOD_ICONS[normalizedBrand] || PAYMENT_METHOD_ICONS[PaymentMethodBrand.VISA];
+  // Normalize the brand name and try to match it to our enum values
+  const normalizedBrand = brand.toLowerCase().trim();
+  
+  switch (normalizedBrand) {
+    case PaymentMethodBrand.VISA:
+      return PAYMENT_METHOD_ICONS[PaymentMethodBrand.VISA];
+    
+    case PaymentMethodBrand.AMEX:
+    case 'american express':
+      return PAYMENT_METHOD_ICONS[PaymentMethodBrand.AMEX];
+    
+    case PaymentMethodBrand.PAYPAL:
+      return PAYMENT_METHOD_ICONS[PaymentMethodBrand.PAYPAL];
+    
+    case 'mastercard':
+    case 'master card':
+    case 'discover':
+    case 'diners':
+    case 'jcb':
+    default:
+      // Default fallback for any unrecognized brand or brands without specific icons
+      return PAYMENT_METHOD_ICONS[PaymentMethodBrand.DEFAULT];
+  }
 };
 
 // Helper function to format renewal date
