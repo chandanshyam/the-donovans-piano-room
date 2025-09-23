@@ -39,7 +39,7 @@ export default function Payment({
   return (
     <div className="flex flex-1 flex-col gap-6 rounded-xl bg-primary-skin p-6 h-full">
       <h1 className={`font-montserrat text-3xl font-semibold md:text-3xl flex items-center ${
-        errorMessage ? 'text-red-600' : 'text-primary-brown'
+        errorMessage ? 'text-red-500' : 'text-primary-brown'
       }`}>
         {errorMessage ? (
           'Oops! Something went wrong with your payment.'
@@ -58,14 +58,14 @@ export default function Payment({
           <p className="mb-4">
             We couldn&apos;t process your payment this time. Don&apos;t worry—this happens sometimes.
           </p>
-          <p className="font-medium mb-3">Here are a few things you can try:</p>
-          <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+          <p className="mb-3">Here are a few things you can try:</p>
+          <ul className="list-disc list-inside space-y-2 ml-4">
             <li>Double-check your card details (number, expiry, CVV).</li>
             <li>Make sure your bank or card provider hasn&apos;t blocked the payment.</li>
             <li>Try another payment method if you have one.</li>
           </ul>
           
-          <p className="font-medium">
+          <p className="mt-4">
             Transaction ID: {transactionId ? transactionId : "unkonwn"} {/* TODO: Fix transaction ID here */}
           </p>
           
