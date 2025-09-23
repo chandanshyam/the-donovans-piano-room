@@ -65,7 +65,7 @@ export default function PlanCard({
               </span>
             </div>
           )}
-          {plan.isPopular && (
+          {!plan.isCurrent && plan.isPopular && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
               <span className="rounded-md bg-[#F8D867] px-3 py-1 text-xl font-medium text-black">
                 Popular
