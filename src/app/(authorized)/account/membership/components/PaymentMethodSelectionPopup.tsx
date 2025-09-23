@@ -64,20 +64,20 @@ export default function PaymentMethodSelectionPopup({
                     />
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-8 bg-white border border-gray-200 rounded flex items-center justify-center shadow-sm">
+                  <div className="relative flex h-[38px] w-[58px] items-center justify-center rounded-3xl border-[#CCCCCC] bg-white">
                       <Image
                         src={getPaymentMethodIcon(method.maskedDetails?.brand || '')}
                         fill
                         alt={method.maskedDetails?.brand || 'Card'}
-                        className="object-contain p-1"
+                        className="object-contain"
                       />
                     </div>
                     <div>
-                      <div className="font-semibold text-black text-lg">
+                      <div className="font-semibold text-black text-xl">
                         {method.maskedDetails?.displayName || 'Payment Method'}
                       </div>
                       {method.isDefault && (
-                        <div className="text-sm text-primary-purple font-medium">Default</div>
+                        <div className="text-xl text-primary-purple font-medium">Default</div>
                       )}
                     </div>
                   </div>
@@ -88,24 +88,6 @@ export default function PaymentMethodSelectionPopup({
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="flex gap-4">
-          <button
-            onClick={() => {
-              onClose();
-              router.push('/account/payments');
-            }}
-            className="flex-1 px-6 py-3 rounded-full font-medium transition-colors border-2 border-primary-purple text-primary-purple hover:bg-purple-50"
-          >
-            Manage Payment Methods
-          </button>
-          <button
-            onClick={onClose}
-            className="flex-1 text-white px-6 py-3 rounded-full font-medium transition-colors bg-primary-purple hover:bg-purple-700"
-          >
-            Done
-          </button>
         </div>
       </div>
     </div>
