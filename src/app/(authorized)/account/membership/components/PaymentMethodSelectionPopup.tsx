@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { PaymentMethod } from "@/interfaces/membershipInterface";
+import { getPaymentMethodIcon } from "../config";
 
 interface PaymentMethodSelectionPopupProps {
   isOpen: boolean;
@@ -63,8 +64,13 @@ export default function PaymentMethodSelectionPopup({
                     />
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-8 bg-white border border-gray-200 rounded flex items-center justify-center text-xs font-bold shadow-sm">
-                      {method.maskedDetails?.brand?.toUpperCase() || 'CARD'}
+                    <div className="relative w-12 h-8 bg-white border border-gray-200 rounded flex items-center justify-center shadow-sm">
+                      <Image
+                        src={getPaymentMethodIcon(method.maskedDetails?.brand || '')}
+                        fill
+                        alt={method.maskedDetails?.brand || 'Card'}
+                        className="object-contain p-1"
+                      />
                     </div>
                     <div>
                       <div className="font-semibold text-black text-lg">
