@@ -252,8 +252,8 @@ export default function UpgradeConfirmationPage() {
   // Button configuration for Payment component
   const paymentButtons: ButtonConfig[] = [
     {
-      onClick: paymentMethods.length === 0 ? () => router.push('/account/payments') : () => setShowPaymentMethodPopup(true),
-      text: paymentMethods.length === 0 ? 'Add payment method' : 'Change payment method',
+      onClick: () => router.push('/account/payments'),
+      text: 'Add payment method',
       disabled: false,
       loading: false,
       style: 'w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white'
