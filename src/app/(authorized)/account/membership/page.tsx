@@ -7,11 +7,12 @@ import {
   authorizedWrapperTitles,
   settingsNavigation,
 } from "@/utils/general";
-import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew } from "@/lib/api/membershipService";
+import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew, getPaymentMethods } from "@/lib/api/membershipService";
 import Payment from "./components/Payment";
 import Popup from "./components/Popup";
 import PlanCard from "./components/PlanCard";
-import { UserMembership, MembershipStatus, MembershipLevelId, Plan } from "@/interfaces/membershipInterface";
+import PaymentMethodSelectionPopup from "./components/PaymentMethodSelectionPopup";
+import { UserMembership, MembershipStatus, MembershipLevelId, Plan, PaymentMethod } from "@/interfaces/membershipInterface";
 import { formatRenewalDate, MEMBERSHIP_UI_CONFIG, ButtonConfig, PopupType } from "./config";
 import "../../../../styles/primary-purple-scrollbar.css";
 
@@ -25,15 +26,28 @@ export default function Page() {
   const [isUpdatingAuto, setIsUpdatingAuto] = useState<boolean>(false);
   const [showCancelPopup, setShowCancelPopup] = useState<boolean>(false);
   const [showCancelAutopayPopup, setShowCancelAutopayPopup] = useState<boolean>(false);
+  const [showPaymentMethodPopup, setShowPaymentMethodPopup] = useState<boolean>(false);
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
 
   useEffect(() => {
     let isMounted = true;
     (async () => {
       try {
         setLoading(true);
-        const userMembership = await getUserMembership();
+        const [userMembership, paymentMethodsData] = await Promise.all([
+          getUserMembership(),
+          getPaymentMethods()
+        ]);
         if (!isMounted) return;
         setMembership(userMembership);
+        
+        // Set payment methods and select default
+        const methods = paymentMethodsData.data || [];
+        setPaymentMethods(methods);
+        const defaultMethod = methods.find((method: PaymentMethod) => method.isDefault) || methods[0];
+        setSelectedPaymentMethod(defaultMethod);
+        
         if (userMembership?.levelId) {
           const planDetails = await getPlanInfo(userMembership.levelId);
           if (!isMounted) return;
@@ -97,6 +111,11 @@ export default function Page() {
 
   const handleKeepMembership = () => {
     setShowCancelPopup(false);
+  };
+
+  const handlePaymentMethodChange = (method: PaymentMethod) => {
+    setSelectedPaymentMethod(method);
+    // Here you could also update the payment method on the backend if needed
   };
 
   const handleToggleAutoRenew = async (nextEnable: boolean) => {
@@ -267,8 +286,14 @@ export default function Page() {
             membershipId={membership?.membershipId || ""}
             nextRenewalAt={membership?.nextRenewalAt}
             autoRenew={Boolean(membership?.autoRenew)}
-            paymentMethodSummary={membership?.paymentMethodSummary}
+            paymentMethodSummary={selectedPaymentMethod ? {
+              brand: selectedPaymentMethod.maskedDetails.brand,
+              last4: selectedPaymentMethod.maskedDetails.last4,
+              expMonth: selectedPaymentMethod.maskedDetails.expiryMonth ? parseInt(selectedPaymentMethod.maskedDetails.expiryMonth) : 0,
+              expYear: selectedPaymentMethod.maskedDetails.expiryYear ? parseInt(selectedPaymentMethod.maskedDetails.expiryYear) : 0
+            } : membership?.paymentMethodSummary}
             buttons={paymentButtons}
+            onEditClick={() => setShowPaymentMethodPopup(true)}
           />
         </div>
       </div>
@@ -299,6 +324,15 @@ export default function Page() {
           onClick: handleKeepAutopay,
           text: "Keep Autopay"
         }}
+      />
+
+      {/* Payment Method Selection Popup */}
+      <PaymentMethodSelectionPopup
+        isOpen={showPaymentMethodPopup}
+        onClose={() => setShowPaymentMethodPopup(false)}
+        paymentMethods={paymentMethods}
+        selectedPaymentMethod={selectedPaymentMethod}
+        onPaymentMethodSelect={handlePaymentMethodChange}
       />
     </AuthorizedWrapper1>
   );
