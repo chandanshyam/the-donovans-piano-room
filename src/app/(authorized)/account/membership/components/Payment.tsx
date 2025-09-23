@@ -54,21 +54,21 @@ export default function Payment({
       </h1>
 
 {errorMessage ? (
-        <div className="text-primary-black">
-          <p className="text-xl mb-4">
+        <div className="text-primary-black text-2xl">
+          <p className="mb-4">
             We couldn&apos;t process your payment this time. Don&apos;t worry—this happens sometimes.
           </p>
-          <p className="text-lg font-medium mb-3">Here are a few things you can try:</p>
-          <ul className="list-disc list-inside space-y-2 text-lg mb-4 ml-4">
+          <p className="font-medium mb-3">Here are a few things you can try:</p>
+          <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
             <li>Double-check your card details (number, expiry, CVV).</li>
             <li>Make sure your bank or card provider hasn&apos;t blocked the payment.</li>
             <li>Try another payment method if you have one.</li>
           </ul>
-          {transactionId && (
-            <p className="text-lg font-medium">
-              Transaction ID: {transactionId}
-            </p>
-          )}
+          
+          <p className="font-medium">
+            Transaction ID: {transactionId ? transactionId : "unkonwn"} {/* TODO: Fix transaction ID here */}
+          </p>
+          
         </div>
       ) : mode === 'membership' ? (
         autoRenew && formattedDate ? (
