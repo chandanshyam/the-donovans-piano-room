@@ -54,6 +54,7 @@ export default function UpgradeConfirmationPage() {
   const [error, setError] = useState<string | null>(null);
   const [showBackConfirmationPopup, setShowBackConfirmationPopup] = useState(false);
   const [showPaymentMethodPopup, setShowPaymentMethodPopup] = useState(false);
+  const [showScholarshipWarningPopup, setShowScholarshipWarningPopup] = useState(false);
   const [switching, setSwitching] = useState<boolean>(false);
   const [switchSuccess, setSwitchSuccess] = useState<boolean>(false);
   const [switchError, setSwitchError] = useState<string | null>(null);
@@ -100,6 +101,11 @@ export default function UpgradeConfirmationPage() {
             router.push('/account/membership');
           }, 1000);
           return;
+        }
+
+        // Check if user is switching from scholarship plan
+        if (userMembership.levelId === MembershipLevelId.FREE && levelId !== MembershipLevelId.FREE) {
+          setShowScholarshipWarningPopup(true);
         }
         
         // Set payment methods and select default
@@ -240,6 +246,17 @@ export default function UpgradeConfirmationPage() {
 
   const handlePaymentMethodChange = (method: PaymentMethod) => {
     setSelectedPaymentMethod(method);
+  };
+
+  const handleScholarshipWarningConfirm = () => {
+    setShowScholarshipWarningPopup(false);
+    // Continue with the plan change
+  };
+
+  const handleScholarshipWarningCancel = () => {
+    setShowScholarshipWarningPopup(false);
+    // Go back to the upgrade page
+    router.push('/account/membership/upgrade');
   };
 
   const handleRetry = () => {
@@ -446,6 +463,20 @@ export default function UpgradeConfirmationPage() {
         paymentMethods={paymentMethods}
         selectedPaymentMethod={selectedPaymentMethod}
         onPaymentMethodSelect={handlePaymentMethodChange}
+      />
+
+      {/* Scholarship Warning Popup */}
+      <Popup
+        isOpen={showScholarshipWarningPopup}
+        type={PopupType.SWITCH_FROM_SCHOLARSHIP}
+        primaryButton={{
+          onClick: handleScholarshipWarningCancel,
+          text: "Stay on Scholarship"
+        }}
+        secondaryButton={{
+          onClick: handleScholarshipWarningConfirm,
+          text: "Change Plan"
+        }}
       />
     </AuthorizedWrapper1>
   );
