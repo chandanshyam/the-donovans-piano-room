@@ -68,7 +68,7 @@ export default function Payment({
           </ul>
           
           <p className="mt-4">
-            Transaction ID: {transactionId ? transactionId : "unkonwn"} {/* TODO: Fix transaction ID here */}
+            Transaction ID: {transactionId ? transactionId : "unknown"} {/* TODO: Fix transaction ID here */}
           </p>
           
         </div>
