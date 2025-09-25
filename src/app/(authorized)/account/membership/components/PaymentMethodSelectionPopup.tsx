@@ -64,7 +64,11 @@ export default function PaymentMethodSelectionPopup({
                     />
                   </div>
                   <div className="flex items-center gap-4">
-                  <div className="relative flex h-[38px] w-[58px] items-center justify-center rounded-3xl border-[#CCCCCC] bg-white">
+                  <div className={`relative flex h-[38px] w-[58px] items-center justify-center ${
+                    method.paymentMethodType?.toLowerCase() === 'paypal' 
+                      ? '' 
+                      : 'rounded-3xl border-[#CCCCCC] bg-white'
+                  }`}>
                       <Image
                         src={getPaymentMethodIcon(method.maskedDetails?.brand || '')}
                         fill
@@ -74,7 +78,10 @@ export default function PaymentMethodSelectionPopup({
                     </div>
                     <div>
                       <div className="font-semibold text-black text-xl">
-                        {method.maskedDetails?.displayName || 'Payment Method'}
+                        {method.paymentMethodType?.toLowerCase() === 'paypal' ? 'PayPal Account' : (method.maskedDetails?.displayName || 'Payment Method')}
+                      </div>
+                      <div className="text-lg text-primary-gray">
+                        {method.paymentMethodType?.toLowerCase() === 'paypal' ? (method.maskedDetails?.paypal_account || '@unknown paypal account') : (method.maskedDetails?.last4 ? `Ending in ${method.maskedDetails.last4}` : '')}
                       </div>
                       {method.isDefault && (
                         <div className="text-xl text-primary-purple font-medium">Default</div>

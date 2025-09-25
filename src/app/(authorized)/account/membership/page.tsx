@@ -287,11 +287,12 @@ export default function Page() {
             nextRenewalAt={membership?.nextRenewalAt}
             autoRenew={Boolean(membership?.autoRenew)}
             paymentMethodSummary={selectedPaymentMethod ? {
-              brand: selectedPaymentMethod.maskedDetails.brand,
-              last4: selectedPaymentMethod.maskedDetails.last4,
-              expMonth: selectedPaymentMethod.maskedDetails.expiryMonth ? parseInt(selectedPaymentMethod.maskedDetails.expiryMonth) : 0,
-              expYear: selectedPaymentMethod.maskedDetails.expiryYear ? parseInt(selectedPaymentMethod.maskedDetails.expiryYear) : 0
+              brand: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.brand,
+              last4: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.last4,
+              expMonth: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 0 : (selectedPaymentMethod.maskedDetails.expiryMonth ? parseInt(selectedPaymentMethod.maskedDetails.expiryMonth) : 0),
+              expYear: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 0 : (selectedPaymentMethod.maskedDetails.expiryYear ? parseInt(selectedPaymentMethod.maskedDetails.expiryYear) : 0)
             } : membership?.paymentMethodSummary}
+            selectedPaymentMethod={selectedPaymentMethod || undefined}
             buttons={paymentButtons}
             onEditClick={() => setShowPaymentMethodPopup(true)}
           />

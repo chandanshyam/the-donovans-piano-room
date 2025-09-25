@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { PaymentMethodSummary, PaymentMethodBrand, Plan } from "@/interfaces/membershipInterface";
+import { PaymentMethodSummary, PaymentMethodBrand, Plan, PaymentMethod } from "@/interfaces/membershipInterface";
 import { getPaymentMethodIcon, formatRenewalDate, ButtonConfig } from "@/app/(authorized)/account/membership/config";
 
 type PaymentMode = 'membership' | 'upgrade';
@@ -11,6 +11,7 @@ interface PaymentProps {
   nextRenewalAt?: string;
   autoRenew?: boolean;
   paymentMethodSummary?: PaymentMethodSummary;
+  selectedPaymentMethod?: PaymentMethod;
   buttons?: ButtonConfig[];
   selectedPlan?: Plan; // for upgrade mode
   onEditClick?: () => void; // for custom edit behavior
@@ -25,6 +26,7 @@ export default function Payment({
   nextRenewalAt,
   autoRenew,
   paymentMethodSummary,
+  selectedPaymentMethod,
   selectedPlan,
   buttons,
   onEditClick,
@@ -93,7 +95,11 @@ export default function Payment({
         <div className="rounded-2xl border border-[#F6E2D1] bg-[#FFEBD5] p-4 shadow-custom">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="relative flex h-[38px] w-[58px] items-center justify-center rounded-3xl border-[#CCCCCC] bg-white">
+              <div className={`relative flex h-[38px] w-[58px] items-center justify-center ${
+                paymentMethodSummary?.brand?.toLowerCase() === 'paypal' 
+                  ? '' 
+                  : 'rounded-3xl border-[#CCCCCC] bg-white'
+              }`}>
                 <Image
                   src={brandImageSrc}
                   fill
@@ -103,12 +109,25 @@ export default function Payment({
                 />
               </div>
               <div className="flex flex-col">
-                <div className="text-2xl font-semibold text-primary-brown leading-6">
-                  Ending in <span className="text-tertiary-orange">{paymentMethodSummary?.last4 || '----'}</span>
-                </div>
-                <div className="text-xl text-primary-gray">
-                  Expires {paymentMethodSummary?.expMonth?.toString().padStart(2, '0') || '--'}/{paymentMethodSummary?.expYear || '----'}
-                </div>
+                {paymentMethodSummary?.brand?.toLowerCase() === 'paypal' ? (
+                  <>
+                    <div className="text-2xl font-semibold text-primary-brown leading-6">
+                      PayPal Account
+                    </div>
+                    <div className="text-xl text-primary-gray">
+                      {selectedPaymentMethod?.maskedDetails?.paypal_account || '@alex123'}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-2xl font-semibold text-primary-brown leading-6">
+                      Ending in <span className="text-tertiary-orange">{paymentMethodSummary?.last4 || '----'}</span>
+                    </div>
+                    <div className="text-xl text-primary-gray">
+                      Expires {paymentMethodSummary?.expMonth?.toString().padStart(2, '0') || '--'}/{paymentMethodSummary?.expYear || '----'}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 

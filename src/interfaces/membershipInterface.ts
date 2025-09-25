@@ -35,6 +35,7 @@ export interface PaymentMethod {
     expiryMonth?: string;
     expiryYear?: string;
     displayName: string;
+    paypal_account?: string;
   };
   isDefault: boolean;
   status: string;
