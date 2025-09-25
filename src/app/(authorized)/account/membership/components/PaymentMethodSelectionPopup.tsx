@@ -70,9 +70,9 @@ export default function PaymentMethodSelectionPopup({
                       : 'rounded-3xl border-[#CCCCCC] bg-white'
                   }`}>
                       <Image
-                        src={getPaymentMethodIcon(method.maskedDetails?.brand || '')}
+                        src={getPaymentMethodIcon(method.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : (method.maskedDetails?.brand || ''))}
                         fill
-                        alt={method.maskedDetails?.brand || 'Card'}
+                        alt={method.paymentMethodType?.toLowerCase() === 'paypal' ? 'PayPal' : (method.maskedDetails?.brand || 'Card')}
                         className="object-contain"
                       />
                     </div>
@@ -81,7 +81,9 @@ export default function PaymentMethodSelectionPopup({
                         {method.paymentMethodType?.toLowerCase() === 'paypal' ? 'PayPal Account' : (method.maskedDetails?.displayName || 'Payment Method')}
                       </div>
                       <div className="text-lg text-primary-gray">
-                        {method.paymentMethodType?.toLowerCase() === 'paypal' ? (method.maskedDetails?.paypal_account || '@unknown paypal account') : (method.maskedDetails?.last4 ? `Ending in ${method.maskedDetails.last4}` : '')}
+                        {method.paymentMethodType?.toLowerCase() === 'paypal' ? (
+                          method.maskedDetails?.paypal_account || '@unknown paypal account'
+                        ) : (method.maskedDetails?.last4 ? `Ending in ${method.maskedDetails.last4}` : '')}
                       </div>
                       {method.isDefault && (
                         <div className="text-xl text-primary-purple font-medium">Default</div>

@@ -115,7 +115,7 @@ export default function Payment({
                       PayPal Account
                     </div>
                     <div className="text-xl text-primary-gray">
-                      {selectedPaymentMethod?.maskedDetails?.paypal_account || '@alex123'}
+                      {selectedPaymentMethod?.maskedDetails?.paypal_account || '@unknown paypal account'}
                     </div>
                   </>
                 ) : (
