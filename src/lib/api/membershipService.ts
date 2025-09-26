@@ -122,10 +122,8 @@ export async function cancelUserMembership() {
     }
 }
 
-export async function toggleAutoRenew(enable: boolean) {
+export async function toggleAutoRenew() {
     try {
-        // Backend expects empty POST body for cancel auto pay. Send no body and no Content-Type.
-        // If enabling is supported later, adjust accordingly.
         const response = await fetch('/api/membership/user/auto-renew', {
             method: 'POST',
             credentials: 'include',

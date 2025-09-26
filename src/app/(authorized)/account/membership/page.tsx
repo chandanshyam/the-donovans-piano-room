@@ -118,10 +118,10 @@ export default function Page() {
     // Here you could also update the payment method on the backend if needed
   };
 
-  const handleToggleAutoRenew = async (nextEnable: boolean) => {
+  const handleToggleAutoRenew = async () => {
     try {
       setIsUpdatingAuto(true);
-      await toggleAutoRenew(nextEnable);
+      await toggleAutoRenew();
       await refresh();
     } catch (e: any) {
       setError(e?.message || 'Failed to update auto renew');
@@ -138,13 +138,13 @@ export default function Page() {
       setShowCancelAutopayPopup(true);
     } else {
       // Enable autopay directly
-      handleToggleAutoRenew(true);
+      handleToggleAutoRenew();
     }
   };
 
   const handleConfirmCancelAutopay = () => {
     setShowCancelAutopayPopup(false);
-    handleToggleAutoRenew(false);
+    handleToggleAutoRenew();
   };
 
   const handleKeepAutopay = () => {
