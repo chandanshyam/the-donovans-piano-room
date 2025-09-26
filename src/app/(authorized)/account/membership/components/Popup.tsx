@@ -24,7 +24,7 @@ export default function Popup({ isOpen, type, primaryButton, secondaryButton }: 
         {/* Content */}
         <div className="space-y-4 mb-8">
           {config.content.split('\n\n').map((paragraph, index) => (
-            <p key={index} className="text-lg text-black">
+            <p key={index} className="text-xl text-black">
               {paragraph}
             </p>
           ))}
