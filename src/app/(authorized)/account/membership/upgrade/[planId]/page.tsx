@@ -447,12 +447,12 @@ export default function UpgradeConfirmationPage() {
         isOpen={showBackConfirmationPopup}
         type={PopupType.CANCEL_SWITCH}
         primaryButton={{
-          onClick: handleCancelBack,
-          text: "Continue with Transaction"
-        }}
-        secondaryButton={{
           onClick: handleConfirmBack,
           text: "Go Back"
+        }}
+        secondaryButton={{
+          onClick: handleCancelBack,
+          text: "Continue with Transaction"
         }}
       />
 

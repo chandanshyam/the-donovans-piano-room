@@ -304,12 +304,12 @@ export default function Page() {
         isOpen={showCancelPopup}
         type={PopupType.CANCEL_MEMBERSHIP}
         primaryButton={{
-          onClick: handleConfirmCancel,
-          text: "Cancel Anyway"
-        }}
-        secondaryButton={{
           onClick: handleKeepMembership,
           text: "Keep Membership"
+        }}
+        secondaryButton={{
+          onClick: handleConfirmCancel,
+          text: "Cancel Anyway"
         }}
       />
 
@@ -318,12 +318,12 @@ export default function Page() {
         isOpen={showCancelAutopayPopup}
         type={PopupType.CANCEL_AUTOPAY}
         primaryButton={{
-          onClick: handleConfirmCancelAutopay,
-          text: "Cancel Autopay"
-        }}
-        secondaryButton={{
           onClick: handleKeepAutopay,
           text: "Keep Autopay"
+        }}
+        secondaryButton={{
+          onClick: handleConfirmCancelAutopay,
+          text: "Cancel Autopay"
         }}
       />
 
