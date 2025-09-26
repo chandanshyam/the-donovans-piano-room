@@ -138,9 +138,9 @@ export default function UpgradePage() {
               useSingleColumn: true,
               priceBlockSize: "py-14"
             }}
-            showCurrentInHeader={plan.isCurrent && membership?.status === MembershipStatus.CANCELLED}
+            showCurrentInHeader={false}
             showExpirationMessage={plan.isCurrent}
-            showChooseButton={!plan.isCurrent || (plan.isCurrent && membership?.status === MembershipStatus.CANCELLED)}
+            showChooseButton={!plan.isCurrent}
             chooseButton={chooseButton}
             useBenefitAccessCard={true}
             onBenefitAccessCardToggle={() => handleBenefitCardToggle(levelId)}
