@@ -28,7 +28,7 @@ import {
   UpgradePreview, 
   UpgradeResponse 
 } from "@/interfaces/membershipInterface";
-import { MEMBERSHIP_UI_CONFIG, PopupType, ButtonConfig } from "../../config";
+import { MEMBERSHIP_UI_CONFIG, PopupType, ButtonConfig, getYearlyPriceMultiplier } from "../../config";
 import "../../../../../../styles/primary-purple-scrollbar.css";
 import Image from "next/image";
 
@@ -90,7 +90,7 @@ export default function UpgradeConfirmationPage() {
           ...planDetails, 
           isCurrent: false, // This is a selected plan, not current
           isPopular: planDetails.levelId === MembershipLevelId.YEAR,
-          yearlyPrice: (planDetails.price * (levelId === MembershipLevelId.DAY ? 365 : (levelId === MembershipLevelId.MONTH || levelId === MembershipLevelId.YEAR ? 12 : 0))).toFixed(2)
+          yearlyPrice: (planDetails.price * getYearlyPriceMultiplier(levelId)).toFixed(2)
         });
 
         // Check if user already has the target membership level (successful upgrade)

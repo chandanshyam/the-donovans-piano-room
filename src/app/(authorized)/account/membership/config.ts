@@ -186,6 +186,20 @@ export const getPaymentMethodIcon = (brand: string): string => {
   }
 };
 
+// Helper function to calculate yearly price multiplier
+export const getYearlyPriceMultiplier = (levelId: string): number => {
+  switch (levelId) {
+    case 'lvl_day':
+      return 365; // Daily plan * 365 days
+    case 'lvl_month':
+    case 'lvl_year':
+      return 12; // Monthly/Yearly plan * 12 months
+    case 'lvl_free':
+    default:
+      return 0; // Scholarship plans
+  }
+};
+
 // Helper function to format renewal date
 export const formatRenewalDate = (dateString?: string): string => {
   if (!dateString) return "";

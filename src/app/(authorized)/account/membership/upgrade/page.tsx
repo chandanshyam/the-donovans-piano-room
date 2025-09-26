@@ -13,7 +13,7 @@ import BenefitAccessCard from "../components/BenefitAccessCard";
 import Popup from "../components/Popup";
 import { getPlanInfo, getUserMembership } from "@/lib/api/membershipService";
 import { UserMembership, MembershipLevelId, MembershipStatus, Plan } from "@/interfaces/membershipInterface";
-import { MEMBERSHIP_UI_CONFIG, ButtonConfig, PopupType } from "@/app/(authorized)/account/membership/config";
+import { MEMBERSHIP_UI_CONFIG, ButtonConfig, PopupType, getYearlyPriceMultiplier } from "@/app/(authorized)/account/membership/config";
 
 export default function UpgradePage() {
   const router = useRouter();
@@ -100,7 +100,7 @@ export default function UpgradePage() {
       isPopular: planInfo.levelId === MembershipLevelId.YEAR,
       isCurrent: planInfo.levelId === membership?.levelId,
       expirationDays: planInfo.levelId === membership?.levelId ? expirationDays : undefined,
-      yearlyPrice: (planInfo.price * (levelId === MembershipLevelId.DAY ? 365 : (levelId === MembershipLevelId.MONTH || levelId === MembershipLevelId.YEAR ? 12 : 0))).toFixed(2)
+      yearlyPrice: (planInfo.price * getYearlyPriceMultiplier(levelId)).toFixed(2)
     };
 
     const chooseButton: ButtonConfig = {
