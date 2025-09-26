@@ -98,6 +98,7 @@ export default function UpgradePage() {
     const plan: Plan = {
       ...planInfo,
       isPopular: planInfo.levelId === MembershipLevelId.YEAR,
+      isRecommended: planInfo.levelId === MembershipLevelId.MONTH,
       isCurrent: planInfo.levelId === membership?.levelId,
       expirationDays: planInfo.levelId === membership?.levelId ? expirationDays : undefined,
       yearlyPrice: (planInfo.price * getYearlyPriceMultiplier(levelId)).toFixed(2)

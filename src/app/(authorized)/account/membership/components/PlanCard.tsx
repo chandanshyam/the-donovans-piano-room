@@ -72,6 +72,20 @@ export default function PlanCard({
               </span>
             </div>
           )}
+          {!plan.isCurrent && plan.isRecommended && (
+            <div className="absolute right-3 top-1/2 -translate-y-1/2">
+              <span className="inline-flex items-center gap-2 rounded-md bg-[#CDE6CC] px-3 py-1 text-xl font-medium text-yellow-950">
+                <Image
+                  className="shrink-0"
+                  src="/memberships/upgrade/1-Month/Vector.svg"
+                  alt="Recommended"
+                  width={15}
+                  height={15}
+                />
+                Recommended
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Price block with background assets */}

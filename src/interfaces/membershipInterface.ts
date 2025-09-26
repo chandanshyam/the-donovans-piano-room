@@ -110,6 +110,7 @@ export interface Plan {
   // Display state
   isCurrent?: boolean;
   isPopular?: boolean;
+  isRecommended?: boolean;
   expirationDays?: number;
   originalPrice?: string;
   yearlyPrice?: string;
