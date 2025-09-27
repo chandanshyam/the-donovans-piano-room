@@ -232,7 +232,10 @@ export default function Page() {
 
       <div className="w-full">
         <h1 className="mt-[3vh] font-montserrat text-5xl font-medium text-primary-brown 3xl:text-6xl 4xl:text-7xl">
-          Your membership
+          {!loading && !error && membership && membership.status === MembershipStatus.CANCELLED 
+            ? "Your Membership Has Been Canceled" 
+            : "Your membership"
+          }
         </h1>
 
         {loading && (
@@ -247,22 +250,19 @@ export default function Page() {
         )}
         {!loading && !error && membership && membership.status === MembershipStatus.CANCELLED && (
           <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
-            Your membership has been cancelled. You&apos;ll keep access until {formattedNextRenewal && (
-              <span className="font-semibold text-primary-orange">{formattedNextRenewal}</span>
-            )}. You can rejoin anytime from Upgrade membership.
+            Your membership will remain active until <span className="font-semibold text-primary-orange">{formattedNextRenewal}</span>. After that, you&apos;ll lose access to member benefits.
           </p>
         )}
 
         {!loading && !error && membership && membership.status !== MembershipStatus.CANCELLED && (
           <p className="text-primary-gray text-2xl 3xl:text-3xl 4xl:text-4xl font-medium pt-[1%]">
-            As a valued member, your membership #{membership.membershipId}
             {membership.autoRenew && formattedNextRenewal ? (
               <>
-                {" "}will be auto renewed on <span className="font-semibold text-primary-orange">{formattedNextRenewal}.</span>
+                As a valued member, your membership #{membership.membershipId} will be auto renewed on <span className="font-semibold text-primary-orange">{formattedNextRenewal}.</span>
               </>
             ) : (
               <>
-                {" "}will not auto renew. You can enable auto-renewal below to ensure uninterrupted access.
+                Renew your membership #{membership.membershipId} before <span className="font-semibold text-primary-orange">{formattedNextRenewal}</span> to enjoy uninterrupted fun and learning!
               </>
             )}
           </p>
