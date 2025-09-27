@@ -12,6 +12,7 @@ import Payment from "./components/Payment";
 import Popup from "./components/Popup";
 import PlanCard from "./components/PlanCard";
 import PaymentMethodSelectionPopup from "./components/PaymentMethodSelectionPopup";
+import RenewMembership from "./components/RenewMembership";
 import { UserMembership, MembershipStatus, MembershipLevelId, Plan, PaymentMethod } from "@/interfaces/membershipInterface";
 import { formatRenewalDate, MEMBERSHIP_UI_CONFIG, ButtonConfig, PopupType } from "./config";
 import "../../../../styles/primary-purple-scrollbar.css";
@@ -159,7 +160,7 @@ export default function Page() {
   const isActive = membership?.status === MembershipStatus.ACTIVE;
 
   // Button configuration for Payment component
-  const paymentButtons: ButtonConfig[] = [
+  const paymentButtons: ButtonConfig[] = membership?.autoRenew ? [
     {
       onClick: () => router.push('/account/payments'),
       text: 'Add payment method',
@@ -169,7 +170,7 @@ export default function Page() {
     },
     {
       onClick: handleToggleClick,
-      text: membership?.autoRenew ? 'Cancel auto pay' : 'Enable auto pay',
+      text: 'Cancel auto pay',
       disabled: !isActive || isUpdatingAuto,
       loading: isUpdatingAuto,
       loadingText: 'Updating...',
@@ -178,6 +179,15 @@ export default function Page() {
           ? 'border-gray-300 text-gray-400 cursor-not-allowed'
           : 'border-primary-purple text-primary-purple'
       }`
+    }
+  ] : [
+    {
+      onClick: handleToggleClick,
+      text: 'Reactivate Autopay',
+      disabled: !isActive || isUpdatingAuto,
+      loading: isUpdatingAuto,
+      loadingText: 'Updating...',
+      style: 'w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white'
     }
   ];
 
@@ -281,21 +291,30 @@ export default function Page() {
               </div>
             </div>
           )}
-          <Payment
-            mode="membership"
-            membershipId={membership?.membershipId || ""}
-            nextRenewalAt={membership?.nextRenewalAt}
-            autoRenew={Boolean(membership?.autoRenew)}
-            paymentMethodSummary={selectedPaymentMethod ? {
-              brand: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.brand,
-              last4: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.last4,
-              expMonth: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 0 : (selectedPaymentMethod.maskedDetails.expiryMonth ? parseInt(selectedPaymentMethod.maskedDetails.expiryMonth) : 0),
-              expYear: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 0 : (selectedPaymentMethod.maskedDetails.expiryYear ? parseInt(selectedPaymentMethod.maskedDetails.expiryYear) : 0)
-            } : membership?.paymentMethodSummary}
-            selectedPaymentMethod={selectedPaymentMethod || undefined}
-            buttons={paymentButtons}
-            onEditClick={() => setShowPaymentMethodPopup(true)}
-          />
+          <div className="flex flex-1 flex-col gap-6">
+            {!membership?.autoRenew && (
+              <RenewMembership
+                nextRenewalAt={membership?.nextRenewalAt}
+                onRenewClick={() => router.push('/account/membership/upgrade')}
+              />
+            )}
+            <Payment
+              mode="membership"
+              membershipId={membership?.membershipId || ""}
+              nextRenewalAt={membership?.nextRenewalAt}
+              autoRenew={Boolean(membership?.autoRenew)}
+              paymentMethodSummary={selectedPaymentMethod ? {
+                brand: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.brand,
+                last4: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.last4,
+                expMonth: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 0 : (selectedPaymentMethod.maskedDetails.expiryMonth ? parseInt(selectedPaymentMethod.maskedDetails.expiryMonth) : 0),
+                expYear: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 0 : (selectedPaymentMethod.maskedDetails.expiryYear ? parseInt(selectedPaymentMethod.maskedDetails.expiryYear) : 0)
+              } : membership?.paymentMethodSummary}
+              selectedPaymentMethod={selectedPaymentMethod || undefined}
+              buttons={paymentButtons}
+              onEditClick={() => setShowPaymentMethodPopup(true)}
+            />
+            
+          </div>
         </div>
       </div>
 
