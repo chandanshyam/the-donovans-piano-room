@@ -203,7 +203,7 @@ export default function Page() {
     },
     {
       onClick: handleCancelClick,
-      text: isCancelling ? 'Cancelling...' : (isActive ? 'Cancel' : 'Cancelled'),
+      text: isCancelling ? 'Cancelling...' : (isActive ? 'Cancel Membership' : 'Cancelled'),
       disabled: !isActive || isCancelling,
       loading: isCancelling,
       loadingText: 'Cancelling...',
@@ -273,23 +273,25 @@ export default function Page() {
                 uiConfig={uiConfig}
               />
               
-              {/* Actions */}
-              <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
-                {membershipButtons.map((button, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    disabled={button.disabled || button.loading}
-                    className={button.style}
-                    onClick={button.onClick}
-                  >
-                    {button.loading 
-                      ? (button.loadingText || 'Loading...')
-                      : button.text
-                    }
-                  </button>
-                ))}
-              </div>
+              {/* Actions - Hide when auto-renew/autopay is off */}
+              {membership?.autoRenew && (
+                <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
+                  {membershipButtons.map((button, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      disabled={button.disabled || button.loading}
+                      className={button.style}
+                      onClick={button.onClick}
+                    >
+                      {button.loading 
+                        ? (button.loadingText || 'Loading...')
+                        : button.text
+                      }
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
           <div className="flex flex-1 flex-col gap-6">
