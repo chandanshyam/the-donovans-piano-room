@@ -273,8 +273,8 @@ export default function Page() {
                 uiConfig={uiConfig}
               />
               
-              {/* Actions - Hide when auto-renew/autopay is off */}
-              {membership?.autoRenew && (
+              {/* Actions - Hide when auto-renew/autopay is off or membership is canceled */}
+              {membership?.autoRenew && membership?.status === MembershipStatus.ACTIVE && (
                 <div className="mt-4 flex w-full flex-col items-center text-3xl gap-4 md:flex-row font-semibold">
                   {membershipButtons.map((button, index) => (
                     <button
