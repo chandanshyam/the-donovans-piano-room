@@ -9,6 +9,7 @@ export interface ButtonConfig {
   loadingText?: string;
   message?: string;
   style?: string;
+  icon?: string;
 }
 
 // Popup types

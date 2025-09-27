@@ -177,10 +177,22 @@ export default function Payment({
                 }`}
                 onClick={button.onClick}
               >
-                {button.loading 
-                  ? (button.loadingText || 'Loading...')
-                  : button.text || 'Button'
-                }
+                {button.loading ? (
+                  button.loadingText || 'Loading...'
+                ) : (
+                  <div className="flex items-center justify-center gap-2">
+                    {button.icon && (
+                      <Image
+                        src={button.icon}
+                        alt=""
+                        width={22}
+                        height={22}
+                        className="shrink-0 brightness-0 invert"
+                      />
+                    )}
+                    <span>{button.text || 'Button'}</span>
+                  </div>
+                )}
               </button>
             </div>
           ))}
