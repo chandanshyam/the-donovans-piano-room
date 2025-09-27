@@ -79,8 +79,8 @@ export default function Payment({
             auto renewed on <span className="font-semibold text-tertiary-orange">{formattedDate}</span>.
           </p>
         ) : (
-          <p className="text-2xl text-primary-black">
-            Auto renew is currently disabled.
+          <p className="text-2xl font-semibold text-tertiary-orange">
+            Cancelled
           </p>
         )
       ) : (
