@@ -160,7 +160,15 @@ export default function Page() {
   const isActive = membership?.status === MembershipStatus.ACTIVE;
 
   // Button configuration for Payment component
-  const paymentButtons: ButtonConfig[] = membership?.autoRenew ? [
+  const paymentButtons: ButtonConfig[] = membership?.status === MembershipStatus.CANCELLED ? [
+    {
+      onClick: () => router.push('/account/membership/upgrade'),
+      text: 'Reactivate Membership',
+      disabled: false,
+      loading: false,
+      style: 'w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white'
+    }
+  ] : membership?.autoRenew ? [
     {
       onClick: () => router.push('/account/payments'),
       text: 'Add payment method',
@@ -306,6 +314,7 @@ export default function Page() {
               membershipId={membership?.membershipId || ""}
               nextRenewalAt={membership?.nextRenewalAt}
               autoRenew={Boolean(membership?.autoRenew)}
+              membershipStatus={membership?.status}
               paymentMethodSummary={selectedPaymentMethod ? {
                 brand: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.brand,
                 last4: selectedPaymentMethod.paymentMethodType?.toLowerCase() === 'paypal' ? 'paypal' : selectedPaymentMethod.maskedDetails.last4,
