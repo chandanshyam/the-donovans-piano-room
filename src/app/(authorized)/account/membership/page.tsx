@@ -184,6 +184,7 @@ export default function Page() {
     {
       onClick: handleToggleClick,
       text: 'Reactivate Autopay',
+      icon: '/memberships/Payment/ic_round-autorenew.svg',
       disabled: !isActive || isUpdatingAuto,
       loading: isUpdatingAuto,
       loadingText: 'Updating...',
