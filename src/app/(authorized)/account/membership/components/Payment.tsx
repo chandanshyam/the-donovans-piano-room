@@ -10,6 +10,7 @@ interface PaymentProps {
   membershipId: string;
   nextRenewalAt?: string;
   autoRenew?: boolean;
+  membershipStatus?: string; // for determining if membership is cancelled
   paymentMethodSummary?: PaymentMethodSummary;
   selectedPaymentMethod?: PaymentMethod;
   buttons?: ButtonConfig[];
@@ -25,6 +26,7 @@ export default function Payment({
   membershipId,
   nextRenewalAt,
   autoRenew,
+  membershipStatus,
   paymentMethodSummary,
   selectedPaymentMethod,
   selectedPlan,
@@ -73,7 +75,11 @@ export default function Payment({
           
         </div>
       ) : mode === 'membership' ? (
-        autoRenew && formattedDate ? (
+        membershipStatus === 'cancelled' ? (
+          <p className="text-2xl font-semibold text-tertiary-orange">
+            Cancelled
+          </p>
+        ) : autoRenew && formattedDate ? (
           <p className="text-2xl text-primary-black">
             Your Membership <span className="font-medium">#{membershipId}</span> will be
             auto renewed on <span className="font-semibold text-tertiary-orange">{formattedDate}</span>.
