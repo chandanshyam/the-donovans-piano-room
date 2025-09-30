@@ -239,3 +239,28 @@ export async function getUpgradeStatus() {
         throw new Error(error.message || 'An error occurred while getting upgrade status');
     }
 }
+
+export async function reactivateMembership(membershipId: string, vaultTokenId: string) {
+    try {
+        const response = await fetch('/api/membership/user/reactivate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                membershipId,
+                vaultTokenId,
+            }),
+        });
+        
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to reactivate membership');
+        }
+        
+        return data;
+    } catch (error: any) {
+        throw new Error(error.message || 'An error occurred while reactivating membership');
+    }
+}

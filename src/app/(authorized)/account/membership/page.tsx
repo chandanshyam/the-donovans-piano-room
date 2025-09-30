@@ -7,7 +7,7 @@ import {
   authorizedWrapperTitles,
   settingsNavigation,
 } from "@/utils/general";
-import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew, getPaymentMethods } from "@/lib/api/membershipService";
+import { getPlanInfo, getUserMembership, cancelUserMembership, toggleAutoRenew, getPaymentMethods, reactivateMembership } from "@/lib/api/membershipService";
 import Payment from "./components/Payment";
 import Popup from "./components/Popup";
 import PlanCard from "./components/PlanCard";
@@ -30,6 +30,7 @@ export default function Page() {
   const [showPaymentMethodPopup, setShowPaymentMethodPopup] = useState<boolean>(false);
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
+  const [isReactivating, setIsReactivating] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -152,6 +153,27 @@ export default function Page() {
     setShowCancelAutopayPopup(false);
   };
 
+  const handleReactivate = async () => {
+    if (!membership || isReactivating) {
+      return;
+    }
+
+    try {
+      setIsReactivating(true);
+      setError(null);
+
+      const membershipId = membership.membershipId;
+      const vaultTokenId = selectedPaymentMethod?.vaultTokenId || '';
+
+      await reactivateMembership(membershipId, vaultTokenId);
+      await refresh();
+    } catch (e: any) {
+      setError(e?.message || 'Failed to reactivate membership');
+    } finally {
+      setIsReactivating(false);
+    }
+  };
+
   const formattedNextRenewal = useMemo(() => {
     return formatRenewalDate(membership?.nextRenewalAt);
   }, [membership?.nextRenewalAt]);
@@ -162,10 +184,11 @@ export default function Page() {
   // Button configuration for Payment component
   const paymentButtons: ButtonConfig[] = membership?.status === MembershipStatus.CANCELLED ? [
     {
-      onClick: () => router.push('/account/membership/upgrade'),
+      onClick: handleReactivate,
       text: 'Reactivate Membership',
-      disabled: false,
-      loading: false,
+      disabled: isReactivating,
+      loading: isReactivating,
+      loadingText: 'Reactivating...',
       style: 'w-full rounded-full bg-primary-purple px-6 py-5 text-center text-white'
     }
   ] : membership?.autoRenew ? [
