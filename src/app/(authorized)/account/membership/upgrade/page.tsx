@@ -31,9 +31,8 @@ export default function UpgradePage() {
   };
 
   const handleScholarshipApply = () => {
-    // TODO: Replace with actual scholarship application form URL
-    // redirect to Google Forms for now
-    const scholarshipFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeuNCMufCuXD_C3P5jvoAapQEMGoK2Zem1NpNRufs0uM8WOeA/viewform?usp=sharing&ouid=111419422377560852182";
+    // Redirect to The Donovan organization website
+    const scholarshipFormUrl = "https://www.thedonovan.org";
     window.open(scholarshipFormUrl, '_blank', 'noopener,noreferrer');
     setShowScholarshipPopup(false);
   };
